@@ -1,0 +1,54 @@
+/* ==========================================================================
+   Unigrid CSS Framework — Reset / Base
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  line-height: var(--ug-line-height);
+}
+
+body {
+  font-family: var(--ug-font-family);
+  font-size: var(--ug-font-size-base);
+  font-weight: var(--ug-font-weight-regular);
+  line-height: var(--ug-line-height);
+  color: var(--ug-black);
+  background-color: var(--ug-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}

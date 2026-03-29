@@ -1,0 +1,110 @@
+/* ==========================================================================
+   Unigrid CSS Framework — Typography
+
+   The Unigrid system uses Helvetica exclusively. Typography follows
+   a strict hierarchy with bold headlines, regular body text, and
+   light captions. All type is set flush-left, ragged-right.
+   ========================================================================== */
+
+/* ---- Headings ---- */
+
+.ug-h1 {
+  font-size: var(--ug-font-size-3xl);
+  font-weight: var(--ug-font-weight-black);
+  line-height: var(--ug-line-height-tight);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--ug-space-3);
+}
+
+.ug-h2 {
+  font-size: var(--ug-font-size-2xl);
+  font-weight: var(--ug-font-weight-bold);
+  line-height: var(--ug-line-height-tight);
+  margin-bottom: var(--ug-space-2);
+}
+
+.ug-h3 {
+  font-size: var(--ug-font-size-xl);
+  font-weight: var(--ug-font-weight-bold);
+  line-height: var(--ug-line-height-tight);
+  margin-bottom: var(--ug-space-2);
+}
+
+.ug-h4 {
+  font-size: var(--ug-font-size-lg);
+  font-weight: var(--ug-font-weight-bold);
+  line-height: var(--ug-line-height);
+  margin-bottom: var(--ug-space-2);
+}
+
+/* ---- Body Text ---- */
+
+.ug-body {
+  font-size: var(--ug-font-size-base);
+  font-weight: var(--ug-font-weight-regular);
+  line-height: var(--ug-line-height);
+}
+
+.ug-body--sm {
+  font-size: var(--ug-font-size-sm);
+}
+
+.ug-body--lg {
+  font-size: var(--ug-font-size-lg);
+}
+
+/* ---- Lead / Intro Text ---- */
+
+.ug-lead {
+  font-size: var(--ug-font-size-lg);
+  font-weight: var(--ug-font-weight-light);
+  line-height: var(--ug-line-height);
+  margin-bottom: var(--ug-space-4);
+}
+
+/* ---- Captions ---- */
+
+.ug-caption {
+  font-size: var(--ug-font-size-xs);
+  font-weight: var(--ug-font-weight-regular);
+  line-height: var(--ug-line-height);
+  color: var(--ug-medium-gray);
+}
+
+/* ---- Labels ---- */
+
+.ug-label {
+  font-size: var(--ug-font-size-xs);
+  font-weight: var(--ug-font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ---- Text Alignment ---- */
+
+.ug-text-left   { text-align: left; }
+.ug-text-center { text-align: center; }
+.ug-text-right  { text-align: right; }
+
+/* ---- Text Colors ---- */
+
+.ug-text-white  { color: var(--ug-white); }
+.ug-text-black  { color: var(--ug-black); }
+.ug-text-gray   { color: var(--ug-medium-gray); }
+.ug-text-red    { color: var(--ug-red); }
+
+/* ---- Columns of Text ----
+   Unigrid folders often use multi-column text layouts within panels.
+*/
+
+.ug-text-cols-2 { columns: 2; column-gap: var(--ug-space-4); }
+.ug-text-cols-3 { columns: 3; column-gap: var(--ug-space-4); }
+.ug-text-cols-4 { columns: 4; column-gap: var(--ug-space-4); }
+
+@media (max-width: 767px) {
+  .ug-text-cols-2,
+  .ug-text-cols-3,
+  .ug-text-cols-4 {
+    columns: 1;
+  }
+}

@@ -1,0 +1,101 @@
+/* ==========================================================================
+   Unigrid CSS Framework — Header Bar
+
+   The signature black header band is the most recognizable element of the
+   Unigrid system. It spans the full width of the broadside and contains
+   the park name and NPS arrowhead logo.
+
+   Usage:
+     <header class="ug-header">
+       <div class="ug-header__logo">
+         <img src="arrowhead.svg" alt="NPS">
+       </div>
+       <div class="ug-header__title">
+         <h1>Yellowstone</h1>
+         <p class="ug-header__subtitle">National Park / Wyoming</p>
+       </div>
+     </header>
+   ========================================================================== */
+
+.ug-header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: var(--ug-space-4);
+  background-color: var(--ug-black);
+  color: var(--ug-white);
+  padding: var(--ug-space-3) var(--ug-space-4);
+  width: 100%;
+  grid-column: 1 / -1;
+}
+
+.ug-header--full {
+  grid-column: 1 / -1;
+}
+
+.ug-header__logo {
+  width: 3rem;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.ug-header__logo img,
+.ug-header__logo svg {
+  width: 100%;
+  height: auto;
+}
+
+.ug-header__title {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.ug-header__title h1,
+.ug-header__name {
+  font-size: var(--ug-font-size-3xl);
+  font-weight: var(--ug-font-weight-black);
+  line-height: var(--ug-line-height-tight);
+  letter-spacing: -0.02em;
+  text-transform: none;
+  margin: 0;
+}
+
+.ug-header__subtitle {
+  font-size: var(--ug-font-size-lg);
+  font-weight: var(--ug-font-weight-light);
+  opacity: 0.85;
+  margin: 0;
+}
+
+/* ---- Header Variants ---- */
+
+.ug-header--compact {
+  padding: var(--ug-space-2) var(--ug-space-3);
+}
+
+.ug-header--compact .ug-header__title h1,
+.ug-header--compact .ug-header__name {
+  font-size: var(--ug-font-size-2xl);
+}
+
+.ug-header--brown {
+  background-color: var(--ug-brown);
+}
+
+/* ---- Responsive Header ---- */
+
+@media (max-width: 767px) {
+  .ug-header__title h1,
+  .ug-header__name {
+    font-size: var(--ug-font-size-2xl);
+  }
+
+  .ug-header__subtitle {
+    font-size: var(--ug-font-size-base);
+  }
+
+  .ug-header__logo {
+    width: 2.5rem;
+  }
+}
