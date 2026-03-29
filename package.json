@@ -1,6 +1,6 @@
 {
   "name": "unigrid.css",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A CSS grid framework inspired by Massimo Vignelli's Unigrid system for the National Park Service",
   "main": "dist/unigrid.css",
   "style": "dist/unigrid.css",
@@ -9,20 +9,27 @@
     "src/"
   ],
   "scripts": {
-    "build": "cat src/base/variables.css src/base/reset.css src/grid/grid.css src/grid/formats.css src/grid/broadside.css src/components/header.css src/components/typography.css src/components/panels.css > dist/unigrid.css",
-    "watch": "watch 'npm run build' src/"
+    "dev": "vite",
+    "build": "sass src/scss/unigrid.scss dist/unigrid.css --style=expanded && sass src/scss/unigrid.scss dist/unigrid.min.css --style=compressed",
+    "preview": "vite preview"
   },
   "keywords": [
     "css",
+    "scss",
     "grid",
     "unigrid",
     "vignelli",
     "design-system",
-    "nps"
+    "nps",
+    "bem"
   ],
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/tdascoli/unigrid.css.git"
+  },
+  "devDependencies": {
+    "sass": "^1.80.0",
+    "vite": "^6.0.0"
   }
 }

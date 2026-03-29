@@ -1,0 +1,106 @@
+// ==========================================================================
+// Unigrid CSS Framework — Components (BEM)
+//
+// Reusable components: infobox, map, image, divider, block
+// ==========================================================================
+
+// ---- Block ----
+// Generic content container within a panel.
+
+.ug-block {
+  padding: ug-space(3);
+
+  &--flush {
+    padding: 0;
+  }
+
+  & + & {
+    margin-top: ug-space(3);
+  }
+}
+
+// ---- Map ----
+// Container for embedded maps.
+
+.ug-map {
+  width: 100%;
+  min-height: 300px;
+  background-color: $ug-warm-gray;
+  border: 1px solid $ug-light-gray;
+  overflow: hidden;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &--full {
+    grid-column: 1 / -1;
+    min-height: 50vh;
+  }
+}
+
+// ---- Infobox ----
+// Callout box with left border accent.
+
+.ug-infobox {
+  background-color: $ug-warm-gray;
+  padding: ug-space(3);
+  border-left: 3px solid $ug-black;
+
+  &--dark {
+    background-color: $ug-black;
+    color: $ug-white;
+    border-left-color: $ug-white;
+  }
+
+  &__title {
+    @include ug-font-size("sm");
+    @include ug-font-weight("bold");
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: ug-space(2);
+  }
+}
+
+// ---- Image ----
+// Image container with optional aspect ratios.
+
+.ug-image {
+  width: 100%;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &--contain img {
+    object-fit: contain;
+  }
+
+  &--din {
+    @include ug-ratio-din(false);
+  }
+
+  &--din-landscape {
+    @include ug-ratio-din(true);
+  }
+}
+
+// ---- Divider ----
+
+.ug-divider {
+  border: none;
+  border-top: 1px solid $ug-light-gray;
+  margin: ug-space(3) 0;
+  grid-column: 1 / -1;
+
+  &--bold {
+    border-top-width: 3px;
+    border-top-color: $ug-black;
+  }
+}

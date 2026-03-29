@@ -1,0 +1,110 @@
+// ==========================================================================
+// Unigrid CSS Framework — Grid System (BEM)
+//
+// Block: .ug-grid
+// Elements: (children use .ug-grid__col-{n})
+// Modifiers: --no-gap, --dense, --rows
+// ==========================================================================
+
+// ---- Grid Block ----
+
+.ug-grid {
+  display: grid;
+  grid-template-columns: repeat($ug-columns, 1fr);
+  gap: $ug-gap;
+  width: 100%;
+
+  // -- Modifiers --
+  &--no-gap {
+    gap: 0;
+  }
+
+  &--dense {
+    grid-auto-flow: dense;
+  }
+
+  &--rows {
+    grid-template-rows: repeat($ug-rows, 1fr);
+  }
+}
+
+// ---- Column Spans ----
+// .ug-col--{1-12}
+
+@for $i from 1 through $ug-columns {
+  .ug-col--#{$i} {
+    grid-column: span $i;
+  }
+}
+
+// ---- Column Start Positions ----
+// .ug-col--start-{1-12}
+
+@for $i from 1 through $ug-columns {
+  .ug-col--start-#{$i} {
+    grid-column-start: $i;
+  }
+}
+
+// ---- Row Spans ----
+// .ug-row--{1-10}
+
+@for $i from 1 through 10 {
+  .ug-row--#{$i} {
+    grid-row: span $i;
+  }
+}
+
+// ---- Row Start Positions ----
+// .ug-row--start-{1-10}
+
+@for $i from 1 through 10 {
+  .ug-row--start-#{$i} {
+    grid-row-start: $i;
+  }
+}
+
+// ---- Subgrid ----
+
+.ug-subgrid {
+  display: grid;
+  grid-template-columns: subgrid;
+
+  &--rows {
+    grid-template-rows: subgrid;
+  }
+}
+
+// ---- Responsive Column Spans ----
+// .ug-col--{bp}-{1-12}
+
+@each $bp-name, $bp-value in $ug-breakpoints {
+  @media (min-width: $bp-value) {
+    @for $i from 1 through $ug-columns {
+      .ug-col--#{$bp-name}-#{$i} {
+        grid-column: span $i;
+      }
+    }
+  }
+}
+
+// ---- Alignment Utilities ----
+
+.ug-align {
+  &--start { align-self: start; }
+  &--center { align-self: center; }
+  &--end { align-self: end; }
+  &--stretch { align-self: stretch; }
+}
+
+.ug-justify {
+  &--start { justify-self: start; }
+  &--center { justify-self: center; }
+  &--end { justify-self: end; }
+  &--stretch { justify-self: stretch; }
+}
+
+.ug-place--center {
+  align-self: center;
+  justify-self: center;
+}

@@ -1,0 +1,59 @@
+// ==========================================================================
+// Unigrid CSS Framework — Utilities (BEM-compatible)
+// ==========================================================================
+
+// ---- Full Width ----
+
+.ug-full-width {
+  grid-column: 1 / -1;
+}
+
+// ---- Background Colors ----
+
+@each $name, $color in $ug-colors {
+  .ug-bg--#{$name} {
+    background-color: $color;
+
+    // Auto light text on dark backgrounds
+    @if $name == "black" or $name == "brown" or $name == "red" or $name == "green" or $name == "blue" or $name == "dark-gray" {
+      color: $ug-white;
+    }
+  }
+}
+
+// ---- Spacing Utilities ----
+// .ug-p--{0-8}, .ug-m--{0-8}, .ug-mt--{0-8}, .ug-mb--{0-8}
+
+@each $n, $val in $ug-spaces {
+  .ug-p--#{$n} { padding: $val; }
+  .ug-m--#{$n} { margin: $val; }
+  .ug-mt--#{$n} { margin-top: $val; }
+  .ug-mb--#{$n} { margin-bottom: $val; }
+  .ug-ml--#{$n} { margin-left: $val; }
+  .ug-mr--#{$n} { margin-right: $val; }
+  .ug-pt--#{$n} { padding-top: $val; }
+  .ug-pb--#{$n} { padding-bottom: $val; }
+  .ug-pl--#{$n} { padding-left: $val; }
+  .ug-pr--#{$n} { padding-right: $val; }
+}
+
+// ---- Display ----
+
+.ug-hidden { display: none; }
+.ug-block { display: block; }
+
+// ---- Responsive visibility ----
+
+@each $bp-name, $bp-value in $ug-breakpoints {
+  .ug-hidden--#{$bp-name}-up {
+    @media (min-width: $bp-value) {
+      display: none;
+    }
+  }
+
+  .ug-hidden--#{$bp-name}-down {
+    @media (max-width: $bp-value - 1px) {
+      display: none;
+    }
+  }
+}

@@ -1,6 +1,6 @@
-/* ==========================================================================
-   Unigrid CSS Framework — Reset / Base
-   ========================================================================== */
+// ==========================================================================
+// Unigrid CSS Framework — Reset / Base
+// ==========================================================================
 
 *,
 *::before,
@@ -13,16 +13,16 @@
 html {
   font-size: 100%;
   -webkit-text-size-adjust: 100%;
-  line-height: var(--ug-line-height);
+  line-height: $ug-line-height;
 }
 
 body {
-  font-family: var(--ug-font-family);
-  font-size: var(--ug-font-size-base);
-  font-weight: var(--ug-font-weight-regular);
-  line-height: var(--ug-line-height);
-  color: var(--ug-black);
-  background-color: var(--ug-white);
+  font-family: $ug-font-family;
+  @include ug-font-size("base");
+  @include ug-font-weight("regular");
+  line-height: $ug-line-height;
+  color: $ug-black;
+  background-color: $ug-white;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

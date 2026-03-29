@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unigrid CSS — Cheatsheet</title>
+  <link rel="stylesheet" href="./styles.scss">
+  <style>
+    .cs-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; }
+    .cs-table th, .cs-table td { text-align: left; padding: 0.5rem 1rem; border-bottom: 1px solid #e8e5e0; font-size: 0.875rem; }
+    .cs-table th { font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; color: #666; }
+    .cs-table code { background: #f5f2ed; padding: 0.15em 0.4em; font-size: 0.8em; border-radius: 2px; }
+  </style>
+</head>
+<body>
+
+  <nav class="dev-nav">
+    <a class="dev-nav__link" href="/">Overview</a>
+    <a class="dev-nav__link" href="/grid.html">Grid</a>
+    <a class="dev-nav__link" href="/formats.html">Formats</a>
+    <a class="dev-nav__link" href="/typography.html">Typography</a>
+    <a class="dev-nav__link" href="/components.html">Components</a>
+    <a class="dev-nav__link dev-nav__link--active" href="/cheatsheet.html">Cheatsheet</a>
+  </nav>
+
+  <div class="dev-page">
+    <h1 class="ug-h1">Cheatsheet</h1>
+    <p class="ug-lead">All CSS classes at a glance. BEM naming: Block__Element--Modifier.</p>
+
+    <!-- Grid -->
+    <section class="dev-section">
+      <p class="dev-section-title">Grid</p>
+      <table class="cs-table">
+        <thead><tr><th>Class</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.ug-grid</code></td><td>12-column grid container</td></tr>
+          <tr><td><code>.ug-grid--no-gap</code></td><td>Remove gap between columns</td></tr>
+          <tr><td><code>.ug-grid--dense</code></td><td>Dense auto-flow packing</td></tr>
+          <tr><td><code>.ug-grid--rows</code></td><td>Add 20 explicit rows</td></tr>
+          <tr><td><code>.ug-col--{1-12}</code></td><td>Column span</td></tr>
+          <tr><td><code>.ug-col--start-{1-12}</code></td><td>Column start position</td></tr>
+          <tr><td><code>.ug-col--{sm|md|lg|xl}-{1-12}</code></td><td>Responsive column span</td></tr>
+          <tr><td><code>.ug-row--{1-10}</code></td><td>Row span</td></tr>
+          <tr><td><code>.ug-row--start-{1-10}</code></td><td>Row start position</td></tr>
+          <tr><td><code>.ug-subgrid</code></td><td>CSS subgrid alignment</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Formats -->
+    <section class="dev-section">
+      <p class="dev-section-title">Formats</p>
+      <table class="cs-table">
+        <thead><tr><th>Class</th><th>Panels</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.ug-format--a1</code></td><td>1×1</td><td>A-series, single panel</td></tr>
+          <tr><td><code>.ug-format--a2</code></td><td>1×2</td><td>A-series, 2 panels long</td></tr>
+          <tr><td><code>.ug-format--a3</code></td><td>1×3</td><td>A-series, 3 panels long</td></tr>
+          <tr><td><code>.ug-format--a4</code></td><td>1×4</td><td>A-series, 4 panels long</td></tr>
+          <tr><td><code>.ug-format--a6</code></td><td>1×6</td><td>A-series, 6 panels long</td></tr>
+          <tr><td><code>.ug-format--b1</code></td><td>2×1</td><td>B-series, single panel double height</td></tr>
+          <tr><td><code>.ug-format--b2</code></td><td>2×2</td><td>B-series, 2 panels long</td></tr>
+          <tr><td><code>.ug-format--b3</code></td><td>2×3</td><td>B-series, 3 panels long</td></tr>
+          <tr><td><code>.ug-format--b4</code></td><td>2×4</td><td>B-series, 4 panels long</td></tr>
+          <tr><td><code>.ug-format--b6</code></td><td>2×6</td><td>B-series, 6 panels long (DIN A2)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Broadside & Panel -->
+    <section class="dev-section">
+      <p class="dev-section-title">Broadside & Panel</p>
+      <table class="cs-table">
+        <thead><tr><th>Class</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.ug-broadside</code></td><td>Unfolded sheet container (grid)</td></tr>
+          <tr><td><code>.ug-broadside--full-height</code></td><td>100vh minimum height</td></tr>
+          <tr><td><code>.ug-broadside--din</code></td><td>DIN landscape aspect ratio</td></tr>
+          <tr><td><code>.ug-broadside--stack</code></td><td>Stack panels on mobile</td></tr>
+          <tr><td><code>.ug-panel</code></td><td>Panel within broadside</td></tr>
+          <tr><td><code>.ug-panel__header</code></td><td>Panel top zone</td></tr>
+          <tr><td><code>.ug-panel__body</code></td><td>Panel main content zone</td></tr>
+          <tr><td><code>.ug-panel__footer</code></td><td>Panel bottom zone</td></tr>
+          <tr><td><code>.ug-panel--flush</code></td><td>No padding</td></tr>
+          <tr><td><code>.ug-panel--dark</code></td><td>Black background</td></tr>
+          <tr><td><code>.ug-panel--gray</code></td><td>Warm gray background</td></tr>
+          <tr><td><code>.ug-panel--accent</code></td><td>Red background</td></tr>
+          <tr><td><code>.ug-panel--span-{2-6}</code></td><td>Span multiple columns</td></tr>
+          <tr><td><code>.ug-fold</code></td><td>Visual fold line</td></tr>
+          <tr><td><code>.ug-fold--dashed</code></td><td>Dashed fold line</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Components -->
+    <section class="dev-section">
+      <p class="dev-section-title">Components</p>
+      <table class="cs-table">
+        <thead><tr><th>Class</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.ug-header</code></td><td>Black header band</td></tr>
+          <tr><td><code>.ug-header__logo</code></td><td>Logo container</td></tr>
+          <tr><td><code>.ug-header__title</code></td><td>Title wrapper</td></tr>
+          <tr><td><code>.ug-header__name</code></td><td>Park name (alternative to h1)</td></tr>
+          <tr><td><code>.ug-header__subtitle</code></td><td>Subtitle text</td></tr>
+          <tr><td><code>.ug-header--compact</code></td><td>Smaller header</td></tr>
+          <tr><td><code>.ug-header--brown</code></td><td>Brown background</td></tr>
+          <tr><td><code>.ug-infobox</code></td><td>Callout with left border</td></tr>
+          <tr><td><code>.ug-infobox--dark</code></td><td>Dark variant</td></tr>
+          <tr><td><code>.ug-infobox__title</code></td><td>Infobox heading</td></tr>
+          <tr><td><code>.ug-map</code></td><td>Map container</td></tr>
+          <tr><td><code>.ug-map--full</code></td><td>Full-width map</td></tr>
+          <tr><td><code>.ug-image</code></td><td>Image container</td></tr>
+          <tr><td><code>.ug-image--din</code></td><td>DIN portrait ratio</td></tr>
+          <tr><td><code>.ug-divider</code></td><td>Horizontal line</td></tr>
+          <tr><td><code>.ug-divider--bold</code></td><td>Thick divider</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Typography -->
+    <section class="dev-section">
+      <p class="dev-section-title">Typography</p>
+      <table class="cs-table">
+        <thead><tr><th>Class</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.ug-h1</code> – <code>.ug-h4</code></td><td>Heading styles</td></tr>
+          <tr><td><code>.ug-body</code></td><td>Body text</td></tr>
+          <tr><td><code>.ug-body--sm</code></td><td>Small body text</td></tr>
+          <tr><td><code>.ug-body--lg</code></td><td>Large body text</td></tr>
+          <tr><td><code>.ug-lead</code></td><td>Intro / lead paragraph</td></tr>
+          <tr><td><code>.ug-caption</code></td><td>Caption text (gray)</td></tr>
+          <tr><td><code>.ug-label</code></td><td>Uppercase label</td></tr>
+          <tr><td><code>.ug-text--left|center|right</code></td><td>Text alignment</td></tr>
+          <tr><td><code>.ug-text--{color}</code></td><td>Text color</td></tr>
+          <tr><td><code>.ug-text--cols-{2-4}</code></td><td>Multi-column text</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Utilities -->
+    <section class="dev-section">
+      <p class="dev-section-title">Utilities</p>
+      <table class="cs-table">
+        <thead><tr><th>Class</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.ug-bg--{color}</code></td><td>Background color</td></tr>
+          <tr><td><code>.ug-p--{0-8}</code></td><td>Padding</td></tr>
+          <tr><td><code>.ug-m--{0-8}</code></td><td>Margin</td></tr>
+          <tr><td><code>.ug-mt--{0-8}</code></td><td>Margin top</td></tr>
+          <tr><td><code>.ug-mb--{0-8}</code></td><td>Margin bottom</td></tr>
+          <tr><td><code>.ug-full-width</code></td><td>Span all grid columns</td></tr>
+          <tr><td><code>.ug-hidden</code></td><td>Display none</td></tr>
+          <tr><td><code>.ug-hidden--{bp}-up</code></td><td>Hide above breakpoint</td></tr>
+          <tr><td><code>.ug-hidden--{bp}-down</code></td><td>Hide below breakpoint</td></tr>
+          <tr><td><code>.ug-ratio--din</code></td><td>1:√2 portrait aspect ratio</td></tr>
+          <tr><td><code>.ug-ratio--din-landscape</code></td><td>√2:1 landscape aspect ratio</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SCSS Variables -->
+    <section class="dev-section">
+      <p class="dev-section-title">SCSS Customization</p>
+      <table class="cs-table">
+        <thead><tr><th>Variable</th><th>Default</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>$ug-columns</code></td><td>12</td><td>Grid column count</td></tr>
+          <tr><td><code>$ug-gap</code></td><td>0.5rem</td><td>Grid gap</td></tr>
+          <tr><td><code>$ug-font-family</code></td><td>Helvetica Neue, …</td><td>Base font</td></tr>
+          <tr><td><code>$ug-black</code></td><td>#1a1a1a</td><td>Primary dark color</td></tr>
+          <tr><td><code>$ug-red</code></td><td>#c1272d</td><td>Accent color</td></tr>
+          <tr><td><code>$ug-breakpoints</code></td><td>(sm: 480px, …)</td><td>Responsive breakpoints map</td></tr>
+          <tr><td><code>$ug-formats</code></td><td>(a1: (…), …)</td><td>Format definitions map</td></tr>
+        </tbody>
+      </table>
+      <p class="ug-caption">Set variables before importing <code>@import "unigrid"</code> to override defaults.</p>
+    </section>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+// ==========================================================================
+// Unigrid CSS Framework — Header Bar (BEM)
+//
+// The signature black header band spanning the full broadside width.
+//
+// Block: .ug-header
+// Elements: __logo, __title, __name, __subtitle
+// Modifiers: --compact, --brown, --full
+// ==========================================================================
+
+.ug-header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: ug-space(4);
+  background-color: $ug-black;
+  color: $ug-white;
+  padding: ug-space(3) ug-space(4);
+  width: 100%;
+  grid-column: 1 / -1;
+
+  // -- Elements --
+  &__logo {
+    width: 3rem;
+    height: auto;
+    flex-shrink: 0;
+
+    img,
+    svg {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+
+    h1 {
+      @include ug-font-size("3xl");
+      @include ug-font-weight("black");
+      line-height: $ug-line-height-tight;
+      letter-spacing: -0.02em;
+      text-transform: none;
+      margin: 0;
+    }
+  }
+
+  &__name {
+    @include ug-font-size("3xl");
+    @include ug-font-weight("black");
+    line-height: $ug-line-height-tight;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  &__subtitle {
+    @include ug-font-size("lg");
+    @include ug-font-weight("light");
+    opacity: 0.85;
+    margin: 0;
+  }
+
+  // -- Modifiers --
+  &--compact {
+    padding: ug-space(2) ug-space(3);
+
+    .ug-header__title h1,
+    .ug-header__name {
+      @include ug-font-size("2xl");
+    }
+  }
+
+  &--brown {
+    background-color: $ug-brown;
+  }
+
+  &--full {
+    grid-column: 1 / -1;
+  }
+
+  // -- Responsive --
+  @include ug-breakpoint-down("md") {
+    &__title h1,
+    &__name {
+      @include ug-font-size("2xl");
+    }
+
+    &__subtitle {
+      @include ug-font-size("base");
+    }
+
+    &__logo {
+      width: 2.5rem;
+    }
+  }
+}
