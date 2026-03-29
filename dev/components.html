@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unigrid CSS — Components</title>
+  <link rel="stylesheet" href="./styles.scss">
+</head>
+<body>
+
+  <nav class="dev-nav">
+    <a class="dev-nav__link" href="/">Overview</a>
+    <a class="dev-nav__link" href="/grid.html">Grid</a>
+    <a class="dev-nav__link" href="/formats.html">Formats</a>
+    <a class="dev-nav__link" href="/typography.html">Typography</a>
+    <a class="dev-nav__link dev-nav__link--active" href="/components.html">Components</a>
+    <a class="dev-nav__link" href="/cheatsheet.html">Cheatsheet</a>
+  </nav>
+
+  <div class="dev-page">
+    <h1 class="ug-h1">Components</h1>
+    <p class="ug-lead">Reusable UI elements from the Unigrid system.</p>
+
+    <!-- Header -->
+    <section class="dev-section">
+      <p class="dev-section-title">Header — .ug-header</p>
+
+      <p class="ug-label ug-mb--2">Default</p>
+      <header class="ug-header ug-mb--3">
+        <div class="ug-header__logo">
+          <svg viewBox="0 0 40 52" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 0 L40 52 L0 52 Z" opacity="0.8"/>
+          </svg>
+        </div>
+        <div class="ug-header__title">
+          <h1>Yellowstone</h1>
+          <p class="ug-header__subtitle">National Park / Wyoming</p>
+        </div>
+      </header>
+
+      <p class="ug-label ug-mb--2">Compact</p>
+      <header class="ug-header ug-header--compact ug-mb--3">
+        <div class="ug-header__logo">
+          <svg viewBox="0 0 40 52" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 0 L40 52 L0 52 Z" opacity="0.8"/>
+          </svg>
+        </div>
+        <div class="ug-header__title">
+          <h1>Grand Canyon</h1>
+          <p class="ug-header__subtitle">National Park / Arizona</p>
+        </div>
+      </header>
+
+      <p class="ug-label ug-mb--2">Brown Variant</p>
+      <header class="ug-header ug-header--brown">
+        <div class="ug-header__title">
+          <span class="ug-header__name">Zion</span>
+          <p class="ug-header__subtitle">National Park / Utah</p>
+        </div>
+      </header>
+    </section>
+
+    <!-- Infobox -->
+    <section class="dev-section">
+      <p class="dev-section-title">Infobox — .ug-infobox</p>
+      <div class="ug-grid">
+        <div class="ug-col--4">
+          <div class="ug-infobox">
+            <p class="ug-infobox__title">Information</p>
+            <p class="ug-body--sm">Default infobox with left border accent.</p>
+          </div>
+        </div>
+        <div class="ug-col--4">
+          <div class="ug-infobox ug-infobox--dark">
+            <p class="ug-infobox__title">Emergency</p>
+            <p class="ug-body--sm">Dark variant for critical information.</p>
+          </div>
+        </div>
+        <div class="ug-col--4">
+          <div class="ug-infobox">
+            <p class="ug-infobox__title">Hours</p>
+            <p class="ug-body--sm">Open year-round.<br>Some roads seasonal.<br>Visitor center: 8am–6pm</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Map -->
+    <section class="dev-section">
+      <p class="dev-section-title">Map Container — .ug-map</p>
+      <div class="ug-grid">
+        <div class="ug-col--8">
+          <div class="ug-map" style="display:flex;align-items:center;justify-content:center;color:#999;">
+            .ug-map — Map placeholder (300px min-height)
+          </div>
+        </div>
+        <div class="ug-col--4">
+          <p class="ug-body--sm">The <code class="dev-code">.ug-map</code> component provides a container for embedded maps. Use <code class="dev-code">.ug-map--full</code> for full-width maps spanning all columns.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider -->
+    <section class="dev-section">
+      <p class="dev-section-title">Divider — .ug-divider</p>
+      <p class="ug-body ug-mb--3">Default divider:</p>
+      <hr class="ug-divider">
+      <p class="ug-body ug-mb--3">Bold divider:</p>
+      <hr class="ug-divider ug-divider--bold">
+    </section>
+
+    <!-- Panel Variants -->
+    <section class="dev-section">
+      <p class="dev-section-title">Panel Variants — .ug-panel</p>
+      <div class="ug-format ug-format--a4">
+        <div class="ug-broadside">
+          <section class="ug-panel">
+            <div class="ug-panel__body"><p class="ug-label">Default</p></div>
+          </section>
+          <section class="ug-panel ug-panel--dark">
+            <div class="ug-panel__body"><p class="ug-label">--dark</p></div>
+          </section>
+          <section class="ug-panel ug-panel--gray">
+            <div class="ug-panel__body"><p class="ug-label">--gray</p></div>
+          </section>
+          <section class="ug-panel ug-panel--accent">
+            <div class="ug-panel__body"><p class="ug-label">--accent</p></div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>

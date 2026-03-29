@@ -1,0 +1,73 @@
+// ==========================================================================
+// Unigrid CSS Framework — 10 Basic Formats (BEM)
+//
+// Real Unigrid specifications:
+// - A-series: 1 panel wide × N panels long (A1, A2, A3, A4, A6)
+// - B-series: 2 panels wide × N panels long (B1, B2, B3, B4, B6)
+// - No A5 or B5 — intentionally skipped
+// - Panel unit: 99 × 210 mm (folded size is always constant)
+// - B6 = DIN/ISO A2 = root-two rectangle (420 × 594 mm)
+//
+// Block: .ug-format
+// Modifiers: --a1, --a2, --a3, --a4, --a6, --b1, --b2, --b3, --b4, --b6
+// ==========================================================================
+
+@use "sass:map";
+
+// ---- Base Format Block ----
+
+.ug-format {
+  width: 100%;
+  max-width: 100%;
+  margin-inline: auto;
+  position: relative;
+}
+
+// ---- Generate Format Modifiers ----
+
+@each $name, $config in $ug-formats {
+  $panels-wide: map.get($config, panels-wide);
+  $panels-long: map.get($config, panels-long);
+  $max-width: map.get($config, max-width);
+  $cols: $panels-long;
+
+  .ug-format--#{$name} {
+    --ug-panels-wide: #{$panels-wide};
+    --ug-panels-long: #{$panels-long};
+    --ug-format-cols: #{$cols};
+    max-width: $max-width;
+  }
+}
+
+// ---- Format Grid Override ----
+
+@each $name, $config in $ug-formats {
+  $panels-long: map.get($config, panels-long);
+
+  .ug-format--#{$name} > .ug-broadside,
+  .ug-format--#{$name} > .ug-grid {
+    grid-template-columns: repeat(#{$panels-long}, 1fr);
+  }
+}
+
+// ---- DIN Aspect Ratio Helpers ----
+
+.ug-ratio {
+  &--din {
+    aspect-ratio: 1 #{"/"} #{$ug-ratio};
+  }
+
+  &--din-landscape {
+    aspect-ratio: #{$ug-ratio} #{"/"} 1;
+  }
+}
+
+// ---- Responsive Format Scaling ----
+
+@include ug-breakpoint-down("md") {
+  @each $name, $config in $ug-formats {
+    .ug-format--#{$name} {
+      max-width: 100%;
+    }
+  }
+}

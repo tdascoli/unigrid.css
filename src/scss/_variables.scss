@@ -1,0 +1,110 @@
+// ==========================================================================
+// Unigrid CSS Framework — Variables & Configuration
+// Based on Massimo Vignelli's Unigrid system for the National Park Service
+//
+// Override these variables before importing unigrid.scss to customize.
+// ==========================================================================
+
+// ---- DIN Proportions ----
+// The key ratio is 1:√2 (≈ 1:1.414). Each time the paper is folded in half,
+// the proportions remain the same.
+$ug-ratio: 1.4142135 !default;
+
+// ---- Grid Configuration ----
+$ug-columns: 12 !default;
+$ug-rows: 20 !default;
+$ug-gap: 0.5rem !default;
+
+// ---- Panel Unit ----
+// The basic Unigrid "leaf" is 99 × 210 mm. All formats are multiples of this.
+$ug-panel-width: 99mm !default;
+$ug-panel-height: 210mm !default;
+
+// ---- Breakpoints ----
+// Based on panel fold widths of the broadside.
+$ug-breakpoints: (
+  "sm": 480px,
+  "md": 768px,
+  "lg": 1024px,
+  "xl": 1280px,
+) !default;
+
+// ---- NPS Color Palette ----
+$ug-black: #1a1a1a !default;
+$ug-white: #ffffff !default;
+$ug-warm-gray: #f5f2ed !default;
+$ug-dark-gray: #333333 !default;
+$ug-medium-gray: #666666 !default;
+$ug-light-gray: #e8e5e0 !default;
+$ug-red: #c1272d !default;
+$ug-brown: #4a3728 !default;
+$ug-green: #2d5a27 !default;
+$ug-blue: #274a5a !default;
+
+$ug-colors: (
+  "black": $ug-black,
+  "white": $ug-white,
+  "warm-gray": $ug-warm-gray,
+  "dark-gray": $ug-dark-gray,
+  "medium-gray": $ug-medium-gray,
+  "light-gray": $ug-light-gray,
+  "red": $ug-red,
+  "brown": $ug-brown,
+  "green": $ug-green,
+  "blue": $ug-blue,
+) !default;
+
+// ---- Typography ----
+// The original Unigrid uses Helvetica exclusively.
+// Current NPS standard uses Frutiger and NPS Rawlinson.
+$ug-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+
+$ug-font-sizes: (
+  "xs": 0.75rem,
+  "sm": 0.875rem,
+  "base": 1rem,
+  "lg": 1.25rem,
+  "xl": 1.5rem,
+  "2xl": 2rem,
+  "3xl": 3rem,
+) !default;
+
+$ug-font-weights: (
+  "light": 300,
+  "regular": 400,
+  "bold": 700,
+  "black": 900,
+) !default;
+
+$ug-line-height: 1.5 !default;
+$ug-line-height-tight: 1.2 !default;
+
+// ---- Spacing Scale ----
+$ug-spaces: (
+  0: 0,
+  1: 0.25rem,
+  2: 0.5rem,
+  3: 1rem,
+  4: 1.5rem,
+  5: 2rem,
+  6: 3rem,
+  7: 4rem,
+  8: 6rem,
+) !default;
+
+// ---- Format Definitions ----
+// Real Unigrid specs: A-series = 1 panel wide, B-series = 2 panels wide.
+// Format number = panels long. A5/B5 are intentionally skipped.
+// Panel unit: 99 × 210 mm. Folded size always 99 × 210 mm.
+$ug-formats: (
+  "a1": (panels-wide: 1, panels-long: 1, max-width: 400px),
+  "a2": (panels-wide: 1, panels-long: 2, max-width: 500px),
+  "a3": (panels-wide: 1, panels-long: 3, max-width: 660px),
+  "a4": (panels-wide: 1, panels-long: 4, max-width: 762px),
+  "a6": (panels-wide: 1, panels-long: 6, max-width: 960px),
+  "b1": (panels-wide: 2, panels-long: 1, max-width: 400px),
+  "b2": (panels-wide: 2, panels-long: 2, max-width: 500px),
+  "b3": (panels-wide: 2, panels-long: 3, max-width: 660px),
+  "b4": (panels-wide: 2, panels-long: 4, max-width: 762px),
+  "b6": (panels-wide: 2, panels-long: 6, max-width: 1280px),
+) !default;

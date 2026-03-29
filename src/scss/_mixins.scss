@@ -1,0 +1,83 @@
+// ==========================================================================
+// Unigrid CSS Framework — Mixins
+// ==========================================================================
+
+@use "sass:map";
+@use "sass:math";
+
+// ---- Responsive Breakpoint ----
+// Usage: @include ug-breakpoint("md") { ... }
+@mixin ug-breakpoint($name) {
+  @if map.has-key($ug-breakpoints, $name) {
+    @media (min-width: map.get($ug-breakpoints, $name)) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint '#{$name}' not found in $ug-breakpoints.";
+  }
+}
+
+// ---- Max-width Breakpoint ----
+// Usage: @include ug-breakpoint-down("md") { ... }
+@mixin ug-breakpoint-down($name) {
+  @if map.has-key($ug-breakpoints, $name) {
+    @media (max-width: map.get($ug-breakpoints, $name) - 1px) {
+      @content;
+    }
+  }
+}
+
+// ---- Font Size Helper ----
+@mixin ug-font-size($size) {
+  @if map.has-key($ug-font-sizes, $size) {
+    font-size: map.get($ug-font-sizes, $size);
+  } @else {
+    font-size: $size;
+  }
+}
+
+// ---- Font Weight Helper ----
+@mixin ug-font-weight($weight) {
+  @if map.has-key($ug-font-weights, $weight) {
+    font-weight: map.get($ug-font-weights, $weight);
+  } @else {
+    font-weight: $weight;
+  }
+}
+
+// ---- Spacing Helper ----
+@function ug-space($n) {
+  @if map.has-key($ug-spaces, $n) {
+    @return map.get($ug-spaces, $n);
+  }
+  @return $n;
+}
+
+// ---- DIN Aspect Ratio ----
+@mixin ug-ratio-din($landscape: false) {
+  @if $landscape {
+    aspect-ratio: #{$ug-ratio} #{unquote("/")} 1;
+  } @else {
+    aspect-ratio: 1 #{unquote("/")} #{$ug-ratio};
+  }
+}
+
+// ---- Truncate Text ----
+@mixin ug-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// ---- Visually Hidden (accessible) ----
+@mixin ug-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

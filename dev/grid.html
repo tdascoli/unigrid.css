@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unigrid CSS — Grid System</title>
+  <link rel="stylesheet" href="./styles.scss">
+</head>
+<body>
+
+  <nav class="dev-nav">
+    <a class="dev-nav__link" href="/">Overview</a>
+    <a class="dev-nav__link dev-nav__link--active" href="/grid.html">Grid</a>
+    <a class="dev-nav__link" href="/formats.html">Formats</a>
+    <a class="dev-nav__link" href="/typography.html">Typography</a>
+    <a class="dev-nav__link" href="/components.html">Components</a>
+    <a class="dev-nav__link" href="/cheatsheet.html">Cheatsheet</a>
+  </nav>
+
+  <div class="dev-page">
+    <h1 class="ug-h1">Grid System</h1>
+    <p class="ug-lead">12-column CSS Grid with responsive breakpoints.</p>
+
+    <section class="dev-section">
+      <p class="dev-section-title">12 × 1 Columns</p>
+      <div class="ug-grid">
+        <div class="ug-col--1 dev-cell">1</div>
+        <div class="ug-col--1 dev-cell">1</div>
+        <div class="ug-col--1 dev-cell">1</div>
+        <div class="ug-col--1 dev-cell">1</div>
+        <div class="ug-col--1 dev-cell">1</div>
+        <div class="ug-col--1 dev-cell">1</div>
+        <div class="ug-col--1 dev-cell">1</div>
+        <div class="ug-col--1 dev-cell">1</div>
+        <div class="ug-col--1 dev-cell">1</div>
+        <div class="ug-col--1 dev-cell">1</div>
+        <div class="ug-col--1 dev-cell">1</div>
+        <div class="ug-col--1 dev-cell">1</div>
+      </div>
+    </section>
+
+    <section class="dev-section">
+      <p class="dev-section-title">6 + 6</p>
+      <div class="ug-grid">
+        <div class="ug-col--6 dev-cell">.ug-col--6</div>
+        <div class="ug-col--6 dev-cell">.ug-col--6</div>
+      </div>
+    </section>
+
+    <section class="dev-section">
+      <p class="dev-section-title">4 + 4 + 4</p>
+      <div class="ug-grid">
+        <div class="ug-col--4 dev-cell">.ug-col--4</div>
+        <div class="ug-col--4 dev-cell">.ug-col--4</div>
+        <div class="ug-col--4 dev-cell">.ug-col--4</div>
+      </div>
+    </section>
+
+    <section class="dev-section">
+      <p class="dev-section-title">3 + 3 + 3 + 3</p>
+      <div class="ug-grid">
+        <div class="ug-col--3 dev-cell">.ug-col--3</div>
+        <div class="ug-col--3 dev-cell">.ug-col--3</div>
+        <div class="ug-col--3 dev-cell">.ug-col--3</div>
+        <div class="ug-col--3 dev-cell">.ug-col--3</div>
+      </div>
+    </section>
+
+    <section class="dev-section">
+      <p class="dev-section-title">2 + 2 + 2 + 2 + 2 + 2</p>
+      <div class="ug-grid">
+        <div class="ug-col--2 dev-cell">.ug-col--2</div>
+        <div class="ug-col--2 dev-cell">.ug-col--2</div>
+        <div class="ug-col--2 dev-cell">.ug-col--2</div>
+        <div class="ug-col--2 dev-cell">.ug-col--2</div>
+        <div class="ug-col--2 dev-cell">.ug-col--2</div>
+        <div class="ug-col--2 dev-cell">.ug-col--2</div>
+      </div>
+    </section>
+
+    <section class="dev-section">
+      <p class="dev-section-title">Asymmetric: 3 + 9, 4 + 8, 5 + 7</p>
+      <div class="ug-grid ug-mb--3">
+        <div class="ug-col--3 dev-cell">.ug-col--3</div>
+        <div class="ug-col--9 dev-cell">.ug-col--9</div>
+      </div>
+      <div class="ug-grid ug-mb--3">
+        <div class="ug-col--4 dev-cell">.ug-col--4</div>
+        <div class="ug-col--8 dev-cell">.ug-col--8</div>
+      </div>
+      <div class="ug-grid">
+        <div class="ug-col--5 dev-cell">.ug-col--5</div>
+        <div class="ug-col--7 dev-cell">.ug-col--7</div>
+      </div>
+    </section>
+
+    <section class="dev-section">
+      <p class="dev-section-title">Responsive: Full → Half → Third</p>
+      <p class="ug-caption ug-mb--3">Resize the browser to see the columns adapt.</p>
+      <div class="ug-grid">
+        <div class="ug-col--12 ug-col--md-6 ug-col--lg-4 dev-cell">.ug-col--12 .ug-col--md-6 .ug-col--lg-4</div>
+        <div class="ug-col--12 ug-col--md-6 ug-col--lg-4 dev-cell">.ug-col--12 .ug-col--md-6 .ug-col--lg-4</div>
+        <div class="ug-col--12 ug-col--md-12 ug-col--lg-4 dev-cell">.ug-col--12 .ug-col--md-12 .ug-col--lg-4</div>
+      </div>
+    </section>
+
+    <section class="dev-section">
+      <p class="dev-section-title">No Gap</p>
+      <div class="ug-grid ug-grid--no-gap">
+        <div class="ug-col--3 dev-cell">3</div>
+        <div class="ug-col--3 dev-cell">3</div>
+        <div class="ug-col--3 dev-cell">3</div>
+        <div class="ug-col--3 dev-cell">3</div>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>

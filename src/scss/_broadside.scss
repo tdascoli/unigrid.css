@@ -1,0 +1,121 @@
+// ==========================================================================
+// Unigrid CSS Framework — Broadside & Panel Layout (BEM)
+//
+// The broadside is the fully opened, unfolded sheet.
+// A-series: 1 panel wide × N panels long → single row of panels
+// B-series: 2 panels wide × N panels long → two rows of panels
+//
+// Block: .ug-broadside
+// Elements: (children are .ug-panel blocks)
+// Modifiers: --full-height, --din, --stack
+//
+// Block: .ug-panel
+// Elements: __header, __body, __footer
+// Modifiers: --flush, --dark, --gray, --accent, --span-{n}
+// ==========================================================================
+
+// ---- Broadside Block ----
+
+.ug-broadside {
+  display: grid;
+  grid-template-columns: repeat(var(--ug-format-cols, $ug-columns), 1fr);
+  gap: $ug-gap;
+  width: 100%;
+  min-height: 0;
+
+  &--full-height {
+    min-height: 100vh;
+  }
+
+  &--din {
+    @include ug-ratio-din(true);
+  }
+
+  &--stack {
+    @include ug-breakpoint-down("md") {
+      grid-template-columns: 1fr;
+
+      > .ug-panel {
+        grid-column: span 1;
+        display: block;
+      }
+
+      > .ug-fold {
+        display: none;
+      }
+    }
+  }
+}
+
+// ---- Panel Block ----
+
+.ug-panel {
+  grid-column: span 1;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-template-rows: auto 1fr auto;
+  padding: ug-space(3);
+  min-height: 0;
+
+  // -- Elements --
+  &__header {
+    grid-row: 1;
+    grid-column: 1 / -1;
+  }
+
+  &__body {
+    grid-row: 2;
+    grid-column: 1 / -1;
+  }
+
+  &__footer {
+    grid-row: 3;
+    grid-column: 1 / -1;
+  }
+
+  // -- Modifiers --
+  &--flush {
+    padding: 0;
+  }
+
+  &--dark {
+    background-color: $ug-black;
+    color: $ug-white;
+  }
+
+  &--gray {
+    background-color: $ug-warm-gray;
+  }
+
+  &--accent {
+    background-color: $ug-red;
+    color: $ug-white;
+  }
+
+  // -- Span modifiers for multi-column panels --
+  @for $i from 2 through 6 {
+    &--span-#{$i} {
+      grid-column: span $i;
+    }
+  }
+}
+
+// ---- Fold Lines ----
+
+.ug-fold {
+  grid-row: 1 / -1;
+  width: 1px;
+  background-color: $ug-light-gray;
+  justify-self: end;
+  pointer-events: none;
+
+  &--dashed {
+    background: repeating-linear-gradient(
+      to bottom,
+      $ug-light-gray 0,
+      $ug-light-gray 6px,
+      transparent 6px,
+      transparent 12px
+    );
+  }
+}
