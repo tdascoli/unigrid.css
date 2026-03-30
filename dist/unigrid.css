@@ -1283,11 +1283,11 @@ textarea {
 .ug-h2 {
   font-size: 27px;
   font-size: 1.6875rem;
-  line-height: 39px;
-  line-height: 2.4375rem;
+  line-height: 52px;
+  line-height: 3.25rem;
   font-weight: 700;
-  margin-bottom: 13px;
-  margin-bottom: 0.8125rem;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
 }
 
 .ug-h3 {
@@ -1296,8 +1296,8 @@ textarea {
   line-height: 26px;
   line-height: 1.625rem;
   font-weight: 700;
-  margin-bottom: 13px;
-  margin-bottom: 0.8125rem;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
 }
 
 .ug-h4 {
@@ -1306,8 +1306,8 @@ textarea {
   line-height: 26px;
   line-height: 1.625rem;
   font-weight: 700;
-  margin-bottom: 13px;
-  margin-bottom: 0.8125rem;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
 }
 
 .ug-h5 {
@@ -1316,8 +1316,8 @@ textarea {
   line-height: 26px;
   line-height: 1.625rem;
   font-weight: 700;
-  margin-bottom: 13px;
-  margin-bottom: 0.8125rem;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
 }
 
 .ug-h6 {
@@ -1326,8 +1326,8 @@ textarea {
   line-height: 26px;
   line-height: 1.625rem;
   font-weight: 700;
-  margin-bottom: 13px;
-  margin-bottom: 0.8125rem;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
 }
 
 .ug-body {
@@ -1501,12 +1501,12 @@ textarea {
 .ug-prose h2 {
   font-size: 27px;
   font-size: 1.6875rem;
-  line-height: 39px;
-  line-height: 2.4375rem;
-  margin-top: 65px;
-  margin-top: 4.0625rem;
-  margin-bottom: 13px;
-  margin-bottom: 0.8125rem;
+  line-height: 52px;
+  line-height: 3.25rem;
+  margin-top: 78px;
+  margin-top: 4.875rem;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
   font-weight: 700;
 }
 .ug-prose h3 {
@@ -1516,8 +1516,8 @@ textarea {
   line-height: 1.625rem;
   margin-top: 52px;
   margin-top: 3.25rem;
-  margin-bottom: 13px;
-  margin-bottom: 0.8125rem;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
   font-weight: 700;
 }
 .ug-prose h4 {
@@ -1525,10 +1525,10 @@ textarea {
   font-size: 1.2rem;
   line-height: 26px;
   line-height: 1.625rem;
-  margin-top: 39px;
-  margin-top: 2.4375rem;
-  margin-bottom: 13px;
-  margin-bottom: 0.8125rem;
+  margin-top: 52px;
+  margin-top: 3.25rem;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
   font-weight: 700;
 }
 .ug-prose h5 {
@@ -1536,10 +1536,10 @@ textarea {
   font-size: 1rem;
   line-height: 26px;
   line-height: 1.625rem;
-  margin-top: 65px;
-  margin-top: 4.0625rem;
-  margin-bottom: 13px;
-  margin-bottom: 0.8125rem;
+  margin-top: 52px;
+  margin-top: 3.25rem;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
   font-weight: 700;
 }
 .ug-prose h6 {
@@ -1547,10 +1547,10 @@ textarea {
   font-size: 1rem;
   line-height: 26px;
   line-height: 1.625rem;
-  margin-top: 65px;
-  margin-top: 4.0625rem;
-  margin-bottom: 13px;
-  margin-bottom: 0.8125rem;
+  margin-top: 52px;
+  margin-top: 3.25rem;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
   font-weight: 700;
 }
 .ug-prose h1 + h2 {
@@ -1794,16 +1794,16 @@ textarea {
   --debug-mb: 26px;
 }
 .ug-prose--debug h2 {
-  --debug-mt: 65px;
-  --debug-mb: 13px;
+  --debug-mt: 78px;
+  --debug-mb: 26px;
 }
 .ug-prose--debug h3 {
   --debug-mt: 52px;
-  --debug-mb: 13px;
+  --debug-mb: 26px;
 }
 .ug-prose--debug h4 {
-  --debug-mt: 39px;
-  --debug-mb: 13px;
+  --debug-mt: 52px;
+  --debug-mb: 26px;
 }
 .ug-prose--debug p, .ug-prose--debug ul, .ug-prose--debug ol, .ug-prose--debug table, .ug-prose--debug figure, .ug-prose--debug hr {
   --debug-mt: 0px;
