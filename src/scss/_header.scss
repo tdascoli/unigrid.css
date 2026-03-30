@@ -115,12 +115,7 @@
 
     &__menu {
       @include ug-breakpoint-down("md") {
-        background-color: $ug-dark-gray;
-        border-bottom-color: rgba(255, 255, 255, 0.1);
-        left: 0;
-        right: 0;
-        position: fixed;
-        top: auto;
+        background-color: $ug-black;
       }
     }
   }
