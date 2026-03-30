@@ -102,14 +102,14 @@ $ug-spaces: (
 // Format number = panels long. A5/B5 are intentionally skipped.
 // Panel unit: 99 × 210 mm. Folded size always 99 × 210 mm.
 $ug-formats: (
-  "a1": (panels-wide: 1, panels-long: 1, max-width: 400px),
-  "a2": (panels-wide: 1, panels-long: 2, max-width: 500px),
-  "a3": (panels-wide: 1, panels-long: 3, max-width: 660px),
-  "a4": (panels-wide: 1, panels-long: 4, max-width: 762px),
-  "a6": (panels-wide: 1, panels-long: 6, max-width: 960px),
-  "b1": (panels-wide: 2, panels-long: 1, max-width: 400px),
-  "b2": (panels-wide: 2, panels-long: 2, max-width: 500px),
-  "b3": (panels-wide: 2, panels-long: 3, max-width: 660px),
-  "b4": (panels-wide: 2, panels-long: 4, max-width: 762px),
-  "b6": (panels-wide: 2, panels-long: 6, max-width: 1280px),
+  "a1": (panels-wide: 1, panels-long: 1),
+  "a2": (panels-wide: 1, panels-long: 2),
+  "a3": (panels-wide: 1, panels-long: 3),
+  "a4": (panels-wide: 1, panels-long: 4),
+  "a6": (panels-wide: 1, panels-long: 6),
+  "b1": (panels-wide: 2, panels-long: 1),
+  "b2": (panels-wide: 2, panels-long: 2),
+  "b3": (panels-wide: 2, panels-long: 3),
+  "b4": (panels-wide: 2, panels-long: 4),
+  "b6": (panels-wide: 2, panels-long: 6),
 ) !default;

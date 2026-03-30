@@ -484,70 +484,60 @@ textarea {
   --ug-panels-wide: 1;
   --ug-panels-long: 1;
   --ug-format-cols: 1;
-  max-width: 400px;
 }
 
 .ug-format--a2 {
   --ug-panels-wide: 1;
   --ug-panels-long: 2;
   --ug-format-cols: 2;
-  max-width: 500px;
 }
 
 .ug-format--a3 {
   --ug-panels-wide: 1;
   --ug-panels-long: 3;
   --ug-format-cols: 3;
-  max-width: 660px;
 }
 
 .ug-format--a4 {
   --ug-panels-wide: 1;
   --ug-panels-long: 4;
   --ug-format-cols: 4;
-  max-width: 762px;
 }
 
 .ug-format--a6 {
   --ug-panels-wide: 1;
   --ug-panels-long: 6;
   --ug-format-cols: 6;
-  max-width: 960px;
 }
 
 .ug-format--b1 {
   --ug-panels-wide: 2;
   --ug-panels-long: 1;
   --ug-format-cols: 1;
-  max-width: 400px;
 }
 
 .ug-format--b2 {
   --ug-panels-wide: 2;
   --ug-panels-long: 2;
   --ug-format-cols: 2;
-  max-width: 500px;
 }
 
 .ug-format--b3 {
   --ug-panels-wide: 2;
   --ug-panels-long: 3;
   --ug-format-cols: 3;
-  max-width: 660px;
 }
 
 .ug-format--b4 {
   --ug-panels-wide: 2;
   --ug-panels-long: 4;
   --ug-format-cols: 4;
-  max-width: 762px;
 }
 
 .ug-format--b6 {
   --ug-panels-wide: 2;
   --ug-panels-long: 6;
   --ug-format-cols: 6;
-  max-width: 1280px;
 }
 
 .ug-format--a1 > .ug-broadside,
@@ -607,38 +597,6 @@ textarea {
   aspect-ratio: 1.4142135 / 1;
 }
 
-@media (max-width: 767px) {
-  .ug-format--a1 {
-    max-width: 100%;
-  }
-  .ug-format--a2 {
-    max-width: 100%;
-  }
-  .ug-format--a3 {
-    max-width: 100%;
-  }
-  .ug-format--a4 {
-    max-width: 100%;
-  }
-  .ug-format--a6 {
-    max-width: 100%;
-  }
-  .ug-format--b1 {
-    max-width: 100%;
-  }
-  .ug-format--b2 {
-    max-width: 100%;
-  }
-  .ug-format--b3 {
-    max-width: 100%;
-  }
-  .ug-format--b4 {
-    max-width: 100%;
-  }
-  .ug-format--b6 {
-    max-width: 100%;
-  }
-}
 .ug-broadside {
   display: grid;
   grid-template-columns: repeat(var(--ug-format-cols, 12), 1fr);
@@ -728,7 +686,7 @@ textarea {
 
 .ug-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 1.5rem;
   background-color: #1a1a1a;
   color: #ffffff;
@@ -786,6 +744,7 @@ textarea {
   max-width: none;
   min-height: 0;
   justify-content: flex-end;
+  align-items: flex-start;
 }
 .ug-header .ug-navbar__brand {
   display: none;

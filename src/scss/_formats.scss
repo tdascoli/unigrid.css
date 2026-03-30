@@ -28,14 +28,12 @@
 @each $name, $config in $ug-formats {
   $panels-wide: map.get($config, panels-wide);
   $panels-long: map.get($config, panels-long);
-  $max-width: map.get($config, max-width);
   $cols: $panels-long;
 
   .ug-format--#{$name} {
     --ug-panels-wide: #{$panels-wide};
     --ug-panels-long: #{$panels-long};
     --ug-format-cols: #{$cols};
-    max-width: $max-width;
   }
 }
 
@@ -62,12 +60,3 @@
   }
 }
 
-// ---- Responsive Format Scaling ----
-
-@include ug-breakpoint-down("md") {
-  @each $name, $config in $ug-formats {
-    .ug-format--#{$name} {
-      max-width: 100%;
-    }
-  }
-}
