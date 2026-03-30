@@ -58,7 +58,7 @@
   display: grid;
   grid-template-columns: subgrid;
   grid-template-rows: auto 1fr auto;
-  padding: #{$ug-leading-rem}rem;
+  padding: var(--ug-leading);
   min-height: 0;
 
   // -- Elements --

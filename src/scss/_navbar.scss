@@ -29,16 +29,16 @@
     justify-content: space-between;
     max-width: 1280px;
     margin: 0 auto;
-    padding: 0 #{$ug-leading-rem}rem;
+    padding: 0 var(--ug-leading);
     // 2 leading minus 1px border = exact grid alignment
-    height: calc(#{$ug-leading-rem * 2}rem - 1px);
+    height: calc(calc(var(--ug-leading) * 2) - 1px);
   }
 
   // -- Brand / Logo area (optional, left side) --
   &__brand {
     display: flex;
     align-items: center;
-    gap: #{$ug-leading-rem * 0.5}rem;
+    gap: calc(var(--ug-leading) * 0.5);
     @include ug-font-size("sm");
     @include ug-font-weight("bold");
     text-decoration: none;
@@ -52,8 +52,8 @@
     background: none;
     border: none;
     cursor: pointer;
-    padding: #{$ug-leading-rem * 0.5}rem;
-    margin-right: #{$ug-leading-rem * -0.5}rem;
+    padding: calc(var(--ug-leading) * 0.5);
+    margin-right: calc(var(--ug-leading) * -0.5);
     color: inherit;
 
     // Hamburger icon (3 lines)
@@ -97,7 +97,7 @@
       right: 0;
       background-color: inherit;
       border-bottom: 1px solid $ug-light-gray;
-      padding: #{$ug-leading-rem * 0.5}rem 0;
+      padding: calc(var(--ug-leading) * 0.5) 0;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 
       &--open {
@@ -117,7 +117,7 @@
     display: inline-flex;
     align-items: center;
     height: 100%;
-    padding: 0 #{$ug-leading-rem * 0.5}rem;
+    padding: 0 calc(var(--ug-leading) * 0.5);
     @include ug-font-size("base");
     @include ug-font-weight("light");
     color: $ug-dark-gray;
@@ -137,8 +137,8 @@
     @include ug-breakpoint-down("md") {
       display: flex;
       align-items: center;
-      height: #{$ug-leading-rem * 2}rem;
-      padding: 0 #{$ug-leading-rem}rem;
+      height: calc(var(--ug-leading) * 2);
+      padding: 0 var(--ug-leading);
       @include ug-font-size("base");
     }
   }
@@ -146,14 +146,14 @@
   // -- Divider (vertical on desktop, horizontal on mobile) --
   &__divider {
     width: 1px;
-    height: #{$ug-leading-rem}rem;
+    height: var(--ug-leading);
     background-color: $ug-light-gray;
-    margin: 0 #{$ug-leading-rem * 0.25}rem;
+    margin: 0 calc(var(--ug-leading) * 0.25);
 
     @include ug-breakpoint-down("md") {
       width: auto;
       height: 1px;
-      margin: #{$ug-leading-rem * 0.25}rem #{$ug-leading-rem}rem;
+      margin: calc(var(--ug-leading) * 0.25) var(--ug-leading);
     }
   }
 

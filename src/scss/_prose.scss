@@ -256,13 +256,13 @@
   hr {
     border: none;
     border-bottom: 1px solid $ug-light-gray;
-    padding-top: calc(#{$ug-leading-rem}rem - 1px);
+    padding-top: calc(var(--ug-leading) - 1px);
     @include ug-rhythm-margin-top(1);
     @include ug-rhythm-margin-bottom(1);
 
     &.ug-divider--bold {
       border-bottom: 3px solid $ug-black;
-      padding-top: calc(#{$ug-leading-rem}rem - 3px);
+      padding-top: calc(var(--ug-leading) - 3px);
     }
   }
 
@@ -308,8 +308,8 @@
   &--indent {
     p + p {
       @include ug-rhythm-margin-top(-1);
-      text-indent: #{$ug-leading}px;
-      text-indent: #{$ug-leading-rem}rem;
+      text-indent: var(--ug-leading);
+      text-indent: var(--ug-leading);
     }
   }
 
@@ -322,8 +322,8 @@
     );
     background-position: left top;
     background-repeat: repeat;
-    background-size: 100% #{$ug-leading}px;
-    background-size: 100% #{$ug-leading-rem}rem;
+    background-size: 100% var(--ug-leading);
+    background-size: 100% var(--ug-leading);
   }
 
   &--grid-double {
@@ -331,15 +331,15 @@
       to bottom,
       hsla(200, 100%, 50%, 0.3) 1px,
       transparent 1px,
-      transparent #{0.5 * $ug-leading}px,
-      hsla(200, 100%, 50%, 0.15) #{0.5 * $ug-leading}px,
-      transparent #{0.5 * $ug-leading + 1}px,
-      transparent #{$ug-leading}px
+      transparent calc(var(--ug-leading) * 0.5),
+      hsla(200, 100%, 50%, 0.15) calc(var(--ug-leading) * 0.5),
+      transparent calc(var(--ug-leading) * 0.5 + 1px),
+      transparent var(--ug-leading)
     );
     background-position: left top;
     background-repeat: repeat;
-    background-size: 100% #{$ug-leading}px;
-    background-size: 100% #{$ug-leading-rem}rem;
+    background-size: 100% var(--ug-leading);
+    background-size: 100% var(--ug-leading);
   }
 
   // ---- Debug: Show Margins & Padding ----
@@ -371,15 +371,15 @@
     }
 
     // Margin vars per element
-    h1 { --debug-mt: #{list.nth(map.get($ug-headings, h1), 3) * $ug-leading}px; --debug-mb: #{list.nth(map.get($ug-headings, h1), 4) * $ug-leading}px; }
-    h2 { --debug-mt: #{list.nth(map.get($ug-headings, h2), 3) * $ug-leading}px; --debug-mb: #{list.nth(map.get($ug-headings, h2), 4) * $ug-leading}px; }
-    h3 { --debug-mt: #{list.nth(map.get($ug-headings, h3), 3) * $ug-leading}px; --debug-mb: #{list.nth(map.get($ug-headings, h3), 4) * $ug-leading}px; }
-    h4 { --debug-mt: #{list.nth(map.get($ug-headings, h4), 3) * $ug-leading}px; --debug-mb: #{list.nth(map.get($ug-headings, h4), 4) * $ug-leading}px; }
-    p, ul, ol, table, figure, hr { --debug-mt: 0px; --debug-mb: #{$ug-leading}px; }
+    h1 { --debug-mt: calc(var(--ug-leading) * #{list.nth(map.get($ug-headings, h1), 3)}); --debug-mb: calc(var(--ug-leading) * #{list.nth(map.get($ug-headings, h1), 4)}); }
+    h2 { --debug-mt: calc(var(--ug-leading) * #{list.nth(map.get($ug-headings, h2), 3)}); --debug-mb: calc(var(--ug-leading) * #{list.nth(map.get($ug-headings, h2), 4)}); }
+    h3 { --debug-mt: calc(var(--ug-leading) * #{list.nth(map.get($ug-headings, h3), 3)}); --debug-mb: calc(var(--ug-leading) * #{list.nth(map.get($ug-headings, h3), 4)}); }
+    h4 { --debug-mt: calc(var(--ug-leading) * #{list.nth(map.get($ug-headings, h4), 3)}); --debug-mb: calc(var(--ug-leading) * #{list.nth(map.get($ug-headings, h4), 4)}); }
+    p, ul, ol, table, figure, hr { --debug-mt: 0px; --debug-mb: var(--ug-leading); }
 
     // Padding vars for elements that have padding
-    blockquote { --debug-pl: 1.4375rem; --debug-pt: 0px; --debug-pb: 0px; --debug-pr: 0px; --debug-mt: #{$ug-leading}px; --debug-mb: #{$ug-leading}px; }
-    pre { --debug-pt: #{$ug-leading}px; --debug-pr: #{$ug-leading}px; --debug-pb: #{$ug-leading}px; --debug-pl: #{$ug-leading}px; --debug-mt: 0px; --debug-mb: #{$ug-leading}px; }
+    blockquote { --debug-pl: 1.4375rem; --debug-pt: 0px; --debug-pb: 0px; --debug-pr: 0px; --debug-mt: var(--ug-leading); --debug-mb: var(--ug-leading); }
+    pre { --debug-pt: var(--ug-leading); --debug-pr: var(--ug-leading); --debug-pb: var(--ug-leading); --debug-pl: var(--ug-leading); --debug-mt: 0px; --debug-mb: var(--ug-leading); }
     ul, ol { --debug-pl: 1.5rem; }
   }
 

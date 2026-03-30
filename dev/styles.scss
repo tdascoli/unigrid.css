@@ -37,8 +37,7 @@ body.dev-grid {
   );
   background-position: left top;
   background-repeat: repeat;
-  background-size: 100% #{$ug-leading}px;
-  background-size: 100% #{$ug-leading-rem}rem;
+  background-size: 100% var(--ug-leading);
 }
 
 body.dev-grid-double {
@@ -46,15 +45,14 @@ body.dev-grid-double {
     to bottom,
     hsla(200, 100%, 50%, 0.3) 1px,
     transparent 1px,
-    transparent #{0.5 * $ug-leading}px,
-    hsla(200, 100%, 50%, 0.15) #{0.5 * $ug-leading}px,
-    transparent #{0.5 * $ug-leading + 1}px,
-    transparent #{$ug-leading}px
+    transparent calc(var(--ug-leading) * 0.5),
+    hsla(200, 100%, 50%, 0.15) calc(var(--ug-leading) * 0.5),
+    transparent calc(var(--ug-leading) * 0.5 + 1px),
+    transparent var(--ug-leading)
   );
   background-position: left top;
   background-repeat: repeat;
-  background-size: 100% #{$ug-leading}px;
-  background-size: 100% #{$ug-leading-rem}rem;
+  background-size: 100% var(--ug-leading);
 }
 
 // Global margin/padding debug (applied to body)

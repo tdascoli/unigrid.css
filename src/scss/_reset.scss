@@ -28,11 +28,13 @@ html {
   font-size: #{$ug-base}px;
   font-size: #{$ug-base-font-size};
   -webkit-text-size-adjust: 100%;
-  @include ug-rhythm-line-height(1);
+  --ug-leading: #{$ug-leading}px;
+  line-height: var(--ug-leading);
 
   @media screen and (min-width: #{$ug-prose-max-width}) {
     font-size: #{$ug-base-desktop}px;
     font-size: #{$ug-base-font-size-desktop};
+    --ug-leading: #{$ug-leading-desktop}px;
   }
 }
 

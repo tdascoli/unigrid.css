@@ -15,9 +15,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: #{$ug-leading-rem * 0.5}rem;
-  height: #{$ug-leading-rem * 1.5}rem;
-  padding: 0 #{$ug-leading-rem}rem;
+  gap: calc(var(--ug-leading) * 0.5);
+  height: calc(var(--ug-leading) * 1.5);
+  padding: 0 var(--ug-leading);
   @include ug-font-size("base");
   @include ug-font-weight("bold");
   font-family: inherit;
@@ -170,15 +170,15 @@
   // sm = 1 leading height
   &--sm {
     @include ug-font-size("sm");
-    height: #{$ug-leading-rem}rem;
-    padding: 0 #{$ug-leading-rem * 0.5}rem;
+    height: var(--ug-leading);
+    padding: 0 calc(var(--ug-leading) * 0.5);
   }
 
   // lg = 2 leading height
   &--lg {
     @include ug-font-size("lg");
-    height: #{$ug-leading-rem * 2}rem;
-    padding: 0 #{$ug-leading-rem * 1.5}rem;
+    height: calc(var(--ug-leading) * 2);
+    padding: 0 calc(var(--ug-leading) * 1.5);
   }
 
   // ==============================

@@ -108,7 +108,9 @@ $ug-leading-desktop: round($ug-base-desktop * $ug-base-leading-desktop) !default
 $ug-leading-rem: vars-math.div($ug-leading, $ug-base) !default;
 $ug-leading-rem-desktop: vars-math.div($ug-leading-desktop, $ug-base-desktop) !default;
 
-// Override gap with leading-based value now that $ug-leading-rem is available
+// Override gap — uses rem for Sass compilation, matches mobile leading.
+// At runtime the grid gap won't auto-adapt to desktop (acceptable trade-off
+// since grid gaps are horizontal and less critical for vertical rhythm).
 $ug-gap: #{$ug-leading-rem}rem;
 
 // ---- Modular Scale (from Gutenberg) ----

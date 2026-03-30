@@ -16,17 +16,17 @@
 .ug-header {
   display: flex;
   align-items: flex-start;
-  gap: #{$ug-leading-rem}rem;
+  gap: var(--ug-leading);
   background-color: $ug-black;
   color: $ug-white;
-  padding: #{$ug-leading-rem}rem #{$ug-leading-rem * 1.5}rem;
+  padding: var(--ug-leading) calc(var(--ug-leading) * 1.5);
   width: 100%;
   grid-column: 1 / -1;
   flex-wrap: wrap;
 
   // -- Elements --
   &__logo {
-    height: #{$ug-leading-rem * 3}rem;
+    height: calc(var(--ug-leading) * 3);
     flex-shrink: 0;
 
     img,
@@ -127,11 +127,11 @@
 
   // -- Modifiers --
   &--compact {
-    padding: #{$ug-leading-rem * 0.5}rem #{$ug-leading-rem * 1.5}rem;
+    padding: calc(var(--ug-leading) * 0.5) calc(var(--ug-leading) * 1.5);
 
     .ug-header__logo {
       width: auto;
-      height: #{$ug-leading-rem * 2}rem;
+      height: calc(var(--ug-leading) * 2);
     }
 
     .ug-header__title h1,

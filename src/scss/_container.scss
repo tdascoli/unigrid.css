@@ -13,8 +13,8 @@
 
 .ug-container {
   width: 100%;
-  padding-left: #{$ug-leading-rem * 1.5}rem;
-  padding-right: #{$ug-leading-rem * 1.5}rem;
+  padding-left: calc(var(--ug-leading) * 1.5);
+  padding-right: calc(var(--ug-leading) * 1.5);
 
   // -- Centered, max-width container --
   &--narrow {
@@ -43,8 +43,8 @@
 
   // -- Responsive padding --
   @include ug-breakpoint-down("md") {
-    padding-left: #{$ug-leading-rem}rem;
-    padding-right: #{$ug-leading-rem}rem;
+    padding-left: var(--ug-leading);
+    padding-right: var(--ug-leading);
 
     &--flush {
       padding-left: 0;

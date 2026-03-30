@@ -27,7 +27,7 @@
 
 .ug-map {
   width: 100%;
-  min-height: #{$ug-leading-rem * 12}rem;
+  min-height: calc(var(--ug-leading) * 12);
   background-color: $ug-warm-gray;
   border: 1px solid $ug-light-gray;
   overflow: hidden;
@@ -100,19 +100,19 @@
 .ug-divider {
   border: none;
   border-bottom: 1px solid $ug-light-gray;
-  padding-top: calc(#{$ug-leading-rem * 1.5}rem - 1px);
+  padding-top: calc(calc(var(--ug-leading) * 1.5) - 1px);
   grid-column: 1 / -1;
 
   &--narrow {
-    padding-top: calc(#{$ug-leading-rem}rem - 1px);
+    padding-top: calc(var(--ug-leading) - 1px);
   }
 
   &--bold {
     border-bottom: 3px solid $ug-black;
-    padding-top: calc(#{$ug-leading-rem * 1.5}rem - 3px);
+    padding-top: calc(calc(var(--ug-leading) * 1.5) - 3px);
 
     &.ug-divider--narrow {
-      padding-top: calc(#{$ug-leading-rem}rem - 3px);
+      padding-top: calc(var(--ug-leading) - 3px);
     }
   }
 }
@@ -132,12 +132,12 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: $ug-medium-gray;
-  padding-bottom: calc(#{$ug-leading-rem}rem - 2px);
+  padding-bottom: calc(var(--ug-leading) - 2px);
   border-bottom: 2px solid $ug-black;
   margin-top: 0;
 
   &--bold {
-    padding-bottom: calc(#{$ug-leading-rem}rem - 3px);
+    padding-bottom: calc(var(--ug-leading) - 3px);
     border-bottom-width: 3px;
   }
 

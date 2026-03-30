@@ -20,8 +20,8 @@
   flex-direction: column;
   justify-content: flex-end;
   width: 100%;
-  min-height: round(down, 50vh, #{$ug-leading-rem}rem);
-  padding: #{$ug-leading-rem * 3}rem #{$ug-leading-rem * 1.5}rem;
+  min-height: round(down, 50vh, var(--ug-leading));
+  padding: calc(var(--ug-leading) * 3) calc(var(--ug-leading) * 1.5);
   color: $ug-white;
   overflow: hidden;
 
@@ -98,7 +98,7 @@
   // -- Action buttons area --
   &__actions {
     display: flex;
-    gap: #{$ug-leading-rem}rem;
+    gap: var(--ug-leading);
     flex-wrap: wrap;
     @include ug-rhythm-margin-top(1);
   }
@@ -108,15 +108,15 @@
   // ==============================
 
   &--full {
-    min-height: round(down, 100vh, #{$ug-leading-rem}rem);
+    min-height: round(down, 100vh, var(--ug-leading));
   }
 
   &--half {
-    min-height: round(down, 50vh, #{$ug-leading-rem}rem);
+    min-height: round(down, 50vh, var(--ug-leading));
   }
 
   &--third {
-    min-height: round(down, 33vh, #{$ug-leading-rem}rem);
+    min-height: round(down, 33vh, var(--ug-leading));
   }
 
   &--auto {
@@ -208,7 +208,7 @@
     // The DIN aspect ratio height is not a leading multiple.
     // Round margin-bottom to snap the next element back onto the grid.
     // Uses CSS round() (supported in modern browsers).
-    margin-bottom: calc(#{$ug-leading-rem}rem - mod(100vw / #{$ug-ratio}, #{$ug-leading-rem}rem));
+    margin-bottom: calc(var(--ug-leading) - mod(100vw / #{$ug-ratio}, var(--ug-leading)));
   }
 
   // ==============================
@@ -216,11 +216,11 @@
   // ==============================
 
   @include ug-breakpoint-down("md") {
-    padding: #{$ug-leading-rem * 2}rem #{$ug-leading-rem}rem;
-    min-height: round(down, 40vh, #{$ug-leading-rem}rem);
+    padding: calc(var(--ug-leading) * 2) var(--ug-leading);
+    min-height: round(down, 40vh, var(--ug-leading));
 
     &--full {
-      min-height: round(down, 100vh, #{$ug-leading-rem}rem);
+      min-height: round(down, 100vh, var(--ug-leading));
     }
   }
 }
@@ -232,9 +232,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: #{$ug-leading-rem * 0.5}rem;
-  height: #{$ug-leading-rem * 1.5}rem;
-  padding: 0 #{$ug-leading-rem}rem;
+  gap: calc(var(--ug-leading) * 0.5);
+  height: calc(var(--ug-leading) * 1.5);
+  padding: 0 var(--ug-leading);
   @include ug-font-size("sm");
   @include ug-font-weight("bold");
   text-decoration: none;

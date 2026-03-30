@@ -92,7 +92,7 @@
 @for $i from 2 through 4 {
   .ug-text--cols-#{$i} {
     columns: $i;
-    column-gap: #{$ug-leading-rem * 1.5}rem;
+    column-gap: calc(var(--ug-leading) * 1.5);
 
     @include ug-breakpoint-down("md") {
       columns: 1;
