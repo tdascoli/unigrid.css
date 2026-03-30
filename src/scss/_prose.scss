@@ -47,6 +47,11 @@
     margin-top: 0;
   }
 
+  // First child: no top margin (avoids gap at start of prose)
+  > *:first-child {
+    margin-top: 0;
+  }
+
   // ---- Max reading width ----
   > * {
     max-width: #{$ug-prose-max-width};

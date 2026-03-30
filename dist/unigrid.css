@@ -1444,6 +1444,9 @@ textarea {
   margin-bottom: 1.625rem;
   margin-top: 0;
 }
+.ug-prose > *:first-child {
+  margin-top: 0;
+}
 .ug-prose > * {
   max-width: 35rem;
 }
