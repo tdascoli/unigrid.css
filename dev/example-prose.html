@@ -56,6 +56,11 @@
   </div>
 
   <!-- Toggle baseline grid -->
+  <button class="demo-toggle" style="right:8rem" onclick="
+    document.getElementById('prose').classList.toggle('ug-prose--debug');
+    this.textContent = document.getElementById('prose').classList.contains('ug-prose--debug') ? 'Margins: On' : 'Margins: Off';
+  ">Margins: Off</button>
+
   <button class="demo-toggle" onclick="
     var p = document.getElementById('prose');
     if (p.classList.contains('ug-prose--grid-double')) {

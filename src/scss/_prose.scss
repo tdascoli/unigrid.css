@@ -337,4 +337,35 @@
     background-size: 100% #{$ug-leading}px;
     background-size: 100% #{$ug-leading-rem}rem;
   }
+
+  // ---- Debug: Show Margins ----
+  // Visualizes the box model: content (blue), padding (green), margin (orange).
+  &--debug {
+    > * {
+      outline: 1px solid hsla(210, 80%, 60%, 0.5);
+      background-color: hsla(210, 80%, 60%, 0.04);
+      position: relative;
+
+      // Margin visualization via box-shadow (orange glow for top/bottom margins)
+      box-shadow:
+        0 calc(-1 * var(--debug-mt, 0px)) 0 0 hsla(30, 100%, 60%, 0.12),
+        0 calc(var(--debug-mb, 0px)) 0 0 hsla(30, 100%, 60%, 0.12);
+    }
+
+    // Set margin CSS vars for common elements
+    h1 { --debug-mt: #{list.nth(map.get($ug-headings, h1), 3) * $ug-leading}px; --debug-mb: #{list.nth(map.get($ug-headings, h1), 4) * $ug-leading}px; }
+    h2 { --debug-mt: #{list.nth(map.get($ug-headings, h2), 3) * $ug-leading}px; --debug-mb: #{list.nth(map.get($ug-headings, h2), 4) * $ug-leading}px; }
+    h3 { --debug-mt: #{list.nth(map.get($ug-headings, h3), 3) * $ug-leading}px; --debug-mb: #{list.nth(map.get($ug-headings, h3), 4) * $ug-leading}px; }
+    h4 { --debug-mt: #{list.nth(map.get($ug-headings, h4), 3) * $ug-leading}px; --debug-mb: #{list.nth(map.get($ug-headings, h4), 4) * $ug-leading}px; }
+    p, ul, ol, blockquote, pre, table, figure, hr { --debug-mt: 0px; --debug-mb: #{$ug-leading}px; }
+  }
+
+  // ---- Combined: Grid + Margins ----
+  &--grid#{&}--debug,
+  &--grid-double#{&}--debug {
+    > * {
+      outline: 1px solid hsla(210, 80%, 60%, 0.5);
+      background-color: hsla(210, 80%, 60%, 0.04);
+    }
+  }
 }

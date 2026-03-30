@@ -1675,6 +1675,36 @@ textarea {
   background-size: 100% 26px;
   background-size: 100% 1.625rem;
 }
+.ug-prose--debug > * {
+  outline: 1px solid hsla(210, 80%, 60%, 0.5);
+  background-color: hsla(210, 80%, 60%, 0.04);
+  position: relative;
+  box-shadow: 0 calc(-1 * var(--debug-mt, 0px)) 0 0 hsla(30, 100%, 60%, 0.12), 0 calc(var(--debug-mb, 0px)) 0 0 hsla(30, 100%, 60%, 0.12);
+}
+.ug-prose--debug h1 {
+  --debug-mt: 104px;
+  --debug-mb: 26px;
+}
+.ug-prose--debug h2 {
+  --debug-mt: 65px;
+  --debug-mb: 13px;
+}
+.ug-prose--debug h3 {
+  --debug-mt: 52px;
+  --debug-mb: 13px;
+}
+.ug-prose--debug h4 {
+  --debug-mt: 39px;
+  --debug-mb: 13px;
+}
+.ug-prose--debug p, .ug-prose--debug ul, .ug-prose--debug ol, .ug-prose--debug blockquote, .ug-prose--debug pre, .ug-prose--debug table, .ug-prose--debug figure, .ug-prose--debug hr {
+  --debug-mt: 0px;
+  --debug-mb: 26px;
+}
+.ug-prose--grid.ug-prose--debug > *, .ug-prose--grid-double.ug-prose--debug > * {
+  outline: 1px solid hsla(210, 80%, 60%, 0.5);
+  background-color: hsla(210, 80%, 60%, 0.04);
+}
 
 .ug-block {
   padding: 1rem;
