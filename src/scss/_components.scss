@@ -90,16 +90,31 @@
 }
 
 // ---- Divider ----
+// Height = 1 leading, line drawn in the vertical center via background.
+// This keeps the divider on-grid without the 1px border offset issue.
 
 .ug-divider {
   border: none;
-  border-top: 1px solid $ug-light-gray;
+  height: #{$ug-leading}px;
+  height: #{$ug-leading-rem}rem;
   @include ug-rhythm-margin-top(1);
   @include ug-rhythm-margin-bottom(1);
   grid-column: 1 / -1;
+  background-image: linear-gradient(
+    to bottom,
+    transparent calc(50% - 0.5px),
+    $ug-light-gray calc(50% - 0.5px),
+    $ug-light-gray calc(50% + 0.5px),
+    transparent calc(50% + 0.5px)
+  );
 
   &--bold {
-    border-top-width: 3px;
-    border-top-color: $ug-black;
+    background-image: linear-gradient(
+      to bottom,
+      transparent calc(50% - 1.5px),
+      $ug-black calc(50% - 1.5px),
+      $ug-black calc(50% + 1.5px),
+      transparent calc(50% + 1.5px)
+    );
   }
 }

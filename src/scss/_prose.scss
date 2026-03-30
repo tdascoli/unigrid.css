@@ -251,16 +251,29 @@
   }
 
   // ---- Horizontal Rule ----
+  // Height = 1 leading with line centered, stays on-grid.
   hr {
     border: 0;
-    height: 1px;
-    background-color: $ug-light-gray;
-    @include ug-rhythm-margin-top(2);
-    @include ug-rhythm-margin-bottom(2);
+    height: #{$ug-leading}px;
+    height: #{$ug-leading-rem}rem;
+    @include ug-rhythm-margin-top(1);
+    @include ug-rhythm-margin-bottom(1);
+    background-image: linear-gradient(
+      to bottom,
+      transparent calc(50% - 0.5px),
+      $ug-light-gray calc(50% - 0.5px),
+      $ug-light-gray calc(50% + 0.5px),
+      transparent calc(50% + 0.5px)
+    );
 
     &.ug-divider--bold {
-      height: 3px;
-      background-color: $ug-black;
+      background-image: linear-gradient(
+        to bottom,
+        transparent calc(50% - 1.5px),
+        $ug-black calc(50% - 1.5px),
+        $ug-black calc(50% + 1.5px),
+        transparent calc(50% + 1.5px)
+      );
     }
   }
 

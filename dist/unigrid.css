@@ -1700,16 +1700,16 @@ textarea {
 }
 .ug-prose hr {
   border: 0;
-  height: 1px;
-  background-color: #e8e5e0;
-  margin-top: 52px;
-  margin-top: 3.25rem;
-  margin-bottom: 52px;
-  margin-bottom: 3.25rem;
+  height: 26px;
+  height: 1.625rem;
+  margin-top: 26px;
+  margin-top: 1.625rem;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
+  background-image: linear-gradient(to bottom, transparent calc(50% - 0.5px), #e8e5e0 calc(50% - 0.5px), #e8e5e0 calc(50% + 0.5px), transparent calc(50% + 0.5px));
 }
 .ug-prose hr.ug-divider--bold {
-  height: 3px;
-  background-color: #1a1a1a;
+  background-image: linear-gradient(to bottom, transparent calc(50% - 1.5px), #1a1a1a calc(50% - 1.5px), #1a1a1a calc(50% + 1.5px), transparent calc(50% + 1.5px));
 }
 .ug-prose figure {
   display: block;
@@ -1890,16 +1890,17 @@ textarea {
 
 .ug-divider {
   border: none;
-  border-top: 1px solid #e8e5e0;
+  height: 26px;
+  height: 1.625rem;
   margin-top: 26px;
   margin-top: 1.625rem;
   margin-bottom: 26px;
   margin-bottom: 1.625rem;
   grid-column: 1/-1;
+  background-image: linear-gradient(to bottom, transparent calc(50% - 0.5px), #e8e5e0 calc(50% - 0.5px), #e8e5e0 calc(50% + 0.5px), transparent calc(50% + 0.5px));
 }
 .ug-divider--bold {
-  border-top-width: 3px;
-  border-top-color: #1a1a1a;
+  background-image: linear-gradient(to bottom, transparent calc(50% - 1.5px), #1a1a1a calc(50% - 1.5px), #1a1a1a calc(50% + 1.5px), transparent calc(50% + 1.5px));
 }
 
 .ug-modules {
