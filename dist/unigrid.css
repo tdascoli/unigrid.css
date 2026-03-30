@@ -1945,7 +1945,7 @@ h6,
   cursor: pointer;
   user-select: none;
 }
-.ug-dropdown__trigger:is(button) {
+.ug-dropdown__trigger:is(button):not(.ug-btn) {
   background: none;
   border: none;
   padding: 0;
