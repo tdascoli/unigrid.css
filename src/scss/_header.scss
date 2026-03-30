@@ -11,7 +11,7 @@
 
 .ug-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: ug-space(4);
   background-color: $ug-black;
   color: $ug-white;
@@ -79,6 +79,7 @@
       max-width: none;
       min-height: 0;
       justify-content: flex-end;
+      align-items: flex-start;
     }
 
     &__brand {

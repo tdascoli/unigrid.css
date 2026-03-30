@@ -728,7 +728,7 @@ textarea {
 
 .ug-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 1.5rem;
   background-color: #1a1a1a;
   color: #ffffff;
@@ -786,6 +786,7 @@ textarea {
   max-width: none;
   min-height: 0;
   justify-content: flex-end;
+  align-items: flex-start;
 }
 .ug-header .ug-navbar__brand {
   display: none;
