@@ -2120,14 +2120,15 @@ h6,
 }
 
 .ug-form__group {
-  margin-bottom: calc(var(--ug-leading) * 1);
+  margin-bottom: calc(var(--ug-leading) * 0.5);
 }
 .ug-form__label {
   display: block;
   font-size: 0.875rem;
   font-weight: 700;
   line-height: calc(var(--ug-leading) * 1);
-  margin-bottom: calc(var(--ug-leading) * 0.5);
+  margin-top: calc(var(--ug-leading) * 0.5);
+  margin-bottom: 0;
   color: #1a1a1a;
 }
 .ug-form__input {

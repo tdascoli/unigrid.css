@@ -16,7 +16,7 @@
 
   // ---- Form Group (label + input pair) ----
   &__group {
-    @include ug-rhythm-margin-bottom(1);
+    @include ug-rhythm-margin-bottom(0.5);
   }
 
   // ---- Label ----
@@ -25,7 +25,8 @@
     @include ug-font-size("sm");
     @include ug-font-weight("bold");
     @include ug-rhythm-line-height(1);
-    @include ug-rhythm-margin-bottom(0.5);
+    @include ug-rhythm-margin-top(0.5);
+    margin-bottom: 0;
     color: $ug-black;
   }
 
