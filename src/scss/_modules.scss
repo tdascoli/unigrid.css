@@ -5,14 +5,12 @@
 // The base unit "U" is a square module. All dimensions are multiples of U.
 // Uses vw units for viewport-proportional sizing.
 //
-// Responsive column reduction: 12 → 8 → 6 → 4 → 3
-// Gutter-to-column ratio increases on smaller screens.
+// Responsive column reduction: 3 → 4 → 6 → 8 → 12 (mobile-first)
 //
 // Usage:
 //   <div class="ug-modules">
 //     <div class="ug-module ug-module--1x1">Square</div>
 //     <div class="ug-module ug-module--1x2">Wide</div>
-//     <div class="ug-module ug-module--2x1">Tall</div>
 //   </div>
 //
 // Block: .ug-modules (container)
@@ -26,26 +24,22 @@
 @use "mixins" as *;
 
 // ---- Module Grid Configuration ----
-// Each breakpoint defines: columns, gutter (vw), module size (vw), outer margin (vw)
-// Derived from Uniweb's proportions where column = gutter × ratio.
 
 $ug-module-grid: (
-  "xl": (cols: 12, gutter: 1.1494vw, module: 6.8966vw, margin: 2.2989vw),
-  "lg": (cols: 8,  gutter: 1.4925vw, module: 10.4478vw, margin: 2.9851vw),
-  "md": (cols: 6,  gutter: 1.7544vw, module: 14.0351vw, margin: 3.5088vw),
-  "sm": (cols: 4,  gutter: 2.1277vw, module: 21.2766vw, margin: 4.2553vw),
-  "xs": (cols: 3,  gutter: 2.3810vw, module: 28.5714vw, margin: 4.7619vw),
+  "xs": (cols: 3,  gutter: 2.3810vw, module: 28.5714vw, margin: 4.7619vw, max-w: 3),
+  "sm": (cols: 4,  gutter: 2.1277vw, module: 21.2766vw, margin: 4.2553vw, max-w: 4),
+  "md": (cols: 6,  gutter: 1.7544vw, module: 14.0351vw, margin: 3.5088vw, max-w: 6),
+  "lg": (cols: 8,  gutter: 1.4925vw, module: 10.4478vw, margin: 2.9851vw, max-w: 8),
+  "xl": (cols: 12, gutter: 1.1494vw, module: 6.8966vw,  margin: 2.2989vw, max-w: 12),
 ) !default;
 
-// Max module span per breakpoint (can't exceed column count)
-$ug-module-max-spans: (1, 2, 3, 4, 6, 8, 12);
 $ug-module-max-height: 6;
 
 // ---- Module Container ----
 
 .ug-modules {
   position: relative;
-  font-size: 0; // collapse whitespace between inline-block modules
+  font-size: 0;
   box-sizing: border-box;
   width: 100%;
 }
@@ -56,131 +50,74 @@ $ug-module-max-height: 6;
   position: relative;
   display: inline-block;
   vertical-align: top;
-  font-size: 1rem; // reset font-size from container
+  font-size: 1rem;
   box-sizing: border-box;
   overflow: hidden;
 }
 
-// ---- Helper: calculate width for N modules + (N-1) gutters ----
+// ---- Default (mobile / xs): 3 columns ----
 
-@function module-size($n, $module, $gutter) {
-  @if $n == 1 {
-    @return $module;
-  }
-  // width = n × module + (n-1) × gutter
-  // We need to combine vw values, so we use calc()
-  @return calc(#{$module} * #{$n} + #{$gutter} * #{$n - 1});
+$_xs: map.get($ug-module-grid, "xs");
+$_xs-g: map.get($_xs, gutter);
+$_xs-m: map.get($_xs, module);
+$_xs-margin: map.get($_xs, margin);
+
+.ug-modules {
+  padding: $_xs-g 0 0 $_xs-margin;
 }
 
-// ---- Desktop (≥1600px): 12 columns ----
+.ug-module {
+  margin: 0 $_xs-g $_xs-g 0;
+}
 
-@media screen and (min-width: 1600px) {
-  $conf: map.get($ug-module-grid, "xl");
-  $g: map.get($conf, gutter);
-  $m: map.get($conf, module);
-  $margin: map.get($conf, margin);
-
-  .ug-modules {
-    padding: $g 0 0 $margin;
-  }
-
-  .ug-module {
-    margin: 0 $g $g 0;
-  }
-
-  // Generate h{H}_w{W} classes
-  @each $w in (1, 2, 3, 4, 6, 8, 12) {
-    @for $h from 1 through $ug-module-max-height {
-      .ug-module--#{$h}x#{$w} {
-        height: module-size($h, $m, $g);
-        width: module-size($w, $m, $g);
+@each $w in (1, 2, 3) {
+  @for $h from 1 through $ug-module-max-height {
+    .ug-module--#{$h}x#{$w} {
+      @if $h == 1 and $w == 1 {
+        height: $_xs-m;
+        width: $_xs-m;
+      } @else {
+        height: calc(#{$_xs-m} * #{$h} + #{$_xs-g} * #{$h - 1});
+        width: calc(#{$_xs-m} * #{$w} + #{$_xs-g} * #{$w - 1});
+      }
+      @if $h == 1 {
+        height: $_xs-m;
+      }
+      @if $w == 1 {
+        width: $_xs-m;
       }
     }
   }
-
-  .ug-module--auto-height { height: auto; }
-  .ug-module--no-margin { margin-right: 0; }
 }
 
-// ---- Laptop (1300–1599px): 8 columns ----
+.ug-module--auto-height { height: auto; }
+.ug-module--no-margin { margin-right: 0; }
 
-@media screen and (min-width: 1300px) and (max-width: 1599px) {
-  $conf: map.get($ug-module-grid, "lg");
-  $g: map.get($conf, gutter);
-  $m: map.get($conf, module);
-  $margin: map.get($conf, margin);
+// ---- Phablet (sm): 4 columns ----
 
-  .ug-modules {
-    padding: $g 0 0 $margin;
-  }
+@media screen and (min-width: 640px) {
+  $_sm: map.get($ug-module-grid, "sm");
+  $_sm-g: map.get($_sm, gutter);
+  $_sm-m: map.get($_sm, module);
+  $_sm-margin: map.get($_sm, margin);
 
-  .ug-module {
-    margin: 0 $g $g 0;
-  }
-
-  @each $w in (1, 2, 3, 4, 6, 8) {
-    @for $h from 1 through $ug-module-max-height {
-      .ug-module--lg-#{$h}x#{$w} {
-        height: module-size($h, $m, $g);
-        width: module-size($w, $m, $g);
-      }
-    }
-  }
-
-  .ug-module--lg-auto-height { height: auto; }
-  .ug-module--lg-no-margin { margin-right: 0; }
-}
-
-// ---- Tablet (1024–1299px): 6 columns ----
-
-@media screen and (min-width: 1024px) and (max-width: 1299px) {
-  $conf: map.get($ug-module-grid, "md");
-  $g: map.get($conf, gutter);
-  $m: map.get($conf, module);
-  $margin: map.get($conf, margin);
-
-  .ug-modules {
-    padding: $g 0 0 $margin;
-  }
-
-  .ug-module {
-    margin: 0 $g $g 0;
-  }
-
-  @each $w in (1, 2, 3, 4, 6) {
-    @for $h from 1 through $ug-module-max-height {
-      .ug-module--md-#{$h}x#{$w} {
-        height: module-size($h, $m, $g);
-        width: module-size($w, $m, $g);
-      }
-    }
-  }
-
-  .ug-module--md-auto-height { height: auto; }
-  .ug-module--md-no-margin { margin-right: 0; }
-}
-
-// ---- Phablet (640–1023px): 4 columns ----
-
-@media screen and (min-width: 640px) and (max-width: 1023px) {
-  $conf: map.get($ug-module-grid, "sm");
-  $g: map.get($conf, gutter);
-  $m: map.get($conf, module);
-  $margin: map.get($conf, margin);
-
-  .ug-modules {
-    padding: $g 0 0 $margin;
-  }
-
-  .ug-module {
-    margin: 0 $g $g 0;
-  }
+  .ug-modules { padding: $_sm-g 0 0 $_sm-margin; }
+  .ug-module { margin: 0 $_sm-g $_sm-g 0; }
 
   @each $w in (1, 2, 3, 4) {
     @for $h from 1 through $ug-module-max-height {
+      .ug-module--#{$h}x#{$w},
       .ug-module--sm-#{$h}x#{$w} {
-        height: module-size($h, $m, $g);
-        width: module-size($w, $m, $g);
+        @if $w == 1 {
+          height: calc(#{$_sm-m} * #{$h} + #{$_sm-g} * #{$h - 1});
+          width: $_sm-m;
+        } @else if $h == 1 {
+          height: $_sm-m;
+          width: calc(#{$_sm-m} * #{$w} + #{$_sm-g} * #{$w - 1});
+        } @else {
+          height: calc(#{$_sm-m} * #{$h} + #{$_sm-g} * #{$h - 1});
+          width: calc(#{$_sm-m} * #{$w} + #{$_sm-g} * #{$w - 1});
+        }
       }
     }
   }
@@ -189,36 +126,106 @@ $ug-module-max-height: 6;
   .ug-module--sm-no-margin { margin-right: 0; }
 }
 
-// ---- Mobile (≤639px portrait): 3 columns ----
+// ---- Tablet (md): 6 columns ----
 
-@media screen and (max-width: 639px) {
-  $conf: map.get($ug-module-grid, "xs");
-  $g: map.get($conf, gutter);
-  $m: map.get($conf, module);
-  $margin: map.get($conf, margin);
+@media screen and (min-width: 1024px) {
+  $_md: map.get($ug-module-grid, "md");
+  $_md-g: map.get($_md, gutter);
+  $_md-m: map.get($_md, module);
+  $_md-margin: map.get($_md, margin);
 
-  .ug-modules {
-    padding: $g 0 0 $margin;
-  }
+  .ug-modules { padding: $_md-g 0 0 $_md-margin; }
+  .ug-module { margin: 0 $_md-g $_md-g 0; }
 
-  .ug-module {
-    margin: 0 $g $g 0;
-  }
-
-  @each $w in (1, 2, 3) {
+  @each $w in (1, 2, 3, 4, 6) {
     @for $h from 1 through $ug-module-max-height {
-      .ug-module--xs-#{$h}x#{$w} {
-        height: module-size($h, $m, $g);
-        width: module-size($w, $m, $g);
+      .ug-module--#{$h}x#{$w},
+      .ug-module--md-#{$h}x#{$w} {
+        @if $w == 1 {
+          height: calc(#{$_md-m} * #{$h} + #{$_md-g} * #{$h - 1});
+          width: $_md-m;
+        } @else if $h == 1 {
+          height: $_md-m;
+          width: calc(#{$_md-m} * #{$w} + #{$_md-g} * #{$w - 1});
+        } @else {
+          height: calc(#{$_md-m} * #{$h} + #{$_md-g} * #{$h - 1});
+          width: calc(#{$_md-m} * #{$w} + #{$_md-g} * #{$w - 1});
+        }
       }
     }
   }
 
-  .ug-module--xs-auto-height { height: auto; }
-  .ug-module--xs-no-margin { margin-right: 0; }
+  .ug-module--md-auto-height { height: auto; }
+  .ug-module--md-no-margin { margin-right: 0; }
 }
 
-// ---- Responsive Visibility for Modules ----
+// ---- Laptop (lg): 8 columns ----
+
+@media screen and (min-width: 1300px) {
+  $_lg: map.get($ug-module-grid, "lg");
+  $_lg-g: map.get($_lg, gutter);
+  $_lg-m: map.get($_lg, module);
+  $_lg-margin: map.get($_lg, margin);
+
+  .ug-modules { padding: $_lg-g 0 0 $_lg-margin; }
+  .ug-module { margin: 0 $_lg-g $_lg-g 0; }
+
+  @each $w in (1, 2, 3, 4, 6, 8) {
+    @for $h from 1 through $ug-module-max-height {
+      .ug-module--#{$h}x#{$w},
+      .ug-module--lg-#{$h}x#{$w} {
+        @if $w == 1 {
+          height: calc(#{$_lg-m} * #{$h} + #{$_lg-g} * #{$h - 1});
+          width: $_lg-m;
+        } @else if $h == 1 {
+          height: $_lg-m;
+          width: calc(#{$_lg-m} * #{$w} + #{$_lg-g} * #{$w - 1});
+        } @else {
+          height: calc(#{$_lg-m} * #{$h} + #{$_lg-g} * #{$h - 1});
+          width: calc(#{$_lg-m} * #{$w} + #{$_lg-g} * #{$w - 1});
+        }
+      }
+    }
+  }
+
+  .ug-module--lg-auto-height { height: auto; }
+  .ug-module--lg-no-margin { margin-right: 0; }
+}
+
+// ---- Desktop (xl): 12 columns ----
+
+@media screen and (min-width: 1600px) {
+  $_xl: map.get($ug-module-grid, "xl");
+  $_xl-g: map.get($_xl, gutter);
+  $_xl-m: map.get($_xl, module);
+  $_xl-margin: map.get($_xl, margin);
+
+  .ug-modules { padding: $_xl-g 0 0 $_xl-margin; }
+  .ug-module { margin: 0 $_xl-g $_xl-g 0; }
+
+  @each $w in (1, 2, 3, 4, 6, 8, 12) {
+    @for $h from 1 through $ug-module-max-height {
+      .ug-module--#{$h}x#{$w},
+      .ug-module--xl-#{$h}x#{$w} {
+        @if $w == 1 {
+          height: calc(#{$_xl-m} * #{$h} + #{$_xl-g} * #{$h - 1});
+          width: $_xl-m;
+        } @else if $h == 1 {
+          height: $_xl-m;
+          width: calc(#{$_xl-m} * #{$w} + #{$_xl-g} * #{$w - 1});
+        } @else {
+          height: calc(#{$_xl-m} * #{$h} + #{$_xl-g} * #{$h - 1});
+          width: calc(#{$_xl-m} * #{$w} + #{$_xl-g} * #{$w - 1});
+        }
+      }
+    }
+  }
+
+  .ug-module--xl-auto-height { height: auto; }
+  .ug-module--xl-no-margin { margin-right: 0; }
+}
+
+// ---- Responsive Visibility ----
 
 .ug-module--hidden-xl { @media screen and (min-width: 1600px) { display: none; } }
 .ug-module--hidden-lg { @media screen and (min-width: 1300px) and (max-width: 1599px) { display: none; } }
