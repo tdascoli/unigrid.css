@@ -108,7 +108,7 @@ textarea {
 .ug-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 0.5rem;
+  gap: 1.625rem;
   width: 100%;
 }
 .ug-grid--no-gap {
@@ -615,7 +615,7 @@ textarea {
 .ug-broadside {
   display: grid;
   grid-template-columns: repeat(var(--ug-format-cols, 12), 1fr);
-  gap: 0.5rem;
+  gap: 1.625rem;
   width: 100%;
   min-height: 0;
 }

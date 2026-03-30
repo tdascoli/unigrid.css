@@ -13,7 +13,7 @@ $ug-ratio: 1.4142135 !default;
 // ---- Grid Configuration ----
 $ug-columns: 12 !default;
 $ug-rows: 20 !default;
-$ug-gap: 0.5rem !default;
+$ug-gap: 0.5rem !default; // overridden below after leading is calculated
 
 // ---- Panel Unit ----
 // The basic Unigrid "leaf" is 99 × 210 mm. All formats are multiples of this.
@@ -107,6 +107,9 @@ $ug-leading: round($ug-base * $ug-base-leading) !default;
 $ug-leading-desktop: round($ug-base-desktop * $ug-base-leading-desktop) !default;
 $ug-leading-rem: vars-math.div($ug-leading, $ug-base) !default;
 $ug-leading-rem-desktop: vars-math.div($ug-leading-desktop, $ug-base-desktop) !default;
+
+// Override gap with leading-based value now that $ug-leading-rem is available
+$ug-gap: #{$ug-leading-rem}rem;
 
 // ---- Modular Scale (from Gutenberg) ----
 // Used for proportional type sizing in prose context.
