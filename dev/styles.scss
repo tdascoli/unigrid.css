@@ -71,37 +71,33 @@ body.dev-debug {
 }
 
 // ---- Dev-only styles ----
-
-.dev-page {
-  @extend .ug-container;
-  @extend .ug-container--narrow;
-  padding-top: ug-space(5);
-  padding-bottom: ug-space(5);
-}
+// All vertical spacing uses leading multiples for rhythm alignment.
 
 .dev-section {
-  margin-bottom: ug-space(8);
+  @include ug-rhythm-margin-bottom(4);
 }
 
 .dev-section-title {
   @include ug-font-size("sm");
   @include ug-font-weight("bold");
+  @include ug-rhythm-line-height(1);
+  @include ug-rhythm-margin-bottom(1);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: $ug-medium-gray;
-  margin-bottom: ug-space(3);
-  padding-bottom: ug-space(2);
+  padding-bottom: #{$ug-leading-rem * 0.5}rem;
   border-bottom: 2px solid $ug-black;
 }
 
 .dev-cell {
   background: $ug-warm-gray;
   border: 1px solid $ug-light-gray;
-  padding: ug-space(2);
+  padding: #{$ug-leading-rem * 0.5}rem;
   @include ug-font-size("xs");
+  @include ug-rhythm-line-height(1);
   color: $ug-medium-gray;
   text-align: center;
-  min-height: 3rem;
+  min-height: #{$ug-leading-rem * 2}rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,8 +105,9 @@ body.dev-debug {
 
 .dev-code {
   background: $ug-warm-gray;
-  padding: ug-space(1) ug-space(2);
+  padding: #{$ug-leading-rem * 0.125}rem #{$ug-leading-rem * 0.25}rem;
   @include ug-font-size("xs");
+  @include ug-rhythm-line-height(1);
   font-family: "SF Mono", "Fira Code", monospace;
   border-radius: 2px;
 }
