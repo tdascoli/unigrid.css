@@ -94,26 +94,19 @@
 }
 
 // ---- Divider ----
-// Default: 1.5 leading height. --narrow: 1 leading height.
-// padding-top + border = total height, line at bottom edge.
+// Total: 1 leading = padding-top(0.5) + border + padding-bottom(0.5)
+// The border sits in the vertical center of the 1 leading space.
 
 .ug-divider {
   border: none;
-  border-bottom: 1px solid $ug-light-gray;
-  padding-top: calc(calc(var(--ug-leading) * 1.5) - 1px);
+  border-top: 1px solid $ug-light-gray;
+  padding-top: calc(var(--ug-leading) * 0.5 - 1px);
+  padding-bottom: calc(var(--ug-leading) * 0.5);
   grid-column: 1 / -1;
 
-  &--narrow {
-    padding-top: calc(var(--ug-leading) - 1px);
-  }
-
   &--bold {
-    border-bottom: 3px solid $ug-black;
-    padding-top: calc(calc(var(--ug-leading) * 1.5) - 3px);
-
-    &.ug-divider--narrow {
-      padding-top: calc(var(--ug-leading) - 3px);
-    }
+    border-top: 3px solid $ug-black;
+    padding-top: calc(var(--ug-leading) * 0.5 - 3px);
   }
 }
 

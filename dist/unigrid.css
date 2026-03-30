@@ -2074,19 +2074,14 @@ h6,
 
 .ug-divider {
   border: none;
-  border-bottom: 1px solid #e8e5e0;
-  padding-top: calc(var(--ug-leading) * 1.5 - 1px);
+  border-top: 1px solid #e8e5e0;
+  padding-top: calc(var(--ug-leading) * 0.5 - 1px);
+  padding-bottom: calc(var(--ug-leading) * 0.5);
   grid-column: 1/-1;
 }
-.ug-divider--narrow {
-  padding-top: calc(var(--ug-leading) - 1px);
-}
 .ug-divider--bold {
-  border-bottom: 3px solid #1a1a1a;
-  padding-top: calc(var(--ug-leading) * 1.5 - 3px);
-}
-.ug-divider--bold.ug-divider--narrow {
-  padding-top: calc(var(--ug-leading) - 3px);
+  border-top: 3px solid #1a1a1a;
+  padding-top: calc(var(--ug-leading) * 0.5 - 3px);
 }
 
 .ug-label-divider {
