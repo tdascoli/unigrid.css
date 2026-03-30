@@ -10,18 +10,31 @@
 </head>
 <body>
 
-  <nav class="dev-nav">
-    <a class="dev-nav__link" href="/">Overview</a>
-    <a class="dev-nav__link" href="/grid.html">Grid</a>
-    <a class="dev-nav__link dev-nav__link--active" href="/formats.html">Formats</a>
-    <a class="dev-nav__link" href="/modules.html">Modules</a>
-    <a class="dev-nav__link" href="/typography.html">Typography</a>
-    <a class="dev-nav__link" href="/components.html">Components</a>
-    <a class="dev-nav__link" href="/cheatsheet.html">Cheatsheet</a>
-    <a class="dev-nav__link" href="/example.html">Example</a>
-  </nav>
+  <header class="ug-header ug-header--compact">
+    <div class="ug-header__title">
+      <h1>Unigrid</h1>
+      <p class="ug-header__subtitle">CSS Framework</p>
+    </div>
+    <nav class="ug-navbar">
+      <div class="ug-navbar__inner">
+        <button class="ug-navbar__toggle" onclick="this.nextElementSibling.classList.toggle('ug-navbar__menu--open')">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="ug-navbar__menu">
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/">Overview</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/grid.html">Grid</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link ug-navbar__link--active" href="/formats.html">Formats</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/modules.html">Modules</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/typography.html">Typography</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/components.html">Components</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/cheatsheet.html">Cheatsheet</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/example.html">Example</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
 
-  <div class="dev-page">
+  <div class="ug-container ug-container--narrow ug-pt--5 ug-pb--5">
     <h1 class="ug-h1">10 Basic Formats</h1>
     <p class="ug-lead">A-series (1 panel wide) and B-series (2 panels wide). Panel unit: 99 × 210 mm. No A5 or B5.</p>
 

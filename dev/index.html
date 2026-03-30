@@ -10,30 +10,31 @@
 </head>
 <body>
 
-  <nav class="dev-nav">
-    <a class="dev-nav__link dev-nav__link--active" href="/">Overview</a>
-    <a class="dev-nav__link" href="/grid.html">Grid</a>
-    <a class="dev-nav__link" href="/formats.html">Formats</a>
-    <a class="dev-nav__link" href="/modules.html">Modules</a>
-    <a class="dev-nav__link" href="/typography.html">Typography</a>
-    <a class="dev-nav__link" href="/components.html">Components</a>
-    <a class="dev-nav__link" href="/cheatsheet.html">Cheatsheet</a>
-    <a class="dev-nav__link" href="/example.html">Example</a>
-  </nav>
-
-  <header class="ug-header">
-    <div class="ug-header__logo">
-      <svg viewBox="0 0 40 52" fill="white" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 0 L40 52 L0 52 Z" opacity="0.8"/>
-      </svg>
-    </div>
+  <header class="ug-header ug-header--compact">
     <div class="ug-header__title">
       <h1>Unigrid</h1>
-      <p class="ug-header__subtitle">CSS Framework / Dev Environment</p>
+      <p class="ug-header__subtitle">CSS Framework</p>
     </div>
+    <nav class="ug-navbar">
+      <div class="ug-navbar__inner">
+        <button class="ug-navbar__toggle" onclick="this.nextElementSibling.classList.toggle('ug-navbar__menu--open')">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="ug-navbar__menu">
+            <li class="ug-navbar__item"><a class="ug-navbar__link ug-navbar__link--active" href="/">Overview</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/grid.html">Grid</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/formats.html">Formats</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/modules.html">Modules</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/typography.html">Typography</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/components.html">Components</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/cheatsheet.html">Cheatsheet</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/example.html">Example</a></li>
+        </ul>
+      </div>
+    </nav>
   </header>
 
-  <div class="dev-page">
+  <div class="ug-container ug-container--narrow ug-pt--5 ug-pb--5">
 
     <section class="dev-section">
       <p class="dev-section-title">About</p>

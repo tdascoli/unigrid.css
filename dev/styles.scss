@@ -3,31 +3,6 @@
 
 // ---- Dev-only styles ----
 
-.dev-nav {
-  display: flex;
-  gap: ug-space(3);
-  padding: ug-space(2) ug-space(4);
-  background: $ug-dark-gray;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-
-  &__link {
-    color: $ug-white;
-    text-decoration: none;
-    @include ug-font-size("sm");
-    @include ug-font-weight("regular");
-    opacity: 0.7;
-    transition: opacity 0.2s;
-
-    &:hover,
-    &--active {
-      opacity: 1;
-      text-decoration: none;
-    }
-  }
-}
-
 .dev-page {
   @extend .ug-container;
   @extend .ug-container--narrow;
