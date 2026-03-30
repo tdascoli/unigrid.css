@@ -2070,15 +2070,17 @@ textarea {
 .ug-divider {
   border: none;
   border-bottom: 1px solid #e8e5e0;
-  padding-top: calc(1.625rem - 1px);
-  margin-top: 26px;
-  margin-top: 1.625rem;
-  margin-bottom: 26px;
-  margin-bottom: 1.625rem;
+  padding-top: calc(2.4375rem - 1px);
   grid-column: 1/-1;
+}
+.ug-divider--narrow {
+  padding-top: calc(1.625rem - 1px);
 }
 .ug-divider--bold {
   border-bottom: 3px solid #1a1a1a;
+  padding-top: calc(2.4375rem - 3px);
+}
+.ug-divider--bold.ug-divider--narrow {
   padding-top: calc(1.625rem - 3px);
 }
 

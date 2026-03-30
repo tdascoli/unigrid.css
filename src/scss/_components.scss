@@ -94,19 +94,26 @@
 }
 
 // ---- Divider ----
-// padding-top + border = 1 leading, so the line sits on-grid.
+// Default: 1.5 leading height. --narrow: 1 leading height.
+// padding-top + border = total height, line at bottom edge.
 
 .ug-divider {
   border: none;
   border-bottom: 1px solid $ug-light-gray;
-  padding-top: calc(#{$ug-leading-rem}rem - 1px);
-  @include ug-rhythm-margin-top(1);
-  @include ug-rhythm-margin-bottom(1);
+  padding-top: calc(#{$ug-leading-rem * 1.5}rem - 1px);
   grid-column: 1 / -1;
+
+  &--narrow {
+    padding-top: calc(#{$ug-leading-rem}rem - 1px);
+  }
 
   &--bold {
     border-bottom: 3px solid $ug-black;
-    padding-top: calc(#{$ug-leading-rem}rem - 3px);
+    padding-top: calc(#{$ug-leading-rem * 1.5}rem - 3px);
+
+    &.ug-divider--narrow {
+      padding-top: calc(#{$ug-leading-rem}rem - 3px);
+    }
   }
 }
 
