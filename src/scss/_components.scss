@@ -120,17 +120,16 @@
 .ug-label-divider {
   @include ug-font-size("sm");
   @include ug-font-weight("bold");
-  @include ug-rhythm-line-height(1);
+  line-height: calc(var(--ug-leading) - 2px);
   @include ug-rhythm-margin-bottom(1);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: $ug-medium-gray;
-  padding-bottom: calc(var(--ug-leading) - 2px);
   border-bottom: 2px solid $ug-black;
   margin-top: 0;
 
   &--bold {
-    padding-bottom: calc(var(--ug-leading) - 3px);
+    line-height: calc(var(--ug-leading) - 3px);
     border-bottom-width: 3px;
   }
 
