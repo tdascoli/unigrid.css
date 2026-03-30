@@ -124,7 +124,7 @@
     }
 
     &--active {
-      @include ug-font-weight("bold");
+      //@include ug-font-weight("bold");
       color: $ug-black;
     }
 

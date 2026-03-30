@@ -39,13 +39,17 @@
     gap: 0;
     flex-shrink: 0;
 
-    h1 {
+    h1, a {
       @include ug-font-size("3xl");
       @include ug-font-weight("bold");
       line-height: $ug-line-height-tight;
       letter-spacing: -0.02em;
       text-transform: none;
       margin: 0;
+    }
+
+    a {
+      text-decoration: none;
     }
   }
 
@@ -125,6 +129,7 @@
     padding: ug-space(2) ug-space(5);
 
     .ug-header__title h1,
+  , .ug-header__title a,
     .ug-header__name {
       @include ug-font-size("2xl");
     }
