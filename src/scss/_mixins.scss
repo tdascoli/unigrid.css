@@ -81,3 +81,45 @@
   white-space: nowrap;
   border: 0;
 }
+
+// ==========================================================================
+// Vertical Rhythm Mixins (from Gutenberg)
+// All vertical spacing is based on the leading (base line-height in px/rem).
+// ==========================================================================
+
+// ---- Rhythm Font Size ----
+@mixin ug-rhythm-font-size($number) {
+  font-size: #{$number * $ug-base}px;
+  font-size: #{$number}rem;
+}
+
+// ---- Rhythm Line Height ----
+@mixin ug-rhythm-line-height($number) {
+  line-height: #{$number * $ug-leading}px;
+  line-height: #{$number * $ug-leading-rem}rem;
+}
+
+// ---- Rhythm Margin ----
+@mixin ug-rhythm-margin-top($number) {
+  margin-top: #{$number * $ug-leading}px;
+  margin-top: #{$number * $ug-leading-rem}rem;
+}
+
+@mixin ug-rhythm-margin-bottom($number) {
+  margin-bottom: #{$number * $ug-leading}px;
+  margin-bottom: #{$number * $ug-leading-rem}rem;
+}
+
+// ---- Rhythm Padding ----
+@mixin ug-rhythm-padding($top, $right, $bottom: null, $left: null) {
+  @if $bottom == null {
+    padding: #{$top * $ug-leading}px #{$right * $ug-leading}px;
+    padding: #{$top * $ug-leading-rem}rem #{$right * $ug-leading-rem}rem;
+  } @else if $left == null {
+    padding: #{$top * $ug-leading}px #{$right * $ug-leading}px #{$bottom * $ug-leading}px;
+    padding: #{$top * $ug-leading-rem}rem #{$right * $ug-leading-rem}rem #{$bottom * $ug-leading-rem}rem;
+  } @else {
+    padding: #{$top * $ug-leading}px #{$right * $ug-leading}px #{$bottom * $ug-leading}px #{$left * $ug-leading}px;
+    padding: #{$top * $ug-leading-rem}rem #{$right * $ug-leading-rem}rem #{$bottom * $ug-leading-rem}rem #{$left * $ug-leading-rem}rem;
+  }
+}

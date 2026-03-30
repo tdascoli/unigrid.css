@@ -1348,6 +1348,334 @@ textarea {
   }
 }
 
+.ug-prose {
+  font-family: Inter, sans-serif;
+  color: #1a1a1a;
+  font-size: 16px;
+  font-size: 100%;
+  line-height: 26px;
+  line-height: 1.625rem;
+}
+@media screen and (min-width: 35rem) {
+  .ug-prose {
+    font-size: 18px;
+    font-size: 112.5%;
+  }
+}
+@supports (font-variation-settings: normal) {
+  .ug-prose {
+    font-family: InterVariable, sans-serif;
+  }
+}
+.ug-prose * {
+  line-height: 26px;
+  line-height: 1.625rem;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
+  margin-top: 0;
+}
+.ug-prose > * {
+  max-width: 35rem;
+}
+@media screen and (min-width: 35rem) {
+  .ug-prose > * {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.ug-prose h1 {
+  font-size: 40px;
+  font-size: 2.5rem;
+  line-height: 52px;
+  line-height: 3.25rem;
+  margin-top: 104px;
+  margin-top: 6.5rem;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
+  font-weight: 700;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+.ug-prose h2 {
+  font-size: 27px;
+  font-size: 1.6875rem;
+  line-height: 39px;
+  line-height: 2.4375rem;
+  margin-top: 65px;
+  margin-top: 4.0625rem;
+  margin-bottom: 13px;
+  margin-bottom: 0.8125rem;
+  font-weight: 700;
+}
+.ug-prose h3 {
+  font-size: 22px;
+  font-size: 1.375rem;
+  line-height: 26px;
+  line-height: 1.625rem;
+  margin-top: 52px;
+  margin-top: 3.25rem;
+  margin-bottom: 13px;
+  margin-bottom: 0.8125rem;
+  font-weight: 700;
+}
+.ug-prose h4 {
+  font-size: 19.2px;
+  font-size: 1.2rem;
+  line-height: 26px;
+  line-height: 1.625rem;
+  margin-top: 39px;
+  margin-top: 2.4375rem;
+  margin-bottom: 13px;
+  margin-bottom: 0.8125rem;
+  font-weight: 700;
+}
+.ug-prose h5 {
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 26px;
+  line-height: 1.625rem;
+  margin-top: 65px;
+  margin-top: 4.0625rem;
+  margin-bottom: 13px;
+  margin-bottom: 0.8125rem;
+  font-weight: 700;
+}
+.ug-prose h6 {
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 26px;
+  line-height: 1.625rem;
+  margin-top: 65px;
+  margin-top: 4.0625rem;
+  margin-bottom: 13px;
+  margin-bottom: 0.8125rem;
+  font-weight: 700;
+}
+.ug-prose h1 + h2 {
+  margin-top: 26px;
+  margin-top: 1.625rem;
+}
+.ug-prose h2 + h3,
+.ug-prose h3 + h4,
+.ug-prose h4 + h5 {
+  margin-top: 13px;
+  margin-top: 0.8125rem;
+}
+.ug-prose h5 + h6 {
+  margin-top: -13px;
+  margin-top: -0.8125rem;
+}
+.ug-prose h6 {
+  font-style: italic;
+  font-weight: normal;
+}
+.ug-prose p {
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
+}
+.ug-prose .ug-prose__lead,
+.ug-prose .attention-grabber {
+  font-size: 19.2px;
+  font-size: 1.2rem;
+}
+.ug-prose a {
+  color: #1a1a1a;
+  transition: color 0.2s;
+}
+.ug-prose a:hover {
+  color: #1a1a1a;
+}
+.ug-prose a:visited {
+  color: #666666;
+}
+.ug-prose a:visited:hover {
+  color: #1a1a1a;
+}
+.ug-prose br {
+  margin-bottom: 0;
+}
+.ug-prose abbr {
+  letter-spacing: 0.1em;
+}
+.ug-prose abbr[title] {
+  border-bottom: 1px dotted;
+  text-decoration: none;
+}
+.ug-prose b,
+.ug-prose strong {
+  font-weight: 700;
+}
+.ug-prose dfn {
+  font-style: italic;
+}
+.ug-prose em,
+.ug-prose i {
+  line-height: 0;
+  vertical-align: baseline;
+}
+.ug-prose mark {
+  background: #ff0;
+  color: #000;
+  padding: 0 0.2em;
+}
+.ug-prose small {
+  font-size: 70%;
+  line-height: 13px;
+  line-height: 0.8125rem;
+}
+.ug-prose sub,
+.ug-prose sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+.ug-prose sup {
+  top: -0.5em;
+}
+.ug-prose sub {
+  bottom: -0.25em;
+}
+.ug-prose blockquote {
+  font-style: italic;
+  padding-left: 1.4375rem;
+  margin-top: 26px;
+  margin-top: 1.625rem;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
+}
+@media screen and (min-width: 35rem) {
+  .ug-prose blockquote {
+    padding-left: 2rem;
+  }
+}
+.ug-prose blockquote cite {
+  display: block;
+  font-style: normal;
+  font-size: 0.875rem;
+  color: #888;
+}
+.ug-prose figure blockquote {
+  padding: 26px 0px;
+  padding: 1.625rem 0rem;
+  text-align: center;
+}
+.ug-prose figure blockquote p {
+  font-size: 27px;
+  font-size: 1.6875rem;
+  line-height: 39px;
+  line-height: 2.4375rem;
+}
+.ug-prose ul,
+.ug-prose ol {
+  padding-left: 1.5rem;
+}
+.ug-prose ul li,
+.ug-prose ol li {
+  margin-bottom: 0;
+}
+.ug-prose pre {
+  overflow: auto;
+  padding: 26px 26px;
+  padding: 1.625rem 1.625rem;
+  background-color: #f5f2ed;
+  border: 1px solid #e8e5e0;
+}
+.ug-prose code,
+.ug-prose kbd,
+.ug-prose samp {
+  font-family: "SF Mono", "Fira Code", Consolas, monospace;
+  font-size: 0.875rem;
+}
+.ug-prose :not(pre) > code {
+  background-color: #f5f2ed;
+  padding: 0.15em 0.4em;
+  border-radius: 2px;
+}
+.ug-prose table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
+}
+.ug-prose table th,
+.ug-prose table td {
+  padding: 0.5em 0.75em;
+  text-align: left;
+  border-bottom: 1px solid #e8e5e0;
+}
+.ug-prose table th {
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.ug-prose hr {
+  border: 0;
+  height: 1px;
+  background-color: #e8e5e0;
+  margin-top: 52px;
+  margin-top: 3.25rem;
+  margin-bottom: 52px;
+  margin-bottom: 3.25rem;
+}
+.ug-prose hr.ug-divider--bold {
+  height: 3px;
+  background-color: #1a1a1a;
+}
+.ug-prose figure {
+  display: block;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
+  max-width: 100%;
+}
+.ug-prose figcaption {
+  display: block;
+  font-size: 0.75rem;
+  line-height: 26px;
+  line-height: 1.625rem;
+  color: #666666;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 0;
+  margin-top: 0.5rem;
+}
+.ug-prose img {
+  border: 0;
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+.ug-prose input,
+.ug-prose textarea,
+.ug-prose select {
+  font: inherit;
+  color: inherit;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
+}
+.ug-prose--indent p + p {
+  margin-top: -26px;
+  margin-top: -1.625rem;
+  text-indent: 26px;
+  text-indent: 1.625rem;
+}
+.ug-prose--grid {
+  background-image: linear-gradient(to bottom, hsla(200, 100%, 50%, 0.3) 1px, transparent 1px);
+  background-position: left top;
+  background-repeat: repeat;
+  background-size: 100% 26px;
+  background-size: 100% 1.625rem;
+}
+.ug-prose--grid-double {
+  background-image: linear-gradient(to bottom, hsla(200, 100%, 50%, 0.3) 1px, transparent 1px, transparent 13px, hsla(200, 100%, 50%, 0.15) 13px, transparent 14px, transparent 26px);
+  background-position: left top;
+  background-repeat: repeat;
+  background-size: 100% 26px;
+  background-size: 100% 1.625rem;
+}
+
 .ug-block {
   padding: 1rem;
 }

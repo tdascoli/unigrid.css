@@ -1,0 +1,340 @@
+// ==========================================================================
+// Unigrid CSS Framework — Prose (BEM)
+//
+// Long-form typographic content with vertical rhythm, based on Gutenberg
+// by Matej Latin. Apply .ug-prose to a container to get beautiful defaults
+// for all HTML elements within it.
+//
+// Features:
+// - Vertical rhythm based on leading (line-height as unit)
+// - Configurable heading sizes via $ug-headings map
+// - Mobile-first with desktop breakpoint at $ug-prose-max-width
+// - Typography normalization (abbr, em, sub, sup, mark, etc.)
+// - Blockquote, figcaption, code, list, table styling
+// - Optional paragraph indent mode
+// - Baseline grid debug overlay
+//
+// Block: .ug-prose
+// Modifiers: --indent, --grid, --grid-double
+//
+// Credit: Based on Gutenberg (github.com/matejlatin/Gutenberg)
+//         Creative Commons Attribution 3.0
+// ==========================================================================
+
+@use "sass:list";
+@use "sass:map";
+
+.ug-prose {
+  font-family: $ug-font-family;
+  color: $ug-color-font-body;
+  font-size: #{$ug-base}px;
+  font-size: #{$ug-base-font-size};
+  @include ug-rhythm-line-height(1);
+
+  @media screen and (min-width: #{$ug-prose-max-width}) {
+    font-size: #{$ug-base-desktop}px;
+    font-size: #{$ug-base-font-size-desktop};
+  }
+
+  @supports (font-variation-settings: normal) {
+    font-family: $ug-font-family-variable;
+  }
+
+  // ---- All elements: reset vertical spacing ----
+  * {
+    @include ug-rhythm-line-height(1);
+    @include ug-rhythm-margin-bottom(1);
+    margin-top: 0;
+  }
+
+  // ---- Max reading width ----
+  > * {
+    max-width: #{$ug-prose-max-width};
+
+    @media screen and (min-width: #{$ug-prose-max-width}) {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  // ---- Headings ----
+  @each $heading, $props in $ug-headings {
+    #{$heading} {
+      @include ug-rhythm-font-size(list.nth($props, 1));
+      @include ug-rhythm-line-height(list.nth($props, 2));
+      @include ug-rhythm-margin-top(list.nth($props, 3));
+      @include ug-rhythm-margin-bottom(list.nth($props, 4));
+      @include ug-font-weight("bold");
+
+      @if $heading == "h1" {
+        @include ug-font-weight("black");
+        letter-spacing: -0.02em;
+      }
+    }
+  }
+
+  // Tighter margins between adjacent headings
+  h1 + h2 { @include ug-rhythm-margin-top(1); }
+  h2 + h3,
+  h3 + h4,
+  h4 + h5 { @include ug-rhythm-margin-top(0.5); }
+  h5 + h6 { @include ug-rhythm-margin-top(-0.5); }
+
+  h6 {
+    font-style: italic;
+    font-weight: normal;
+  }
+
+  // ---- Paragraph ----
+  p {
+    @include ug-rhythm-margin-bottom(1);
+  }
+
+  // Attention grabber / lead
+  .ug-prose__lead,
+  .attention-grabber {
+    @include ug-rhythm-font-size(1.2);
+  }
+
+  // ---- Links ----
+  a {
+    color: $ug-color-link;
+    transition: color 0.2s;
+
+    &:hover {
+      color: $ug-color-link-hover;
+    }
+
+    &:visited {
+      color: $ug-color-link-visited;
+
+      &:hover {
+        color: $ug-color-link-hover;
+      }
+    }
+  }
+
+  // ---- Inline elements ----
+  br {
+    margin-bottom: 0;
+  }
+
+  abbr {
+    letter-spacing: 0.1em;
+  }
+
+  abbr[title] {
+    border-bottom: 1px dotted;
+    text-decoration: none;
+  }
+
+  b,
+  strong {
+    @include ug-font-weight("bold");
+  }
+
+  dfn {
+    font-style: italic;
+  }
+
+  em,
+  i {
+    line-height: 0;
+    vertical-align: baseline;
+  }
+
+  mark {
+    background: #ff0;
+    color: #000;
+    padding: 0 0.2em;
+  }
+
+  small {
+    font-size: 70%;
+    @include ug-rhythm-line-height(0.5);
+  }
+
+  sub,
+  sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+
+  sup { top: -0.5em; }
+  sub { bottom: -0.25em; }
+
+  // ---- Blockquote ----
+  blockquote {
+    font-style: italic;
+    padding-left: 1.4375rem;
+    @include ug-rhythm-margin-top(1);
+    @include ug-rhythm-margin-bottom(1);
+
+    @media screen and (min-width: #{$ug-prose-max-width}) {
+      padding-left: 2rem;
+    }
+
+    cite {
+      display: block;
+      font-style: normal;
+      @include ug-font-size("sm");
+      color: $ug-color-font-light;
+    }
+  }
+
+  // Pull quote (in a figure)
+  figure blockquote {
+    @include ug-rhythm-padding(1, 0);
+    text-align: center;
+
+    p {
+      @include ug-rhythm-font-size(1.6875);
+      @include ug-rhythm-line-height(1.5);
+    }
+  }
+
+  // ---- Lists ----
+  ul,
+  ol {
+    padding-left: 1.5rem;
+
+    li {
+      margin-bottom: 0;
+    }
+  }
+
+  // ---- Code ----
+  pre {
+    overflow: auto;
+    @include ug-rhythm-padding(1, 1);
+    background-color: $ug-warm-gray;
+    border: 1px solid $ug-light-gray;
+  }
+
+  code,
+  kbd,
+  samp {
+    font-family: "SF Mono", "Fira Code", Consolas, monospace;
+    @include ug-font-size("sm");
+  }
+
+  :not(pre) > code {
+    background-color: $ug-warm-gray;
+    padding: 0.15em 0.4em;
+    border-radius: 2px;
+  }
+
+  // ---- Table ----
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    @include ug-rhythm-margin-bottom(1);
+
+    th,
+    td {
+      padding: 0.5em 0.75em;
+      text-align: left;
+      border-bottom: 1px solid $ug-light-gray;
+    }
+
+    th {
+      @include ug-font-weight("bold");
+      @include ug-font-size("sm");
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  }
+
+  // ---- Horizontal Rule ----
+  hr {
+    border: 0;
+    height: 1px;
+    background-color: $ug-light-gray;
+    @include ug-rhythm-margin-top(2);
+    @include ug-rhythm-margin-bottom(2);
+
+    &.ug-divider--bold {
+      height: 3px;
+      background-color: $ug-black;
+    }
+  }
+
+  // ---- Figure & Image ----
+  figure {
+    display: block;
+    @include ug-rhythm-margin-bottom(1);
+    max-width: 100%;
+  }
+
+  figcaption {
+    display: block;
+    @include ug-font-size("xs");
+    @include ug-rhythm-line-height(1);
+    color: $ug-color-font-figcaption;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 0.5rem;
+  }
+
+  img {
+    border: 0;
+    max-width: 100%;
+    display: block;
+    height: auto;
+  }
+
+  // ---- Form ----
+  input,
+  textarea,
+  select {
+    font: inherit;
+    color: inherit;
+    @include ug-rhythm-margin-bottom(1);
+  }
+
+  // ==============================
+  // Modifiers
+  // ==============================
+
+  // ---- Paragraph Indent Mode ----
+  &--indent {
+    p + p {
+      @include ug-rhythm-margin-top(-1);
+      text-indent: #{$ug-leading}px;
+      text-indent: #{$ug-leading-rem}rem;
+    }
+  }
+
+  // ---- Baseline Grid Debug Overlay ----
+  &--grid {
+    background-image: linear-gradient(
+      to bottom,
+      hsla(200, 100%, 50%, 0.3) 1px,
+      transparent 1px
+    );
+    background-position: left top;
+    background-repeat: repeat;
+    background-size: 100% #{$ug-leading}px;
+    background-size: 100% #{$ug-leading-rem}rem;
+  }
+
+  &--grid-double {
+    background-image: linear-gradient(
+      to bottom,
+      hsla(200, 100%, 50%, 0.3) 1px,
+      transparent 1px,
+      transparent #{0.5 * $ug-leading}px,
+      hsla(200, 100%, 50%, 0.15) #{0.5 * $ug-leading}px,
+      transparent #{0.5 * $ug-leading + 1}px,
+      transparent #{$ug-leading}px
+    );
+    background-position: left top;
+    background-repeat: repeat;
+    background-size: 100% #{$ug-leading}px;
+    background-size: 100% #{$ug-leading-rem}rem;
+  }
+}

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unigrid CSS — Prose Example</title>
+  <link rel="preconnect" href="https://rsms.me/">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <link rel="stylesheet" href="./styles.scss">
+  <style>
+    .demo-toggle {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      z-index: 100;
+      background: #1a1a1a;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 0.75rem;
+      font-family: inherit;
+      cursor: pointer;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="ug-header ug-header--compact">
+    <div class="ug-header__title">
+      <h1>Unigrid</h1>
+      <p class="ug-header__subtitle">CSS Framework</p>
+    </div>
+    <nav class="ug-navbar">
+      <div class="ug-navbar__inner">
+        <button class="ug-navbar__toggle" onclick="this.nextElementSibling.classList.toggle('ug-navbar__menu--open')">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="ug-navbar__menu">
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="/">Overview</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="/grid.html">Grid</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="/formats.html">Formats</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="/modules.html">Modules</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="/typography.html">Typography</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="/components.html">Components</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="/cheatsheet.html">Cheatsheet</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link ug-navbar__link--active" href="/example.html">Example</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <div class="ug-section">
+    <h2 class="ug-section__title">Prose — Long-Form Typography</h2>
+    <p class="ug-section__subtitle">Vertical rhythm from Gutenberg starter kit</p>
+  </div>
+
+  <!-- Toggle baseline grid -->
+  <button class="demo-toggle" onclick="
+    var p = document.getElementById('prose');
+    if (p.classList.contains('ug-prose--grid-double')) {
+      p.classList.remove('ug-prose--grid-double');
+      p.classList.remove('ug-prose--grid');
+      this.textContent = 'Grid: Off';
+    } else if (p.classList.contains('ug-prose--grid')) {
+      p.classList.remove('ug-prose--grid');
+      p.classList.add('ug-prose--grid-double');
+      this.textContent = 'Grid: Double';
+    } else {
+      p.classList.add('ug-prose--grid');
+      this.textContent = 'Grid: Single';
+    }
+  ">Grid: Off</button>
+
+  <!-- ============================================================
+       PROSE: Long-form article with vertical rhythm
+       ============================================================ -->
+
+  <article id="prose" class="ug-prose ug-container ug-pt--5 ug-pb--5">
+
+    <h1>The Unigrid System: A Revolution in Park Design</h1>
+
+    <p class="ug-prose__lead">In 1977, designer Massimo Vignelli created a standardized graphic system for the National Park Service that would transform how America's parks communicate with visitors. The Unigrid system remains one of the most elegant examples of design standardization ever created.</p>
+
+    <h2>The Problem</h2>
+
+    <p>Before the Unigrid, each national park produced its own brochures independently. The results were inconsistent — hundreds of different formats, typefaces, and layouts that confused visitors and diluted the NPS brand. As Vignelli put it: <em>"One park's identity had nothing to do with the other."</em></p>
+
+    <p>The National Park Service needed a system that would bring visual unity to over 400 park sites while still allowing each park to express its unique character. The solution had to be practical for park rangers and print shops across the country, not just designers in New York.</p>
+
+    <h2>The Solution</h2>
+
+    <p>Vignelli's approach was characteristically bold: reduce everything to its essentials. The Unigrid is built on a few simple principles:</p>
+
+    <ul>
+      <li>One paper stock in two sizes</li>
+      <li>Ten basic formats derived from a single panel unit (99 × 210 mm)</li>
+      <li>A grid of horizontal and vertical lines creating consistent structure</li>
+      <li>Helvetica as the sole typeface</li>
+      <li>A signature black header band with the park name</li>
+    </ul>
+
+    <h3>The Broadside Approach</h3>
+
+    <p>The key innovation was the <strong>broadside</strong> — treating each brochure as a single flat sheet that is designed as a whole, then accordion-folded into panels. This meant designers could think about the entire layout at once, creating visual flow across the unfolded sheet.</p>
+
+    <blockquote>
+      <p>The Unigrid is not a constraint. It is a platform for creativity.</p>
+      <cite>— Massimo Vignelli</cite>
+    </blockquote>
+
+    <h3>DIN Proportions</h3>
+
+    <p>The system is based on <abbr title="Deutsche Industrie Normen">DIN</abbr> paper proportions — the ratio 1:√2 (approximately 1:1.414). This ratio has a remarkable property: when you fold the paper in half, the resulting sheet has exactly the same proportions as the original.</p>
+
+    <p>This means that the <mark>B6 format</mark> (the largest, at 420 × 594 mm) is precisely a DIN A2 sheet. When folded once, it becomes DIN A3. Folded again, DIN A4. The mathematical elegance is not merely aesthetic — it ensures that graphic elements maintain their proportions regardless of format.</p>
+
+    <h2>The Ten Formats</h2>
+
+    <p>The Unigrid defines ten basic formats in two series:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Format</th>
+          <th>Panels (W × L)</th>
+          <th>Trim Size</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>A1</td><td>1 × 1</td><td>99 × 210 mm</td></tr>
+        <tr><td>A2</td><td>1 × 2</td><td>198 × 210 mm</td></tr>
+        <tr><td>A3</td><td>1 × 3</td><td>297 × 210 mm</td></tr>
+        <tr><td>A4</td><td>1 × 4</td><td>396 × 210 mm</td></tr>
+        <tr><td>A6</td><td>1 × 6</td><td>594 × 210 mm</td></tr>
+        <tr><td>B1</td><td>2 × 1</td><td>99 × 420 mm</td></tr>
+        <tr><td>B2</td><td>2 × 2</td><td>198 × 420 mm</td></tr>
+        <tr><td>B3</td><td>2 × 3</td><td>297 × 420 mm</td></tr>
+        <tr><td>B4</td><td>2 × 4</td><td>396 × 420 mm</td></tr>
+        <tr><td>B6</td><td>2 × 6</td><td>594 × 420 mm</td></tr>
+      </tbody>
+    </table>
+
+    <p>Note that formats A5 and B5 are intentionally skipped — a deliberate simplification that keeps the system lean without sacrificing flexibility.</p>
+
+    <h2>Typography</h2>
+
+    <p>Vignelli chose <strong>Helvetica</strong> as the exclusive typeface for the Unigrid. While controversial at the time — many felt a government agency should use something more "American" — the choice reflected Vignelli's belief in clarity above all:</p>
+
+    <figure>
+      <blockquote>
+        <p>There are people who think that the type should be expressive. I don't think type should be expressive at all. I believe content should be expressed through the type, not by the type.</p>
+      </blockquote>
+      <figcaption>Massimo Vignelli, <em>Helvetica</em> (2007)</figcaption>
+    </figure>
+
+    <p>The type hierarchy is strict: bold headlines for park names and section titles, regular weight for body text, light weight for captions and secondary information. Everything is set flush-left, ragged-right — never justified, never centered (except for special cases).</p>
+
+    <h3>The Black Band</h3>
+
+    <p>Perhaps the most recognizable element of the Unigrid is the <strong>black header band</strong> that spans the full width of every brochure. It contains the park name in large, bold Helvetica and, since 1999, the NPS Arrowhead logo. This single element immediately identifies any Unigrid folder as part of the National Park Service family.</p>
+
+    <h2>Impact & Legacy</h2>
+
+    <p>The Unigrid has been in continuous use since 1977 — nearly five decades. It has been applied to over 400 park sites and produced millions of brochures. The system won the Presidential Design Award in 1984.</p>
+
+    <p>More importantly, it proved that standardization and creativity are not opposites. Within the Unigrid's constraints, designers have produced an enormous variety of beautiful, informative brochures. The system provides structure; the designer provides the content and vision.</p>
+
+    <hr>
+
+    <h4>Further Reading</h4>
+
+    <ol>
+      <li>Vignelli, M. <em>The Vignelli Canon</em>. Lars Müller Publishers, 2010.</li>
+      <li>National Park Service. <em>Unigrid Design Specifications</em>. Harpers Ferry Center.</li>
+      <li>Calori, C. & Vanden-Eynden, D. <em>Signage and Wayfinding Design</em>. Wiley, 2015.</li>
+    </ol>
+
+    <small>This article is published under Creative Commons Attribution 3.0. Typography powered by Gutenberg web type starter kit.</small>
+
+  </article>
+
+</body>
+</html>
