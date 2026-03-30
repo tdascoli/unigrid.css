@@ -1,15 +1,12 @@
 // ==========================================================================
 // Unigrid CSS Framework — Navbar (BEM)
 //
-// Horizontal navigation bar. Spacing aligned to leading for rhythm.
-//
 // Block: .ug-navbar
 // Elements: __inner, __brand, __toggle, __menu, __item, __link, __divider
 // Modifiers: --dark, --fixed, --transparent
+//            __toggle--hamburger (icon variant)
 //            __menu--open (JS-toggled)
-//            __link--active
 // ==========================================================================
-
 
 @use "variables" as *;
 @use "mixins" as *;
@@ -17,7 +14,6 @@
 .ug-navbar {
   width: 100%;
   background-color: $ug-white;
-  // Total height = 2 leading: links(2 leading) + border compensated
   border-bottom: 1px solid $ug-light-gray;
   position: relative;
   z-index: 50;
@@ -30,11 +26,10 @@
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 var(--ug-leading);
-    // 2 leading minus 1px border = exact grid alignment
-    height: calc(calc(var(--ug-leading) * 2) - 1px);
+    height: calc(var(--ug-leading) * 2 - 1px);
   }
 
-  // -- Brand / Logo area (optional, left side) --
+  // -- Brand --
   &__brand {
     display: flex;
     align-items: center;
@@ -46,38 +41,101 @@
     flex-shrink: 0;
   }
 
-  // -- Hamburger Toggle (mobile only) --
+  // -- Toggle Button (mobile only) --
+  // Default: outline button with "Menu" / "Close" text
   &__toggle {
     display: none;
-    background: none;
-    border: none;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    background: none;
+    border: 1px solid currentColor;
+    padding: 0 calc(var(--ug-leading) * 0.5);
+    height: var(--ug-leading);
+    color: inherit;
+    @include ug-font-size("xs");
+    @include ug-font-weight("bold");
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: inherit;
+    transition: background-color 0.15s, color 0.15s;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    // "Close" text hidden by default, shown when menu is open
+    &__close {
+      display: none;
+    }
+
+    &__label {
+      display: inline;
+    }
+
+    @include ug-breakpoint-down("md") {
+      display: inline-flex;
+    }
+  }
+
+  // When menu is open, swap text
+  &__menu--open ~ &__toggle &__label,
+  &__toggle--active &__label {
+    display: none;
+  }
+
+  &__menu--open ~ &__toggle &__close,
+  &__toggle--active &__close {
+    display: inline;
+  }
+
+  // -- Hamburger variant --
+  // Use: .ug-navbar__toggle.ug-navbar__toggle--hamburger
+  &__toggle--hamburger {
+    border: none;
     padding: calc(var(--ug-leading) * 0.5);
     margin-right: calc(var(--ug-leading) * -0.5);
-    color: inherit;
+    flex-direction: column;
+    gap: 0;
+    width: calc(var(--ug-leading) * 1.5);
 
-    // Hamburger icon (3 lines)
+    &:hover {
+      background: none;
+    }
+
     span {
       display: block;
       width: 1.25rem;
       height: 2px;
       background-color: currentColor;
-      transition: transform 0.2s, opacity 0.2s;
+      transition: transform 0.3s, opacity 0.3s;
 
-      & + span {
+      &:nth-child(2) {
+        margin-top: 4px;
+      }
+
+      &:nth-child(3) {
         margin-top: 4px;
       }
     }
 
-    @include ug-breakpoint-down("md") {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    // X transformation when active
+    &.ug-navbar__toggle--active {
+      span:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+      }
+
+      span:nth-child(2) {
+        opacity: 0;
+      }
+
+      span:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+      }
     }
   }
 
-  // -- Menu (list of links) --
+  // -- Menu --
   &__menu {
     display: flex;
     align-items: center;
@@ -86,22 +144,29 @@
     margin: 0;
     padding: 0;
 
-    // Mobile: hidden by default, shown when --open
+    // Mobile: slide down from navbar
     @include ug-breakpoint-down("md") {
-      display: none;
+      display: flex;
       flex-direction: column;
       align-items: stretch;
-      position: absolute;
+      position: fixed;
       top: 100%;
       left: 0;
       right: 0;
+      bottom: 0;
       background-color: inherit;
-      border-bottom: 1px solid $ug-light-gray;
-      padding: calc(var(--ug-leading) * 0.5) 0;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      padding: var(--ug-leading) 0;
+      overflow-y: auto;
+      transform: translateY(-100%);
+      opacity: 0;
+      visibility: hidden;
+      transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s;
+      z-index: 99;
 
       &--open {
-        display: flex;
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
       }
     }
   }
@@ -143,7 +208,7 @@
     }
   }
 
-  // -- Divider (vertical on desktop, horizontal on mobile) --
+  // -- Divider --
   &__divider {
     width: 1px;
     height: var(--ug-leading);
@@ -161,35 +226,20 @@
   // Modifiers
   // ==============================
 
-  // -- Dark variant --
+  // -- Dark --
   &--dark {
     background-color: $ug-black;
     border-bottom-color: rgba(255, 255, 255, 0.1);
 
     .ug-navbar__link {
       color: rgba(255, 255, 255, 0.7);
-
-      &:hover {
-        color: $ug-white;
-        background-color: rgba(255, 255, 255, 0.1);
-      }
-
-      &--active {
-        color: $ug-white;
-      }
+      &:hover { color: $ug-white; background-color: rgba(255, 255, 255, 0.1); }
+      &--active { color: $ug-white; }
     }
 
-    .ug-navbar__brand {
-      color: $ug-white;
-    }
-
-    .ug-navbar__toggle {
-      color: $ug-white;
-    }
-
-    .ug-navbar__divider {
-      background-color: rgba(255, 255, 255, 0.15);
-    }
+    .ug-navbar__brand { color: $ug-white; }
+    .ug-navbar__toggle { color: $ug-white; }
+    .ug-navbar__divider { background-color: rgba(255, 255, 255, 0.15); }
 
     .ug-navbar__menu {
       @include ug-breakpoint-down("md") {
@@ -199,7 +249,7 @@
     }
   }
 
-  // -- Fixed to top --
+  // -- Fixed --
   &--fixed {
     position: fixed;
     top: 0;
@@ -207,31 +257,19 @@
     right: 0;
   }
 
-  // -- Transparent (for overlay on hero) --
+  // -- Transparent --
   &--transparent {
     background-color: transparent;
     border-bottom-color: transparent;
 
     .ug-navbar__link {
       color: rgba(255, 255, 255, 0.8);
-
-      &:hover {
-        color: $ug-white;
-        background-color: rgba(255, 255, 255, 0.1);
-      }
-
-      &--active {
-        color: $ug-white;
-      }
+      &:hover { color: $ug-white; background-color: rgba(255, 255, 255, 0.1); }
+      &--active { color: $ug-white; }
     }
 
-    .ug-navbar__brand {
-      color: $ug-white;
-    }
-
-    .ug-navbar__toggle {
-      color: $ug-white;
-    }
+    .ug-navbar__brand { color: $ug-white; }
+    .ug-navbar__toggle { color: $ug-white; }
 
     .ug-navbar__menu {
       @include ug-breakpoint-down("md") {
