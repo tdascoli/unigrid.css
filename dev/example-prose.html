@@ -7,22 +7,6 @@
   <link rel="preconnect" href="https://rsms.me/">
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
   <link rel="stylesheet" href="./styles.scss">
-  <style>
-    .demo-toggle {
-      position: fixed;
-      bottom: 1rem;
-      right: 1rem;
-      z-index: 100;
-      background: #1a1a1a;
-      color: #fff;
-      border: none;
-      padding: 0.5rem 1rem;
-      font-size: 0.75rem;
-      font-family: inherit;
-      cursor: pointer;
-      border-radius: 2px;
-    }
-  </style>
 </head>
 <body>
 
@@ -54,28 +38,6 @@
     <h2 class="ug-section__title">Prose — Long-Form Typography</h2>
     <p class="ug-section__subtitle">Vertical rhythm from Gutenberg starter kit</p>
   </div>
-
-  <!-- Toggle baseline grid -->
-  <button class="demo-toggle" style="right:8rem" onclick="
-    document.getElementById('prose').classList.toggle('ug-prose--debug');
-    this.textContent = document.getElementById('prose').classList.contains('ug-prose--debug') ? 'Margins: On' : 'Margins: Off';
-  ">Margins: Off</button>
-
-  <button class="demo-toggle" onclick="
-    var p = document.getElementById('prose');
-    if (p.classList.contains('ug-prose--grid-double')) {
-      p.classList.remove('ug-prose--grid-double');
-      p.classList.remove('ug-prose--grid');
-      this.textContent = 'Grid: Off';
-    } else if (p.classList.contains('ug-prose--grid')) {
-      p.classList.remove('ug-prose--grid');
-      p.classList.add('ug-prose--grid-double');
-      this.textContent = 'Grid: Double';
-    } else {
-      p.classList.add('ug-prose--grid');
-      this.textContent = 'Grid: Single';
-    }
-  ">Grid: Off</button>
 
   <!-- ============================================================
        PROSE: Long-form article with vertical rhythm
@@ -184,6 +146,29 @@
     <small>This article is published under Creative Commons Attribution 3.0. Typography powered by Gutenberg web type starter kit.</small>
 
   </article>
+
+
+  <!-- Dev Toolbar -->
+  <div class="dev-toolbar">
+    <button class="dev-toolbar__btn" onclick="
+      document.body.classList.toggle('dev-debug');
+      this.textContent = document.body.classList.contains('dev-debug') ? 'Margins: On' : 'Margins: Off';
+    ">Margins: Off</button>
+    <button class="dev-toolbar__btn" onclick="
+      var b = document.body;
+      if (b.classList.contains('dev-grid-double')) {
+        b.classList.remove('dev-grid-double');
+        this.textContent = 'Grid: Off';
+      } else if (b.classList.contains('dev-grid')) {
+        b.classList.remove('dev-grid');
+        b.classList.add('dev-grid-double');
+        this.textContent = 'Grid: Double';
+      } else {
+        b.classList.add('dev-grid');
+        this.textContent = 'Grid: Single';
+      }
+    ">Grid: Off</button>
+  </div>
 
 </body>
 </html>

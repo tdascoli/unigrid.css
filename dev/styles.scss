@@ -1,6 +1,75 @@
 // Import the Unigrid framework
 @import "../src/scss/unigrid";
 
+// ---- Dev-only: Debug Toggles ----
+
+.dev-toolbar {
+  position: fixed;
+  bottom: #{$ug-leading-rem}rem;
+  right: #{$ug-leading-rem}rem;
+  z-index: 200;
+  display: flex;
+  gap: #{$ug-leading-rem * 0.25}rem;
+}
+
+.dev-toolbar__btn {
+  background: $ug-black;
+  color: $ug-white;
+  border: none;
+  padding: #{$ug-leading-rem * 0.25}rem #{$ug-leading-rem * 0.5}rem;
+  @include ug-font-size("xs");
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 2px;
+  white-space: nowrap;
+
+  &:hover {
+    background: $ug-dark-gray;
+  }
+}
+
+// Global grid overlay (applied to body)
+body.dev-grid {
+  background-image: linear-gradient(
+    to bottom,
+    hsla(200, 100%, 50%, 0.3) 1px,
+    transparent 1px
+  );
+  background-position: left top;
+  background-repeat: repeat;
+  background-size: 100% #{$ug-leading}px;
+  background-size: 100% #{$ug-leading-rem}rem;
+}
+
+body.dev-grid-double {
+  background-image: linear-gradient(
+    to bottom,
+    hsla(200, 100%, 50%, 0.3) 1px,
+    transparent 1px,
+    transparent #{0.5 * $ug-leading}px,
+    hsla(200, 100%, 50%, 0.15) #{0.5 * $ug-leading}px,
+    transparent #{0.5 * $ug-leading + 1}px,
+    transparent #{$ug-leading}px
+  );
+  background-position: left top;
+  background-repeat: repeat;
+  background-size: 100% #{$ug-leading}px;
+  background-size: 100% #{$ug-leading-rem}rem;
+}
+
+// Global margin/padding debug (applied to body)
+body.dev-debug {
+  .ug-container > *,
+  .ug-grid > *,
+  .ug-broadside > *,
+  .ug-prose > *,
+  .ug-hero__content > *,
+  .ug-section > * {
+    outline: 1px solid hsla(210, 80%, 60%, 0.4);
+    background-color: hsla(210, 80%, 60%, 0.03);
+  }
+}
+
 // ---- Dev-only styles ----
 
 .dev-page {
