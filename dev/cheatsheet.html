@@ -161,8 +161,7 @@
         <thead><tr><th>Class</th><th>Description</th></tr></thead>
         <tbody>
           <tr><td><code>.ug-dropdown</code></td><td>Dropdown wrapper (position: relative)</td></tr>
-          <tr><td><code>.ug-dropdown__toggle</code></td><td>Hidden checkbox input (state controller)</td></tr>
-          <tr><td><code>.ug-dropdown__trigger</code></td><td>Label that opens the menu (combine with .ug-btn or .ug-navbar__link)</td></tr>
+          <tr><td><code>.ug-dropdown__trigger</code></td><td>Button/link that opens the menu (click toggle via JS)</td></tr>
           <tr><td><code>.ug-dropdown__caret</code></td><td>Arrow icon, rotates when open</td></tr>
           <tr><td><code>.ug-dropdown__menu</code></td><td>Dropdown menu panel (ul)</td></tr>
           <tr><td><code>.ug-dropdown__item</code></td><td>Menu item (li)</td></tr>
@@ -170,6 +169,7 @@
           <tr><td><code>.ug-dropdown__link--active</code></td><td>Active menu item</td></tr>
           <tr><td><code>.ug-dropdown__divider</code></td><td>Horizontal separator line</td></tr>
           <tr><td><code>.ug-dropdown__header</code></td><td>Non-clickable section label</td></tr>
+          <tr><td><code>.ug-dropdown--open</code></td><td>Open state (toggled by JS)</td></tr>
           <tr><td><code>.ug-dropdown--right</code></td><td>Right-aligned menu</td></tr>
           <tr><td><code>.ug-dropdown--up</code></td><td>Menu opens upward</td></tr>
         </tbody>
@@ -386,5 +386,6 @@
     ">Grid: Off</button>
   </div>
 
+  <script src="/src/js/dropdown.js"></script>
 </body>
 </html>

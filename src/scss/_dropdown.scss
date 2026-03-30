@@ -1,14 +1,22 @@
 // ==========================================================================
 // Unigrid CSS Framework — Dropdown (BEM)
 //
-// Pure CSS dropdown using checkbox hack for toggle state.
-// The caret rotates when open. Works for buttons and navbar items.
+// Dropdown toggled via .ug-dropdown--open class (set by minimal JS).
+// Caret rotates when open. Works for buttons and navbar items.
 //
 // Block: .ug-dropdown
-// Elements: __toggle, __caret, __menu, __item, __link, __divider
-// Modifiers: --right, --up
-//            __toggle (checkbox, visually hidden)
-//            __menu shown when toggle is :checked
+// Elements: __trigger, __caret, __menu, __item, __link, __divider, __header
+// Modifiers: --open, --right, --up
+//
+// Usage:
+//   <div class="ug-dropdown">
+//     <button class="ug-btn ug-dropdown__trigger">
+//       Actions <span class="ug-dropdown__caret"></span>
+//     </button>
+//     <ul class="ug-dropdown__menu">
+//       <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Edit</a></li>
+//     </ul>
+//   </div>
 // ==========================================================================
 
 @use "variables" as *;
@@ -18,16 +26,7 @@
   position: relative;
   display: inline-flex;
 
-  // ---- Hidden checkbox toggle ----
-  &__toggle {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-    pointer-events: none;
-  }
-
-  // ---- Trigger label (styled as button or link) ----
+  // ---- Trigger (button or link) ----
   &__trigger {
     display: inline-flex;
     align-items: center;
@@ -49,13 +48,6 @@
     flex-shrink: 0;
   }
 
-  // Caret rotates when open
-  &__toggle:checked ~ &__trigger &__caret,
-  &__toggle:checked ~ * &__caret {
-    transform: rotate(-135deg);
-    margin-top: 0.15em;
-  }
-
   // ---- Dropdown Menu ----
   &__menu {
     position: absolute;
@@ -72,9 +64,14 @@
     margin: 0;
   }
 
-  // Show menu when toggle checked
-  &__toggle:checked ~ &__menu {
+  // ---- Open State ----
+  &--open > &__menu {
     display: block;
+  }
+
+  &--open > &__trigger &__caret {
+    transform: rotate(-135deg);
+    margin-top: 0.15em;
   }
 
   // ---- Menu Item ----
@@ -111,7 +108,7 @@
     margin: calc(var(--ug-leading) * 0.25) 0;
   }
 
-  // ---- Menu Header (non-clickable label) ----
+  // ---- Menu Header ----
   &__header {
     display: block;
     padding: calc(var(--ug-leading) * 0.25) calc(var(--ug-leading) * 0.5);
@@ -127,59 +124,25 @@
   // ==============================
 
   // Right-aligned menu
-  &--right &__menu {
+  &--right > &__menu {
     left: auto;
     right: 0;
   }
 
   // Upward menu
-  &--up &__menu {
+  &--up > &__menu {
     top: auto;
     bottom: 100%;
     box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
   }
 
-  &--up &__caret {
+  &--up > &__trigger &__caret {
     transform: rotate(-135deg);
     margin-top: 0.15em;
   }
 
-  &--up &__toggle:checked ~ &__trigger &__caret,
-  &--up &__toggle:checked ~ * &__caret {
+  &--up#{&}--open > &__trigger &__caret {
     transform: rotate(45deg);
     margin-top: -0.15em;
   }
 }
-
-// ==============================
-// Button Dropdown
-// ==============================
-// Combine .ug-dropdown with .ug-btn on the trigger label.
-//
-// <div class="ug-dropdown">
-//   <input type="checkbox" class="ug-dropdown__toggle" id="dd1">
-//   <label class="ug-btn ug-dropdown__trigger" for="dd1">
-//     Actions <span class="ug-dropdown__caret"></span>
-//   </label>
-//   <ul class="ug-dropdown__menu">...</ul>
-// </div>
-
-// ==============================
-// Navbar Dropdown
-// ==============================
-// Use inside .ug-navbar__item.
-//
-// <li class="ug-navbar__item ug-dropdown">
-//   <input type="checkbox" class="ug-dropdown__toggle" id="nav-dd">
-//   <label class="ug-navbar__link ug-dropdown__trigger" for="nav-dd">
-//     More <span class="ug-dropdown__caret"></span>
-//   </label>
-//   <ul class="ug-dropdown__menu">...</ul>
-// </li>
-
-// Close dropdown when clicking outside (optional JS helper):
-// document.addEventListener('click', (e) => {
-//   if (!e.target.closest('.ug-dropdown')) {
-//     document.querySelectorAll('.ug-dropdown__toggle').forEach(t => t.checked = false);
-//   }
-// });

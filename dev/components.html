@@ -345,10 +345,9 @@
       <p class="ug-label ug-mb--2">Button Dropdown</p>
       <div class="ug-mb--3" style="display:flex;flex-wrap:wrap;gap:0.5rem">
         <div class="ug-dropdown">
-          <input type="checkbox" class="ug-dropdown__toggle" id="dd-btn1">
-          <label class="ug-btn ug-dropdown__trigger" for="dd-btn1">
+          <button class="ug-btn ug-dropdown__trigger">
             Actions <span class="ug-dropdown__caret"></span>
-          </label>
+          </button>
           <ul class="ug-dropdown__menu">
             <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Edit</a></li>
             <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Duplicate</a></li>
@@ -358,10 +357,9 @@
         </div>
 
         <div class="ug-dropdown">
-          <input type="checkbox" class="ug-dropdown__toggle" id="dd-btn2">
-          <label class="ug-btn ug-btn--outline ug-dropdown__trigger" for="dd-btn2">
+          <button class="ug-btn ug-btn--outline ug-dropdown__trigger">
             Options <span class="ug-dropdown__caret"></span>
-          </label>
+          </button>
           <ul class="ug-dropdown__menu">
             <li class="ug-dropdown__header">Settings</li>
             <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Profile</a></li>
@@ -373,10 +371,9 @@
         </div>
 
         <div class="ug-dropdown">
-          <input type="checkbox" class="ug-dropdown__toggle" id="dd-btn3">
-          <label class="ug-btn ug-btn--sm ug-dropdown__trigger" for="dd-btn3">
+          <button class="ug-btn ug-btn--sm ug-dropdown__trigger">
             Small <span class="ug-dropdown__caret"></span>
-          </label>
+          </button>
           <ul class="ug-dropdown__menu">
             <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Option A</a></li>
             <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Option B</a></li>
@@ -387,10 +384,9 @@
       <p class="ug-label ug-mb--2">Color Variants</p>
       <div class="ug-mb--3" style="display:flex;flex-wrap:wrap;gap:0.5rem">
         <div class="ug-dropdown">
-          <input type="checkbox" class="ug-dropdown__toggle" id="dd-red">
-          <label class="ug-btn ug-btn--red ug-dropdown__trigger" for="dd-red">
+          <button class="ug-btn ug-btn--red ug-dropdown__trigger">
             Danger <span class="ug-dropdown__caret"></span>
-          </label>
+          </button>
           <ul class="ug-dropdown__menu">
             <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Confirm Delete</a></li>
             <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Cancel</a></li>
@@ -398,10 +394,9 @@
         </div>
 
         <div class="ug-dropdown">
-          <input type="checkbox" class="ug-dropdown__toggle" id="dd-blue">
-          <label class="ug-btn ug-btn--blue ug-dropdown__trigger" for="dd-blue">
+          <button class="ug-btn ug-btn--blue ug-dropdown__trigger">
             Export <span class="ug-dropdown__caret"></span>
-          </label>
+          </button>
           <ul class="ug-dropdown__menu">
             <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">PDF</a></li>
             <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">CSV</a></li>
@@ -410,13 +405,12 @@
         </div>
       </div>
 
-      <p class="ug-label ug-mb--2">Right-aligned + Upward</p>
+      <p class="ug-label ug-mb--2">Right-aligned</p>
       <div class="ug-mb--3" style="display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:flex-end">
         <div class="ug-dropdown ug-dropdown--right">
-          <input type="checkbox" class="ug-dropdown__toggle" id="dd-right">
-          <label class="ug-btn ug-btn--outline ug-dropdown__trigger" for="dd-right">
+          <button class="ug-btn ug-btn--outline ug-dropdown__trigger">
             Right <span class="ug-dropdown__caret"></span>
-          </label>
+          </button>
           <ul class="ug-dropdown__menu">
             <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Aligned right</a></li>
             <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">No overflow</a></li>
@@ -431,10 +425,9 @@
           <ul class="ug-navbar__menu" style="display:flex">
             <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Home</a></li>
             <li class="ug-navbar__item ug-dropdown">
-              <input type="checkbox" class="ug-dropdown__toggle" id="dd-nav1">
-              <label class="ug-navbar__link ug-dropdown__trigger" for="dd-nav1">
+              <button class="ug-navbar__link ug-dropdown__trigger">
                 Parks <span class="ug-dropdown__caret"></span>
-              </label>
+              </button>
               <ul class="ug-dropdown__menu">
                 <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Yellowstone</a></li>
                 <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Yosemite</a></li>
@@ -444,10 +437,9 @@
               </ul>
             </li>
             <li class="ug-navbar__item ug-dropdown">
-              <input type="checkbox" class="ug-dropdown__toggle" id="dd-nav2">
-              <label class="ug-navbar__link ug-dropdown__trigger" for="dd-nav2">
+              <button class="ug-navbar__link ug-dropdown__trigger">
                 Resources <span class="ug-dropdown__caret"></span>
-              </label>
+              </button>
               <ul class="ug-dropdown__menu">
                 <li class="ug-dropdown__header">Planning</li>
                 <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Maps</a></li>
@@ -463,7 +455,7 @@
         </div>
       </nav>
 
-      <p class="ug-caption">Pure CSS toggle via hidden checkbox. Caret rotates when menu opens. Add the optional JS snippet (see source) to close on outside click.</p>
+      <p class="ug-caption">Toggle via <code>dropdown.js</code> (~30 lines). Click to open, click outside or press Escape to close. Caret rotates when open.</p>
     </section>
 
     <!-- Table -->
@@ -644,5 +636,6 @@
     ">Grid: Off</button>
   </div>
 
+  <script src="/src/js/dropdown.js"></script>
 </body>
 </html>
