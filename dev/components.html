@@ -580,6 +580,127 @@
       </div>
     </section>
 
+    <!-- Forms -->
+    <section class="dev-section">
+      <p class="dev-section-title">Forms — .ug-form</p>
+
+      <p class="ug-label ug-mb--2">Default Form</p>
+      <form class="ug-form ug-mb--3">
+        <div class="ug-grid">
+          <div class="ug-col--6 ug-col--sm-12">
+            <div class="ug-form__group">
+              <label class="ug-form__label">First Name</label>
+              <input class="ug-form__input" type="text" placeholder="John">
+            </div>
+          </div>
+          <div class="ug-col--6 ug-col--sm-12">
+            <div class="ug-form__group">
+              <label class="ug-form__label">Last Name</label>
+              <input class="ug-form__input" type="text" placeholder="Muir">
+            </div>
+          </div>
+          <div class="ug-col--12">
+            <div class="ug-form__group">
+              <label class="ug-form__label">Email</label>
+              <input class="ug-form__input" type="email" placeholder="john@nps.gov">
+              <p class="ug-form__help">We'll never share your email.</p>
+            </div>
+          </div>
+          <div class="ug-col--6 ug-col--sm-12">
+            <div class="ug-form__group">
+              <label class="ug-form__label">Preferred Park</label>
+              <select class="ug-form__select">
+                <option>Select a park...</option>
+                <option>Yellowstone</option>
+                <option>Yosemite</option>
+                <option>Grand Canyon</option>
+                <option>Zion</option>
+                <option>Grand Teton</option>
+              </select>
+            </div>
+          </div>
+          <div class="ug-col--6 ug-col--sm-12">
+            <div class="ug-form__group">
+              <label class="ug-form__label">Visit Date</label>
+              <input class="ug-form__input" type="date">
+            </div>
+          </div>
+          <div class="ug-col--12">
+            <div class="ug-form__group">
+              <label class="ug-form__label">Message</label>
+              <textarea class="ug-form__textarea" placeholder="Tell us about your visit plans..."></textarea>
+            </div>
+          </div>
+          <div class="ug-col--12">
+            <div class="ug-form__group">
+              <label class="ug-form__checkbox"><input type="checkbox"><span>I agree to the park regulations</span></label>
+              <label class="ug-form__checkbox"><input type="checkbox"><span>Subscribe to newsletter</span></label>
+            </div>
+          </div>
+          <div class="ug-col--12">
+            <div class="ug-form__group">
+              <label class="ug-form__label">Pass Type</label>
+              <label class="ug-form__radio"><input type="radio" name="pass"><span>Day Pass ($35)</span></label>
+              <label class="ug-form__radio"><input type="radio" name="pass"><span>Annual Pass ($70)</span></label>
+              <label class="ug-form__radio"><input type="radio" name="pass"><span>Lifetime Pass ($80)</span></label>
+            </div>
+          </div>
+          <div class="ug-col--12">
+            <button class="ug-btn" type="submit">Submit</button>
+          </div>
+        </div>
+      </form>
+
+      <p class="ug-label ug-mb--2">Input Sizes</p>
+      <div class="ug-mb--3">
+        <div class="ug-form">
+          <div class="ug-form__group">
+            <input class="ug-form__input ug-form__input--sm" type="text" placeholder="Small (1 leading)">
+          </div>
+          <div class="ug-form__group">
+            <input class="ug-form__input" type="text" placeholder="Default (1.5 leading)">
+          </div>
+          <div class="ug-form__group">
+            <input class="ug-form__input ug-form__input--lg" type="text" placeholder="Large (2 leading)">
+          </div>
+        </div>
+      </div>
+
+      <p class="ug-label ug-mb--2">Inline Form</p>
+      <form class="ug-form ug-form--inline ug-mb--3">
+        <div class="ug-form__group">
+          <label class="ug-form__label">Search</label>
+          <input class="ug-form__input" type="text" placeholder="Find a park...">
+        </div>
+        <div class="ug-form__group">
+          <label class="ug-form__label">State</label>
+          <select class="ug-form__select">
+            <option>All</option>
+            <option>Wyoming</option>
+            <option>California</option>
+          </select>
+        </div>
+        <button class="ug-btn" type="submit">Search</button>
+      </form>
+
+      <p class="ug-label ug-mb--2">Error State</p>
+      <div class="ug-form ug-mb--3">
+        <div class="ug-form__group">
+          <label class="ug-form__label">Email</label>
+          <input class="ug-form__input" type="email" value="not-an-email" required>
+          <p class="ug-form__error">Please enter a valid email address.</p>
+        </div>
+      </div>
+
+      <p class="ug-label ug-mb--2">Disabled</p>
+      <div class="ug-form ug-mb--3">
+        <div class="ug-form__group">
+          <label class="ug-form__label">Disabled Input</label>
+          <input class="ug-form__input" type="text" value="Cannot edit" disabled>
+        </div>
+      </div>
+    </section>
+
     <!-- Divider -->
     <section class="dev-section">
       <p class="dev-section-title">Divider — .ug-divider</p>

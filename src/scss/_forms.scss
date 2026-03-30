@@ -1,0 +1,191 @@
+// ==========================================================================
+// Unigrid CSS Framework — Forms (BEM)
+//
+// Block: .ug-form
+// Elements: __group, __label, __input, __select, __textarea, __checkbox,
+//           __radio, __help, __error
+// Modifiers: --inline, --disabled
+//            __input--sm, __input--lg
+// ==========================================================================
+
+@use "sass:color";
+@use "variables" as *;
+@use "mixins" as *;
+
+.ug-form {
+
+  // ---- Form Group (label + input pair) ----
+  &__group {
+    @include ug-rhythm-margin-bottom(1);
+  }
+
+  // ---- Label ----
+  &__label {
+    display: block;
+    @include ug-font-size("sm");
+    @include ug-font-weight("bold");
+    @include ug-rhythm-line-height(1);
+    @include ug-rhythm-margin-bottom(0.5);
+    color: $ug-black;
+  }
+
+  // ---- Text Input, Email, Password, Number, etc. ----
+  &__input {
+    display: block;
+    width: 100%;
+    height: calc(var(--ug-leading) * 1.5);
+    padding: 0 calc(var(--ug-leading) * 0.5);
+    @include ug-font-size("base");
+    font-family: inherit;
+    color: $ug-black;
+    background-color: $ug-white;
+    border: 1px solid $ug-light-gray;
+    transition: border-color 0.15s;
+
+    &::placeholder {
+      color: $ug-medium-gray;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $ug-black;
+    }
+
+    // Sizes
+    &--sm {
+      height: calc(var(--ug-leading) * 1);
+      @include ug-font-size("sm");
+    }
+
+    &--lg {
+      height: calc(var(--ug-leading) * 2);
+      @include ug-font-size("lg");
+    }
+  }
+
+  // ---- Select ----
+  &__select {
+    display: block;
+    width: 100%;
+    height: calc(var(--ug-leading) * 1.5);
+    padding: 0 calc(var(--ug-leading) * 1) 0 calc(var(--ug-leading) * 0.5);
+    @include ug-font-size("base");
+    font-family: inherit;
+    color: $ug-black;
+    background-color: $ug-white;
+    border: 1px solid $ug-light-gray;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right calc(var(--ug-leading) * 0.5) center;
+    background-size: 12px;
+    transition: border-color 0.15s;
+
+    &:focus {
+      outline: none;
+      border-color: $ug-black;
+    }
+  }
+
+  // ---- Textarea ----
+  &__textarea {
+    display: block;
+    width: 100%;
+    min-height: calc(var(--ug-leading) * 4);
+    padding: calc(var(--ug-leading) * 0.5);
+    @include ug-font-size("base");
+    @include ug-rhythm-line-height(1);
+    font-family: inherit;
+    color: $ug-black;
+    background-color: $ug-white;
+    border: 1px solid $ug-light-gray;
+    resize: vertical;
+    transition: border-color 0.15s;
+
+    &::placeholder {
+      color: $ug-medium-gray;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $ug-black;
+    }
+  }
+
+  // ---- Checkbox & Radio ----
+  &__checkbox,
+  &__radio {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--ug-leading) * 0.5);
+    @include ug-rhythm-line-height(1);
+    @include ug-rhythm-margin-bottom(0.5);
+    cursor: pointer;
+
+    input {
+      width: 1em;
+      height: 1em;
+      margin: 0;
+      accent-color: $ug-black;
+      cursor: pointer;
+    }
+
+    span {
+      @include ug-font-size("base");
+      color: $ug-black;
+    }
+  }
+
+  // ---- Help Text ----
+  &__help {
+    @include ug-font-size("xs");
+    @include ug-rhythm-line-height(1);
+    color: $ug-medium-gray;
+    margin-top: calc(var(--ug-leading) * 0.25);
+  }
+
+  // ---- Error State ----
+  &__error {
+    @include ug-font-size("xs");
+    @include ug-rhythm-line-height(1);
+    color: $ug-red;
+    margin-top: calc(var(--ug-leading) * 0.25);
+  }
+
+  &__input:invalid,
+  &__textarea:invalid,
+  &__select:invalid {
+    border-color: $ug-red;
+  }
+
+  // ==============================
+  // Modifiers
+  // ==============================
+
+  // Inline form (horizontal layout)
+  &--inline {
+    display: flex;
+    align-items: flex-end;
+    gap: calc(var(--ug-leading) * 0.5);
+    flex-wrap: wrap;
+
+    .ug-form__group {
+      margin-bottom: 0;
+    }
+
+    .ug-form__input,
+    .ug-form__select {
+      width: auto;
+    }
+  }
+
+  // Disabled state
+  &--disabled,
+  &__input:disabled,
+  &__select:disabled,
+  &__textarea:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
