@@ -39,20 +39,24 @@
     gap: 0;
     flex-shrink: 0;
 
-    h1 {
+    h1, a {
       @include ug-font-size("3xl");
-      @include ug-font-weight("black");
+      @include ug-font-weight("bold");
       @include ug-rhythm-line-height(2);
       letter-spacing: -0.02em;
       text-transform: none;
       margin: 0;
     }
+
+    a {
+      text-decoration: none;
+    }
   }
 
   &__name {
     @include ug-font-size("3xl");
-    @include ug-font-weight("black");
-    line-height: $ug-line-height-tight;
+    @include ug-font-weight("bold");
+    @include ug-rhythm-line-height(2);
     letter-spacing: -0.02em;
     margin: 0;
     flex-shrink: 0;
@@ -61,13 +65,12 @@
   &__subtitle {
     @include ug-font-size("lg");
     @include ug-font-weight("light");
+    @include ug-rhythm-line-height(1);
     opacity: 0.85;
     margin: 0;
   }
 
   // -- Embedded Navbar --
-  // When .ug-navbar is placed inside .ug-header, it integrates seamlessly:
-  // brand on the left (via __logo + __title), menu on the right.
   .ug-navbar {
     flex: 1;
     background: transparent;
@@ -83,7 +86,7 @@
     }
 
     &__brand {
-      display: none; // brand is already in the header
+      display: none;
     }
 
     &__link {
@@ -111,7 +114,6 @@
       @include ug-breakpoint-down("md") {
         background-color: $ug-dark-gray;
         border-bottom-color: rgba(255, 255, 255, 0.1);
-        // Position relative to header, not navbar
         left: 0;
         right: 0;
         position: fixed;
@@ -122,9 +124,10 @@
 
   // -- Modifiers --
   &--compact {
-    padding: #{$ug-leading-rem * 0.5}rem #{$ug-leading-rem}rem;
+    padding: #{$ug-leading-rem * 0.5}rem #{$ug-leading-rem * 1.5}rem;
 
     .ug-header__title h1,
+    .ug-header__title a,
     .ug-header__name {
       @include ug-font-size("2xl");
     }
@@ -141,6 +144,7 @@
   // -- Responsive --
   @include ug-breakpoint-down("md") {
     &__title h1,
+    &__title a,
     &__name {
       @include ug-font-size("2xl");
     }

@@ -19,7 +19,7 @@
     @include ug-rhythm-margin-bottom(list.nth($props, 4));
 
     @if $heading == "h1" {
-      @include ug-font-weight("black");
+      @include ug-font-weight("extra-bold");
       letter-spacing: -0.02em;
     }
   }

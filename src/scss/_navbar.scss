@@ -1,8 +1,7 @@
 // ==========================================================================
 // Unigrid CSS Framework — Navbar (BEM)
 //
-// Horizontal navigation bar, designed to sit below the header band or
-// standalone. Includes responsive mobile menu with hamburger toggle.
+// Horizontal navigation bar. Spacing aligned to leading for rhythm.
 //
 // Block: .ug-navbar
 // Elements: __inner, __brand, __toggle, __menu, __item, __link, __divider
@@ -111,8 +110,8 @@
   &__link {
     display: block;
     padding: #{$ug-leading-rem * 0.5}rem #{$ug-leading-rem * 0.5}rem;
-    @include ug-font-size("sm");
-    @include ug-font-weight("regular");
+    @include ug-font-size("base");
+    @include ug-font-weight("light");
     @include ug-rhythm-line-height(1);
     color: $ug-dark-gray;
     text-decoration: none;
@@ -125,7 +124,6 @@
     }
 
     &--active {
-      @include ug-font-weight("bold");
       color: $ug-black;
     }
 
@@ -232,9 +230,3 @@
     }
   }
 }
-
-// ---- Minimal JS toggle helper ----
-// Add/remove .ug-navbar__menu--open with:
-//   document.querySelector('.ug-navbar__toggle').addEventListener('click', () => {
-//     document.querySelector('.ug-navbar__menu').classList.toggle('ug-navbar__menu--open');
-//   });
