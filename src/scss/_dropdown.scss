@@ -33,6 +33,15 @@
     gap: calc(var(--ug-leading) * 0.25);
     cursor: pointer;
     user-select: none;
+
+    // Reset button defaults when trigger is a <button>
+    &:is(button) {
+      background: none;
+      border: none;
+      padding: 0;
+      font: inherit;
+      color: inherit;
+    }
   }
 
   // ---- Caret ----
@@ -126,6 +135,16 @@
   // Active state (current page is in this dropdown)
   &--active > &__trigger {
     color: $ug-black;
+  }
+
+  // ---- Navbar context ----
+  // When .ug-dropdown is inside .ug-navbar, the trigger inherits navbar link styles.
+  .ug-navbar & {
+    align-items: stretch;
+  }
+
+  .ug-navbar &__trigger:is(button) {
+    padding: 0 calc(var(--ug-leading) * 0.5);
   }
 
   // Right-aligned menu
