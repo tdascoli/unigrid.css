@@ -1,0 +1,241 @@
+// ==========================================================================
+// Unigrid CSS Framework — Buttons (BEM)
+//
+// Block: .ug-btn
+// Elements: __icon
+// Modifiers: --black, --brown, --red, --green, --blue, --light, --ghost,
+//            --sm, --lg, --block, --disabled
+// ==========================================================================
+
+@use "sass:color";
+@use "variables" as *;
+@use "mixins" as *;
+
+.ug-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--ug-leading) * 0.5);
+  height: calc(var(--ug-leading) * 1.5);
+  padding: 0 var(--ug-leading);
+  @include ug-font-size("base");
+  @include ug-font-weight("bold");
+  font-family: inherit;
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 2px solid $ug-black;
+  background-color: $ug-black;
+  color: $ug-white;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+
+  &:hover {
+    background-color: $ug-dark-gray;
+    border-color: $ug-dark-gray;
+    color: $ug-white;
+    text-decoration: none;
+  }
+
+  &:active {
+    background-color: color.adjust($ug-black, $lightness: -5%);
+    border-color: color.adjust($ug-black, $lightness: -5%);
+  }
+
+  // ==============================
+  // Color Variants
+  // ==============================
+
+  &--brown {
+    background-color: $ug-brown;
+    border-color: $ug-brown;
+
+    &:hover {
+      background-color: color.adjust($ug-brown, $lightness: 8%);
+      border-color: color.adjust($ug-brown, $lightness: 8%);
+    }
+  }
+
+  &--red {
+    background-color: $ug-red;
+    border-color: $ug-red;
+
+    &:hover {
+      background-color: color.adjust($ug-red, $lightness: 8%);
+      border-color: color.adjust($ug-red, $lightness: 8%);
+    }
+  }
+
+  &--green {
+    background-color: $ug-green;
+    border-color: $ug-green;
+
+    &:hover {
+      background-color: color.adjust($ug-green, $lightness: 8%);
+      border-color: color.adjust($ug-green, $lightness: 8%);
+    }
+  }
+
+  &--blue {
+    background-color: $ug-blue;
+    border-color: $ug-blue;
+
+    &:hover {
+      background-color: color.adjust($ug-blue, $lightness: 8%);
+      border-color: color.adjust($ug-blue, $lightness: 8%);
+    }
+  }
+
+  // Light: dark text on light bg
+  &--light {
+    background-color: $ug-warm-gray;
+    border-color: $ug-warm-gray;
+    color: $ug-black;
+
+    &:hover {
+      background-color: color.adjust($ug-warm-gray, $lightness: -5%);
+      border-color: color.adjust($ug-warm-gray, $lightness: -5%);
+      color: $ug-black;
+    }
+  }
+
+  // ==============================
+  // Outline / Ghost Variants
+  // ==============================
+
+  // Outline: transparent bg, colored border + text
+  &--outline {
+    background-color: transparent;
+    color: $ug-black;
+
+    &:hover {
+      background-color: $ug-black;
+      color: $ug-white;
+    }
+
+    // Outline color variants
+    &.ug-btn--brown {
+      border-color: $ug-brown;
+      color: $ug-brown;
+      background-color: transparent;
+      &:hover { background-color: $ug-brown; color: $ug-white; }
+    }
+
+    &.ug-btn--red {
+      border-color: $ug-red;
+      color: $ug-red;
+      background-color: transparent;
+      &:hover { background-color: $ug-red; color: $ug-white; }
+    }
+
+    &.ug-btn--green {
+      border-color: $ug-green;
+      color: $ug-green;
+      background-color: transparent;
+      &:hover { background-color: $ug-green; color: $ug-white; }
+    }
+
+    &.ug-btn--blue {
+      border-color: $ug-blue;
+      color: $ug-blue;
+      background-color: transparent;
+      &:hover { background-color: $ug-blue; color: $ug-white; }
+    }
+
+    &.ug-btn--light {
+      border-color: $ug-light-gray;
+      color: $ug-dark-gray;
+      background-color: transparent;
+      &:hover { background-color: $ug-warm-gray; color: $ug-black; }
+    }
+  }
+
+  // Ghost: no border, just text with hover bg
+  &--ghost {
+    background-color: transparent;
+    border-color: transparent;
+    color: $ug-black;
+
+    &:hover {
+      background-color: $ug-warm-gray;
+      border-color: $ug-warm-gray;
+      color: $ug-black;
+    }
+  }
+
+  // ==============================
+  // Size Variants
+  // ==============================
+
+  // sm = 1 leading height
+  &--sm {
+    @include ug-font-size("sm");
+    height: var(--ug-leading);
+    padding: 0 calc(var(--ug-leading) * 0.5);
+  }
+
+  // lg = 2 leading height
+  &--lg {
+    @include ug-font-size("lg");
+    height: calc(var(--ug-leading) * 2);
+    padding: 0 calc(var(--ug-leading) * 1.5);
+  }
+
+  // ==============================
+  // Layout Variants
+  // ==============================
+
+  // Full width
+  &--block {
+    display: flex;
+    width: 100%;
+  }
+
+  // ==============================
+  // States
+  // ==============================
+
+  &--disabled,
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  // ==============================
+  // Icon element
+  // ==============================
+
+  &__icon {
+    display: inline-flex;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  // ==============================
+  // Button Group
+  // ==============================
+}
+
+.ug-btn-group {
+  display: inline-flex;
+  gap: 0;
+
+  .ug-btn {
+    border-radius: 0;
+
+    &:not(:last-child) {
+      border-right-width: 1px;
+    }
+
+    &:not(:first-child) {
+      border-left-width: 1px;
+    }
+  }
+}

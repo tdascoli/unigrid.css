@@ -10,14 +10,18 @@
 // Modifiers: --full, --half, --third, --dark, --light, --center, --bottom
 // ==========================================================================
 
+
+@use "variables" as *;
+@use "mixins" as *;
+
 .ug-hero {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   width: 100%;
-  min-height: 50vh;
-  padding: ug-space(6) ug-space(5);
+  min-height: round(down, 50vh, var(--ug-leading));
+  padding: calc(var(--ug-leading) * 3) calc(var(--ug-leading) * 1.5);
   color: $ug-white;
   overflow: hidden;
 
@@ -58,14 +62,15 @@
 
   // -- Title --
   &__title {
-    @include ug-font-size("3xl");
+    @include ug-rhythm-font-size(2.5);
+    @include ug-rhythm-line-height(2);
     @include ug-font-weight("black");
-    line-height: $ug-line-height-tight;
     letter-spacing: -0.02em;
-    margin: 0 0 ug-space(2) 0;
+    @include ug-rhythm-margin-bottom(1);
+    margin-top: 0;
 
     @include ug-breakpoint-down("md") {
-      font-size: 2rem;
+      @include ug-rhythm-font-size(2);
     }
   }
 
@@ -73,26 +78,29 @@
   &__subtitle {
     @include ug-font-size("lg");
     @include ug-font-weight("light");
+    @include ug-rhythm-line-height(1);
     opacity: 0.85;
-    margin: 0 0 ug-space(1) 0;
+    margin-bottom: 0;
+    margin-top: 0;
   }
 
   // -- Lead text --
   &__lead {
     @include ug-font-size("base");
     @include ug-font-weight("regular");
-    line-height: $ug-line-height;
-    max-width: 40rem;
+    @include ug-rhythm-line-height(1);
+    max-width: $ug-prose-max-width;
     opacity: 0.8;
-    margin: 0 0 ug-space(4) 0;
+    @include ug-rhythm-margin-bottom(1);
+    margin-top: 0;
   }
 
   // -- Action buttons area --
   &__actions {
     display: flex;
-    gap: ug-space(3);
+    gap: var(--ug-leading);
     flex-wrap: wrap;
-    margin-top: ug-space(3);
+    @include ug-rhythm-margin-top(1);
   }
 
   // ==============================
@@ -100,15 +108,15 @@
   // ==============================
 
   &--full {
-    min-height: 100vh;
+    min-height: round(down, 100vh, var(--ug-leading));
   }
 
   &--half {
-    min-height: 50vh;
+    min-height: round(down, 50vh, var(--ug-leading));
   }
 
   &--third {
-    min-height: 33vh;
+    min-height: round(down, 33vh, var(--ug-leading));
   }
 
   &--auto {
@@ -197,6 +205,10 @@
   &--din {
     @include ug-ratio-din(true);
     min-height: 0;
+    // The DIN aspect ratio height is not a leading multiple.
+    // Round margin-bottom to snap the next element back onto the grid.
+    // Uses CSS round() (supported in modern browsers).
+    margin-bottom: calc(var(--ug-leading) - mod(100vw / #{$ug-ratio}, var(--ug-leading)));
   }
 
   // ==============================
@@ -204,11 +216,11 @@
   // ==============================
 
   @include ug-breakpoint-down("md") {
-    padding: ug-space(5) ug-space(3);
-    min-height: 40vh;
+    padding: calc(var(--ug-leading) * 2) var(--ug-leading);
+    min-height: round(down, 40vh, var(--ug-leading));
 
     &--full {
-      min-height: 100vh;
+      min-height: round(down, 100vh, var(--ug-leading));
     }
   }
 }
@@ -219,8 +231,10 @@
 .ug-hero__btn {
   display: inline-flex;
   align-items: center;
-  gap: ug-space(2);
-  padding: ug-space(2) ug-space(4);
+  justify-content: center;
+  gap: calc(var(--ug-leading) * 0.5);
+  height: calc(var(--ug-leading) * 1.5);
+  padding: 0 var(--ug-leading);
   @include ug-font-size("sm");
   @include ug-font-weight("bold");
   text-decoration: none;

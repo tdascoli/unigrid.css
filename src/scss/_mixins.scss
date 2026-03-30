@@ -4,6 +4,7 @@
 
 @use "sass:map";
 @use "sass:math";
+@use "variables" as *;
 
 // ---- Responsive Breakpoint ----
 // Usage: @include ug-breakpoint("md") { ... }
@@ -56,9 +57,9 @@
 // ---- DIN Aspect Ratio ----
 @mixin ug-ratio-din($landscape: false) {
   @if $landscape {
-    aspect-ratio: #{$ug-ratio} #{unquote("/")} 1;
+    aspect-ratio: #{$ug-ratio} #{"/"} 1;
   } @else {
-    aspect-ratio: 1 #{unquote("/")} #{$ug-ratio};
+    aspect-ratio: 1 #{"/"} #{$ug-ratio};
   }
 }
 
@@ -80,4 +81,40 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+// ==========================================================================
+// Vertical Rhythm Mixins (from Gutenberg)
+// All vertical spacing uses var(--ug-leading) which adapts at the
+// desktop breakpoint (26px mobile → 31px desktop).
+// ==========================================================================
+
+// ---- Rhythm Font Size ----
+@mixin ug-rhythm-font-size($number) {
+  font-size: #{$number}rem;
+}
+
+// ---- Rhythm Line Height ----
+@mixin ug-rhythm-line-height($number) {
+  line-height: calc(var(--ug-leading) * #{$number});
+}
+
+// ---- Rhythm Margin ----
+@mixin ug-rhythm-margin-top($number) {
+  margin-top: calc(var(--ug-leading) * #{$number});
+}
+
+@mixin ug-rhythm-margin-bottom($number) {
+  margin-bottom: calc(var(--ug-leading) * #{$number});
+}
+
+// ---- Rhythm Padding ----
+@mixin ug-rhythm-padding($top, $right, $bottom: null, $left: null) {
+  @if $bottom == null {
+    padding: calc(var(--ug-leading) * #{$top}) calc(var(--ug-leading) * #{$right});
+  } @else if $left == null {
+    padding: calc(var(--ug-leading) * #{$top}) calc(var(--ug-leading) * #{$right}) calc(var(--ug-leading) * #{$bottom});
+  } @else {
+    padding: calc(var(--ug-leading) * #{$top}) calc(var(--ug-leading) * #{$right}) calc(var(--ug-leading) * #{$bottom}) calc(var(--ug-leading) * #{$left});
+  }
 }

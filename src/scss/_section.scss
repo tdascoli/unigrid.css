@@ -2,33 +2,37 @@
 // Unigrid CSS Framework — Section Title (BEM)
 //
 // The signature black band with white heading spanning the full width.
-// A defining visual element of the Unigrid system, used to separate
-// major content sections in NPS folders.
+// Padding aligned to the vertical rhythm (leading multiples).
 //
 // Block: .ug-section
 // Elements: __title, __subtitle
 // Modifiers: --brown, --red, --green, --blue, --light, --compact, --large
 // ==========================================================================
 
+
+@use "variables" as *;
+@use "mixins" as *;
+
 .ug-section {
   width: 100%;
   background-color: $ug-black;
   color: $ug-white;
-  padding: ug-space(3) ug-space(5);
+  padding: var(--ug-leading) calc(var(--ug-leading) * 1.5);
 
   // -- Title --
   &__title {
-    @include ug-font-size("2xl");
+    @include ug-rhythm-font-size(1.6875);
+    @include ug-rhythm-line-height(1.5);
     @include ug-font-weight("black");
-    line-height: $ug-line-height-tight;
     letter-spacing: -0.01em;
     margin: 0;
   }
 
-  // -- Subtitle (optional, right of or below title) --
+  // -- Subtitle --
   &__subtitle {
     @include ug-font-size("sm");
     @include ug-font-weight("light");
+    @include ug-rhythm-line-height(1);
     opacity: 0.7;
     margin: 0;
   }
@@ -38,18 +42,20 @@
   // ==============================
 
   &--compact {
-    padding: ug-space(2) ug-space(5);
+    padding: calc(var(--ug-leading) * 0.5) calc(var(--ug-leading) * 1.5);
 
     .ug-section__title {
-      @include ug-font-size("lg");
+      @include ug-rhythm-font-size(1.2);
+      @include ug-rhythm-line-height(1);
     }
   }
 
   &--large {
-    padding: ug-space(5) ug-space(5);
+    padding: calc(var(--ug-leading) * 2) calc(var(--ug-leading) * 1.5);
 
     .ug-section__title {
-      @include ug-font-size("3xl");
+      @include ug-rhythm-font-size(2.5);
+      @include ug-rhythm-line-height(2);
     }
   }
 
@@ -72,14 +78,14 @@
   // ==============================
 
   @include ug-breakpoint-down("md") {
-    padding: ug-space(3) ug-space(3);
+    padding: var(--ug-leading) var(--ug-leading);
 
     &--large {
-      padding: ug-space(4) ug-space(3);
+      padding: calc(var(--ug-leading) * 1.5) var(--ug-leading);
     }
 
     &--compact {
-      padding: ug-space(2) ug-space(3);
+      padding: calc(var(--ug-leading) * 0.5) var(--ug-leading);
     }
   }
 }

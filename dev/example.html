@@ -59,8 +59,9 @@
     </div>
     <nav class="ug-navbar">
       <div class="ug-navbar__inner">
-        <button class="ug-navbar__toggle" onclick="this.nextElementSibling.classList.toggle('ug-navbar__menu--open')">
-          <span></span><span></span><span></span>
+        <button class="ug-navbar__toggle" onclick="var m=this.parentElement.querySelector('.ug-navbar__menu');m.classList.toggle('ug-navbar__menu--open');this.classList.toggle('ug-navbar__toggle--active')">
+          <span class="ug-navbar__toggle__label">Menu</span>
+          <span class="ug-navbar__toggle__close">Close</span>
         </button>
         <ul class="ug-navbar__menu">
           <li class="ug-navbar__item"><a class="ug-navbar__link ug-navbar__link--active" href="#">Home</a></li>
@@ -269,5 +270,29 @@
     </div>
   </footer>
 
+
+  <!-- Dev Toolbar -->
+  <div class="dev-toolbar">
+    <button class="dev-toolbar__btn" onclick="
+      document.body.classList.toggle('dev-debug');
+      this.textContent = document.body.classList.contains('dev-debug') ? 'Margins: On' : 'Margins: Off';
+    ">Margins: Off</button>
+    <button class="dev-toolbar__btn" onclick="
+      var b = document.body;
+      if (b.classList.contains('dev-grid-double')) {
+        b.classList.remove('dev-grid-double');
+        this.textContent = 'Grid: Off';
+      } else if (b.classList.contains('dev-grid')) {
+        b.classList.remove('dev-grid');
+        b.classList.add('dev-grid-double');
+        this.textContent = 'Grid: Double';
+      } else {
+        b.classList.add('dev-grid');
+        this.textContent = 'Grid: Single';
+      }
+    ">Grid: Off</button>
+  </div>
+
+  <script src="./dropdown.js"></script>
 </body>
 </html>

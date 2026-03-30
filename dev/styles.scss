@@ -1,47 +1,113 @@
 // Import the Unigrid framework
-@import "../src/scss/unigrid";
+@use "../src/scss/unigrid" as *;
 
-// ---- Dev-only styles ----
+// ---- Dev-only: Debug Toggles ----
 
-.dev-page {
-  @extend .ug-container;
-  @extend .ug-container--narrow;
-  padding-top: ug-space(5);
-  padding-bottom: ug-space(5);
+.dev-toolbar {
+  position: fixed;
+  bottom: var(--ug-leading);
+  right: var(--ug-leading);
+  z-index: 200;
+  display: flex;
+  gap: calc(var(--ug-leading) * 0.25);
 }
 
+.dev-toolbar__btn {
+  background: $ug-black;
+  color: $ug-white;
+  border: none;
+  padding: calc(var(--ug-leading) * 0.25) calc(var(--ug-leading) * 0.5);
+  @include ug-font-size("xs");
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 2px;
+  white-space: nowrap;
+
+  &:hover {
+    background: $ug-dark-gray;
+  }
+}
+
+// Global grid overlay (applied to body)
+body.dev-grid {
+  background-image: linear-gradient(
+    to bottom,
+    hsla(200, 100%, 50%, 0.3) 1px,
+    transparent 1px
+  );
+  background-position: left top;
+  background-repeat: repeat;
+  background-size: 100% var(--ug-leading);
+}
+
+body.dev-grid-double {
+  background-image: linear-gradient(
+    to bottom,
+    hsla(200, 100%, 50%, 0.3) 1px,
+    transparent 1px,
+    transparent calc(var(--ug-leading) * 0.5),
+    hsla(200, 100%, 50%, 0.15) calc(var(--ug-leading) * 0.5),
+    transparent calc(var(--ug-leading) * 0.5 + 1px),
+    transparent var(--ug-leading)
+  );
+  background-position: left top;
+  background-repeat: repeat;
+  background-size: 100% var(--ug-leading);
+}
+
+// Global margin/padding debug (applied to body)
+body.dev-debug {
+  .ug-container > *,
+  .ug-grid > *,
+  .ug-broadside > *,
+  .ug-prose > *,
+  .ug-hero__content > *,
+  .ug-section > * {
+    outline: 1px solid hsla(210, 80%, 60%, 0.4);
+    background-color: hsla(210, 80%, 60%, 0.03);
+  }
+}
+
+// ---- Dev-only styles ----
+// All vertical spacing uses leading multiples for rhythm alignment.
+
 .dev-section {
-  margin-bottom: ug-space(8);
+  @include ug-rhythm-margin-bottom(4);
 }
 
 .dev-section-title {
-  @include ug-font-size("sm");
-  @include ug-font-weight("bold");
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: $ug-medium-gray;
-  margin-bottom: ug-space(3);
-  padding-bottom: ug-space(2);
-  border-bottom: 2px solid $ug-black;
+  @extend .ug-label-divider;
 }
 
 .dev-cell {
   background: $ug-warm-gray;
   border: 1px solid $ug-light-gray;
-  padding: ug-space(2);
+  padding: calc(var(--ug-leading) * 0.5);
   @include ug-font-size("xs");
+  @include ug-rhythm-line-height(1);
   color: $ug-medium-gray;
   text-align: center;
-  min-height: 3rem;
+  min-height: calc(var(--ug-leading) * 2);
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &__no-alignment {
+    text-align: initial;
+    justify-content: initial;
+
+    p {
+      width: 100%;
+    }
+  }
 }
 
 .dev-code {
   background: $ug-warm-gray;
-  padding: ug-space(1) ug-space(2);
+  padding: 0 calc(var(--ug-leading) * 0.25);
   @include ug-font-size("xs");
+  line-height: inherit;
+  vertical-align: baseline;
   font-family: "SF Mono", "Fira Code", monospace;
   border-radius: 2px;
 }

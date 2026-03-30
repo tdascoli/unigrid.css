@@ -18,8 +18,9 @@
     </div>
     <nav class="ug-navbar">
       <div class="ug-navbar__inner">
-        <button class="ug-navbar__toggle" onclick="this.nextElementSibling.classList.toggle('ug-navbar__menu--open')">
-          <span></span><span></span><span></span>
+        <button class="ug-navbar__toggle" onclick="var m=this.parentElement.querySelector('.ug-navbar__menu');m.classList.toggle('ug-navbar__menu--open');this.classList.toggle('ug-navbar__toggle--active')">
+          <span class="ug-navbar__toggle__label">Menu</span>
+          <span class="ug-navbar__toggle__close">Close</span>
         </button>
         <ul class="ug-navbar__menu">
           <li class="ug-navbar__item"><a class="ug-navbar__link" href="/">Overview</a></li>
@@ -29,7 +30,17 @@
           <li class="ug-navbar__item"><a class="ug-navbar__link" href="/typography.html">Typography</a></li>
           <li class="ug-navbar__item"><a class="ug-navbar__link" href="/components.html">Components</a></li>
           <li class="ug-navbar__item"><a class="ug-navbar__link" href="/cheatsheet.html">Cheatsheet</a></li>
-          <li class="ug-navbar__item"><a class="ug-navbar__link ug-navbar__link--active" href="/example.html">Example</a></li>
+          <li class="ug-navbar__item ug-dropdown ug-dropdown--right ug-dropdown--active">
+              <button class="ug-navbar__link ug-dropdown__trigger">
+                Examples <span class="ug-dropdown__caret"></span>
+              </button>
+              <ul class="ug-dropdown__menu">
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example.html">Unigrid</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-hero.html">Hero</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-prose.html">Prose</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-section.html">Section</a></li>
+              </ul>
+            </li>
         </ul>
       </div>
     </nav>
@@ -192,5 +203,29 @@
     <p class="ug-section__title" style="font-size:0.75rem;font-weight:400;opacity:0.5">National Park Service / U.S. Department of the Interior — Built with Unigrid.css</p>
   </div>
 
+
+  <!-- Dev Toolbar -->
+  <div class="dev-toolbar">
+    <button class="dev-toolbar__btn" onclick="
+      document.body.classList.toggle('dev-debug');
+      this.textContent = document.body.classList.contains('dev-debug') ? 'Margins: On' : 'Margins: Off';
+    ">Margins: Off</button>
+    <button class="dev-toolbar__btn" onclick="
+      var b = document.body;
+      if (b.classList.contains('dev-grid-double')) {
+        b.classList.remove('dev-grid-double');
+        this.textContent = 'Grid: Off';
+      } else if (b.classList.contains('dev-grid')) {
+        b.classList.remove('dev-grid');
+        b.classList.add('dev-grid-double');
+        this.textContent = 'Grid: Double';
+      } else {
+        b.classList.add('dev-grid');
+        this.textContent = 'Grid: Single';
+      }
+    ">Grid: Off</button>
+  </div>
+
+  <script src="./dropdown.js"></script>
 </body>
 </html>

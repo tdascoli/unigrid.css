@@ -16,10 +16,14 @@
 
 // ---- Broadside Block ----
 
+
+@use "variables" as *;
+@use "mixins" as *;
+
 .ug-broadside {
   display: grid;
   grid-template-columns: repeat(var(--ug-format-cols, $ug-columns), 1fr);
-  gap: $ug-gap;
+  gap: var(--ug-leading);
   width: 100%;
   min-height: 0;
 
@@ -54,7 +58,7 @@
   display: grid;
   grid-template-columns: subgrid;
   grid-template-rows: auto 1fr auto;
-  padding: ug-space(3);
+  padding: var(--ug-leading);
   min-height: 0;
 
   // -- Elements --

@@ -1,0 +1,122 @@
+// ==========================================================================
+// Unigrid CSS Framework — Table (BEM)
+//
+// Block: .ug-table
+// Elements: __header, __row, __cell
+// Modifiers: --striped, --bordered, --compact, --dark, --hover
+// ==========================================================================
+
+@use "variables" as *;
+@use "mixins" as *;
+
+.ug-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  @include ug-rhythm-margin-bottom(1);
+
+  font-feature-settings: 'tnum' 1;
+
+  // ---- Header ----
+  th {
+    @include ug-font-size("sm");
+    @include ug-font-weight("bold");
+    @include ug-rhythm-line-height(1);
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: $ug-medium-gray;
+    padding: calc(var(--ug-leading) * 0.5) calc(var(--ug-leading) * 0.5);
+    border-bottom: 2px solid $ug-black;
+    vertical-align: bottom;
+  }
+
+  // ---- Cells ----
+  td {
+    @include ug-font-size("base");
+    @include ug-rhythm-line-height(1);
+    text-align: left;
+    padding: calc(var(--ug-leading) * 0.5) calc(var(--ug-leading) * 0.5);
+    border-bottom: 1px solid $ug-light-gray;
+    vertical-align: top;
+  }
+
+  // ---- Caption ----
+  caption {
+    @include ug-font-size("sm");
+    @include ug-rhythm-line-height(1);
+    @include ug-rhythm-margin-bottom(0.5);
+    color: $ug-medium-gray;
+    text-align: left;
+    caption-side: top;
+  }
+
+  // ==============================
+  // Modifiers
+  // ==============================
+
+  // Striped rows
+  &--striped {
+    tbody tr:nth-child(even) {
+      background-color: $ug-warm-gray;
+    }
+  }
+
+  // All borders
+  &--bordered {
+    th,
+    td {
+      border: 1px solid $ug-light-gray;
+    }
+
+    th {
+      border-bottom-width: 2px;
+      border-bottom-color: $ug-black;
+    }
+  }
+
+  // Compact: less padding
+  &--compact {
+    th,
+    td {
+      @include ug-font-size("sm");
+      padding: calc(var(--ug-leading) * 0.25) calc(var(--ug-leading) * 0.5);
+    }
+  }
+
+  // Dark header
+  &--dark {
+    th {
+      background-color: $ug-black;
+      color: $ug-white;
+      border-bottom-color: $ug-black;
+    }
+  }
+
+  // Row hover
+  &--hover {
+    tbody tr {
+      transition: background-color 0.1s;
+
+      &:hover {
+        background-color: $ug-warm-gray;
+      }
+    }
+  }
+
+  // ==============================
+  // Responsive wrapper
+  // ==============================
+}
+
+// Horizontally scrollable table on small screens
+.ug-table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  @include ug-rhythm-margin-bottom(1);
+
+  .ug-table {
+    margin-bottom: 0;
+  }
+}

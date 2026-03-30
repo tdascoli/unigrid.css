@@ -24,8 +24,9 @@
     </div>
     <nav class="ug-navbar">
       <div class="ug-navbar__inner">
-        <button class="ug-navbar__toggle" onclick="this.nextElementSibling.classList.toggle('ug-navbar__menu--open')">
-          <span></span><span></span><span></span>
+        <button class="ug-navbar__toggle" onclick="var m=this.parentElement.querySelector('.ug-navbar__menu');m.classList.toggle('ug-navbar__menu--open');this.classList.toggle('ug-navbar__toggle--active')">
+          <span class="ug-navbar__toggle__label">Menu</span>
+          <span class="ug-navbar__toggle__close">Close</span>
         </button>
         <ul class="ug-navbar__menu">
             <li class="ug-navbar__item"><a class="ug-navbar__link" href="/">Overview</a></li>
@@ -35,7 +36,17 @@
             <li class="ug-navbar__item"><a class="ug-navbar__link" href="/typography.html">Typography</a></li>
             <li class="ug-navbar__item"><a class="ug-navbar__link" href="/components.html">Components</a></li>
             <li class="ug-navbar__item"><a class="ug-navbar__link ug-navbar__link--active" href="/cheatsheet.html">Cheatsheet</a></li>
-            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/example.html">Example</a></li>
+            <li class="ug-navbar__item ug-dropdown ug-dropdown--right">
+              <button class="ug-navbar__link ug-dropdown__trigger">
+                Examples <span class="ug-dropdown__caret"></span>
+              </button>
+              <ul class="ug-dropdown__menu">
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example.html">Unigrid</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-hero.html">Hero</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-prose.html">Prose</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-section.html">Section</a></li>
+              </ul>
+            </li>
         </ul>
       </div>
     </nav>
@@ -147,6 +158,139 @@
           <tr><td><code>.ug-image--din</code></td><td>DIN portrait ratio</td></tr>
           <tr><td><code>.ug-divider</code></td><td>Horizontal line</td></tr>
           <tr><td><code>.ug-divider--bold</code></td><td>Thick divider</td></tr>
+          <tr><td><code>.ug-label-divider</code></td><td>Uppercase label with bottom border (subsection separator)</td></tr>
+          <tr><td><code>.ug-label-divider--bold</code></td><td>Thicker bottom border (3px)</td></tr>
+          <tr><td><code>.ug-label-divider--light</code></td><td>Light gray bottom border</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Sidebar -->
+    <section class="dev-section">
+      <p class="dev-section-title">Sidebar Layout</p>
+      <table class="cs-table">
+        <thead><tr><th>Class</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.ug-sidebar-layout</code></td><td>Flex container (sidebar + main)</td></tr>
+          <tr><td><code>.ug-sidebar-layout__sidebar</code></td><td>Sidebar (width via <code>--ug-sidebar-width</code>, default 12 leading)</td></tr>
+          <tr><td><code>.ug-sidebar-layout__main</code></td><td>Main content area (flex: 1)</td></tr>
+          <tr><td><code>.ug-sidebar-layout--right</code></td><td>Sidebar on the right</td></tr>
+          <tr><td><code>.ug-sidebar-layout--sticky</code></td><td>Sidebar sticks while scrolling</td></tr>
+          <tr><td><code>.ug-sidebar-layout--bordered</code></td><td>Border between sidebar and main</td></tr>
+          <tr><td><code>.ug-sidebar-layout__sidebar--visible</code></td><td>Keep sidebar visible on mobile (default: hidden)</td></tr>
+          <tr><td><code>.ug-sidebar-layout__nav</code></td><td>Sidebar navigation list</td></tr>
+          <tr><td><code>.ug-sidebar-layout__nav-link</code></td><td>Sidebar nav link</td></tr>
+          <tr><td><code>.ug-sidebar-layout__nav-link--active</code></td><td>Active nav link</td></tr>
+          <tr><td><code>--ug-sidebar-width</code></td><td>CSS custom property for sidebar width</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Cards -->
+    <section class="dev-section">
+      <p class="dev-section-title">Cards</p>
+      <table class="cs-table">
+        <thead><tr><th>Class</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.ug-card</code></td><td>Card container (vertical layout)</td></tr>
+          <tr><td><code>.ug-card__image</code></td><td>Image area at top</td></tr>
+          <tr><td><code>.ug-card__image--square|landscape|din</code></td><td>Fixed aspect ratios</td></tr>
+          <tr><td><code>.ug-card__body</code></td><td>Content area with padding</td></tr>
+          <tr><td><code>.ug-card__title</code></td><td>Card heading</td></tr>
+          <tr><td><code>.ug-card__subtitle</code></td><td>Gray subtitle</td></tr>
+          <tr><td><code>.ug-card__text</code></td><td>Body text</td></tr>
+          <tr><td><code>.ug-card__footer</code></td><td>Bottom bar with border-top</td></tr>
+          <tr><td><code>.ug-card__actions</code></td><td>Button area</td></tr>
+          <tr><td><code>.ug-card--dark</code></td><td>Black background</td></tr>
+          <tr><td><code>.ug-card--bordered</code></td><td>Heavy 2px black border</td></tr>
+          <tr><td><code>.ug-card--flat</code></td><td>No border, subtle shadow</td></tr>
+          <tr><td><code>.ug-card--horizontal</code></td><td>Image left, body right (stacks on mobile)</td></tr>
+          <tr><td><code>.ug-card--accent-red|brown|green|blue</code></td><td>Colored top border</td></tr>
+          <tr><td><code>.ug-card-grid</code></td><td>Responsive card grid container</td></tr>
+          <tr><td><code>.ug-card-grid--2|3|4</code></td><td>Column count (responsive breakdowns)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Forms -->
+    <section class="dev-section">
+      <p class="dev-section-title">Forms</p>
+      <table class="cs-table">
+        <thead><tr><th>Class</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.ug-form</code></td><td>Form wrapper</td></tr>
+          <tr><td><code>.ug-form__group</code></td><td>Label + input pair (margin-bottom 1 leading)</td></tr>
+          <tr><td><code>.ug-form__label</code></td><td>Input label (bold, small)</td></tr>
+          <tr><td><code>.ug-form__input</code></td><td>Text input (height 1.5 leading)</td></tr>
+          <tr><td><code>.ug-form__input--sm</code></td><td>Small input (1 leading)</td></tr>
+          <tr><td><code>.ug-form__input--lg</code></td><td>Large input (2 leading)</td></tr>
+          <tr><td><code>.ug-form__select</code></td><td>Select dropdown (custom caret)</td></tr>
+          <tr><td><code>.ug-form__textarea</code></td><td>Textarea (min-height 4 leading)</td></tr>
+          <tr><td><code>.ug-form__checkbox</code></td><td>Checkbox + label wrapper</td></tr>
+          <tr><td><code>.ug-form__radio</code></td><td>Radio + label wrapper</td></tr>
+          <tr><td><code>.ug-form__help</code></td><td>Help text below input</td></tr>
+          <tr><td><code>.ug-form__error</code></td><td>Error text (red)</td></tr>
+          <tr><td><code>.ug-form--inline</code></td><td>Horizontal form layout</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Dropdown -->
+    <section class="dev-section">
+      <p class="dev-section-title">Dropdown</p>
+      <table class="cs-table">
+        <thead><tr><th>Class</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.ug-dropdown</code></td><td>Dropdown wrapper (position: relative)</td></tr>
+          <tr><td><code>.ug-dropdown__trigger</code></td><td>Button/link that opens the menu (click toggle via JS)</td></tr>
+          <tr><td><code>.ug-dropdown__caret</code></td><td>Arrow icon, rotates when open</td></tr>
+          <tr><td><code>.ug-dropdown__menu</code></td><td>Dropdown menu panel (ul)</td></tr>
+          <tr><td><code>.ug-dropdown__item</code></td><td>Menu item (li)</td></tr>
+          <tr><td><code>.ug-dropdown__link</code></td><td>Clickable menu link</td></tr>
+          <tr><td><code>.ug-dropdown__link--active</code></td><td>Active menu item</td></tr>
+          <tr><td><code>.ug-dropdown__divider</code></td><td>Horizontal separator line</td></tr>
+          <tr><td><code>.ug-dropdown__header</code></td><td>Non-clickable section label</td></tr>
+          <tr><td><code>.ug-dropdown--open</code></td><td>Open state (toggled by JS)</td></tr>
+          <tr><td><code>.ug-dropdown--right</code></td><td>Right-aligned menu</td></tr>
+          <tr><td><code>.ug-dropdown--up</code></td><td>Menu opens upward</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Table -->
+    <section class="dev-section">
+      <p class="dev-section-title">Table</p>
+      <table class="cs-table">
+        <thead><tr><th>Class</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.ug-table</code></td><td>Base table with header border and cell borders</td></tr>
+          <tr><td><code>.ug-table--striped</code></td><td>Alternating row backgrounds</td></tr>
+          <tr><td><code>.ug-table--bordered</code></td><td>All cell borders</td></tr>
+          <tr><td><code>.ug-table--compact</code></td><td>Smaller font, less padding</td></tr>
+          <tr><td><code>.ug-table--dark</code></td><td>Dark header row</td></tr>
+          <tr><td><code>.ug-table--hover</code></td><td>Row highlight on hover</td></tr>
+          <tr><td><code>.ug-table-responsive</code></td><td>Horizontal scroll wrapper for small screens</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Buttons -->
+    <section class="dev-section">
+      <p class="dev-section-title">Buttons</p>
+      <table class="cs-table">
+        <thead><tr><th>Class</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.ug-btn</code></td><td>Default button (black, filled)</td></tr>
+          <tr><td><code>.ug-btn--brown|red|green|blue</code></td><td>NPS color variants</td></tr>
+          <tr><td><code>.ug-btn--light</code></td><td>Light background, dark text</td></tr>
+          <tr><td><code>.ug-btn--outline</code></td><td>Transparent bg, colored border + text</td></tr>
+          <tr><td><code>.ug-btn--ghost</code></td><td>No border, text only with hover bg</td></tr>
+          <tr><td><code>.ug-btn--sm</code></td><td>Small size</td></tr>
+          <tr><td><code>.ug-btn--lg</code></td><td>Large size</td></tr>
+          <tr><td><code>.ug-btn--block</code></td><td>Full width</td></tr>
+          <tr><td><code>.ug-btn--disabled</code></td><td>Disabled state (opacity + no pointer)</td></tr>
+          <tr><td><code>.ug-btn__icon</code></td><td>Icon element inside button</td></tr>
+          <tr><td><code>.ug-btn-group</code></td><td>Group buttons inline (no gap)</td></tr>
         </tbody>
       </table>
     </section>
@@ -208,7 +352,11 @@
           <tr><td><code>.ug-navbar</code></td><td>Navbar block</td></tr>
           <tr><td><code>.ug-navbar__inner</code></td><td>Flex container (max-width centered)</td></tr>
           <tr><td><code>.ug-navbar__brand</code></td><td>Brand / logo area (left)</td></tr>
-          <tr><td><code>.ug-navbar__toggle</code></td><td>Hamburger button (mobile only)</td></tr>
+          <tr><td><code>.ug-navbar__toggle</code></td><td>Mobile toggle button (default: "Menu"/"Close" text)</td></tr>
+          <tr><td><code>.ug-navbar__toggle--hamburger</code></td><td>Hamburger icon variant (≡ → ✕ transition)</td></tr>
+          <tr><td><code>.ug-navbar__toggle--active</code></td><td>Open state (JS-toggled, swaps text/animates icon)</td></tr>
+          <tr><td><code>.ug-navbar__toggle__label</code></td><td>"Menu" text (hidden when active)</td></tr>
+          <tr><td><code>.ug-navbar__toggle__close</code></td><td>"Close" text (shown when active)</td></tr>
           <tr><td><code>.ug-navbar__menu</code></td><td>Menu list (ul)</td></tr>
           <tr><td><code>.ug-navbar__menu--open</code></td><td>Show mobile menu (JS toggle)</td></tr>
           <tr><td><code>.ug-navbar__item</code></td><td>Menu item (li)</td></tr>
@@ -220,6 +368,23 @@
           <tr><td><code>.ug-navbar--transparent</code></td><td>Transparent background (for hero overlay)</td></tr>
         </tbody>
       </table>
+    </section>
+
+    <!-- Prose -->
+    <section class="dev-section">
+      <p class="dev-section-title">Prose (Gutenberg)</p>
+      <table class="cs-table">
+        <thead><tr><th>Class</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.ug-prose</code></td><td>Long-form content with vertical rhythm (auto-styles all child elements)</td></tr>
+          <tr><td><code>.ug-prose__lead</code></td><td>Lead / attention-grabber paragraph</td></tr>
+          <tr><td><code>.ug-prose--indent</code></td><td>Use paragraph indent instead of margin</td></tr>
+          <tr><td><code>.ug-prose--grid</code></td><td>Show baseline grid overlay (debug)</td></tr>
+          <tr><td><code>.ug-prose--grid-double</code></td><td>Show half-line baseline grid (debug)</td></tr>
+          <tr><td><code>.ug-prose--debug</code></td><td>Show element boxes (blue) and margins (orange)</td></tr>
+        </tbody>
+      </table>
+      <p class="ug-caption ug-mt--3">Prose auto-styles: h1–h6, p, a, blockquote, cite, ul, ol, table, code, pre, figure, figcaption, img, hr, abbr, mark, small, sub, sup. Based on <a href="https://github.com/matejlatin/Gutenberg">Gutenberg</a> by Matej Latin.</p>
     </section>
 
     <!-- Typography -->
@@ -283,5 +448,29 @@
 
   </div>
 
+
+  <!-- Dev Toolbar -->
+  <div class="dev-toolbar">
+    <button class="dev-toolbar__btn" onclick="
+      document.body.classList.toggle('dev-debug');
+      this.textContent = document.body.classList.contains('dev-debug') ? 'Margins: On' : 'Margins: Off';
+    ">Margins: Off</button>
+    <button class="dev-toolbar__btn" onclick="
+      var b = document.body;
+      if (b.classList.contains('dev-grid-double')) {
+        b.classList.remove('dev-grid-double');
+        this.textContent = 'Grid: Off';
+      } else if (b.classList.contains('dev-grid')) {
+        b.classList.remove('dev-grid');
+        b.classList.add('dev-grid-double');
+        this.textContent = 'Grid: Double';
+      } else {
+        b.classList.add('dev-grid');
+        this.textContent = 'Grid: Single';
+      }
+    ">Grid: Off</button>
+  </div>
+
+  <script src="./dropdown.js"></script>
 </body>
 </html>

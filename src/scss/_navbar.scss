@@ -1,15 +1,15 @@
 // ==========================================================================
 // Unigrid CSS Framework — Navbar (BEM)
 //
-// Horizontal navigation bar, designed to sit below the header band or
-// standalone. Includes responsive mobile menu with hamburger toggle.
-//
 // Block: .ug-navbar
 // Elements: __inner, __brand, __toggle, __menu, __item, __link, __divider
 // Modifiers: --dark, --fixed, --transparent
+//            __toggle--hamburger (icon variant)
 //            __menu--open (JS-toggled)
-//            __link--active
 // ==========================================================================
+
+@use "variables" as *;
+@use "mixins" as *;
 
 .ug-navbar {
   width: 100%;
@@ -25,15 +25,15 @@
     justify-content: space-between;
     max-width: 1280px;
     margin: 0 auto;
-    padding: 0 ug-space(4);
-    min-height: 3rem;
+    padding: 0 var(--ug-leading);
+    height: calc(var(--ug-leading) * 2 - 1px);
   }
 
-  // -- Brand / Logo area (optional, left side) --
+  // -- Brand --
   &__brand {
     display: flex;
     align-items: center;
-    gap: ug-space(2);
+    gap: calc(var(--ug-leading) * 0.5);
     @include ug-font-size("sm");
     @include ug-font-weight("bold");
     text-decoration: none;
@@ -41,38 +41,103 @@
     flex-shrink: 0;
   }
 
-  // -- Hamburger Toggle (mobile only) --
+  // -- Toggle Button (mobile only) --
+  // Default: outline button with "Menu" / "Close" text
   &__toggle {
     display: none;
-    background: none;
-    border: none;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    padding: ug-space(2);
-    margin-right: -(ug-space(2));
+    background: none;
+    border: 1px solid currentColor;
+    padding: 0 calc(var(--ug-leading) * 0.75);
+    height: calc(var(--ug-leading) * 1.5);
+    margin-top: calc(var(--ug-leading) * 0.5);
     color: inherit;
+    @include ug-font-size("sm");
+    @include ug-font-weight("bold");
+    letter-spacing: 0.05em;
+    font-family: inherit;
+    transition: background-color 0.15s, color 0.15s;
+    z-index: $ug-navbar-toggle-z-index;
 
-    // Hamburger icon (3 lines)
-    span {
-      display: block;
-      width: 1.25rem;
-      height: 2px;
-      background-color: currentColor;
-      transition: transform 0.2s, opacity 0.2s;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
 
-      & + span {
-        margin-top: 4px;
-      }
+    // "Close" text hidden by default, shown when menu is open
+    &__close {
+      display: none;
+    }
+
+    &__label {
+      display: inline;
     }
 
     @include ug-breakpoint-down("md") {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      display: inline-flex;
     }
   }
 
-  // -- Menu (list of links) --
+  // When menu is open, swap text
+  &__toggle--active {
+    .ug-navbar__toggle__label {
+      display: none;
+    }
+    .ug-navbar__toggle__close {
+      display: inline;
+    }
+  }
+
+  // -- Hamburger variant --
+  // Use: .ug-navbar__toggle.ug-navbar__toggle--hamburger
+  &__toggle--hamburger {
+    border: 1px solid currentColor;
+    padding: 0;
+    margin-top: calc(var(--ug-leading) * 0.5);
+    margin-right: 0;
+    flex-direction: column;
+    gap: 0;
+    width: calc(var(--ug-leading) * 1.5);
+    height: calc(var(--ug-leading) * 1.5);
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    span {
+      display: block;
+      width: 1.125rem;
+      height: 2px;
+      background-color: currentColor;
+      transition: transform 0.3s, opacity 0.3s;
+
+      &:nth-child(2) {
+        margin-top: 5px;
+      }
+
+      &:nth-child(3) {
+        margin-top: 5px;
+      }
+    }
+
+    // X transformation when active
+    &.ug-navbar__toggle--active {
+      span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+
+      span:nth-child(2) {
+        opacity: 0;
+      }
+
+      span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+    }
+  }
+
+  // -- Menu --
   &__menu {
     display: flex;
     align-items: center;
@@ -81,19 +146,21 @@
     margin: 0;
     padding: 0;
 
-    // Mobile: hidden by default, shown when --open
+    // Mobile: full-screen overlay below navbar
     @include ug-breakpoint-down("md") {
       display: none;
       flex-direction: column;
       align-items: stretch;
-      position: absolute;
-      top: 100%;
+      position: fixed;
+      top: 0;
       left: 0;
       right: 0;
-      background-color: inherit;
-      border-bottom: 1px solid $ug-light-gray;
-      padding: ug-space(2) 0;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      bottom: 0;
+      background-color: $ug-black;
+      color: $ug-white;
+      padding: calc(var(--ug-leading) * 4) 0 var(--ug-leading) 0;
+      overflow-y: auto;
+      z-index: 99;
 
       &--open {
         display: flex;
@@ -109,8 +176,10 @@
 
   // -- Link --
   &__link {
-    display: block;
-    padding: ug-space(2) ug-space(3);
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 calc(var(--ug-leading) * 0.5);
     @include ug-font-size("base");
     @include ug-font-weight("light");
     color: $ug-dark-gray;
@@ -124,27 +193,93 @@
     }
 
     &--active {
-      //@include ug-font-weight("bold");
       color: $ug-black;
     }
 
     @include ug-breakpoint-down("md") {
-      padding: ug-space(3) ug-space(4);
-      @include ug-font-size("base");
+      display: flex;
+      align-items: center;
+      height: calc(var(--ug-leading) * 2);
+      padding: 0 calc(var(--ug-leading) * 1.5);
+      @include ug-font-size("lg");
+      color: rgba(255, 255, 255, 0.7);
+
+      &:hover {
+        color: $ug-white;
+        background-color: rgba(255, 255, 255, 0.05);
+      }
+
+      &--active {
+        color: $ug-white;
+      }
     }
   }
 
-  // -- Divider (vertical on desktop, horizontal on mobile) --
+  // -- Divider --
   &__divider {
     width: 1px;
-    height: 1rem;
+    height: var(--ug-leading);
     background-color: $ug-light-gray;
-    margin: 0 ug-space(1);
+    margin: 0 calc(var(--ug-leading) * 0.25);
 
     @include ug-breakpoint-down("md") {
       width: auto;
       height: 1px;
-      margin: ug-space(1) ug-space(4);
+      margin: calc(var(--ug-leading) * 0.25) calc(var(--ug-leading) * 1.5);
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+  }
+
+  // -- Dropdown: flat in mobile menu --
+  @include ug-breakpoint-down("md") {
+    .ug-dropdown {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    // Always show dropdown menu items inline (no popup)
+    .ug-dropdown__menu {
+      position: static;
+      display: flex;
+      flex-direction: column;
+      background: none;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+      min-width: 0;
+    }
+
+    // Indent dropdown links
+    .ug-dropdown__link {
+      display: flex;
+      align-items: center;
+      height: calc(var(--ug-leading) * 2);
+      padding: 0 calc(var(--ug-leading) * 2.5);
+      @include ug-font-size("base");
+      color: rgba(255, 255, 255, 0.5);
+      text-decoration: none;
+
+      &:hover {
+        color: $ug-white;
+        background-color: rgba(255, 255, 255, 0.05);
+      }
+    }
+
+    // Hide caret in mobile
+    .ug-dropdown__caret {
+      display: none;
+    }
+
+    // Hide dropdown dividers/headers or style them flat
+    .ug-dropdown__divider {
+      height: 1px;
+      background-color: rgba(255, 255, 255, 0.1);
+      margin: calc(var(--ug-leading) * 0.25) calc(var(--ug-leading) * 2.5);
+    }
+
+    .ug-dropdown__header {
+      padding: 0 calc(var(--ug-leading) * 2.5);
+      color: rgba(255, 255, 255, 0.3);
     }
   }
 
@@ -152,35 +287,20 @@
   // Modifiers
   // ==============================
 
-  // -- Dark variant --
+  // -- Dark --
   &--dark {
     background-color: $ug-black;
     border-bottom-color: rgba(255, 255, 255, 0.1);
 
     .ug-navbar__link {
       color: rgba(255, 255, 255, 0.7);
-
-      &:hover {
-        color: $ug-white;
-        background-color: rgba(255, 255, 255, 0.1);
-      }
-
-      &--active {
-        color: $ug-white;
-      }
+      &:hover { color: $ug-white; background-color: rgba(255, 255, 255, 0.1); }
+      &--active { color: $ug-white; }
     }
 
-    .ug-navbar__brand {
-      color: $ug-white;
-    }
-
-    .ug-navbar__toggle {
-      color: $ug-white;
-    }
-
-    .ug-navbar__divider {
-      background-color: rgba(255, 255, 255, 0.15);
-    }
+    .ug-navbar__brand { color: $ug-white; }
+    .ug-navbar__toggle { color: $ug-white; }
+    .ug-navbar__divider { background-color: rgba(255, 255, 255, 0.15); }
 
     .ug-navbar__menu {
       @include ug-breakpoint-down("md") {
@@ -190,7 +310,7 @@
     }
   }
 
-  // -- Fixed to top --
+  // -- Fixed --
   &--fixed {
     position: fixed;
     top: 0;
@@ -198,31 +318,19 @@
     right: 0;
   }
 
-  // -- Transparent (for overlay on hero) --
+  // -- Transparent --
   &--transparent {
     background-color: transparent;
     border-bottom-color: transparent;
 
     .ug-navbar__link {
       color: rgba(255, 255, 255, 0.8);
-
-      &:hover {
-        color: $ug-white;
-        background-color: rgba(255, 255, 255, 0.1);
-      }
-
-      &--active {
-        color: $ug-white;
-      }
+      &:hover { color: $ug-white; background-color: rgba(255, 255, 255, 0.1); }
+      &--active { color: $ug-white; }
     }
 
-    .ug-navbar__brand {
-      color: $ug-white;
-    }
-
-    .ug-navbar__toggle {
-      color: $ug-white;
-    }
+    .ug-navbar__brand { color: $ug-white; }
+    .ug-navbar__toggle { color: $ug-white; }
 
     .ug-navbar__menu {
       @include ug-breakpoint-down("md") {
@@ -231,9 +339,3 @@
     }
   }
 }
-
-// ---- Minimal JS toggle helper ----
-// Add/remove .ug-navbar__menu--open with:
-//   document.querySelector('.ug-navbar__toggle').addEventListener('click', () => {
-//     document.querySelector('.ug-navbar__menu').classList.toggle('ug-navbar__menu--open');
-//   });

@@ -18,8 +18,9 @@
     </div>
     <nav class="ug-navbar">
       <div class="ug-navbar__inner">
-        <button class="ug-navbar__toggle" onclick="this.nextElementSibling.classList.toggle('ug-navbar__menu--open')">
-          <span></span><span></span><span></span>
+        <button class="ug-navbar__toggle" onclick="var m=this.parentElement.querySelector('.ug-navbar__menu');m.classList.toggle('ug-navbar__menu--open');this.classList.toggle('ug-navbar__toggle--active')">
+          <span class="ug-navbar__toggle__label">Menu</span>
+          <span class="ug-navbar__toggle__close">Close</span>
         </button>
         <ul class="ug-navbar__menu">
             <li class="ug-navbar__item"><a class="ug-navbar__link" href="/">Overview</a></li>
@@ -29,7 +30,17 @@
             <li class="ug-navbar__item"><a class="ug-navbar__link" href="/typography.html">Typography</a></li>
             <li class="ug-navbar__item"><a class="ug-navbar__link ug-navbar__link--active" href="/components.html">Components</a></li>
             <li class="ug-navbar__item"><a class="ug-navbar__link" href="/cheatsheet.html">Cheatsheet</a></li>
-            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/example.html">Example</a></li>
+            <li class="ug-navbar__item ug-dropdown ug-dropdown--right">
+              <button class="ug-navbar__link ug-dropdown__trigger">
+                Examples <span class="ug-dropdown__caret"></span>
+              </button>
+              <ul class="ug-dropdown__menu">
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example.html">Unigrid</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-hero.html">Hero</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-prose.html">Prose</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-section.html">Section</a></li>
+              </ul>
+            </li>
         </ul>
       </div>
     </nav>
@@ -47,7 +58,7 @@
     </section>
   </div>
 
-  <section class="ug-hero ug-hero--dark ug-mb--5">
+  <section class="ug-hero ug-hero--dark ug-hero--auto">
     <div class="ug-hero__content">
       <p class="ug-hero__subtitle">Established 1872</p>
       <h2 class="ug-hero__title">The World's First National Park</h2>
@@ -59,13 +70,11 @@
     </div>
   </section>
 
-  <div class="ug-container ug-container--narrow">
-    <section class="dev-section">
-      <p class="ug-label ug-mb--2">Center aligned with background color</p>
-    </section>
+  <div class="ug-section ug-section--compact">
+    <p class="ug-section__title">Center aligned with background color</p>
   </div>
 
-  <section class="ug-hero ug-hero--blue ug-hero--center ug-hero--third ug-mb--5">
+  <section class="ug-hero ug-hero--blue ug-hero--center ug-hero--auto">
     <div class="ug-hero__content">
       <h2 class="ug-hero__title">Explore the Wilderness</h2>
       <p class="ug-hero__lead">Over 1,000 miles of trails through pristine landscapes.</p>
@@ -75,13 +84,11 @@
     </div>
   </section>
 
-  <div class="ug-container ug-container--narrow">
-    <section class="dev-section">
-      <p class="ug-label ug-mb--2">Light variant</p>
-    </section>
+  <div class="ug-section ug-section--compact">
+    <p class="ug-section__title">Light variant</p>
   </div>
 
-  <section class="ug-hero ug-hero--light ug-hero--third ug-mb--5">
+  <section class="ug-hero ug-hero--light ug-hero--auto">
     <div class="ug-hero__content">
       <h2 class="ug-hero__title" style="color:#1a1a1a">Natural Heritage</h2>
       <p class="ug-hero__lead" style="color:#333">Preserving America's natural and cultural heritage for future generations.</p>
@@ -93,21 +100,21 @@
       <p class="ug-label ug-mb--2">NPS color variants</p>
       <div class="ug-grid">
         <div class="ug-col--4">
-          <div class="ug-hero ug-hero--brown ug-hero--center ug-hero--auto" style="min-height:150px">
+          <div class="ug-hero ug-hero--brown ug-hero--center ug-hero--auto" style="min-height:calc(6 * 1.625rem)">
             <div class="ug-hero__content">
               <p class="ug-hero__subtitle">--brown</p>
             </div>
           </div>
         </div>
         <div class="ug-col--4">
-          <div class="ug-hero ug-hero--green ug-hero--center ug-hero--auto" style="min-height:150px">
+          <div class="ug-hero ug-hero--green ug-hero--center ug-hero--auto" style="min-height:calc(6 * 1.625rem)">
             <div class="ug-hero__content">
               <p class="ug-hero__subtitle">--green</p>
             </div>
           </div>
         </div>
         <div class="ug-col--4">
-          <div class="ug-hero ug-hero--red ug-hero--center ug-hero--auto" style="min-height:150px">
+          <div class="ug-hero ug-hero--red ug-hero--center ug-hero--auto" style="min-height:calc(6 * 1.625rem)">
             <div class="ug-hero__content">
               <p class="ug-hero__subtitle">--red</p>
             </div>
@@ -276,6 +283,264 @@
       <p class="ug-caption">Resize the browser to see the hamburger menu. Click it to toggle <code class="dev-code">.ug-navbar__menu--open</code>.</p>
     </section>
 
+    <!-- Buttons -->
+    <section class="dev-section">
+      <p class="dev-section-title">Buttons — .ug-btn</p>
+
+      <p class="ug-label ug-mb--2">Filled (default)</p>
+      <div class="ug-mb--3" style="display:flex;flex-wrap:wrap;gap:0.5rem">
+        <a class="ug-btn" href="#">Default</a>
+        <a class="ug-btn ug-btn--brown" href="#">Brown</a>
+        <a class="ug-btn ug-btn--red" href="#">Red</a>
+        <a class="ug-btn ug-btn--green" href="#">Green</a>
+        <a class="ug-btn ug-btn--blue" href="#">Blue</a>
+        <a class="ug-btn ug-btn--light" href="#">Light</a>
+      </div>
+
+      <p class="ug-label ug-mb--2">Outline</p>
+      <div class="ug-mb--3" style="display:flex;flex-wrap:wrap;gap:0.5rem">
+        <a class="ug-btn ug-btn--outline" href="#">Default</a>
+        <a class="ug-btn ug-btn--outline ug-btn--brown" href="#">Brown</a>
+        <a class="ug-btn ug-btn--outline ug-btn--red" href="#">Red</a>
+        <a class="ug-btn ug-btn--outline ug-btn--green" href="#">Green</a>
+        <a class="ug-btn ug-btn--outline ug-btn--blue" href="#">Blue</a>
+        <a class="ug-btn ug-btn--outline ug-btn--light" href="#">Light</a>
+      </div>
+
+      <p class="ug-label ug-mb--2">Ghost</p>
+      <div class="ug-mb--3" style="display:flex;flex-wrap:wrap;gap:0.5rem">
+        <a class="ug-btn ug-btn--ghost" href="#">Ghost Button</a>
+      </div>
+
+      <p class="ug-label ug-mb--2">Sizes</p>
+      <div class="ug-mb--3" style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center">
+        <a class="ug-btn ug-btn--sm" href="#">Small</a>
+        <a class="ug-btn" href="#">Default</a>
+        <a class="ug-btn ug-btn--lg" href="#">Large</a>
+      </div>
+
+      <p class="ug-label ug-mb--2">Block (full width)</p>
+      <div class="ug-mb--3">
+        <a class="ug-btn ug-btn--block ug-mb--2" href="#">Block Button</a>
+        <a class="ug-btn ug-btn--block ug-btn--outline" href="#">Block Outline</a>
+      </div>
+
+      <p class="ug-label ug-mb--2">Disabled</p>
+      <div class="ug-mb--3" style="display:flex;flex-wrap:wrap;gap:0.5rem">
+        <a class="ug-btn ug-btn--disabled" href="#">Disabled</a>
+        <a class="ug-btn ug-btn--outline ug-btn--disabled" href="#">Disabled Outline</a>
+      </div>
+
+      <p class="ug-label ug-mb--2">Button Group</p>
+      <div class="ug-mb--3" style="display:flex;flex-wrap:wrap;gap:0.5rem">
+        <div class="ug-btn-group">
+          <a class="ug-btn" href="#">Left</a>
+          <a class="ug-btn" href="#">Center</a>
+          <a class="ug-btn" href="#">Right</a>
+        </div>
+      </div>
+
+      <div class="ug-mb--3" style="display:flex;flex-wrap:wrap;gap:0.5rem">
+        <div class="ug-btn-group">
+          <a class="ug-btn ug-btn--outline" href="#">Map</a>
+          <a class="ug-btn ug-btn--outline" href="#">Satellite</a>
+          <a class="ug-btn ug-btn--outline" href="#">Terrain</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dropdown -->
+    <section class="dev-section">
+      <p class="dev-section-title">Dropdown — .ug-dropdown</p>
+
+      <p class="ug-label ug-mb--2">Button Dropdown</p>
+      <div class="ug-mb--3" style="display:flex;flex-wrap:wrap;gap:0.5rem">
+        <div class="ug-dropdown">
+          <button class="ug-btn ug-dropdown__trigger">
+            Actions <span class="ug-dropdown__caret"></span>
+          </button>
+          <ul class="ug-dropdown__menu">
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Edit</a></li>
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Duplicate</a></li>
+            <li class="ug-dropdown__divider"></li>
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Delete</a></li>
+          </ul>
+        </div>
+
+        <div class="ug-dropdown">
+          <button class="ug-btn ug-btn--outline ug-dropdown__trigger">
+            Options <span class="ug-dropdown__caret"></span>
+          </button>
+          <ul class="ug-dropdown__menu">
+            <li class="ug-dropdown__header">Settings</li>
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Profile</a></li>
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Preferences</a></li>
+            <li class="ug-dropdown__divider"></li>
+            <li class="ug-dropdown__header">Account</li>
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Sign Out</a></li>
+          </ul>
+        </div>
+
+        <div class="ug-dropdown">
+          <button class="ug-btn ug-btn--sm ug-dropdown__trigger">
+            Small <span class="ug-dropdown__caret"></span>
+          </button>
+          <ul class="ug-dropdown__menu">
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Option A</a></li>
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Option B</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="ug-label ug-mb--2">Color Variants</p>
+      <div class="ug-mb--3" style="display:flex;flex-wrap:wrap;gap:0.5rem">
+        <div class="ug-dropdown">
+          <button class="ug-btn ug-btn--red ug-dropdown__trigger">
+            Danger <span class="ug-dropdown__caret"></span>
+          </button>
+          <ul class="ug-dropdown__menu">
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Confirm Delete</a></li>
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Cancel</a></li>
+          </ul>
+        </div>
+
+        <div class="ug-dropdown">
+          <button class="ug-btn ug-btn--blue ug-dropdown__trigger">
+            Export <span class="ug-dropdown__caret"></span>
+          </button>
+          <ul class="ug-dropdown__menu">
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">PDF</a></li>
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">CSV</a></li>
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">JSON</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="ug-label ug-mb--2">Right-aligned</p>
+      <div class="ug-mb--3" style="display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:flex-end">
+        <div class="ug-dropdown ug-dropdown--right">
+          <button class="ug-btn ug-btn--outline ug-dropdown__trigger">
+            Right <span class="ug-dropdown__caret"></span>
+          </button>
+          <ul class="ug-dropdown__menu">
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Aligned right</a></li>
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">No overflow</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="ug-label ug-mb--2">Navbar Dropdown</p>
+      <nav class="ug-navbar ug-mb--3">
+        <div class="ug-navbar__inner">
+          <a class="ug-navbar__brand" href="#">Park Service</a>
+          <ul class="ug-navbar__menu" style="display:flex">
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Home</a></li>
+            <li class="ug-navbar__item ug-dropdown">
+              <button class="ug-navbar__link ug-dropdown__trigger">
+                Parks <span class="ug-dropdown__caret"></span>
+              </button>
+              <ul class="ug-dropdown__menu">
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Yellowstone</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Yosemite</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Grand Canyon</a></li>
+                <li class="ug-dropdown__divider"></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">View All Parks</a></li>
+              </ul>
+            </li>
+            <li class="ug-navbar__item ug-dropdown">
+              <button class="ug-navbar__link ug-dropdown__trigger">
+                Resources <span class="ug-dropdown__caret"></span>
+              </button>
+              <ul class="ug-dropdown__menu">
+                <li class="ug-dropdown__header">Planning</li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Maps</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Fees &amp; Passes</a></li>
+                <li class="ug-dropdown__divider"></li>
+                <li class="ug-dropdown__header">Learn</li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">History</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Wildlife</a></li>
+              </ul>
+            </li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <p class="ug-caption">Toggle via <code>dropdown.js</code> (~30 lines). Click to open, click outside or press Escape to close. Caret rotates when open.</p>
+    </section>
+
+    <!-- Table -->
+    <section class="dev-section">
+      <p class="dev-section-title">Table — .ug-table</p>
+
+      <p class="ug-label ug-mb--2">Default</p>
+      <table class="ug-table ug-mb--3">
+        <thead>
+          <tr><th>Park</th><th>State</th><th>Established</th><th>Area</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Yellowstone</td><td>Wyoming</td><td>1872</td><td>2,219,791 acres</td></tr>
+          <tr><td>Yosemite</td><td>California</td><td>1890</td><td>761,748 acres</td></tr>
+          <tr><td>Grand Canyon</td><td>Arizona</td><td>1919</td><td>1,217,262 acres</td></tr>
+          <tr><td>Zion</td><td>Utah</td><td>1919</td><td>147,242 acres</td></tr>
+        </tbody>
+      </table>
+
+      <p class="ug-label ug-mb--2">Striped + Hover</p>
+      <table class="ug-table ug-table--striped ug-table--hover ug-mb--3">
+        <thead>
+          <tr><th>Format</th><th>Panels</th><th>Paper Size</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>A1</td><td>1 × 1</td><td>99 × 210 mm</td></tr>
+          <tr><td>A2</td><td>1 × 2</td><td>198 × 210 mm</td></tr>
+          <tr><td>A3</td><td>1 × 3</td><td>297 × 210 mm</td></tr>
+          <tr><td>A4</td><td>1 × 4</td><td>396 × 210 mm</td></tr>
+          <tr><td>A6</td><td>1 × 6</td><td>594 × 210 mm</td></tr>
+        </tbody>
+      </table>
+
+      <p class="ug-label ug-mb--2">Bordered + Compact</p>
+      <table class="ug-table ug-table--bordered ug-table--compact ug-mb--3">
+        <thead>
+          <tr><th>Class</th><th>Height</th><th>Leading</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>.ug-btn--sm</td><td>1 leading</td><td>26px / 31px</td></tr>
+          <tr><td>.ug-btn</td><td>1.5 leading</td><td>39px / 46.5px</td></tr>
+          <tr><td>.ug-btn--lg</td><td>2 leading</td><td>52px / 62px</td></tr>
+        </tbody>
+      </table>
+
+      <p class="ug-label ug-mb--2">Dark header</p>
+      <table class="ug-table ug-table--dark ug-table--striped ug-mb--3">
+        <caption>NPS Color Palette</caption>
+        <thead>
+          <tr><th>Name</th><th>Hex</th><th>Usage</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Black</td><td>#1a1a1a</td><td>Header band, text</td></tr>
+          <tr><td>Brown</td><td>#4a3728</td><td>Earth tones</td></tr>
+          <tr><td>Red</td><td>#c1272d</td><td>Accents, alerts</td></tr>
+          <tr><td>Green</td><td>#2d5a27</td><td>Nature, parks</td></tr>
+          <tr><td>Blue</td><td>#274a5a</td><td>Water, sky</td></tr>
+        </tbody>
+      </table>
+
+      <p class="ug-label ug-mb--2">Responsive (scroll on small screens)</p>
+      <div class="ug-table-responsive">
+        <table class="ug-table">
+          <thead>
+            <tr><th>Park</th><th>State</th><th>Established</th><th>Area</th><th>Visitors (2023)</th><th>Highest Point</th><th>Entrance Fee</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Yellowstone</td><td>Wyoming</td><td>1872</td><td>2.2M acres</td><td>4.5M</td><td>11,358 ft</td><td>$35</td></tr>
+            <tr><td>Grand Teton</td><td>Wyoming</td><td>1929</td><td>310K acres</td><td>3.5M</td><td>13,775 ft</td><td>$35</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
     <!-- Infobox -->
     <section class="dev-section">
       <p class="dev-section-title">Infobox — .ug-infobox</p>
@@ -316,13 +581,313 @@
       </div>
     </section>
 
+    <!-- Sidebar Layout -->
+    <section class="dev-section">
+      <p class="dev-section-title">Sidebar Layout — .ug-sidebar-layout</p>
+
+      <p class="ug-label ug-mb--2">Default (sidebar left)</p>
+    </section>
+  </div>
+
+  <div class="ug-sidebar-layout ug-sidebar-layout--bordered ug-mb--3" style="min-height:calc(var(--ug-leading) * 12);border:1px solid #e8e5e0">
+    <aside class="ug-sidebar-layout__sidebar ug-sidebar-layout__sidebar--visible">
+      <p class="ug-label ug-mb--2">Navigation</p>
+      <ul class="ug-sidebar-layout__nav">
+        <li class="ug-sidebar-layout__nav-item"><a class="ug-sidebar-layout__nav-link ug-sidebar-layout__nav-link--active" href="#">Overview</a></li>
+        <li class="ug-sidebar-layout__nav-item"><a class="ug-sidebar-layout__nav-link" href="#">Getting Started</a></li>
+        <li class="ug-sidebar-layout__nav-item"><a class="ug-sidebar-layout__nav-link" href="#">Components</a></li>
+        <li class="ug-sidebar-layout__nav-item"><a class="ug-sidebar-layout__nav-link" href="#">Utilities</a></li>
+        <li class="ug-sidebar-layout__nav-item"><a class="ug-sidebar-layout__nav-link" href="#">Examples</a></li>
+      </ul>
+    </aside>
+    <main class="ug-sidebar-layout__main">
+      <h3>Main Content</h3>
+      <p class="ug-body--sm">The sidebar width is configurable via <code>--ug-sidebar-width</code>. Default: 12 leading.</p>
+    </main>
+  </div>
+
+  <div class="ug-container ug-pb--5">
+    <section class="dev-section">
+      <p class="ug-label ug-mb--2">Right sidebar + sticky</p>
+    </section>
+  </div>
+
+  <div class="ug-sidebar-layout ug-sidebar-layout--right ug-sidebar-layout--bordered ug-sidebar-layout--sticky ug-mb--3" style="min-height:calc(var(--ug-leading) * 12);border:1px solid #e8e5e0">
+    <aside class="ug-sidebar-layout__sidebar ug-sidebar-layout__sidebar--visible">
+      <div class="ug-infobox ug-mb--3">
+        <p class="ug-infobox__title">Quick Facts</p>
+        <p class="ug-body--sm">Area: 310,000 acres<br>Established: 1929<br>Visitors: 3.5M/year</p>
+      </div>
+      <div class="ug-infobox">
+        <p class="ug-infobox__title">Contact</p>
+        <p class="ug-body--sm">(307) 739-3399</p>
+      </div>
+    </aside>
+    <main class="ug-sidebar-layout__main">
+      <h3>Right Sidebar</h3>
+      <p class="ug-body--sm">Use <code>--right</code> for sidebar on the right. Add <code>--sticky</code> to keep the sidebar fixed while scrolling. Add <code>--bordered</code> for a separator line.</p>
+    </main>
+  </div>
+
+  <div class="ug-container ug-pb--5">
+    <section class="dev-section">
+      <p class="ug-label ug-mb--2">Custom width (via CSS custom property)</p>
+      <p class="ug-caption ug-mb--3"><code>style="--ug-sidebar-width: calc(var(--ug-leading) * 8)"</code></p>
+    </section>
+  </div>
+
+  <div class="ug-sidebar-layout ug-sidebar-layout--bordered ug-mb--3" style="--ug-sidebar-width:calc(var(--ug-leading) * 8);min-height:calc(var(--ug-leading) * 8);border:1px solid #e8e5e0">
+    <aside class="ug-sidebar-layout__sidebar ug-sidebar-layout__sidebar--visible" style="background:#f5f2ed">
+      <p class="ug-label">Narrow</p>
+      <p class="ug-caption">8 leading wide</p>
+    </aside>
+    <main class="ug-sidebar-layout__main">
+      <h3>Narrow Sidebar</h3>
+      <p class="ug-body--sm">Sidebar width set to 8 leading via CSS custom property.</p>
+    </main>
+  </div>
+
+  <div class="ug-container ug-pt--5 ug-pb--5">
+
+    <!-- Cards -->
+    <section class="dev-section">
+      <p class="dev-section-title">Cards — .ug-card</p>
+
+      <p class="ug-label ug-mb--2">Default (3-column grid)</p>
+      <div class="ug-card-grid ug-card-grid--3 ug-mb--3">
+        <div class="ug-card">
+          <div class="ug-card__image ug-card__image--landscape" style="background:#274a5a"></div>
+          <div class="ug-card__body">
+            <h3 class="ug-card__title">Yellowstone</h3>
+            <p class="ug-card__subtitle">Wyoming, Montana, Idaho</p>
+            <p class="ug-card__text">The world's first national park, home to Old Faithful and the largest concentration of geysers on Earth.</p>
+          </div>
+          <div class="ug-card__footer">Established 1872</div>
+        </div>
+        <div class="ug-card">
+          <div class="ug-card__image ug-card__image--landscape" style="background:#2d5a27"></div>
+          <div class="ug-card__body">
+            <h3 class="ug-card__title">Yosemite</h3>
+            <p class="ug-card__subtitle">California</p>
+            <p class="ug-card__text">Granite cliffs, waterfalls, giant sequoias, and biological diversity in the Sierra Nevada.</p>
+          </div>
+          <div class="ug-card__footer">Established 1890</div>
+        </div>
+        <div class="ug-card">
+          <div class="ug-card__image ug-card__image--landscape" style="background:#c1272d"></div>
+          <div class="ug-card__body">
+            <h3 class="ug-card__title">Grand Canyon</h3>
+            <p class="ug-card__subtitle">Arizona</p>
+            <p class="ug-card__text">A steep-sided canyon carved by the Colorado River, revealing layers of ancient rock.</p>
+          </div>
+          <div class="ug-card__footer">Established 1919</div>
+        </div>
+      </div>
+
+      <p class="ug-label ug-mb--2">With Actions</p>
+      <div class="ug-card-grid ug-card-grid--3 ug-mb--3">
+        <div class="ug-card ug-card--accent-red">
+          <div class="ug-card__body">
+            <h3 class="ug-card__title">Safety Alert</h3>
+            <p class="ug-card__text">Bear activity reported near Cascade Canyon trailhead. Carry bear spray and make noise.</p>
+          </div>
+          <div class="ug-card__actions">
+            <a class="ug-btn ug-btn--sm ug-btn--red" href="#">View Alert</a>
+          </div>
+        </div>
+        <div class="ug-card ug-card--accent-blue">
+          <div class="ug-card__body">
+            <h3 class="ug-card__title">Trail Closure</h3>
+            <p class="ug-card__text">Paintbrush Canyon trail closed through June for seasonal snow removal.</p>
+          </div>
+          <div class="ug-card__actions">
+            <a class="ug-btn ug-btn--sm ug-btn--outline" href="#">Details</a>
+          </div>
+        </div>
+        <div class="ug-card ug-card--accent-green">
+          <div class="ug-card__body">
+            <h3 class="ug-card__title">New Program</h3>
+            <p class="ug-card__text">Junior Ranger programs available daily at the visitor center. Ages 5–12.</p>
+          </div>
+          <div class="ug-card__actions">
+            <a class="ug-btn ug-btn--sm ug-btn--green" href="#">Sign Up</a>
+            <a class="ug-btn ug-btn--sm ug-btn--ghost" href="#">Learn More</a>
+          </div>
+        </div>
+      </div>
+
+      <p class="ug-label ug-mb--2">Dark + Bordered + Flat</p>
+      <div class="ug-card-grid ug-card-grid--3 ug-mb--3">
+        <div class="ug-card ug-card--dark">
+          <div class="ug-card__body">
+            <h3 class="ug-card__title">Dark Card</h3>
+            <p class="ug-card__text">Black background with light text for dark UI contexts.</p>
+          </div>
+        </div>
+        <div class="ug-card ug-card--bordered">
+          <div class="ug-card__body">
+            <h3 class="ug-card__title">Bordered Card</h3>
+            <p class="ug-card__text">Heavy 2px black border for emphasis.</p>
+          </div>
+        </div>
+        <div class="ug-card ug-card--flat">
+          <div class="ug-card__body">
+            <h3 class="ug-card__title">Flat Card</h3>
+            <p class="ug-card__text">No border, subtle shadow instead.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="ug-label ug-mb--2">Horizontal</p>
+      <div class="ug-card ug-card--horizontal ug-mb--3">
+        <div class="ug-card__image" style="background:#4a3728"></div>
+        <div class="ug-card__body">
+          <h3 class="ug-card__title">Grand Teton National Park</h3>
+          <p class="ug-card__subtitle">Wyoming</p>
+          <p class="ug-card__text">Rising more than 7,000 feet above the valley of Jackson Hole, the Teton Range is a dramatic landscape shaped by ancient glaciers. The park has over 200 miles of trails and pristine alpine lakes.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Forms -->
+    <section class="dev-section">
+      <p class="dev-section-title">Forms — .ug-form</p>
+
+      <p class="ug-label ug-mb--2">Default Form</p>
+      <form class="ug-form ug-mb--3">
+        <div class="ug-grid">
+          <div class="ug-col--6 ug-col--sm-12">
+            <div class="ug-form__group">
+              <label class="ug-form__label">First Name</label>
+              <input class="ug-form__input" type="text" placeholder="John">
+            </div>
+          </div>
+          <div class="ug-col--6 ug-col--sm-12">
+            <div class="ug-form__group">
+              <label class="ug-form__label">Last Name</label>
+              <input class="ug-form__input" type="text" placeholder="Muir">
+            </div>
+          </div>
+          <div class="ug-col--12">
+            <div class="ug-form__group">
+              <label class="ug-form__label">Email</label>
+              <input class="ug-form__input" type="email" placeholder="john@nps.gov">
+              <p class="ug-form__help">We'll never share your email.</p>
+            </div>
+          </div>
+          <div class="ug-col--6 ug-col--sm-12">
+            <div class="ug-form__group">
+              <label class="ug-form__label">Preferred Park</label>
+              <select class="ug-form__select">
+                <option>Select a park...</option>
+                <option>Yellowstone</option>
+                <option>Yosemite</option>
+                <option>Grand Canyon</option>
+                <option>Zion</option>
+                <option>Grand Teton</option>
+              </select>
+            </div>
+          </div>
+          <div class="ug-col--6 ug-col--sm-12">
+            <div class="ug-form__group">
+              <label class="ug-form__label">Visit Date</label>
+              <input class="ug-form__input" type="date">
+            </div>
+          </div>
+          <div class="ug-col--12">
+            <div class="ug-form__group">
+              <label class="ug-form__label">Message</label>
+              <textarea class="ug-form__textarea" placeholder="Tell us about your visit plans..."></textarea>
+            </div>
+          </div>
+          <div class="ug-col--12">
+            <div class="ug-form__group">
+              <label class="ug-form__checkbox"><input type="checkbox"><span>I agree to the park regulations</span></label>
+              <label class="ug-form__checkbox"><input type="checkbox"><span>Subscribe to newsletter</span></label>
+            </div>
+          </div>
+          <div class="ug-col--12">
+            <div class="ug-form__group">
+              <label class="ug-form__label">Pass Type</label>
+              <label class="ug-form__radio"><input type="radio" name="pass"><span>Day Pass ($35)</span></label>
+              <label class="ug-form__radio"><input type="radio" name="pass"><span>Annual Pass ($70)</span></label>
+              <label class="ug-form__radio"><input type="radio" name="pass"><span>Lifetime Pass ($80)</span></label>
+            </div>
+          </div>
+          <div class="ug-col--12">
+            <button class="ug-btn" type="submit">Submit</button>
+          </div>
+        </div>
+      </form>
+
+      <p class="ug-label ug-mb--2">Input Sizes</p>
+      <div class="ug-mb--3">
+        <div class="ug-form">
+          <div class="ug-form__group">
+            <input class="ug-form__input ug-form__input--sm" type="text" placeholder="Small (1 leading)">
+          </div>
+          <div class="ug-form__group">
+            <input class="ug-form__input" type="text" placeholder="Default (1.5 leading)">
+          </div>
+          <div class="ug-form__group">
+            <input class="ug-form__input ug-form__input--lg" type="text" placeholder="Large (2 leading)">
+          </div>
+        </div>
+      </div>
+
+      <p class="ug-label ug-mb--2">Inline Form</p>
+      <form class="ug-form ug-form--inline ug-mb--3">
+        <div class="ug-form__group">
+          <label class="ug-form__label">Search</label>
+          <input class="ug-form__input" type="text" placeholder="Find a park...">
+        </div>
+        <div class="ug-form__group">
+          <label class="ug-form__label">State</label>
+          <select class="ug-form__select">
+            <option>All</option>
+            <option>Wyoming</option>
+            <option>California</option>
+          </select>
+        </div>
+        <button class="ug-btn" type="submit">Search</button>
+      </form>
+
+      <p class="ug-label ug-mb--2">Error State</p>
+      <div class="ug-form ug-mb--3">
+        <div class="ug-form__group">
+          <label class="ug-form__label">Email</label>
+          <input class="ug-form__input" type="email" value="not-an-email" required>
+          <p class="ug-form__error">Please enter a valid email address.</p>
+        </div>
+      </div>
+
+      <p class="ug-label ug-mb--2">Disabled</p>
+      <div class="ug-form ug-mb--3">
+        <div class="ug-form__group">
+          <label class="ug-form__label">Disabled Input</label>
+          <input class="ug-form__input" type="text" value="Cannot edit" disabled>
+        </div>
+      </div>
+    </section>
+
     <!-- Divider -->
     <section class="dev-section">
       <p class="dev-section-title">Divider — .ug-divider</p>
-      <p class="ug-body ug-mb--3">Default divider:</p>
+      <p class="ug-body">Default divider:</p>
       <hr class="ug-divider">
-      <p class="ug-body ug-mb--3">Bold divider:</p>
+      <p class="ug-body">Bold divider:</p>
       <hr class="ug-divider ug-divider--bold">
+    </section>
+
+    <!-- Label Divider -->
+    <section class="dev-section">
+      <p class="dev-section-title">Label Divider — .ug-label-divider</p>
+      <p class="ug-label-divider">Default</p>
+      <p class="ug-body">Content below the label divider.</p>
+      <p class="ug-label-divider ug-label-divider--bold">Bold</p>
+      <p class="ug-body">Content below the bold label divider.</p>
+      <p class="ug-label-divider ug-label-divider--light">Light</p>
+      <p class="ug-body">Content below the light label divider.</p>
     </section>
 
     <!-- Panel Variants -->
@@ -348,5 +913,29 @@
 
   </div>
 
+
+  <!-- Dev Toolbar -->
+  <div class="dev-toolbar">
+    <button class="dev-toolbar__btn" onclick="
+      document.body.classList.toggle('dev-debug');
+      this.textContent = document.body.classList.contains('dev-debug') ? 'Margins: On' : 'Margins: Off';
+    ">Margins: Off</button>
+    <button class="dev-toolbar__btn" onclick="
+      var b = document.body;
+      if (b.classList.contains('dev-grid-double')) {
+        b.classList.remove('dev-grid-double');
+        this.textContent = 'Grid: Off';
+      } else if (b.classList.contains('dev-grid')) {
+        b.classList.remove('dev-grid');
+        b.classList.add('dev-grid-double');
+        this.textContent = 'Grid: Double';
+      } else {
+        b.classList.add('dev-grid');
+        this.textContent = 'Grid: Single';
+      }
+    ">Grid: Off</button>
+  </div>
+
+  <script src="./dropdown.js"></script>
 </body>
 </html>

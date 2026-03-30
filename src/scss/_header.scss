@@ -9,27 +9,30 @@
 // Modifiers: --compact, --brown, --full
 // ==========================================================================
 
+
+@use "variables" as *;
+@use "mixins" as *;
+
 .ug-header {
   display: flex;
   align-items: flex-start;
-  gap: ug-space(4);
+  gap: var(--ug-leading);
   background-color: $ug-black;
   color: $ug-white;
-  padding: ug-space(3) ug-space(5);
+  padding: var(--ug-leading) calc(var(--ug-leading) * 1.5);
   width: 100%;
   grid-column: 1 / -1;
   flex-wrap: wrap;
 
   // -- Elements --
   &__logo {
-    width: 3rem;
-    height: auto;
+    height: calc(var(--ug-leading) * 3);
     flex-shrink: 0;
 
     img,
     svg {
-      width: 100%;
-      height: auto;
+      height: 100%;
+      width: auto;
     }
   }
 
@@ -42,7 +45,7 @@
     h1, a {
       @include ug-font-size("3xl");
       @include ug-font-weight("bold");
-      line-height: $ug-line-height-tight;
+      @include ug-rhythm-line-height(2);
       letter-spacing: -0.02em;
       text-transform: none;
       margin: 0;
@@ -56,7 +59,7 @@
   &__name {
     @include ug-font-size("3xl");
     @include ug-font-weight("bold");
-    line-height: $ug-line-height-tight;
+    @include ug-rhythm-line-height(2);
     letter-spacing: -0.02em;
     margin: 0;
     flex-shrink: 0;
@@ -65,13 +68,12 @@
   &__subtitle {
     @include ug-font-size("lg");
     @include ug-font-weight("light");
+    @include ug-rhythm-line-height(1);
     opacity: 0.85;
     margin: 0;
   }
 
   // -- Embedded Navbar --
-  // When .ug-navbar is placed inside .ug-header, it integrates seamlessly:
-  // brand on the left (via __logo + __title), menu on the right.
   .ug-navbar {
     flex: 1;
     background: transparent;
@@ -87,7 +89,7 @@
     }
 
     &__brand {
-      display: none; // brand is already in the header
+      display: none;
     }
 
     &__link {
@@ -113,25 +115,30 @@
 
     &__menu {
       @include ug-breakpoint-down("md") {
-        background-color: $ug-dark-gray;
-        border-bottom-color: rgba(255, 255, 255, 0.1);
-        // Position relative to header, not navbar
-        left: 0;
-        right: 0;
-        position: fixed;
-        top: auto;
+        background-color: $ug-black;
       }
     }
   }
 
   // -- Modifiers --
   &--compact {
-    padding: ug-space(2) ug-space(5);
+    padding: calc(var(--ug-leading) * 0.5) calc(var(--ug-leading) * 1.5);
+
+    .ug-header__logo {
+      width: auto;
+      height: calc(var(--ug-leading) * 2);
+    }
 
     .ug-header__title h1,
-  , .ug-header__title a,
+    .ug-header__title a,
     .ug-header__name {
       @include ug-font-size("2xl");
+      @include ug-rhythm-line-height(1);
+    }
+
+    .ug-header__subtitle {
+      @include ug-font-size("sm");
+      @include ug-rhythm-line-height(1);
     }
   }
 
@@ -146,6 +153,7 @@
   // -- Responsive --
   @include ug-breakpoint-down("md") {
     &__title h1,
+    &__title a,
     &__name {
       @include ug-font-size("2xl");
     }

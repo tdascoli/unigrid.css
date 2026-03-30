@@ -1,30 +1,33 @@
 // ==========================================================================
 // Unigrid CSS Framework — Components (BEM)
 //
-// Reusable components: infobox, map, image, divider, block
+// Reusable components: infobox, map, image, divider, block.
+// Vertical spacing aligned to leading ($ug-leading-rem) for rhythm.
 // ==========================================================================
 
 // ---- Block ----
-// Generic content container within a panel.
+
+
+@use "variables" as *;
+@use "mixins" as *;
 
 .ug-block {
-  padding: ug-space(3);
+  @include ug-rhythm-padding(1, 1);
 
   &--flush {
     padding: 0;
   }
 
   & + & {
-    margin-top: ug-space(3);
+    @include ug-rhythm-margin-top(1);
   }
 }
 
 // ---- Map ----
-// Container for embedded maps.
 
 .ug-map {
   width: 100%;
-  min-height: 300px;
+  min-height: calc(var(--ug-leading) * 12 - 2px);
   background-color: $ug-warm-gray;
   border: 1px solid $ug-light-gray;
   overflow: hidden;
@@ -43,11 +46,10 @@
 }
 
 // ---- Infobox ----
-// Callout box with left border accent.
 
 .ug-infobox {
   background-color: $ug-warm-gray;
-  padding: ug-space(3);
+  @include ug-rhythm-padding(1, 1);
   border-left: 3px solid $ug-black;
 
   &--dark {
@@ -59,14 +61,14 @@
   &__title {
     @include ug-font-size("sm");
     @include ug-font-weight("bold");
+    @include ug-rhythm-line-height(1);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    margin-bottom: ug-space(2);
+    margin-bottom: 0;
   }
 }
 
 // ---- Image ----
-// Image container with optional aspect ratios.
 
 .ug-image {
   width: 100%;
@@ -92,15 +94,47 @@
 }
 
 // ---- Divider ----
+// Total: 1 leading = padding-top(0.5) + border + padding-bottom(0.5)
+// The border sits in the vertical center of the 1 leading space.
 
 .ug-divider {
   border: none;
   border-top: 1px solid $ug-light-gray;
-  margin: ug-space(3) 0;
+  padding-top: calc(var(--ug-leading) * 0.5 - 1px);
+  padding-bottom: calc(var(--ug-leading) * 0.5);
   grid-column: 1 / -1;
 
   &--bold {
-    border-top-width: 3px;
-    border-top-color: $ug-black;
+    border-top: 3px solid $ug-black;
+    padding-top: calc(var(--ug-leading) * 0.5 - 3px);
+  }
+}
+
+// ---- Label Divider ----
+// Uppercase label with bottom border as subsection separator.
+// padding-bottom + border = exactly 1 leading, keeping content on-grid.
+//
+// Block: .ug-label-divider
+// Modifiers: --bold, --light
+
+.ug-label-divider {
+  @include ug-font-size("sm");
+  @include ug-font-weight("bold");
+  line-height: calc(var(--ug-leading) - 2px);
+  margin-bottom: calc(var(--ug-leading) * 0.5 - 2px);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $ug-medium-gray;
+  border-bottom: 2px solid $ug-black;
+  @include ug-rhythm-margin-top(0.5);
+
+  &--bold {
+    line-height: calc(var(--ug-leading) - 3px);
+    border-bottom-width: 3px;
+    margin-bottom: calc(var(--ug-leading) * 0.5 - 3px);
+  }
+
+  &--light {
+    border-bottom-color: $ug-light-gray;
   }
 }

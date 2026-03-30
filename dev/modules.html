@@ -29,8 +29,9 @@
     </div>
     <nav class="ug-navbar">
       <div class="ug-navbar__inner">
-        <button class="ug-navbar__toggle" onclick="this.nextElementSibling.classList.toggle('ug-navbar__menu--open')">
-          <span></span><span></span><span></span>
+        <button class="ug-navbar__toggle" onclick="var m=this.parentElement.querySelector('.ug-navbar__menu');m.classList.toggle('ug-navbar__menu--open');this.classList.toggle('ug-navbar__toggle--active')">
+          <span class="ug-navbar__toggle__label">Menu</span>
+          <span class="ug-navbar__toggle__close">Close</span>
         </button>
         <ul class="ug-navbar__menu">
             <li class="ug-navbar__item"><a class="ug-navbar__link" href="/">Overview</a></li>
@@ -40,7 +41,17 @@
             <li class="ug-navbar__item"><a class="ug-navbar__link" href="/typography.html">Typography</a></li>
             <li class="ug-navbar__item"><a class="ug-navbar__link" href="/components.html">Components</a></li>
             <li class="ug-navbar__item"><a class="ug-navbar__link" href="/cheatsheet.html">Cheatsheet</a></li>
-            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/example.html">Example</a></li>
+            <li class="ug-navbar__item ug-dropdown ug-dropdown--right">
+              <button class="ug-navbar__link ug-dropdown__trigger">
+                Examples <span class="ug-dropdown__caret"></span>
+              </button>
+              <ul class="ug-dropdown__menu">
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example.html">Unigrid</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-hero.html">Hero</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-prose.html">Prose</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-section.html">Section</a></li>
+              </ul>
+            </li>
         </ul>
       </div>
     </nav>
@@ -117,21 +128,23 @@
     <section class="dev-section">
       <p class="dev-section-title">Responsive Behavior</p>
       <p class="ug-body ug-mb--3">The module grid reduces columns at each breakpoint:</p>
-      <table class="cs-table" style="width:100%;border-collapse:collapse;margin-bottom:2rem">
-        <thead><tr>
-          <th style="text-align:left;padding:0.5rem;border-bottom:2px solid #1a1a1a;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;color:#666">Breakpoint</th>
-          <th style="text-align:left;padding:0.5rem;border-bottom:2px solid #1a1a1a;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;color:#666">Columns</th>
-          <th style="text-align:left;padding:0.5rem;border-bottom:2px solid #1a1a1a;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;color:#666">Module (vw)</th>
-          <th style="text-align:left;padding:0.5rem;border-bottom:2px solid #1a1a1a;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;color:#666">Gutter (vw)</th>
-          <th style="text-align:left;padding:0.5rem;border-bottom:2px solid #1a1a1a;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;color:#666">Outer Margin</th>
-          <th style="text-align:left;padding:0.5rem;border-bottom:2px solid #1a1a1a;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;color:#666">Class Prefix</th>
-        </tr></thead>
+      <table class="ug-table ug-table--striped ug-mb--3">
+        <thead>
+          <tr>
+            <th>Breakpoint</th>
+            <th>Columns</th>
+            <th>Module (vw)</th>
+            <th>Gutter (vw)</th>
+            <th>Outer Margin</th>
+            <th>Class Prefix</th>
+          </tr>
+        </thead>
         <tbody>
-          <tr><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem">≥1600px (xl)</td><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem">12</td><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem">6.8966</td><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem">1.1494</td><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem">2.2989</td><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem"><code>.ug-module--{h}x{w}</code></td></tr>
-          <tr><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem">1300–1599px (lg)</td><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem">8</td><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem">10.4478</td><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem">1.4925</td><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem">2.9851</td><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem"><code>.ug-module--lg-{h}x{w}</code></td></tr>
-          <tr><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem">1024–1299px (md)</td><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem">6</td><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem">14.0351</td><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem">1.7544</td><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem">3.5088</td><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem"><code>.ug-module--md-{h}x{w}</code></td></tr>
-          <tr><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem">640–1023px (sm)</td><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem">4</td><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem">21.2766</td><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem">2.1277</td><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem">4.2553</td><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem"><code>.ug-module--sm-{h}x{w}</code></td></tr>
-          <tr><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem">≤639px (xs)</td><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem">3</td><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem">28.5714</td><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem">2.3810</td><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem">4.7619</td><td style="padding:0.5rem;border-bottom:1px solid #e8e5e0;font-size:0.875rem"><code>.ug-module--xs-{h}x{w}</code></td></tr>
+          <tr><td>&ge;1600px (xl)</td><td>12</td><td>6.8966</td><td>1.1494</td><td>2.2989</td><td><code>.ug-module--{h}x{w}</code></td></tr>
+          <tr><td>1300–1599px (lg)</td><td>8</td><td>10.4478</td><td>1.4925</td><td>2.9851</td><td><code>.ug-module--lg-{h}x{w}</code></td></tr>
+          <tr><td>1024–1299px (md)</td><td>6</td><td>14.0351</td><td>1.7544</td><td>3.5088</td><td><code>.ug-module--md-{h}x{w}</code></td></tr>
+          <tr><td>640–1023px (sm)</td><td>4</td><td>21.2766</td><td>2.1277</td><td>4.2553</td><td><code>.ug-module--sm-{h}x{w}</code></td></tr>
+          <tr><td>&le;639px (xs)</td><td>3</td><td>28.5714</td><td>2.3810</td><td>4.7619</td><td><code>.ug-module--xs-{h}x{w}</code></td></tr>
         </tbody>
       </table>
       <p class="ug-body--sm">Apply responsive overrides: <code class="dev-code">.ug-module--2x4 .ug-module--lg-2x3 .ug-module--sm-1x4 .ug-module--xs-1x3</code></p>
@@ -139,5 +152,29 @@
 
   </div>
 
+
+  <!-- Dev Toolbar -->
+  <div class="dev-toolbar">
+    <button class="dev-toolbar__btn" onclick="
+      document.body.classList.toggle('dev-debug');
+      this.textContent = document.body.classList.contains('dev-debug') ? 'Margins: On' : 'Margins: Off';
+    ">Margins: Off</button>
+    <button class="dev-toolbar__btn" onclick="
+      var b = document.body;
+      if (b.classList.contains('dev-grid-double')) {
+        b.classList.remove('dev-grid-double');
+        this.textContent = 'Grid: Off';
+      } else if (b.classList.contains('dev-grid')) {
+        b.classList.remove('dev-grid');
+        b.classList.add('dev-grid-double');
+        this.textContent = 'Grid: Double';
+      } else {
+        b.classList.add('dev-grid');
+        this.textContent = 'Grid: Single';
+      }
+    ">Grid: Off</button>
+  </div>
+
+  <script src="./dropdown.js"></script>
 </body>
 </html>
