@@ -136,16 +136,18 @@ $ug-color-link-hover: $ug-black !default;
 $ug-color-link-visited: $ug-medium-gray !default;
 
 // ---- Spacing Scale ----
+// Based on leading multiples for vertical rhythm consistency.
+// 1 leading = $ug-leading-rem (≈ 1.625rem mobile).
 $ug-spaces: (
   0: 0,
-  1: 0.25rem,
-  2: 0.5rem,
-  3: 1rem,
-  4: 1.5rem,
-  5: 2rem,
-  6: 3rem,
-  7: 4rem,
-  8: 6rem,
+  1: #{$ug-leading-rem * 0.25}rem,   // ~0.41rem
+  2: #{$ug-leading-rem * 0.5}rem,    // ~0.81rem
+  3: #{$ug-leading-rem}rem,          // ~1.63rem  = 1 leading
+  4: #{$ug-leading-rem * 1.5}rem,    // ~2.44rem
+  5: #{$ug-leading-rem * 2}rem,      // ~3.25rem  = 2 leading
+  6: #{$ug-leading-rem * 3}rem,      // ~4.88rem  = 3 leading
+  7: #{$ug-leading-rem * 4}rem,      // ~6.50rem  = 4 leading
+  8: #{$ug-leading-rem * 6}rem,      // ~9.75rem  = 6 leading
 ) !default;
 
 // ---- Format Definitions ----
