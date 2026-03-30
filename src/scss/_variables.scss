@@ -57,7 +57,8 @@ $ug-colors: (
 // ---- Typography ----
 // The original Unigrid uses Helvetica exclusively.
 // Current NPS standard uses Frutiger and NPS Rawlinson.
-$ug-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$ug-font-family: Inter, sans-serif !default;
+$ug-font-family-variable: InterVariable, sans-serif !default;
 
 $ug-font-sizes: (
   "xs": 0.75rem,
