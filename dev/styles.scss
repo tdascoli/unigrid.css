@@ -5,18 +5,18 @@
 
 .dev-toolbar {
   position: fixed;
-  bottom: #{$ug-leading-rem}rem;
-  right: #{$ug-leading-rem}rem;
+  bottom: var(--ug-leading);
+  right: var(--ug-leading);
   z-index: 200;
   display: flex;
-  gap: #{$ug-leading-rem * 0.25}rem;
+  gap: calc(var(--ug-leading) * 0.25);
 }
 
 .dev-toolbar__btn {
   background: $ug-black;
   color: $ug-white;
   border: none;
-  padding: #{$ug-leading-rem * 0.25}rem #{$ug-leading-rem * 0.5}rem;
+  padding: calc(var(--ug-leading) * 0.25) calc(var(--ug-leading) * 0.5);
   @include ug-font-size("xs");
   font-family: inherit;
   cursor: pointer;
