@@ -1,0 +1,225 @@
+// ==========================================================================
+// Unigrid CSS Framework — Square Module System
+//
+// Inspired by Uniweb (Arlandi Design) and Vignelli's original Unigrid.
+// The base unit "U" is a square module. All dimensions are multiples of U.
+// Uses vw units for viewport-proportional sizing.
+//
+// Responsive column reduction: 12 → 8 → 6 → 4 → 3
+// Gutter-to-column ratio increases on smaller screens.
+//
+// Usage:
+//   <div class="ug-modules">
+//     <div class="ug-module ug-module--1x1">Square</div>
+//     <div class="ug-module ug-module--1x2">Wide</div>
+//     <div class="ug-module ug-module--2x1">Tall</div>
+//   </div>
+//
+// Block: .ug-modules (container)
+// Block: .ug-module  (individual module)
+// Modifiers: --{h}x{w} for height × width in module units
+// ==========================================================================
+
+@use "sass:math";
+@use "sass:map";
+
+// ---- Module Grid Configuration ----
+// Each breakpoint defines: columns, gutter (vw), module size (vw), outer margin (vw)
+// Derived from Uniweb's proportions where column = gutter × ratio.
+
+$ug-module-grid: (
+  "xl": (cols: 12, gutter: 1.1494vw, module: 6.8966vw, margin: 2.2989vw),
+  "lg": (cols: 8,  gutter: 1.4925vw, module: 10.4478vw, margin: 2.9851vw),
+  "md": (cols: 6,  gutter: 1.7544vw, module: 14.0351vw, margin: 3.5088vw),
+  "sm": (cols: 4,  gutter: 2.1277vw, module: 21.2766vw, margin: 4.2553vw),
+  "xs": (cols: 3,  gutter: 2.3810vw, module: 28.5714vw, margin: 4.7619vw),
+) !default;
+
+// Max module span per breakpoint (can't exceed column count)
+$ug-module-max-spans: (1, 2, 3, 4, 6, 8, 12);
+$ug-module-max-height: 6;
+
+// ---- Module Container ----
+
+.ug-modules {
+  position: relative;
+  font-size: 0; // collapse whitespace between inline-block modules
+  box-sizing: border-box;
+  width: 100%;
+}
+
+// ---- Individual Module ----
+
+.ug-module {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 1rem; // reset font-size from container
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+// ---- Helper: calculate width for N modules + (N-1) gutters ----
+
+@function module-size($n, $module, $gutter) {
+  @if $n == 1 {
+    @return $module;
+  }
+  // width = n × module + (n-1) × gutter
+  // We need to combine vw values, so we use calc()
+  @return calc(#{$module} * #{$n} + #{$gutter} * #{$n - 1});
+}
+
+// ---- Desktop (≥1600px): 12 columns ----
+
+@media screen and (min-width: 1600px) {
+  $conf: map.get($ug-module-grid, "xl");
+  $g: map.get($conf, gutter);
+  $m: map.get($conf, module);
+  $margin: map.get($conf, margin);
+
+  .ug-modules {
+    padding: $g 0 0 $margin;
+  }
+
+  .ug-module {
+    margin: 0 $g $g 0;
+  }
+
+  // Generate h{H}_w{W} classes
+  @each $w in (1, 2, 3, 4, 6, 8, 12) {
+    @for $h from 1 through $ug-module-max-height {
+      .ug-module--#{$h}x#{$w} {
+        height: module-size($h, $m, $g);
+        width: module-size($w, $m, $g);
+      }
+    }
+  }
+
+  .ug-module--auto-height { height: auto; }
+  .ug-module--no-margin { margin-right: 0; }
+}
+
+// ---- Laptop (1300–1599px): 8 columns ----
+
+@media screen and (min-width: 1300px) and (max-width: 1599px) {
+  $conf: map.get($ug-module-grid, "lg");
+  $g: map.get($conf, gutter);
+  $m: map.get($conf, module);
+  $margin: map.get($conf, margin);
+
+  .ug-modules {
+    padding: $g 0 0 $margin;
+  }
+
+  .ug-module {
+    margin: 0 $g $g 0;
+  }
+
+  @each $w in (1, 2, 3, 4, 6, 8) {
+    @for $h from 1 through $ug-module-max-height {
+      .ug-module--lg-#{$h}x#{$w} {
+        height: module-size($h, $m, $g);
+        width: module-size($w, $m, $g);
+      }
+    }
+  }
+
+  .ug-module--lg-auto-height { height: auto; }
+  .ug-module--lg-no-margin { margin-right: 0; }
+}
+
+// ---- Tablet (1024–1299px): 6 columns ----
+
+@media screen and (min-width: 1024px) and (max-width: 1299px) {
+  $conf: map.get($ug-module-grid, "md");
+  $g: map.get($conf, gutter);
+  $m: map.get($conf, module);
+  $margin: map.get($conf, margin);
+
+  .ug-modules {
+    padding: $g 0 0 $margin;
+  }
+
+  .ug-module {
+    margin: 0 $g $g 0;
+  }
+
+  @each $w in (1, 2, 3, 4, 6) {
+    @for $h from 1 through $ug-module-max-height {
+      .ug-module--md-#{$h}x#{$w} {
+        height: module-size($h, $m, $g);
+        width: module-size($w, $m, $g);
+      }
+    }
+  }
+
+  .ug-module--md-auto-height { height: auto; }
+  .ug-module--md-no-margin { margin-right: 0; }
+}
+
+// ---- Phablet (640–1023px): 4 columns ----
+
+@media screen and (min-width: 640px) and (max-width: 1023px) {
+  $conf: map.get($ug-module-grid, "sm");
+  $g: map.get($conf, gutter);
+  $m: map.get($conf, module);
+  $margin: map.get($conf, margin);
+
+  .ug-modules {
+    padding: $g 0 0 $margin;
+  }
+
+  .ug-module {
+    margin: 0 $g $g 0;
+  }
+
+  @each $w in (1, 2, 3, 4) {
+    @for $h from 1 through $ug-module-max-height {
+      .ug-module--sm-#{$h}x#{$w} {
+        height: module-size($h, $m, $g);
+        width: module-size($w, $m, $g);
+      }
+    }
+  }
+
+  .ug-module--sm-auto-height { height: auto; }
+  .ug-module--sm-no-margin { margin-right: 0; }
+}
+
+// ---- Mobile (≤639px portrait): 3 columns ----
+
+@media screen and (max-width: 639px) {
+  $conf: map.get($ug-module-grid, "xs");
+  $g: map.get($conf, gutter);
+  $m: map.get($conf, module);
+  $margin: map.get($conf, margin);
+
+  .ug-modules {
+    padding: $g 0 0 $margin;
+  }
+
+  .ug-module {
+    margin: 0 $g $g 0;
+  }
+
+  @each $w in (1, 2, 3) {
+    @for $h from 1 through $ug-module-max-height {
+      .ug-module--xs-#{$h}x#{$w} {
+        height: module-size($h, $m, $g);
+        width: module-size($w, $m, $g);
+      }
+    }
+  }
+
+  .ug-module--xs-auto-height { height: auto; }
+  .ug-module--xs-no-margin { margin-right: 0; }
+}
+
+// ---- Responsive Visibility for Modules ----
+
+.ug-module--hidden-xl { @media screen and (min-width: 1600px) { display: none; } }
+.ug-module--hidden-lg { @media screen and (min-width: 1300px) and (max-width: 1599px) { display: none; } }
+.ug-module--hidden-md { @media screen and (min-width: 1024px) and (max-width: 1299px) { display: none; } }
+.ug-module--hidden-sm { @media screen and (min-width: 640px) and (max-width: 1023px) { display: none; } }
+.ug-module--hidden-xs { @media screen and (max-width: 639px) { display: none; } }

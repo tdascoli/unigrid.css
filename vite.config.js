@@ -16,6 +16,7 @@ export default defineConfig({
         main: resolve(__dirname, "dev/index.html"),
         grid: resolve(__dirname, "dev/grid.html"),
         formats: resolve(__dirname, "dev/formats.html"),
+        modules: resolve(__dirname, "dev/modules.html"),
         typography: resolve(__dirname, "dev/typography.html"),
         components: resolve(__dirname, "dev/components.html"),
         cheatsheet: resolve(__dirname, "dev/cheatsheet.html"),
