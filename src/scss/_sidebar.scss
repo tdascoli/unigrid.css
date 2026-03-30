@@ -1,0 +1,147 @@
+// ==========================================================================
+// Unigrid CSS Framework — Sidebar Layout (BEM)
+//
+// Flexible sidebar + main content layout. Sidebar width configurable
+// via CSS custom property --ug-sidebar-width.
+//
+// Block: .ug-sidebar-layout
+// Elements: __sidebar, __main
+// Modifiers: --right, --sticky, --bordered
+//            __sidebar--collapse (hidden on mobile)
+//
+// Usage:
+//   <div class="ug-sidebar-layout" style="--ug-sidebar-width: 20rem">
+//     <aside class="ug-sidebar-layout__sidebar">...</aside>
+//     <main class="ug-sidebar-layout__main">...</main>
+//   </div>
+// ==========================================================================
+
+@use "variables" as *;
+@use "mixins" as *;
+
+.ug-sidebar-layout {
+  --ug-sidebar-width: calc(var(--ug-leading) * 12);
+  display: flex;
+  width: 100%;
+  min-height: 0;
+
+  // ---- Sidebar ----
+  &__sidebar {
+    width: var(--ug-sidebar-width);
+    flex-shrink: 0;
+    padding: var(--ug-leading) calc(var(--ug-leading) * 1.5);
+
+    // Collapse on mobile by default
+    @include ug-breakpoint-down("md") {
+      display: none;
+    }
+  }
+
+  // ---- Main Content ----
+  &__main {
+    flex: 1;
+    min-width: 0;
+    padding: var(--ug-leading) calc(var(--ug-leading) * 1.5);
+  }
+
+  // ==============================
+  // Modifiers
+  // ==============================
+
+  // Sidebar on the right
+  &--right {
+    flex-direction: row-reverse;
+  }
+
+  // Sticky sidebar
+  &--sticky {
+    .ug-sidebar-layout__sidebar {
+      position: sticky;
+      top: 0;
+      align-self: flex-start;
+      max-height: 100vh;
+      overflow-y: auto;
+    }
+  }
+
+  // Bordered separator
+  &--bordered {
+    .ug-sidebar-layout__sidebar {
+      border-right: 1px solid $ug-light-gray;
+    }
+
+    &.ug-sidebar-layout--right .ug-sidebar-layout__sidebar {
+      border-right: none;
+      border-left: 1px solid $ug-light-gray;
+    }
+  }
+
+  // ==============================
+  // Sidebar element modifiers
+  // ==============================
+
+  // Show sidebar on mobile (override default collapse)
+  &__sidebar--visible {
+    @include ug-breakpoint-down("md") {
+      display: block;
+    }
+  }
+
+  // ==============================
+  // Sidebar Navigation (optional)
+  // ==============================
+
+  &__nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__nav-item {
+    display: block;
+  }
+
+  &__nav-link {
+    display: flex;
+    align-items: center;
+    padding: calc(var(--ug-leading) * 0.5) 0;
+    @include ug-font-size("sm");
+    @include ug-rhythm-line-height(1);
+    color: $ug-dark-gray;
+    text-decoration: none;
+    border-bottom: 1px solid $ug-light-gray;
+    transition: color 0.15s;
+
+    &:hover {
+      color: $ug-black;
+    }
+
+    &--active {
+      @include ug-font-weight("bold");
+      color: $ug-black;
+    }
+  }
+
+  // ==============================
+  // Responsive
+  // ==============================
+
+  @include ug-breakpoint-down("md") {
+    flex-direction: column;
+
+    &__main {
+      padding: var(--ug-leading);
+    }
+
+    &--right {
+      flex-direction: column;
+    }
+
+    // Remove border on mobile
+    &--bordered .ug-sidebar-layout__sidebar {
+      border-right: none;
+      border-left: none;
+      border-bottom: 1px solid $ug-light-gray;
+    }
+  }
+}

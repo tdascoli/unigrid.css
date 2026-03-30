@@ -581,6 +581,74 @@
       </div>
     </section>
 
+    <!-- Sidebar Layout -->
+    <section class="dev-section">
+      <p class="dev-section-title">Sidebar Layout — .ug-sidebar-layout</p>
+
+      <p class="ug-label ug-mb--2">Default (sidebar left)</p>
+    </section>
+  </div>
+
+  <div class="ug-sidebar-layout ug-sidebar-layout--bordered ug-mb--3" style="min-height:calc(var(--ug-leading) * 12);border:1px solid #e8e5e0">
+    <aside class="ug-sidebar-layout__sidebar ug-sidebar-layout__sidebar--visible">
+      <p class="ug-label ug-mb--2">Navigation</p>
+      <ul class="ug-sidebar-layout__nav">
+        <li class="ug-sidebar-layout__nav-item"><a class="ug-sidebar-layout__nav-link ug-sidebar-layout__nav-link--active" href="#">Overview</a></li>
+        <li class="ug-sidebar-layout__nav-item"><a class="ug-sidebar-layout__nav-link" href="#">Getting Started</a></li>
+        <li class="ug-sidebar-layout__nav-item"><a class="ug-sidebar-layout__nav-link" href="#">Components</a></li>
+        <li class="ug-sidebar-layout__nav-item"><a class="ug-sidebar-layout__nav-link" href="#">Utilities</a></li>
+        <li class="ug-sidebar-layout__nav-item"><a class="ug-sidebar-layout__nav-link" href="#">Examples</a></li>
+      </ul>
+    </aside>
+    <main class="ug-sidebar-layout__main">
+      <h3>Main Content</h3>
+      <p class="ug-body--sm">The sidebar width is configurable via <code>--ug-sidebar-width</code>. Default: 12 leading.</p>
+    </main>
+  </div>
+
+  <div class="ug-container ug-pb--5">
+    <section class="dev-section">
+      <p class="ug-label ug-mb--2">Right sidebar + sticky</p>
+    </section>
+  </div>
+
+  <div class="ug-sidebar-layout ug-sidebar-layout--right ug-sidebar-layout--bordered ug-sidebar-layout--sticky ug-mb--3" style="min-height:calc(var(--ug-leading) * 12);border:1px solid #e8e5e0">
+    <aside class="ug-sidebar-layout__sidebar ug-sidebar-layout__sidebar--visible">
+      <div class="ug-infobox ug-mb--3">
+        <p class="ug-infobox__title">Quick Facts</p>
+        <p class="ug-body--sm">Area: 310,000 acres<br>Established: 1929<br>Visitors: 3.5M/year</p>
+      </div>
+      <div class="ug-infobox">
+        <p class="ug-infobox__title">Contact</p>
+        <p class="ug-body--sm">(307) 739-3399</p>
+      </div>
+    </aside>
+    <main class="ug-sidebar-layout__main">
+      <h3>Right Sidebar</h3>
+      <p class="ug-body--sm">Use <code>--right</code> for sidebar on the right. Add <code>--sticky</code> to keep the sidebar fixed while scrolling. Add <code>--bordered</code> for a separator line.</p>
+    </main>
+  </div>
+
+  <div class="ug-container ug-pb--5">
+    <section class="dev-section">
+      <p class="ug-label ug-mb--2">Custom width (via CSS custom property)</p>
+      <p class="ug-caption ug-mb--3"><code>style="--ug-sidebar-width: calc(var(--ug-leading) * 8)"</code></p>
+    </section>
+  </div>
+
+  <div class="ug-sidebar-layout ug-sidebar-layout--bordered ug-mb--3" style="--ug-sidebar-width:calc(var(--ug-leading) * 8);min-height:calc(var(--ug-leading) * 8);border:1px solid #e8e5e0">
+    <aside class="ug-sidebar-layout__sidebar ug-sidebar-layout__sidebar--visible" style="background:#f5f2ed">
+      <p class="ug-label">Narrow</p>
+      <p class="ug-caption">8 leading wide</p>
+    </aside>
+    <main class="ug-sidebar-layout__main">
+      <h3>Narrow Sidebar</h3>
+      <p class="ug-body--sm">Sidebar width set to 8 leading via CSS custom property.</p>
+    </main>
+  </div>
+
+  <div class="ug-container ug-pt--5 ug-pb--5">
+
     <!-- Cards -->
     <section class="dev-section">
       <p class="dev-section-title">Cards — .ug-card</p>

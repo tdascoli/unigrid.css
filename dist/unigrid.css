@@ -2365,6 +2365,92 @@ h6,
   }
 }
 
+.ug-sidebar-layout {
+  --ug-sidebar-width: calc(var(--ug-leading) * 12);
+  display: flex;
+  width: 100%;
+  min-height: 0;
+}
+.ug-sidebar-layout__sidebar {
+  width: var(--ug-sidebar-width);
+  flex-shrink: 0;
+  padding: var(--ug-leading) calc(var(--ug-leading) * 1.5);
+}
+@media (max-width: 767px) {
+  .ug-sidebar-layout__sidebar {
+    display: none;
+  }
+}
+.ug-sidebar-layout__main {
+  flex: 1;
+  min-width: 0;
+  padding: var(--ug-leading) calc(var(--ug-leading) * 1.5);
+}
+.ug-sidebar-layout--right {
+  flex-direction: row-reverse;
+}
+.ug-sidebar-layout--sticky .ug-sidebar-layout__sidebar {
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+.ug-sidebar-layout--bordered .ug-sidebar-layout__sidebar {
+  border-right: 1px solid #e8e5e0;
+}
+.ug-sidebar-layout--bordered.ug-sidebar-layout--right .ug-sidebar-layout__sidebar {
+  border-right: none;
+  border-left: 1px solid #e8e5e0;
+}
+@media (max-width: 767px) {
+  .ug-sidebar-layout__sidebar--visible {
+    display: block;
+  }
+}
+.ug-sidebar-layout__nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ug-sidebar-layout__nav-item {
+  display: block;
+}
+.ug-sidebar-layout__nav-link {
+  display: flex;
+  align-items: center;
+  padding: calc(var(--ug-leading) * 0.5) 0;
+  font-size: 0.875rem;
+  line-height: calc(var(--ug-leading) * 1);
+  color: #333333;
+  text-decoration: none;
+  border-bottom: 1px solid #e8e5e0;
+  transition: color 0.15s;
+}
+.ug-sidebar-layout__nav-link:hover {
+  color: #1a1a1a;
+}
+.ug-sidebar-layout__nav-link--active {
+  font-weight: 700;
+  color: #1a1a1a;
+}
+@media (max-width: 767px) {
+  .ug-sidebar-layout {
+    flex-direction: column;
+  }
+  .ug-sidebar-layout__main {
+    padding: var(--ug-leading);
+  }
+  .ug-sidebar-layout--right {
+    flex-direction: column;
+  }
+  .ug-sidebar-layout--bordered .ug-sidebar-layout__sidebar {
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid #e8e5e0;
+  }
+}
+
 .ug-form__group {
   margin-bottom: calc(var(--ug-leading) * 0.5);
 }
