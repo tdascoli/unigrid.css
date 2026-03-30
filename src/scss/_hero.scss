@@ -205,6 +205,10 @@
   &--din {
     @include ug-ratio-din(true);
     min-height: 0;
+    // The DIN aspect ratio height is not a leading multiple.
+    // Round margin-bottom to snap the next element back onto the grid.
+    // Uses CSS round() (supported in modern browsers).
+    margin-bottom: calc(#{$ug-leading-rem}rem - mod(100vw / #{$ug-ratio}, #{$ug-leading-rem}rem));
   }
 
   // ==============================

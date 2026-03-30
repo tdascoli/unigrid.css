@@ -1145,6 +1145,7 @@ textarea {
 .ug-hero--din {
   aspect-ratio: 1.4142135 / 1;
   min-height: 0;
+  margin-bottom: calc(1.625rem - mod(100vw / 1.4142135, 1.625rem));
 }
 @media (max-width: 767px) {
   .ug-hero {
