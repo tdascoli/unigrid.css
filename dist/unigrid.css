@@ -804,6 +804,13 @@ textarea {
 .ug-header--compact .ug-header__title a,
 .ug-header--compact .ug-header__name {
   font-size: 2rem;
+  line-height: 26px;
+  line-height: 1.625rem;
+}
+.ug-header--compact .ug-header__subtitle {
+  font-size: 0.875rem;
+  line-height: 26px;
+  line-height: 1.625rem;
 }
 .ug-header--brown {
   background-color: #4a3728;

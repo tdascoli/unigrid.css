@@ -134,6 +134,12 @@
     .ug-header__title a,
     .ug-header__name {
       @include ug-font-size("2xl");
+      @include ug-rhythm-line-height(1);
+    }
+
+    .ug-header__subtitle {
+      @include ug-font-size("sm");
+      @include ug-rhythm-line-height(1);
     }
   }
 
