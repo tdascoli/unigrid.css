@@ -2045,8 +2045,7 @@ textarea {
   line-height: 1.625rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin-bottom: 13px;
-  margin-bottom: 0.8125rem;
+  margin-bottom: 0;
 }
 
 .ug-image {
