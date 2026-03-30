@@ -1011,7 +1011,7 @@ textarea {
   flex-direction: column;
   justify-content: flex-end;
   width: 100%;
-  min-height: 50vh;
+  min-height: round(down, 50vh, 1.625rem);
   padding: 4.875rem 2.4375rem;
   color: #ffffff;
   overflow: hidden;
@@ -1085,13 +1085,13 @@ textarea {
   margin-top: 1.625rem;
 }
 .ug-hero--full {
-  min-height: 100vh;
+  min-height: round(down, 100vh, 1.625rem);
 }
 .ug-hero--half {
-  min-height: 50vh;
+  min-height: round(down, 50vh, 1.625rem);
 }
 .ug-hero--third {
-  min-height: 33vh;
+  min-height: round(down, 33vh, 1.625rem);
 }
 .ug-hero--auto {
   min-height: 0;
@@ -1150,10 +1150,10 @@ textarea {
 @media (max-width: 767px) {
   .ug-hero {
     padding: 3.25rem 1.625rem;
-    min-height: 40vh;
+    min-height: round(down, 40vh, 1.625rem);
   }
   .ug-hero--full {
-    min-height: 100vh;
+    min-height: round(down, 100vh, 1.625rem);
   }
 }
 

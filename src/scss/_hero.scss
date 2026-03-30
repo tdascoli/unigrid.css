@@ -20,7 +20,7 @@
   flex-direction: column;
   justify-content: flex-end;
   width: 100%;
-  min-height: 50vh;
+  min-height: round(down, 50vh, #{$ug-leading-rem}rem);
   padding: #{$ug-leading-rem * 3}rem #{$ug-leading-rem * 1.5}rem;
   color: $ug-white;
   overflow: hidden;
@@ -108,15 +108,15 @@
   // ==============================
 
   &--full {
-    min-height: 100vh;
+    min-height: round(down, 100vh, #{$ug-leading-rem}rem);
   }
 
   &--half {
-    min-height: 50vh;
+    min-height: round(down, 50vh, #{$ug-leading-rem}rem);
   }
 
   &--third {
-    min-height: 33vh;
+    min-height: round(down, 33vh, #{$ug-leading-rem}rem);
   }
 
   &--auto {
@@ -217,10 +217,10 @@
 
   @include ug-breakpoint-down("md") {
     padding: #{$ug-leading-rem * 2}rem #{$ug-leading-rem}rem;
-    min-height: 40vh;
+    min-height: round(down, 40vh, #{$ug-leading-rem}rem);
 
     &--full {
-      min-height: 100vh;
+      min-height: round(down, 100vh, #{$ug-leading-rem}rem);
     }
   }
 }
