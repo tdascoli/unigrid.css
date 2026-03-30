@@ -1903,6 +1903,27 @@ textarea {
   background-image: linear-gradient(to bottom, transparent calc(50% - 1.5px), #1a1a1a calc(50% - 1.5px), #1a1a1a calc(50% + 1.5px), transparent calc(50% + 1.5px));
 }
 
+.ug-label-divider {
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 26px;
+  line-height: 1.625rem;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #666666;
+  padding-bottom: 0.8125rem;
+  border-bottom: 2px solid #1a1a1a;
+  margin-top: 0;
+}
+.ug-label-divider--bold {
+  border-bottom-width: 3px;
+}
+.ug-label-divider--light {
+  border-bottom-color: #e8e5e0;
+}
+
 .ug-modules {
   position: relative;
   font-size: 0;

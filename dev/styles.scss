@@ -78,15 +78,7 @@ body.dev-debug {
 }
 
 .dev-section-title {
-  @include ug-font-size("sm");
-  @include ug-font-weight("bold");
-  @include ug-rhythm-line-height(1);
-  @include ug-rhythm-margin-bottom(1);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: $ug-medium-gray;
-  padding-bottom: #{$ug-leading-rem * 0.5}rem;
-  border-bottom: 2px solid $ug-black;
+  @extend .ug-label-divider;
 }
 
 .dev-cell {
