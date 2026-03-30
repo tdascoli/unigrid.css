@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unigrid CSS — Section Title Examples</title>
+  <link rel="preconnect" href="https://rsms.me/">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <link rel="stylesheet" href="./styles.scss">
+</head>
+<body>
+
+  <header class="ug-header ug-header--compact">
+    <div class="ug-header__title">
+      <h1>Unigrid</h1>
+      <p class="ug-header__subtitle">CSS Framework</p>
+    </div>
+    <nav class="ug-navbar">
+      <div class="ug-navbar__inner">
+        <button class="ug-navbar__toggle" onclick="this.nextElementSibling.classList.toggle('ug-navbar__menu--open')">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="ug-navbar__menu">
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="/">Overview</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="/grid.html">Grid</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="/formats.html">Formats</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="/modules.html">Modules</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="/typography.html">Typography</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="/components.html">Components</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="/cheatsheet.html">Cheatsheet</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link ug-navbar__link--active" href="/example.html">Example</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============================================================
+       EXAMPLE: Long-form page with section titles as dividers
+       Mimics an NPS informational brochure / web page
+       ============================================================ -->
+
+  <!-- Hero intro -->
+  <section class="ug-hero ug-hero--half" style="background:linear-gradient(135deg, #274a5a 0%, #1a1a1a 60%)">
+    <div class="ug-hero__content">
+      <p class="ug-hero__subtitle">Grand Teton National Park</p>
+      <h1 class="ug-hero__title">Rising Above the Valley</h1>
+      <p class="ug-hero__lead">The Teton Range rises abruptly more than 7,000 feet above the valley floor of Jackson Hole — a dramatic landscape shaped by ancient glaciers.</p>
+    </div>
+  </section>
+
+  <!-- Section 1: Overview -->
+  <div class="ug-section">
+    <h2 class="ug-section__title">Overview</h2>
+  </div>
+
+  <div class="ug-container ug-container--narrow ug-pt--5 ug-pb--5">
+    <div class="ug-grid">
+      <div class="ug-col--8 ug-col--sm-12">
+        <p class="ug-body ug-mb--3">Grand Teton National Park preserves a spectacular landscape rich with majestic mountains, pristine lakes, and extraordinary wildlife. The park has more than 200 miles of trails to explore, from easy lakeside walks to strenuous mountain ascents.</p>
+        <p class="ug-body">Established in 1929, the park encompasses 310,000 acres in northwestern Wyoming. The Teton Range, the youngest range in the Rocky Mountains, includes the 13,775-foot Grand Teton — the highest peak in the park.</p>
+      </div>
+      <div class="ug-col--4 ug-col--sm-12">
+        <div class="ug-infobox ug-mb--3">
+          <p class="ug-infobox__title">Quick Facts</p>
+          <p class="ug-body--sm">
+            Established: 1929<br>
+            Area: 310,000 acres<br>
+            Highest point: 13,775 ft<br>
+            Annual visitors: 3.5 million
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Things To Do -->
+  <div class="ug-section">
+    <h2 class="ug-section__title">Things To Do</h2>
+    <p class="ug-section__subtitle">Hiking, climbing, fishing, and more</p>
+  </div>
+
+  <div class="ug-container ug-container--narrow ug-pt--5 ug-pb--5">
+    <div class="ug-grid">
+      <div class="ug-col--4 ug-col--sm-12">
+        <h3 class="ug-h4">Hiking</h3>
+        <p class="ug-body--sm ug-mb--3">Over 200 miles of trails range from easy lakeside walks to challenging alpine routes. Popular trails include Cascade Canyon, Lake Solitude, and the Paintbrush-Cascade loop.</p>
+      </div>
+      <div class="ug-col--4 ug-col--sm-12">
+        <h3 class="ug-h4">Mountaineering</h3>
+        <p class="ug-body--sm ug-mb--3">The Teton Range offers world-class climbing. The Grand Teton itself attracts thousands of climbers each year. Registration is required for all overnight climbs.</p>
+      </div>
+      <div class="ug-col--4 ug-col--sm-12">
+        <h3 class="ug-h4">Wildlife Viewing</h3>
+        <p class="ug-body--sm ug-mb--3">Home to moose, elk, bison, black bears, grizzly bears, and wolves. Dawn and dusk offer the best viewing opportunities, especially along the Moose-Wilson Road.</p>
+      </div>
+    </div>
+    <hr class="ug-divider">
+    <div class="ug-grid">
+      <div class="ug-col--4 ug-col--sm-12">
+        <h3 class="ug-h4">Fishing</h3>
+        <p class="ug-body--sm ug-mb--3">Snake River and the park's many lakes offer excellent fishing for cutthroat, lake, and brown trout. A Wyoming fishing license is required.</p>
+      </div>
+      <div class="ug-col--4 ug-col--sm-12">
+        <h3 class="ug-h4">Boating</h3>
+        <p class="ug-body--sm ug-mb--3">Motorized and non-motorized boats are permitted on Jackson, Jenny, and Phelps lakes. Permits required. Kayaking and canoeing are popular on String and Leigh lakes.</p>
+      </div>
+      <div class="ug-col--4 ug-col--sm-12">
+        <h3 class="ug-h4">Winter Sports</h3>
+        <p class="ug-body--sm ug-mb--3">Cross-country skiing, snowshoeing, and backcountry skiing are available in winter. The Teton Park Road is groomed for skiing from mid-December through mid-March.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Plan Your Visit (colored) -->
+  <div class="ug-section ug-section--brown">
+    <h2 class="ug-section__title">Plan Your Visit</h2>
+  </div>
+
+  <div class="ug-container ug-container--narrow ug-pt--5 ug-pb--5">
+    <div class="ug-grid">
+      <div class="ug-col--3 ug-col--sm-6 ug-col--md-6">
+        <div class="ug-infobox ug-mb--3">
+          <p class="ug-infobox__title">Entrance Fees</p>
+          <p class="ug-body--sm">Vehicle: $35 (7 days)<br>Individual: $20<br>Annual Pass: $70</p>
+        </div>
+      </div>
+      <div class="ug-col--3 ug-col--sm-6 ug-col--md-6">
+        <div class="ug-infobox ug-mb--3">
+          <p class="ug-infobox__title">Seasons</p>
+          <p class="ug-body--sm">Summer: May–Oct<br>Winter: Dec–Mar<br>Peak: July–August</p>
+        </div>
+      </div>
+      <div class="ug-col--3 ug-col--sm-6 ug-col--md-6">
+        <div class="ug-infobox ug-mb--3">
+          <p class="ug-infobox__title">Getting Here</p>
+          <p class="ug-body--sm">Jackson Hole Airport (JAC) is inside the park. Also accessible via Yellowstone's South Entrance.</p>
+        </div>
+      </div>
+      <div class="ug-col--3 ug-col--sm-6 ug-col--md-6">
+        <div class="ug-infobox ug-mb--3">
+          <p class="ug-infobox__title">Lodging</p>
+          <p class="ug-body--sm">5 campgrounds, several lodges. Reservations strongly recommended for summer months.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4: Safety (compact, red accent) -->
+  <div class="ug-section ug-section--red ug-section--compact">
+    <h2 class="ug-section__title">Safety</h2>
+  </div>
+
+  <div class="ug-container ug-container--narrow ug-pt--5 ug-pb--5">
+    <div class="ug-grid">
+      <div class="ug-col--6 ug-col--sm-12">
+        <div class="ug-infobox ug-infobox--dark ug-mb--3">
+          <p class="ug-infobox__title">Bear Safety</p>
+          <p class="ug-body--sm">Carry bear spray and know how to use it. Make noise on trails. Store all food in bear-proof containers. Never approach wildlife.</p>
+        </div>
+      </div>
+      <div class="ug-col--6 ug-col--sm-12">
+        <div class="ug-infobox ug-infobox--dark ug-mb--3">
+          <p class="ug-infobox__title">Mountain Weather</p>
+          <p class="ug-body--sm">Weather changes rapidly in the Tetons. Afternoon thunderstorms are common in summer. Bring layers, rain gear, and check forecasts before heading out.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5: Contact (light variant) -->
+  <div class="ug-section ug-section--light ug-section--compact">
+    <h2 class="ug-section__title">Contact &amp; Information</h2>
+  </div>
+
+  <div class="ug-container ug-container--narrow ug-pt--5 ug-pb--5">
+    <div class="ug-grid ug-mb--3">
+      <div class="ug-col--6 ug-col--sm-12">
+        <h3 class="ug-h4">Craig Thomas Discovery &amp; Visitor Center</h3>
+        <p class="ug-body--sm ug-mb--3">Located in Moose, WY. Open year-round. Exhibits, bookstore, and ranger programs. Park information and permits available.</p>
+      </div>
+      <div class="ug-col--6 ug-col--sm-12">
+        <h3 class="ug-h4">Jenny Lake Visitor Center</h3>
+        <p class="ug-body--sm ug-mb--3">Seasonal visitor center with geology exhibits and ranger talks. Open mid-May through late September. Starting point for popular hikes.</p>
+      </div>
+    </div>
+    <p class="ug-caption">Emergency: 911 or (307) 739-3301 / General info: (307) 739-3399</p>
+  </div>
+
+  <!-- Footer -->
+  <div class="ug-section">
+    <p class="ug-section__title" style="font-size:0.75rem;font-weight:400;opacity:0.5">National Park Service / U.S. Department of the Interior — Built with Unigrid.css</p>
+  </div>
+
+</body>
+</html>

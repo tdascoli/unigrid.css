@@ -1,0 +1,248 @@
+// ==========================================================================
+// Unigrid CSS Framework — Hero (BEM)
+//
+// Full-width hero section for page introductions. Supports background
+// images, overlays, and flexible content positioning.
+//
+// Block: .ug-hero
+// Elements: __background, __overlay, __content, __title, __subtitle,
+//           __lead, __actions
+// Modifiers: --full, --half, --third, --dark, --light, --center, --bottom
+// ==========================================================================
+
+.ug-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  min-height: 50vh;
+  padding: ug-space(6) ug-space(5);
+  color: $ug-white;
+  overflow: hidden;
+
+  // -- Background image --
+  &__background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    img,
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  // -- Overlay (darkens background for readability) --
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.2) 60%,
+      transparent 100%
+    );
+  }
+
+  // -- Content wrapper --
+  &__content {
+    position: relative;
+    z-index: 2;
+    max-width: $ug-container-max-width;
+    width: 100%;
+  }
+
+  // -- Title --
+  &__title {
+    @include ug-font-size("3xl");
+    @include ug-font-weight("black");
+    line-height: $ug-line-height-tight;
+    letter-spacing: -0.02em;
+    margin: 0 0 ug-space(2) 0;
+
+    @include ug-breakpoint-down("md") {
+      font-size: 2rem;
+    }
+  }
+
+  // -- Subtitle --
+  &__subtitle {
+    @include ug-font-size("lg");
+    @include ug-font-weight("light");
+    opacity: 0.85;
+    margin: 0 0 ug-space(1) 0;
+  }
+
+  // -- Lead text --
+  &__lead {
+    @include ug-font-size("base");
+    @include ug-font-weight("regular");
+    line-height: $ug-line-height;
+    max-width: 40rem;
+    opacity: 0.8;
+    margin: 0 0 ug-space(4) 0;
+  }
+
+  // -- Action buttons area --
+  &__actions {
+    display: flex;
+    gap: ug-space(3);
+    flex-wrap: wrap;
+    margin-top: ug-space(3);
+  }
+
+  // ==============================
+  // Height Modifiers
+  // ==============================
+
+  &--full {
+    min-height: 100vh;
+  }
+
+  &--half {
+    min-height: 50vh;
+  }
+
+  &--third {
+    min-height: 33vh;
+  }
+
+  &--auto {
+    min-height: 0;
+  }
+
+  // ==============================
+  // Content Alignment
+  // ==============================
+
+  &--center {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    .ug-hero__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .ug-hero__lead {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .ug-hero__actions {
+      justify-content: center;
+    }
+  }
+
+  &--bottom {
+    justify-content: flex-end;
+  }
+
+  &--top {
+    justify-content: flex-start;
+  }
+
+  // ==============================
+  // Color Variants
+  // ==============================
+
+  // Dark (default) — white text on dark background
+  &--dark {
+    background-color: $ug-black;
+    color: $ug-white;
+  }
+
+  // Light — dark text on light background
+  &--light {
+    background-color: $ug-warm-gray;
+    color: $ug-black;
+
+    .ug-hero__overlay {
+      background: linear-gradient(
+        to top,
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(255, 255, 255, 0.2) 60%,
+        transparent 100%
+      );
+    }
+  }
+
+  // NPS colors
+  &--brown {
+    background-color: $ug-brown;
+  }
+
+  &--green {
+    background-color: $ug-green;
+  }
+
+  &--blue {
+    background-color: $ug-blue;
+  }
+
+  &--red {
+    background-color: $ug-red;
+  }
+
+  // ==============================
+  // DIN Proportions
+  // ==============================
+
+  &--din {
+    @include ug-ratio-din(true);
+    min-height: 0;
+  }
+
+  // ==============================
+  // Responsive
+  // ==============================
+
+  @include ug-breakpoint-down("md") {
+    padding: ug-space(5) ug-space(3);
+    min-height: 40vh;
+
+    &--full {
+      min-height: 100vh;
+    }
+  }
+}
+
+// ---- Hero Button ----
+// Simple button for use within .ug-hero__actions
+
+.ug-hero__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: ug-space(2);
+  padding: ug-space(2) ug-space(4);
+  @include ug-font-size("sm");
+  @include ug-font-weight("bold");
+  text-decoration: none;
+  border: 2px solid currentColor;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+
+  &:hover {
+    background-color: $ug-white;
+    color: $ug-black;
+  }
+
+  &--filled {
+    background-color: $ug-white;
+    color: $ug-black;
+    border-color: $ug-white;
+
+    &:hover {
+      background-color: transparent;
+      color: $ug-white;
+    }
+  }
+}
