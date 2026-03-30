@@ -12,10 +12,10 @@
 .ug-header {
   display: flex;
   align-items: flex-start;
-  gap: ug-space(4);
+  gap: #{$ug-leading-rem}rem;
   background-color: $ug-black;
   color: $ug-white;
-  padding: ug-space(3) ug-space(4);
+  padding: #{$ug-leading-rem}rem #{$ug-leading-rem * 1.5}rem;
   width: 100%;
   grid-column: 1 / -1;
   flex-wrap: wrap;
@@ -42,7 +42,7 @@
     h1 {
       @include ug-font-size("3xl");
       @include ug-font-weight("black");
-      line-height: $ug-line-height-tight;
+      @include ug-rhythm-line-height(2);
       letter-spacing: -0.02em;
       text-transform: none;
       margin: 0;
@@ -122,7 +122,7 @@
 
   // -- Modifiers --
   &--compact {
-    padding: ug-space(2) ug-space(3);
+    padding: #{$ug-leading-rem * 0.5}rem #{$ug-leading-rem}rem;
 
     .ug-header__title h1,
     .ug-header__name {

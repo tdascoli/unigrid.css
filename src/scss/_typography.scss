@@ -1,42 +1,28 @@
 // ==========================================================================
 // Unigrid CSS Framework — Typography (BEM)
 //
-// Helvetica hierarchy: bold headlines, regular body, light captions.
-// All type flush-left, ragged-right.
-//
-// Blocks: .ug-h1–.ug-h4, .ug-body, .ug-lead, .ug-caption, .ug-label
-// Modifiers: --sm, --lg for .ug-body
+// Utility classes for typography. Vertical spacing aligned to the
+// Gutenberg leading ($ug-leading-rem) for consistent rhythm.
 // ==========================================================================
 
-// ---- Headings ----
+@use "sass:list";
+@use "sass:map";
 
-.ug-h1 {
-  @include ug-font-size("3xl");
-  @include ug-font-weight("black");
-  line-height: $ug-line-height-tight;
-  letter-spacing: -0.02em;
-  margin-bottom: ug-space(3);
-}
+// ---- Headings (from $ug-headings map) ----
+// Each: (font-size rem, line-height × leading, margin-top × leading, margin-bottom × leading)
 
-.ug-h2 {
-  @include ug-font-size("2xl");
-  @include ug-font-weight("bold");
-  line-height: $ug-line-height-tight;
-  margin-bottom: ug-space(2);
-}
+@each $heading, $props in $ug-headings {
+  .ug-#{$heading} {
+    @include ug-rhythm-font-size(list.nth($props, 1));
+    @include ug-rhythm-line-height(list.nth($props, 2));
+    @include ug-font-weight("bold");
+    @include ug-rhythm-margin-bottom(list.nth($props, 4));
 
-.ug-h3 {
-  @include ug-font-size("xl");
-  @include ug-font-weight("bold");
-  line-height: $ug-line-height-tight;
-  margin-bottom: ug-space(2);
-}
-
-.ug-h4 {
-  @include ug-font-size("lg");
-  @include ug-font-weight("bold");
-  line-height: $ug-line-height;
-  margin-bottom: ug-space(2);
+    @if $heading == "h1" {
+      @include ug-font-weight("black");
+      letter-spacing: -0.02em;
+    }
+  }
 }
 
 // ---- Body Text ----
@@ -44,7 +30,7 @@
 .ug-body {
   @include ug-font-size("base");
   @include ug-font-weight("regular");
-  line-height: $ug-line-height;
+  @include ug-rhythm-line-height(1);
 
   &--sm {
     @include ug-font-size("sm");
@@ -58,10 +44,10 @@
 // ---- Lead / Intro Text ----
 
 .ug-lead {
-  @include ug-font-size("lg");
+  @include ug-rhythm-font-size(1.2);
   @include ug-font-weight("light");
-  line-height: $ug-line-height;
-  margin-bottom: ug-space(4);
+  @include ug-rhythm-line-height(1);
+  @include ug-rhythm-margin-bottom(1);
 }
 
 // ---- Caption ----
@@ -69,7 +55,7 @@
 .ug-caption {
   @include ug-font-size("xs");
   @include ug-font-weight("regular");
-  line-height: $ug-line-height;
+  @include ug-rhythm-line-height(1);
   color: $ug-medium-gray;
 }
 
@@ -78,6 +64,7 @@
 .ug-label {
   @include ug-font-size("xs");
   @include ug-font-weight("bold");
+  @include ug-rhythm-line-height(1);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
@@ -103,7 +90,7 @@
 @for $i from 2 through 4 {
   .ug-text--cols-#{$i} {
     columns: $i;
-    column-gap: ug-space(4);
+    column-gap: #{$ug-leading-rem * 1.5}rem;
 
     @include ug-breakpoint-down("md") {
       columns: 1;

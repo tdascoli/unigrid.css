@@ -1,5 +1,9 @@
 // ==========================================================================
 // Unigrid CSS Framework — Reset / Base
+//
+// Line-height and font sizing are aligned to the Gutenberg vertical rhythm.
+// Mobile: #{$ug-base}px base, #{$ug-leading}px leading
+// Desktop: #{$ug-base-desktop}px base, #{$ug-leading-desktop}px leading
 // ==========================================================================
 
 *,
@@ -11,17 +15,21 @@
 }
 
 html {
-  font-size: 100%;
+  font-size: #{$ug-base}px;
+  font-size: #{$ug-base-font-size};
   -webkit-text-size-adjust: 100%;
-  line-height: $ug-line-height;
+  @include ug-rhythm-line-height(1);
+
+  @media screen and (min-width: #{$ug-prose-max-width}) {
+    font-size: #{$ug-base-desktop}px;
+    font-size: #{$ug-base-font-size-desktop};
+  }
 }
 
 body {
   font-family: $ug-font-family;
   font-feature-settings: 'liga' 1, 'calt' 1;
-  @include ug-font-size("base");
   @include ug-font-weight("regular");
-  line-height: $ug-line-height;
   color: $ug-black;
   background-color: $ug-white;
   -webkit-font-smoothing: antialiased;

@@ -1,17 +1,16 @@
 // ==========================================================================
 // Unigrid CSS Framework — Container (BEM)
 //
+// Padding aligned to leading for vertical rhythm consistency.
+//
 // Block: .ug-container
 // Modifiers: --narrow, --wide, --fluid, --flush
-//
-// Default: full viewport width with left/right padding.
-// --narrow: centered with max-width (like Bootstrap's container).
 // ==========================================================================
 
 .ug-container {
   width: 100%;
-  padding-left: $ug-container-padding;
-  padding-right: $ug-container-padding;
+  padding-left: #{$ug-leading-rem * 1.5}rem;
+  padding-right: #{$ug-leading-rem * 1.5}rem;
 
   // -- Centered, max-width container --
   &--narrow {
@@ -30,8 +29,6 @@
   // -- No max-width, no padding (true full-bleed) --
   &--fluid {
     max-width: none;
-    padding-left: $ug-container-padding;
-    padding-right: $ug-container-padding;
   }
 
   // -- No padding (for edge-to-edge content) --
@@ -42,8 +39,8 @@
 
   // -- Responsive padding --
   @include ug-breakpoint-down("md") {
-    padding-left: ug-space(3);
-    padding-right: ug-space(3);
+    padding-left: #{$ug-leading-rem}rem;
+    padding-right: #{$ug-leading-rem}rem;
 
     &--flush {
       padding-left: 0;

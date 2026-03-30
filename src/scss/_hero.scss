@@ -17,7 +17,7 @@
   justify-content: flex-end;
   width: 100%;
   min-height: 50vh;
-  padding: ug-space(6) ug-space(5);
+  padding: #{$ug-leading-rem * 3}rem #{$ug-leading-rem * 1.5}rem;
   color: $ug-white;
   overflow: hidden;
 
@@ -58,14 +58,15 @@
 
   // -- Title --
   &__title {
-    @include ug-font-size("3xl");
+    @include ug-rhythm-font-size(2.5);
+    @include ug-rhythm-line-height(2);
     @include ug-font-weight("black");
-    line-height: $ug-line-height-tight;
     letter-spacing: -0.02em;
-    margin: 0 0 ug-space(2) 0;
+    @include ug-rhythm-margin-bottom(0.5);
+    margin-top: 0;
 
     @include ug-breakpoint-down("md") {
-      font-size: 2rem;
+      @include ug-rhythm-font-size(2);
     }
   }
 
@@ -73,26 +74,29 @@
   &__subtitle {
     @include ug-font-size("lg");
     @include ug-font-weight("light");
+    @include ug-rhythm-line-height(1);
     opacity: 0.85;
-    margin: 0 0 ug-space(1) 0;
+    @include ug-rhythm-margin-bottom(0.25);
+    margin-top: 0;
   }
 
   // -- Lead text --
   &__lead {
     @include ug-font-size("base");
     @include ug-font-weight("regular");
-    line-height: $ug-line-height;
-    max-width: 40rem;
+    @include ug-rhythm-line-height(1);
+    max-width: $ug-prose-max-width;
     opacity: 0.8;
-    margin: 0 0 ug-space(4) 0;
+    @include ug-rhythm-margin-bottom(1);
+    margin-top: 0;
   }
 
   // -- Action buttons area --
   &__actions {
     display: flex;
-    gap: ug-space(3);
+    gap: #{$ug-leading-rem}rem;
     flex-wrap: wrap;
-    margin-top: ug-space(3);
+    @include ug-rhythm-margin-top(1);
   }
 
   // ==============================
@@ -204,7 +208,7 @@
   // ==============================
 
   @include ug-breakpoint-down("md") {
-    padding: ug-space(5) ug-space(3);
+    padding: #{$ug-leading-rem * 2}rem #{$ug-leading-rem}rem;
     min-height: 40vh;
 
     &--full {
@@ -219,8 +223,8 @@
 .ug-hero__btn {
   display: inline-flex;
   align-items: center;
-  gap: ug-space(2);
-  padding: ug-space(2) ug-space(4);
+  gap: #{$ug-leading-rem * 0.5}rem;
+  padding: #{$ug-leading-rem * 0.5}rem #{$ug-leading-rem}rem;
   @include ug-font-size("sm");
   @include ug-font-weight("bold");
   text-decoration: none;

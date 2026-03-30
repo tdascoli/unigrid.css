@@ -7,17 +7,23 @@
 }
 
 html {
+  font-size: 16px;
   font-size: 100%;
   -webkit-text-size-adjust: 100%;
-  line-height: 1.5;
+  line-height: 26px;
+  line-height: 1.625rem;
+}
+@media screen and (min-width: 35rem) {
+  html {
+    font-size: 18px;
+    font-size: 112.5%;
+  }
 }
 
 body {
   font-family: Inter, sans-serif;
   font-feature-settings: "liga" 1, "calt" 1;
-  font-size: 1rem;
   font-weight: 400;
-  line-height: 1.5;
   color: #1a1a1a;
   background-color: #ffffff;
   -webkit-font-smoothing: antialiased;
@@ -57,8 +63,8 @@ textarea {
 
 .ug-container {
   width: 100%;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 2.4375rem;
+  padding-right: 2.4375rem;
 }
 .ug-container--narrow {
   max-width: 1280px;
@@ -72,8 +78,6 @@ textarea {
 }
 .ug-container--fluid {
   max-width: none;
-  padding-left: 2rem;
-  padding-right: 2rem;
 }
 .ug-container--flush {
   padding-left: 0;
@@ -81,8 +85,8 @@ textarea {
 }
 @media (max-width: 767px) {
   .ug-container {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 1.625rem;
+    padding-right: 1.625rem;
   }
   .ug-container--flush {
     padding-left: 0;
@@ -628,7 +632,7 @@ textarea {
   display: grid;
   grid-template-columns: subgrid;
   grid-template-rows: auto 1fr auto;
-  padding: 1rem;
+  padding: 1.625rem;
   min-height: 0;
 }
 .ug-panel__header {
@@ -687,10 +691,10 @@ textarea {
 .ug-header {
   display: flex;
   align-items: flex-start;
-  gap: 1.5rem;
+  gap: 1.625rem;
   background-color: #1a1a1a;
   color: #ffffff;
-  padding: 1rem 1.5rem;
+  padding: 1.625rem 2.4375rem;
   width: 100%;
   grid-column: 1/-1;
   flex-wrap: wrap;
@@ -714,7 +718,8 @@ textarea {
 .ug-header__title h1 {
   font-size: 3rem;
   font-weight: 900;
-  line-height: 1.2;
+  line-height: 52px;
+  line-height: 3.25rem;
   letter-spacing: -0.02em;
   text-transform: none;
   margin: 0;
@@ -776,7 +781,7 @@ textarea {
   }
 }
 .ug-header--compact {
-  padding: 0.5rem 1rem;
+  padding: 0.8125rem 1.625rem;
 }
 .ug-header--compact .ug-header__title h1,
 .ug-header--compact .ug-header__name {
@@ -813,13 +818,13 @@ textarea {
   justify-content: space-between;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 1.5rem;
-  min-height: 3rem;
+  padding: 0 1.625rem;
+  min-height: 3.25rem;
 }
 .ug-navbar__brand {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.8125rem;
   font-size: 0.875rem;
   font-weight: 700;
   text-decoration: none;
@@ -831,8 +836,8 @@ textarea {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.5rem;
-  margin-right: -0.5rem;
+  padding: 0.8125rem;
+  margin-right: -0.8125rem;
   color: inherit;
 }
 .ug-navbar__toggle span {
@@ -872,7 +877,7 @@ textarea {
     right: 0;
     background-color: inherit;
     border-bottom: 1px solid #e8e5e0;
-    padding: 0.5rem 0;
+    padding: 0.8125rem 0;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   }
   .ug-navbar__menu--open {
@@ -885,9 +890,11 @@ textarea {
 }
 .ug-navbar__link {
   display: block;
-  padding: 0.5rem 1rem;
+  padding: 0.8125rem 0.8125rem;
   font-size: 0.875rem;
   font-weight: 400;
+  line-height: 26px;
+  line-height: 1.625rem;
   color: #333333;
   text-decoration: none;
   white-space: nowrap;
@@ -903,21 +910,21 @@ textarea {
 }
 @media (max-width: 767px) {
   .ug-navbar__link {
-    padding: 1rem 1.5rem;
+    padding: 0.8125rem 1.625rem;
     font-size: 1rem;
   }
 }
 .ug-navbar__divider {
   width: 1px;
-  height: 1rem;
+  height: 1.625rem;
   background-color: #e8e5e0;
-  margin: 0 0.25rem;
+  margin: 0 0.40625rem;
 }
 @media (max-width: 767px) {
   .ug-navbar__divider {
     width: auto;
     height: 1px;
-    margin: 0.25rem 1.5rem;
+    margin: 0.40625rem 1.625rem;
   }
 }
 .ug-navbar--dark {
@@ -988,7 +995,7 @@ textarea {
   justify-content: flex-end;
   width: 100%;
   min-height: 50vh;
-  padding: 3rem 2rem;
+  padding: 4.875rem 2.4375rem;
   color: #ffffff;
   overflow: hidden;
 }
@@ -1016,36 +1023,49 @@ textarea {
   width: 100%;
 }
 .ug-hero__title {
-  font-size: 3rem;
+  font-size: 40px;
+  font-size: 2.5rem;
+  line-height: 52px;
+  line-height: 3.25rem;
   font-weight: 900;
-  line-height: 1.2;
   letter-spacing: -0.02em;
-  margin: 0 0 0.5rem 0;
+  margin-bottom: 13px;
+  margin-bottom: 0.8125rem;
+  margin-top: 0;
 }
 @media (max-width: 767px) {
   .ug-hero__title {
+    font-size: 32px;
     font-size: 2rem;
   }
 }
 .ug-hero__subtitle {
   font-size: 1.25rem;
   font-weight: 300;
+  line-height: 26px;
+  line-height: 1.625rem;
   opacity: 0.85;
-  margin: 0 0 0.25rem 0;
+  margin-bottom: 6.5px;
+  margin-bottom: 0.40625rem;
+  margin-top: 0;
 }
 .ug-hero__lead {
   font-size: 1rem;
   font-weight: 400;
-  line-height: 1.5;
-  max-width: 40rem;
+  line-height: 26px;
+  line-height: 1.625rem;
+  max-width: 35rem;
   opacity: 0.8;
-  margin: 0 0 1.5rem 0;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
+  margin-top: 0;
 }
 .ug-hero__actions {
   display: flex;
-  gap: 1rem;
+  gap: 1.625rem;
   flex-wrap: wrap;
-  margin-top: 1rem;
+  margin-top: 26px;
+  margin-top: 1.625rem;
 }
 .ug-hero--full {
   min-height: 100vh;
@@ -1111,7 +1131,7 @@ textarea {
 }
 @media (max-width: 767px) {
   .ug-hero {
-    padding: 2rem 1rem;
+    padding: 3.25rem 1.625rem;
     min-height: 40vh;
   }
   .ug-hero--full {
@@ -1122,8 +1142,8 @@ textarea {
 .ug-hero__btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1.5rem;
+  gap: 0.8125rem;
+  padding: 0.8125rem 1.625rem;
   font-size: 0.875rem;
   font-weight: 700;
   text-decoration: none;
@@ -1151,32 +1171,42 @@ textarea {
   width: 100%;
   background-color: #1a1a1a;
   color: #ffffff;
-  padding: 1rem 2rem;
+  padding: 1.625rem 2.4375rem;
 }
 .ug-section__title {
-  font-size: 2rem;
+  font-size: 27px;
+  font-size: 1.6875rem;
+  line-height: 39px;
+  line-height: 2.4375rem;
   font-weight: 900;
-  line-height: 1.2;
   letter-spacing: -0.01em;
   margin: 0;
 }
 .ug-section__subtitle {
   font-size: 0.875rem;
   font-weight: 300;
+  line-height: 26px;
+  line-height: 1.625rem;
   opacity: 0.7;
   margin: 0;
 }
 .ug-section--compact {
-  padding: 0.5rem 2rem;
+  padding: 0.8125rem 2.4375rem;
 }
 .ug-section--compact .ug-section__title {
-  font-size: 1.25rem;
+  font-size: 19.2px;
+  font-size: 1.2rem;
+  line-height: 26px;
+  line-height: 1.625rem;
 }
 .ug-section--large {
-  padding: 2rem 2rem;
+  padding: 3.25rem 2.4375rem;
 }
 .ug-section--large .ug-section__title {
-  font-size: 3rem;
+  font-size: 40px;
+  font-size: 2.5rem;
+  line-height: 52px;
+  line-height: 3.25rem;
 }
 .ug-section--brown {
   background-color: #4a3728;
@@ -1196,49 +1226,83 @@ textarea {
 }
 @media (max-width: 767px) {
   .ug-section {
-    padding: 1rem 1rem;
+    padding: 1.625rem 1.625rem;
   }
   .ug-section--large {
-    padding: 1.5rem 1rem;
+    padding: 2.4375rem 1.625rem;
   }
   .ug-section--compact {
-    padding: 0.5rem 1rem;
+    padding: 0.8125rem 1.625rem;
   }
 }
 
 .ug-h1 {
-  font-size: 3rem;
+  font-size: 40px;
+  font-size: 2.5rem;
+  line-height: 52px;
+  line-height: 3.25rem;
+  font-weight: 700;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
   font-weight: 900;
-  line-height: 1.2;
   letter-spacing: -0.02em;
-  margin-bottom: 1rem;
 }
 
 .ug-h2 {
-  font-size: 2rem;
+  font-size: 27px;
+  font-size: 1.6875rem;
+  line-height: 39px;
+  line-height: 2.4375rem;
   font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 0.5rem;
+  margin-bottom: 13px;
+  margin-bottom: 0.8125rem;
 }
 
 .ug-h3 {
-  font-size: 1.5rem;
+  font-size: 22px;
+  font-size: 1.375rem;
+  line-height: 26px;
+  line-height: 1.625rem;
   font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 0.5rem;
+  margin-bottom: 13px;
+  margin-bottom: 0.8125rem;
 }
 
 .ug-h4 {
-  font-size: 1.25rem;
+  font-size: 19.2px;
+  font-size: 1.2rem;
+  line-height: 26px;
+  line-height: 1.625rem;
   font-weight: 700;
-  line-height: 1.5;
-  margin-bottom: 0.5rem;
+  margin-bottom: 13px;
+  margin-bottom: 0.8125rem;
+}
+
+.ug-h5 {
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 26px;
+  line-height: 1.625rem;
+  font-weight: 700;
+  margin-bottom: 13px;
+  margin-bottom: 0.8125rem;
+}
+
+.ug-h6 {
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 26px;
+  line-height: 1.625rem;
+  font-weight: 700;
+  margin-bottom: 13px;
+  margin-bottom: 0.8125rem;
 }
 
 .ug-body {
   font-size: 1rem;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 26px;
+  line-height: 1.625rem;
 }
 .ug-body--sm {
   font-size: 0.875rem;
@@ -1248,22 +1312,28 @@ textarea {
 }
 
 .ug-lead {
-  font-size: 1.25rem;
+  font-size: 19.2px;
+  font-size: 1.2rem;
   font-weight: 300;
-  line-height: 1.5;
-  margin-bottom: 1.5rem;
+  line-height: 26px;
+  line-height: 1.625rem;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
 }
 
 .ug-caption {
   font-size: 0.75rem;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 26px;
+  line-height: 1.625rem;
   color: #666666;
 }
 
 .ug-label {
   font-size: 0.75rem;
   font-weight: 700;
+  line-height: 26px;
+  line-height: 1.625rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
@@ -1320,7 +1390,7 @@ textarea {
 
 .ug-text--cols-2 {
   columns: 2;
-  column-gap: 1.5rem;
+  column-gap: 2.4375rem;
 }
 @media (max-width: 767px) {
   .ug-text--cols-2 {
@@ -1330,7 +1400,7 @@ textarea {
 
 .ug-text--cols-3 {
   columns: 3;
-  column-gap: 1.5rem;
+  column-gap: 2.4375rem;
 }
 @media (max-width: 767px) {
   .ug-text--cols-3 {
@@ -1340,7 +1410,7 @@ textarea {
 
 .ug-text--cols-4 {
   columns: 4;
-  column-gap: 1.5rem;
+  column-gap: 2.4375rem;
 }
 @media (max-width: 767px) {
   .ug-text--cols-4 {
@@ -1731,18 +1801,20 @@ textarea {
 }
 
 .ug-block {
-  padding: 1rem;
+  padding: 26px 26px;
+  padding: 1.625rem 1.625rem;
 }
 .ug-block--flush {
   padding: 0;
 }
 .ug-block + .ug-block {
-  margin-top: 1rem;
+  margin-top: 26px;
+  margin-top: 1.625rem;
 }
 
 .ug-map {
   width: 100%;
-  min-height: 300px;
+  min-height: 19.5rem;
   background-color: #f5f2ed;
   border: 1px solid #e8e5e0;
   overflow: hidden;
@@ -1760,7 +1832,8 @@ textarea {
 
 .ug-infobox {
   background-color: #f5f2ed;
-  padding: 1rem;
+  padding: 26px 26px;
+  padding: 1.625rem 1.625rem;
   border-left: 3px solid #1a1a1a;
 }
 .ug-infobox--dark {
@@ -1771,9 +1844,12 @@ textarea {
 .ug-infobox__title {
   font-size: 0.875rem;
   font-weight: 700;
+  line-height: 26px;
+  line-height: 1.625rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin-bottom: 0.5rem;
+  margin-bottom: 13px;
+  margin-bottom: 0.8125rem;
 }
 
 .ug-image {
@@ -1798,7 +1874,10 @@ textarea {
 .ug-divider {
   border: none;
   border-top: 1px solid #e8e5e0;
-  margin: 1rem 0;
+  margin-top: 26px;
+  margin-top: 1.625rem;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
   grid-column: 1/-1;
 }
 .ug-divider--bold {

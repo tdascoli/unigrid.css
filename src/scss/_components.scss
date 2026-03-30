@@ -1,30 +1,29 @@
 // ==========================================================================
 // Unigrid CSS Framework — Components (BEM)
 //
-// Reusable components: infobox, map, image, divider, block
+// Reusable components: infobox, map, image, divider, block.
+// Vertical spacing aligned to leading ($ug-leading-rem) for rhythm.
 // ==========================================================================
 
 // ---- Block ----
-// Generic content container within a panel.
 
 .ug-block {
-  padding: ug-space(3);
+  @include ug-rhythm-padding(1, 1);
 
   &--flush {
     padding: 0;
   }
 
   & + & {
-    margin-top: ug-space(3);
+    @include ug-rhythm-margin-top(1);
   }
 }
 
 // ---- Map ----
-// Container for embedded maps.
 
 .ug-map {
   width: 100%;
-  min-height: 300px;
+  min-height: #{$ug-leading-rem * 12}rem;
   background-color: $ug-warm-gray;
   border: 1px solid $ug-light-gray;
   overflow: hidden;
@@ -43,11 +42,10 @@
 }
 
 // ---- Infobox ----
-// Callout box with left border accent.
 
 .ug-infobox {
   background-color: $ug-warm-gray;
-  padding: ug-space(3);
+  @include ug-rhythm-padding(1, 1);
   border-left: 3px solid $ug-black;
 
   &--dark {
@@ -59,14 +57,14 @@
   &__title {
     @include ug-font-size("sm");
     @include ug-font-weight("bold");
+    @include ug-rhythm-line-height(1);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    margin-bottom: ug-space(2);
+    @include ug-rhythm-margin-bottom(0.5);
   }
 }
 
 // ---- Image ----
-// Image container with optional aspect ratios.
 
 .ug-image {
   width: 100%;
@@ -96,7 +94,8 @@
 .ug-divider {
   border: none;
   border-top: 1px solid $ug-light-gray;
-  margin: ug-space(3) 0;
+  @include ug-rhythm-margin-top(1);
+  @include ug-rhythm-margin-bottom(1);
   grid-column: 1 / -1;
 
   &--bold {

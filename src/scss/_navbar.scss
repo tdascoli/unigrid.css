@@ -25,15 +25,15 @@
     justify-content: space-between;
     max-width: 1280px;
     margin: 0 auto;
-    padding: 0 ug-space(4);
-    min-height: 3rem;
+    padding: 0 #{$ug-leading-rem}rem;
+    min-height: #{$ug-leading-rem * 2}rem;
   }
 
   // -- Brand / Logo area (optional, left side) --
   &__brand {
     display: flex;
     align-items: center;
-    gap: ug-space(2);
+    gap: #{$ug-leading-rem * 0.5}rem;
     @include ug-font-size("sm");
     @include ug-font-weight("bold");
     text-decoration: none;
@@ -47,8 +47,8 @@
     background: none;
     border: none;
     cursor: pointer;
-    padding: ug-space(2);
-    margin-right: -(ug-space(2));
+    padding: #{$ug-leading-rem * 0.5}rem;
+    margin-right: #{$ug-leading-rem * -0.5}rem;
     color: inherit;
 
     // Hamburger icon (3 lines)
@@ -92,7 +92,7 @@
       right: 0;
       background-color: inherit;
       border-bottom: 1px solid $ug-light-gray;
-      padding: ug-space(2) 0;
+      padding: #{$ug-leading-rem * 0.5}rem 0;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 
       &--open {
@@ -110,9 +110,10 @@
   // -- Link --
   &__link {
     display: block;
-    padding: ug-space(2) ug-space(3);
+    padding: #{$ug-leading-rem * 0.5}rem #{$ug-leading-rem * 0.5}rem;
     @include ug-font-size("sm");
     @include ug-font-weight("regular");
+    @include ug-rhythm-line-height(1);
     color: $ug-dark-gray;
     text-decoration: none;
     white-space: nowrap;
@@ -129,7 +130,7 @@
     }
 
     @include ug-breakpoint-down("md") {
-      padding: ug-space(3) ug-space(4);
+      padding: #{$ug-leading-rem * 0.5}rem #{$ug-leading-rem}rem;
       @include ug-font-size("base");
     }
   }
@@ -137,14 +138,14 @@
   // -- Divider (vertical on desktop, horizontal on mobile) --
   &__divider {
     width: 1px;
-    height: 1rem;
+    height: #{$ug-leading-rem}rem;
     background-color: $ug-light-gray;
-    margin: 0 ug-space(1);
+    margin: 0 #{$ug-leading-rem * 0.25}rem;
 
     @include ug-breakpoint-down("md") {
       width: auto;
       height: 1px;
-      margin: ug-space(1) ug-space(4);
+      margin: #{$ug-leading-rem * 0.25}rem #{$ug-leading-rem}rem;
     }
   }
 
