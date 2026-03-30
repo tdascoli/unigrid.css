@@ -1677,9 +1677,15 @@ textarea {
 }
 .ug-prose--debug > * {
   outline: 1px solid hsla(210, 80%, 60%, 0.5);
-  background-color: hsla(210, 80%, 60%, 0.04);
   position: relative;
-  box-shadow: 0 calc(-1 * var(--debug-mt, 0px)) 0 0 hsla(30, 100%, 60%, 0.12), 0 calc(var(--debug-mb, 0px)) 0 0 hsla(30, 100%, 60%, 0.12);
+  box-shadow: 0 calc(-1 * var(--debug-mt, 0px)) 0 0 hsla(30, 100%, 60%, 0.15), 0 calc(var(--debug-mb, 0px)) 0 0 hsla(30, 100%, 60%, 0.15);
+}
+.ug-prose--debug > *::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 var(--debug-pt, 0px) 0 0 hsla(140, 70%, 50%, 0.1), inset 0 calc(-1 * var(--debug-pb, 0px)) 0 0 hsla(140, 70%, 50%, 0.1), inset var(--debug-pl, 0px) 0 0 0 hsla(140, 70%, 50%, 0.1), inset calc(-1 * var(--debug-pr, 0px)) 0 0 0 hsla(140, 70%, 50%, 0.1);
 }
 .ug-prose--debug h1 {
   --debug-mt: 104px;
@@ -1697,13 +1703,31 @@ textarea {
   --debug-mt: 39px;
   --debug-mb: 13px;
 }
-.ug-prose--debug p, .ug-prose--debug ul, .ug-prose--debug ol, .ug-prose--debug blockquote, .ug-prose--debug pre, .ug-prose--debug table, .ug-prose--debug figure, .ug-prose--debug hr {
+.ug-prose--debug p, .ug-prose--debug ul, .ug-prose--debug ol, .ug-prose--debug table, .ug-prose--debug figure, .ug-prose--debug hr {
   --debug-mt: 0px;
   --debug-mb: 26px;
 }
+.ug-prose--debug blockquote {
+  --debug-pl: 1.4375rem;
+  --debug-pt: 0px;
+  --debug-pb: 0px;
+  --debug-pr: 0px;
+  --debug-mt: 26px;
+  --debug-mb: 26px;
+}
+.ug-prose--debug pre {
+  --debug-pt: 26px;
+  --debug-pr: 26px;
+  --debug-pb: 26px;
+  --debug-pl: 26px;
+  --debug-mt: 0px;
+  --debug-mb: 26px;
+}
+.ug-prose--debug ul, .ug-prose--debug ol {
+  --debug-pl: 1.5rem;
+}
 .ug-prose--grid.ug-prose--debug > *, .ug-prose--grid-double.ug-prose--debug > * {
   outline: 1px solid hsla(210, 80%, 60%, 0.5);
-  background-color: hsla(210, 80%, 60%, 0.04);
 }
 
 .ug-block {

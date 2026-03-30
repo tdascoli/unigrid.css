@@ -338,34 +338,52 @@
     background-size: 100% #{$ug-leading-rem}rem;
   }
 
-  // ---- Debug: Show Margins ----
-  // Visualizes the box model: content (blue), padding (green), margin (orange).
+  // ---- Debug: Show Margins & Padding ----
+  // Blue outline = content box
+  // Orange = margins (top/bottom)
+  // Green = padding
   &--debug {
     > * {
       outline: 1px solid hsla(210, 80%, 60%, 0.5);
-      background-color: hsla(210, 80%, 60%, 0.04);
       position: relative;
 
-      // Margin visualization via box-shadow (orange glow for top/bottom margins)
+      // Margin visualization (orange glow)
       box-shadow:
-        0 calc(-1 * var(--debug-mt, 0px)) 0 0 hsla(30, 100%, 60%, 0.12),
-        0 calc(var(--debug-mb, 0px)) 0 0 hsla(30, 100%, 60%, 0.12);
+        0 calc(-1 * var(--debug-mt, 0px)) 0 0 hsla(30, 100%, 60%, 0.15),
+        0 calc(var(--debug-mb, 0px)) 0 0 hsla(30, 100%, 60%, 0.15);
+
+      // Padding visualization (green tint) via inset box-shadow on ::before
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        // Green inset shadow matching the element's padding
+        box-shadow: inset 0 var(--debug-pt, 0px) 0 0 hsla(140, 70%, 50%, 0.1),
+                    inset 0 calc(-1 * var(--debug-pb, 0px)) 0 0 hsla(140, 70%, 50%, 0.1),
+                    inset var(--debug-pl, 0px) 0 0 0 hsla(140, 70%, 50%, 0.1),
+                    inset calc(-1 * var(--debug-pr, 0px)) 0 0 0 hsla(140, 70%, 50%, 0.1);
+      }
     }
 
-    // Set margin CSS vars for common elements
+    // Margin vars per element
     h1 { --debug-mt: #{list.nth(map.get($ug-headings, h1), 3) * $ug-leading}px; --debug-mb: #{list.nth(map.get($ug-headings, h1), 4) * $ug-leading}px; }
     h2 { --debug-mt: #{list.nth(map.get($ug-headings, h2), 3) * $ug-leading}px; --debug-mb: #{list.nth(map.get($ug-headings, h2), 4) * $ug-leading}px; }
     h3 { --debug-mt: #{list.nth(map.get($ug-headings, h3), 3) * $ug-leading}px; --debug-mb: #{list.nth(map.get($ug-headings, h3), 4) * $ug-leading}px; }
     h4 { --debug-mt: #{list.nth(map.get($ug-headings, h4), 3) * $ug-leading}px; --debug-mb: #{list.nth(map.get($ug-headings, h4), 4) * $ug-leading}px; }
-    p, ul, ol, blockquote, pre, table, figure, hr { --debug-mt: 0px; --debug-mb: #{$ug-leading}px; }
+    p, ul, ol, table, figure, hr { --debug-mt: 0px; --debug-mb: #{$ug-leading}px; }
+
+    // Padding vars for elements that have padding
+    blockquote { --debug-pl: 1.4375rem; --debug-pt: 0px; --debug-pb: 0px; --debug-pr: 0px; --debug-mt: #{$ug-leading}px; --debug-mb: #{$ug-leading}px; }
+    pre { --debug-pt: #{$ug-leading}px; --debug-pr: #{$ug-leading}px; --debug-pb: #{$ug-leading}px; --debug-pl: #{$ug-leading}px; --debug-mt: 0px; --debug-mb: #{$ug-leading}px; }
+    ul, ol { --debug-pl: 1.5rem; }
   }
 
-  // ---- Combined: Grid + Margins ----
+  // ---- Combined: Grid + Debug ----
   &--grid#{&}--debug,
   &--grid-double#{&}--debug {
     > * {
       outline: 1px solid hsla(210, 80%, 60%, 0.5);
-      background-color: hsla(210, 80%, 60%, 0.04);
     }
   }
 }
