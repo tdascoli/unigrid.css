@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unigrid CSS — Example: Yellowstone</title>
+  <link rel="preconnect" href="https://rsms.me/">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <link rel="stylesheet" href="./styles.scss">
+  <style>
+    .example-hero {
+      background: linear-gradient(135deg, #274a5a 0%, #1a1a1a 100%);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem;
+      min-height: 300px;
+    }
+    .example-hero__caption {
+      font-size: 0.7rem;
+      opacity: 0.5;
+      margin-top: 0.5rem;
+    }
+    .example-map-placeholder {
+      background: linear-gradient(180deg, #d4cfc7 0%, #e8e5e0 30%, #d4cfc7 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 0.875rem;
+      min-height: 100%;
+      border: 1px solid #d4cfc7;
+    }
+    .example-photo {
+      background: linear-gradient(135deg, #4a3728 0%, #2d5a27 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.75rem;
+    }
+    .example-footer {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="dev-nav">
+    <a class="dev-nav__link" href="/">Overview</a>
+    <a class="dev-nav__link" href="/grid.html">Grid</a>
+    <a class="dev-nav__link" href="/formats.html">Formats</a>
+    <a class="dev-nav__link" href="/modules.html">Modules</a>
+    <a class="dev-nav__link" href="/typography.html">Typography</a>
+    <a class="dev-nav__link" href="/components.html">Components</a>
+    <a class="dev-nav__link" href="/cheatsheet.html">Cheatsheet</a>
+    <a class="dev-nav__link dev-nav__link--active" href="/example.html">Example</a>
+  </nav>
+
+  <!-- ============================================================
+       EXAMPLE: NPS Park Folder — Yellowstone (Format A4, 4 panels)
+       ============================================================ -->
+
+  <!-- Header Band -->
+  <header class="ug-header">
+    <div class="ug-header__logo">
+      <svg viewBox="0 0 40 52" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 2 L38 50 L2 50 Z" opacity="0.85"/>
+        <path d="M20 10 L32 44 L8 44 Z" fill="none" stroke="white" stroke-width="0.5" opacity="0.4"/>
+      </svg>
+    </div>
+    <div class="ug-header__title">
+      <h1>Yellowstone</h1>
+      <p class="ug-header__subtitle">National Park / Wyoming, Montana, Idaho</p>
+    </div>
+  </header>
+
+  <!-- Broadside: A4 Format (4 panels) -->
+  <div class="ug-format ug-format--a4">
+    <div class="ug-broadside ug-broadside--stack">
+
+      <!-- Panel 1: Hero / Cover -->
+      <section class="ug-panel ug-panel--flush">
+        <div class="example-hero">
+          <p class="ug-label" style="opacity:0.6;margin-bottom:0.5rem">Established 1872</p>
+          <h2 class="ug-h1 ug-mb--0" style="font-size:2.5rem">The World's First National Park</h2>
+          <p class="example-hero__caption">Old Faithful erupts approximately every 90 minutes</p>
+        </div>
+      </section>
+
+      <!-- Panel 2: Introduction -->
+      <section class="ug-panel">
+        <div class="ug-panel__header">
+          <h2 class="ug-h3">Welcome</h2>
+        </div>
+        <div class="ug-panel__body">
+          <p class="ug-body ug-mb--3">Yellowstone was established as the world's first national park in 1872. The park spans 2.2 million acres of breathtaking wilderness, featuring the most extraordinary collection of geothermal features on Earth.</p>
+          <p class="ug-body--sm ug-mb--3">The park sits atop one of the world's largest active volcanic systems, with over 10,000 thermal features — including more than 500 geysers, representing about half of all geysers on Earth.</p>
+          <hr class="ug-divider">
+          <div class="ug-infobox">
+            <p class="ug-infobox__title">Did You Know?</p>
+            <p class="ug-body--sm">Yellowstone's Grand Prismatic Spring is the largest hot spring in the United States and the third largest in the world, measuring approximately 370 feet in diameter.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel 3: Map -->
+      <section class="ug-panel ug-panel--flush">
+        <div class="example-map-placeholder" style="height:100%">
+          <div style="text-align:center">
+            <svg viewBox="0 0 120 120" width="80" fill="none" stroke="#999" stroke-width="1" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="10" width="100" height="100" rx="4"/>
+              <circle cx="45" cy="55" r="6" fill="#c1272d" fill-opacity="0.3" stroke="#c1272d"/>
+              <circle cx="70" cy="40" r="4" fill="#274a5a" fill-opacity="0.3" stroke="#274a5a"/>
+              <circle cx="60" cy="75" r="5" fill="#2d5a27" fill-opacity="0.3" stroke="#2d5a27"/>
+              <path d="M25 30 Q50 20 75 35 T105 25" stroke="#999" stroke-dasharray="3,3"/>
+              <path d="M15 60 Q40 50 65 65 T95 55" stroke="#999" stroke-dasharray="3,3"/>
+            </svg>
+            <p style="margin-top:0.75rem;font-size:0.75rem;color:#999">Park Map</p>
+            <p style="font-size:0.65rem;color:#bbb;margin-top:0.25rem">2.2 million acres</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel 4: Plan Your Visit -->
+      <section class="ug-panel ug-panel--gray">
+        <div class="ug-panel__header">
+          <p class="ug-label ug-mb--2">Plan Your Visit</p>
+        </div>
+        <div class="ug-panel__body">
+          <div class="ug-infobox ug-mb--3">
+            <p class="ug-infobox__title">Entrance Fees</p>
+            <p class="ug-body--sm">Vehicle: $35 (7 days)<br>Individual: $20 (7 days)<br>Annual Pass: $70</p>
+          </div>
+
+          <div class="ug-infobox ug-mb--3">
+            <p class="ug-infobox__title">Open</p>
+            <p class="ug-body--sm">Year-round. Some roads and facilities are seasonal. Most roads open late April through early November.</p>
+          </div>
+
+          <div class="ug-infobox ug-mb--3">
+            <p class="ug-infobox__title">Getting Here</p>
+            <p class="ug-body--sm">Five entrances:<br>North, Northeast, East, South, West<br><br>Nearest airports:<br>Bozeman, MT (BZN)<br>Jackson Hole, WY (JAC)</p>
+          </div>
+
+          <div class="ug-infobox ug-infobox--dark">
+            <p class="ug-infobox__title">Emergency</p>
+            <p class="ug-body--sm">911 or (307) 344-7381<br>Stay 100 yards from bears/wolves, 25 yards from other wildlife.</p>
+          </div>
+        </div>
+        <div class="ug-panel__footer">
+          <p class="ug-caption">National Park Service<br>U.S. Department of the Interior</p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Content Section: Using 12-Column Grid -->
+  <div style="max-width:1280px;margin:0 auto;padding:2rem">
+
+    <hr class="ug-divider ug-divider--bold ug-mb--5">
+
+    <div class="ug-grid ug-mb--5">
+      <div class="ug-col--8">
+        <h2 class="ug-h2">Things To Do</h2>
+        <p class="ug-lead">From geysers to grizzlies, Yellowstone offers unparalleled experiences in every season.</p>
+      </div>
+      <div class="ug-col--4">
+        <div class="ug-infobox">
+          <p class="ug-infobox__title">Visitor Centers</p>
+          <p class="ug-body--sm">Old Faithful, Canyon, Mammoth Hot Springs, Grant Village, Fishing Bridge</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Module Grid: Activities -->
+    <div class="ug-modules ug-mb--5">
+      <div class="ug-module ug-module--2x4 ug-module--lg-2x3 ug-module--sm-2x2 ug-module--xs-2x3 example-photo" style="background:linear-gradient(135deg, #c1272d 0%, #4a3728 100%)">
+        <div style="text-align:center;color:rgba(255,255,255,0.8)">
+          <p style="font-size:1.5rem;font-weight:900;margin-bottom:0.25rem">Geysers</p>
+          <p style="font-size:0.75rem">Old Faithful &amp; 500+ geysers</p>
+        </div>
+      </div>
+      <div class="ug-module ug-module--2x4 ug-module--lg-2x3 ug-module--sm-2x2 ug-module--xs-2x3 example-photo" style="background:linear-gradient(135deg, #2d5a27 0%, #274a5a 100%)">
+        <div style="text-align:center;color:rgba(255,255,255,0.8)">
+          <p style="font-size:1.5rem;font-weight:900;margin-bottom:0.25rem">Wildlife</p>
+          <p style="font-size:0.75rem">Bears, wolves, bison, elk</p>
+        </div>
+      </div>
+      <div class="ug-module ug-module--2x4 ug-module--lg-2x2 ug-module--sm-2x2 ug-module--xs-2x3 example-photo" style="background:linear-gradient(135deg, #274a5a 0%, #1a1a1a 100%)">
+        <div style="text-align:center;color:rgba(255,255,255,0.8)">
+          <p style="font-size:1.5rem;font-weight:900;margin-bottom:0.25rem">Hiking</p>
+          <p style="font-size:0.75rem">1,000+ miles of trails</p>
+        </div>
+      </div>
+      <div class="ug-module ug-module--1x4 ug-module--lg-1x4 ug-module--sm-1x2 ug-module--xs-1x3 example-photo" style="background:linear-gradient(135deg, #4a3728 0%, #666 100%)">
+        <div style="text-align:center;color:rgba(255,255,255,0.8)">
+          <p style="font-size:1rem;font-weight:700">Hot Springs</p>
+        </div>
+      </div>
+      <div class="ug-module ug-module--1x4 ug-module--lg-1x4 ug-module--sm-1x2 ug-module--xs-1x3 example-photo" style="background:linear-gradient(135deg, #333 0%, #274a5a 100%)">
+        <div style="text-align:center;color:rgba(255,255,255,0.8)">
+          <p style="font-size:1rem;font-weight:700">Camping</p>
+        </div>
+      </div>
+      <div class="ug-module ug-module--1x4 ug-module--lg-1x4 ug-module--sm-1x4 ug-module--xs-1x3 example-photo" style="background:linear-gradient(135deg, #2d5a27 0%, #333 100%)">
+        <div style="text-align:center;color:rgba(255,255,255,0.8)">
+          <p style="font-size:1rem;font-weight:700">Fishing</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Two-Column Text -->
+    <div class="ug-grid ug-mb--5">
+      <div class="ug-col--12">
+        <h3 class="ug-h3">Natural Features</h3>
+        <div class="ug-text--cols-3">
+          <p class="ug-body--sm" style="margin-bottom:1rem">Yellowstone's geothermal features are the result of an active volcanic hotspot beneath the park. The Yellowstone Caldera, formed during the last catastrophic eruption 640,000 years ago, measures about 34 by 45 miles.</p>
+          <p class="ug-body--sm" style="margin-bottom:1rem">The park contains the majority of the world's active geysers — more than any other place on Earth. Old Faithful erupts approximately every 90 minutes, shooting 3,700 to 8,400 gallons of boiling water to heights of 106 to 185 feet.</p>
+          <p class="ug-body--sm">The Grand Canyon of the Yellowstone is roughly 20 miles long, up to 1,200 feet deep, and between 1,500 and 4,000 feet wide. The canyon features two major waterfalls: the Upper Falls at 109 feet and the Lower Falls at 308 feet.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accessibility & Safety -->
+    <div class="ug-grid">
+      <div class="ug-col--4 ug-col--md-6 ug-col--sm-12">
+        <div class="ug-infobox ug-mb--3">
+          <p class="ug-infobox__title">Accessibility</p>
+          <p class="ug-body--sm">Many boardwalks at thermal areas are wheelchair accessible. Accessible lodging and campgrounds available. Service animals welcome.</p>
+        </div>
+      </div>
+      <div class="ug-col--4 ug-col--md-6 ug-col--sm-12">
+        <div class="ug-infobox ug-mb--3">
+          <p class="ug-infobox__title">Safety</p>
+          <p class="ug-body--sm">Stay on boardwalks in thermal areas. Water in hot springs can cause severe burns. Ground may be fragile and thin. Swimming in thermal features is prohibited.</p>
+        </div>
+      </div>
+      <div class="ug-col--4 ug-col--md-12 ug-col--sm-12">
+        <div class="ug-infobox ug-infobox--dark ug-mb--3">
+          <p class="ug-infobox__title">Bear Safety</p>
+          <p class="ug-body--sm">Carry bear spray and know how to use it. Make noise on trails. Never approach wildlife. Store food in bear-proof containers. Report all bear encounters to a ranger.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer Band -->
+  <footer class="example-footer">
+    <div>
+      <p class="ug-label" style="color:#fff;opacity:0.6">National Park Service</p>
+      <p class="ug-caption" style="color:#fff;opacity:0.4">U.S. Department of the Interior</p>
+    </div>
+    <div>
+      <p class="ug-caption" style="color:#fff;opacity:0.4">Built with Unigrid.css</p>
+    </div>
+  </footer>
+
+</body>
+</html>

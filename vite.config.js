@@ -20,6 +20,7 @@ export default defineConfig({
         typography: resolve(__dirname, "dev/typography.html"),
         components: resolve(__dirname, "dev/components.html"),
         cheatsheet: resolve(__dirname, "dev/cheatsheet.html"),
+        example: resolve(__dirname, "dev/example.html"),
       },
     },
   },
