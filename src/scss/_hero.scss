@@ -66,7 +66,7 @@
     @include ug-rhythm-line-height(2);
     @include ug-font-weight("black");
     letter-spacing: -0.02em;
-    @include ug-rhythm-margin-bottom(0.5);
+    @include ug-rhythm-margin-bottom(1);
     margin-top: 0;
 
     @include ug-breakpoint-down("md") {
@@ -80,7 +80,7 @@
     @include ug-font-weight("light");
     @include ug-rhythm-line-height(1);
     opacity: 0.85;
-    @include ug-rhythm-margin-bottom(0.25);
+    margin-bottom: 0;
     margin-top: 0;
   }
 
@@ -231,8 +231,10 @@
 .ug-hero__btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: #{$ug-leading-rem * 0.5}rem;
-  padding: #{$ug-leading-rem * 0.5}rem #{$ug-leading-rem}rem;
+  height: #{$ug-leading-rem * 1.5}rem;
+  padding: 0 #{$ug-leading-rem}rem;
   @include ug-font-size("sm");
   @include ug-font-weight("bold");
   text-decoration: none;
