@@ -94,40 +94,25 @@
 }
 
 // ---- Divider ----
-// Height = 1 leading, line drawn in the vertical center via background.
-// This keeps the divider on-grid without the 1px border offset issue.
+// padding-top + border = 1 leading, so the line sits on-grid.
 
 .ug-divider {
   border: none;
-  height: #{$ug-leading}px;
-  height: #{$ug-leading-rem}rem;
+  border-bottom: 1px solid $ug-light-gray;
+  padding-top: calc(#{$ug-leading-rem}rem - 1px);
   @include ug-rhythm-margin-top(1);
   @include ug-rhythm-margin-bottom(1);
   grid-column: 1 / -1;
-  background-image: linear-gradient(
-    to bottom,
-    transparent calc(50% - 0.5px),
-    $ug-light-gray calc(50% - 0.5px),
-    $ug-light-gray calc(50% + 0.5px),
-    transparent calc(50% + 0.5px)
-  );
 
   &--bold {
-    background-image: linear-gradient(
-      to bottom,
-      transparent calc(50% - 1.5px),
-      $ug-black calc(50% - 1.5px),
-      $ug-black calc(50% + 1.5px),
-      transparent calc(50% + 1.5px)
-    );
+    border-bottom: 3px solid $ug-black;
+    padding-top: calc(#{$ug-leading-rem}rem - 3px);
   }
 }
 
 // ---- Label Divider ----
-// Uppercase label with a bottom line, used as a subsection separator.
-// Line drawn via background-image to avoid border shifting the grid.
-// Total: line-height (1 leading) + padding-bottom (1 leading)
-//        + margin-bottom (1 leading) = all on-grid.
+// Uppercase label with bottom border as subsection separator.
+// padding-bottom + border = exactly 1 leading, keeping content on-grid.
 //
 // Block: .ug-label-divider
 // Modifiers: --bold, --light
@@ -140,30 +125,16 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: $ug-medium-gray;
-  padding-bottom: #{$ug-leading-rem}rem;
-  border: none;
+  padding-bottom: calc(#{$ug-leading-rem}rem - 2px);
+  border-bottom: 2px solid $ug-black;
   margin-top: 0;
-  background-image: linear-gradient(
-    to bottom,
-    transparent calc(100% - 2px),
-    $ug-black calc(100% - 2px)
-  );
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
 
   &--bold {
-    background-image: linear-gradient(
-      to bottom,
-      transparent calc(100% - 3px),
-      $ug-black calc(100% - 3px)
-    );
+    padding-bottom: calc(#{$ug-leading-rem}rem - 3px);
+    border-bottom-width: 3px;
   }
 
   &--light {
-    background-image: linear-gradient(
-      to bottom,
-      transparent calc(100% - 2px),
-      $ug-light-gray calc(100% - 2px)
-    );
+    border-bottom-color: $ug-light-gray;
   }
 }
