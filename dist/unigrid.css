@@ -2051,6 +2051,7 @@ h6,
   border-collapse: collapse;
   border-spacing: 0;
   margin-bottom: calc(var(--ug-leading) * 1);
+  font-feature-settings: "tnum" 1;
 }
 .ug-table th {
   font-size: 0.875rem;
@@ -2263,7 +2264,7 @@ h6,
 
 .ug-map {
   width: 100%;
-  min-height: calc(var(--ug-leading) * 12);
+  min-height: calc(var(--ug-leading) * 12 - 2px);
   background-color: #f5f2ed;
   border: 1px solid #e8e5e0;
   overflow: hidden;
