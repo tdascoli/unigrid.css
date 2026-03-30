@@ -16,10 +16,10 @@
   align-items: center;
   justify-content: center;
   gap: #{$ug-leading-rem * 0.5}rem;
-  padding: calc(#{$ug-leading-rem * 0.5}rem - 2px) #{$ug-leading-rem}rem;
+  height: #{$ug-leading-rem * 1.5}rem;
+  padding: 0 #{$ug-leading-rem}rem;
   @include ug-font-size("base");
   @include ug-font-weight("bold");
-  @include ug-rhythm-line-height(1);
   font-family: inherit;
   text-decoration: none;
   text-align: center;
@@ -167,14 +167,18 @@
   // Size Variants
   // ==============================
 
+  // sm = 1 leading height
   &--sm {
     @include ug-font-size("sm");
-    padding: calc(#{$ug-leading-rem * 0.25}rem - 2px) #{$ug-leading-rem * 0.5}rem;
+    height: #{$ug-leading-rem}rem;
+    padding: 0 #{$ug-leading-rem * 0.5}rem;
   }
 
+  // lg = 2 leading height
   &--lg {
     @include ug-font-size("lg");
-    padding: calc(#{$ug-leading-rem * 0.75}rem - 2px) #{$ug-leading-rem * 1.5}rem;
+    height: #{$ug-leading-rem * 2}rem;
+    padding: 0 #{$ug-leading-rem * 1.5}rem;
   }
 
   // ==============================

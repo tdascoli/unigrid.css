@@ -1823,11 +1823,10 @@ textarea {
   align-items: center;
   justify-content: center;
   gap: 0.8125rem;
-  padding: calc(0.8125rem - 2px) 1.625rem;
+  height: 2.4375rem;
+  padding: 0 1.625rem;
   font-size: 1rem;
   font-weight: 700;
-  line-height: 26px;
-  line-height: 1.625rem;
   font-family: inherit;
   text-decoration: none;
   text-align: center;
@@ -1955,11 +1954,13 @@ textarea {
 }
 .ug-btn--sm {
   font-size: 0.875rem;
-  padding: calc(0.40625rem - 2px) 0.8125rem;
+  height: 1.625rem;
+  padding: 0 0.8125rem;
 }
 .ug-btn--lg {
   font-size: 1.25rem;
-  padding: calc(1.21875rem - 2px) 2.4375rem;
+  height: 3.25rem;
+  padding: 0 2.4375rem;
 }
 .ug-btn--block {
   display: flex;
