@@ -8,6 +8,10 @@
 
 // ---- Grid Block ----
 
+
+@use "variables" as *;
+@use "mixins" as *;
+
 .ug-grid {
   display: grid;
   grid-template-columns: repeat($ug-columns, 1fr);

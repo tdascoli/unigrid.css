@@ -7,6 +7,10 @@
 
 // ---- Block ----
 
+
+@use "variables" as *;
+@use "mixins" as *;
+
 .ug-block {
   @include ug-rhythm-padding(1, 1);
 

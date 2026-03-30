@@ -2619,39 +2619,6 @@ textarea {
   }
 }
 
-.ug-container {
-  width: 100%;
-  padding-left: 2.4375rem;
-  padding-right: 2.4375rem;
-}
-.ug-container--narrow {
-  max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.ug-container--wide {
-  max-width: 1600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.ug-container--fluid {
-  max-width: none;
-}
-.ug-container--flush {
-  padding-left: 0;
-  padding-right: 0;
-}
-@media (max-width: 767px) {
-  .ug-container {
-    padding-left: 1.625rem;
-    padding-right: 1.625rem;
-  }
-  .ug-container--flush {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-
 .ug-full-width {
   grid-column: 1/-1;
 }

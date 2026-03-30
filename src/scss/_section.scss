@@ -9,6 +9,10 @@
 // Modifiers: --brown, --red, --green, --blue, --light, --compact, --large
 // ==========================================================================
 
+
+@use "variables" as *;
+@use "mixins" as *;
+
 .ug-section {
   width: 100%;
   background-color: $ug-black;

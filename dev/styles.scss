@@ -1,5 +1,5 @@
 // Import the Unigrid framework
-@import "../src/scss/unigrid";
+@use "../src/scss/unigrid" as *;
 
 // ---- Dev-only: Debug Toggles ----
 

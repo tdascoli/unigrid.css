@@ -16,6 +16,10 @@
 
 // ---- Broadside Block ----
 
+
+@use "variables" as *;
+@use "mixins" as *;
+
 .ug-broadside {
   display: grid;
   grid-template-columns: repeat(var(--ug-format-cols, $ug-columns), 1fr);

@@ -1,34 +1,38 @@
 // ==========================================================================
-// Unigrid CSS Framework v0.2.0
+// Unigrid CSS Framework v0.3.0
 // A CSS grid framework inspired by Massimo Vignelli's Unigrid system
 // for the National Park Service.
 //
+// Uses the Sass module system (@use/@forward) — no deprecated @import.
+//
 // Usage:
-//   // With default settings:
 //   @use "unigrid";
 //
-//   // With custom overrides (set variables before import):
-//   $ug-black: #222;
-//   $ug-font-family: "Frutiger", sans-serif;
-//   @import "unigrid";
+// With custom overrides:
+//   @use "unigrid" with (
+//     $ug-black: #222,
+//     $ug-font-family: "Frutiger", sans-serif
+//   );
 //
 // https://github.com/tdascoli/unigrid.css
 // ==========================================================================
 
-@import "variables";
-@import "mixins";
-@import "reset";
-@import "container";
-@import "grid";
-@import "formats";
-@import "broadside";
-@import "header";
-@import "navbar";
-@import "hero";
-@import "section";
-@import "typography";
-@import "prose";
-@import "components";
-@import "modules";
-@import "container";
-@import "utilities";
+@forward "variables";
+@forward "mixins";
+
+@use "variables" as *;
+@use "mixins" as *;
+@use "reset";
+@use "container";
+@use "grid";
+@use "formats";
+@use "broadside";
+@use "header";
+@use "navbar";
+@use "hero";
+@use "section";
+@use "typography";
+@use "prose";
+@use "components";
+@use "modules";
+@use "utilities";

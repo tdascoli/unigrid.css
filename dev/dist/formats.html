@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unigrid CSS — Formats</title>
+  <link rel="icon" href="/assets/unigrid-mGnw_Zr_.svg" sizes="any" type="image/svg+xml">
+  <link rel="preconnect" href="https://rsms.me/">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <link rel="stylesheet" crossorigin href="/assets/styles-BiEGbhF-.css">
+</head>
+<body>
+
+  <header class="ug-header">
+    <div class="ug-header__title">
+      <a href="index.html">Unigrid</a>
+      <p class="ug-header__subtitle">CSS Framework</p>
+    </div>
+    <nav class="ug-navbar">
+      <div class="ug-navbar__inner">
+        <button class="ug-navbar__toggle" onclick="this.nextElementSibling.classList.toggle('ug-navbar__menu--open')">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="ug-navbar__menu">
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/">Overview</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/grid.html">Grid</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link ug-navbar__link--active" href="/formats.html">Formats</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/modules.html">Modules</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/typography.html">Typography</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/components.html">Components</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/cheatsheet.html">Cheatsheet</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/example.html">Example</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <div class="ug-container ug-pt--5 ug-pb--5">
+    <h1 class="ug-h1">10 Basic Formats</h1>
+    <p class="ug-lead">A-series (1 panel wide) and B-series (2 panels wide). Panel unit: 99 × 210 mm. No A5 or B5.</p>
+
+    <!-- A-Series -->
+    <section class="dev-section">
+      <p class="dev-section-title">A-Series — 1 Panel Wide</p>
+      <p class="ug-caption ug-mb--3">Single-height formats. The number indicates how many panels long.</p>
+
+      <div class="ug-grid ug-mb--5">
+        <div class="ug-col--2">
+          <p class="ug-label ug-mb--2">A1 — 1×1</p>
+          <div class="ug-format ug-format--a1" style="border:1px solid var(--ug-light-gray, #e8e5e0);">
+            <div class="ug-broadside" style="min-height:100px;">
+              <div class="dev-cell">1</div>
+            </div>
+          </div>
+        </div>
+        <div class="ug-col--3">
+          <p class="ug-label ug-mb--2">A2 — 1×2</p>
+          <div class="ug-format ug-format--a2" style="border:1px solid var(--ug-light-gray, #e8e5e0);">
+            <div class="ug-broadside" style="min-height:100px;">
+              <div class="dev-cell">1</div>
+              <div class="dev-cell">2</div>
+            </div>
+          </div>
+        </div>
+        <div class="ug-col--3">
+          <p class="ug-label ug-mb--2">A3 — 1×3</p>
+          <div class="ug-format ug-format--a3" style="border:1px solid var(--ug-light-gray, #e8e5e0);">
+            <div class="ug-broadside" style="min-height:100px;">
+              <div class="dev-cell">1</div>
+              <div class="dev-cell">2</div>
+              <div class="dev-cell">3</div>
+            </div>
+          </div>
+        </div>
+        <div class="ug-col--4">
+          <p class="ug-label ug-mb--2">A4 — 1×4</p>
+          <div class="ug-format ug-format--a4" style="border:1px solid var(--ug-light-gray, #e8e5e0);">
+            <div class="ug-broadside" style="min-height:100px;">
+              <div class="dev-cell">1</div>
+              <div class="dev-cell">2</div>
+              <div class="dev-cell">3</div>
+              <div class="dev-cell">4</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ug-grid">
+        <div class="ug-col--12">
+          <p class="ug-label ug-mb--2">A6 — 1×6</p>
+          <div class="ug-format ug-format--a6" style="border:1px solid var(--ug-light-gray, #e8e5e0);">
+            <div class="ug-broadside" style="min-height:100px;">
+              <div class="dev-cell">1</div>
+              <div class="dev-cell">2</div>
+              <div class="dev-cell">3</div>
+              <div class="dev-cell">4</div>
+              <div class="dev-cell">5</div>
+              <div class="dev-cell">6</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- B-Series -->
+    <section class="dev-section">
+      <p class="dev-section-title">B-Series — 2 Panels Wide</p>
+      <p class="ug-caption ug-mb--3">Double-height formats. Same panel count long, but twice the height. B6 = DIN A2 (420 × 594 mm).</p>
+
+      <div class="ug-grid ug-mb--5">
+        <div class="ug-col--2">
+          <p class="ug-label ug-mb--2">B1 — 2×1</p>
+          <div class="ug-format ug-format--b1" style="border:1px solid var(--ug-light-gray, #e8e5e0);">
+            <div class="ug-broadside" style="min-height:200px;">
+              <div class="dev-cell">1</div>
+            </div>
+          </div>
+        </div>
+        <div class="ug-col--3">
+          <p class="ug-label ug-mb--2">B2 — 2×2</p>
+          <div class="ug-format ug-format--b2" style="border:1px solid var(--ug-light-gray, #e8e5e0);">
+            <div class="ug-broadside" style="min-height:200px;">
+              <div class="dev-cell">1</div>
+              <div class="dev-cell">2</div>
+            </div>
+          </div>
+        </div>
+        <div class="ug-col--3">
+          <p class="ug-label ug-mb--2">B3 — 2×3</p>
+          <div class="ug-format ug-format--b3" style="border:1px solid var(--ug-light-gray, #e8e5e0);">
+            <div class="ug-broadside" style="min-height:200px;">
+              <div class="dev-cell">1</div>
+              <div class="dev-cell">2</div>
+              <div class="dev-cell">3</div>
+            </div>
+          </div>
+        </div>
+        <div class="ug-col--4">
+          <p class="ug-label ug-mb--2">B4 — 2×4</p>
+          <div class="ug-format ug-format--b4" style="border:1px solid var(--ug-light-gray, #e8e5e0);">
+            <div class="ug-broadside" style="min-height:200px;">
+              <div class="dev-cell">1</div>
+              <div class="dev-cell">2</div>
+              <div class="dev-cell">3</div>
+              <div class="dev-cell">4</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ug-grid">
+        <div class="ug-col--12">
+          <p class="ug-label ug-mb--2">B6 — 2×6 (DIN A2)</p>
+          <div class="ug-format ug-format--b6" style="border:1px solid var(--ug-light-gray, #e8e5e0);">
+            <div class="ug-broadside" style="min-height:200px;">
+              <div class="dev-cell">1</div>
+              <div class="dev-cell">2</div>
+              <div class="dev-cell">3</div>
+              <div class="dev-cell">4</div>
+              <div class="dev-cell">5</div>
+              <div class="dev-cell">6</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Broadside Example -->
+    <section class="dev-section">
+      <p class="dev-section-title">Broadside with Panels — A4 Format</p>
+      <div class="ug-format ug-format--a4">
+        <div class="ug-broadside ug-broadside--stack">
+          <section class="ug-panel ug-panel--dark">
+            <div class="ug-panel__header"><p class="ug-label">Panel 1</p></div>
+            <div class="ug-panel__body"><p class="ug-body--sm">Cover panel</p></div>
+          </section>
+          <section class="ug-panel ug-panel--gray">
+            <div class="ug-panel__header"><p class="ug-label">Panel 2</p></div>
+            <div class="ug-panel__body"><p class="ug-body--sm">Introduction</p></div>
+          </section>
+          <section class="ug-panel">
+            <div class="ug-panel__header"><p class="ug-label">Panel 3</p></div>
+            <div class="ug-panel__body"><p class="ug-body--sm">Map area</p></div>
+          </section>
+          <section class="ug-panel">
+            <div class="ug-panel__header"><p class="ug-label">Panel 4</p></div>
+            <div class="ug-panel__body"><p class="ug-body--sm">Contact info</p></div>
+            <div class="ug-panel__footer"><p class="ug-caption">NPS / Dept. of the Interior</p></div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+
+  <!-- Dev Toolbar -->
+  <div class="dev-toolbar">
+    <button class="dev-toolbar__btn" onclick="
+      document.body.classList.toggle('dev-debug');
+      this.textContent = document.body.classList.contains('dev-debug') ? 'Margins: On' : 'Margins: Off';
+    ">Margins: Off</button>
+    <button class="dev-toolbar__btn" onclick="
+      var b = document.body;
+      if (b.classList.contains('dev-grid-double')) {
+        b.classList.remove('dev-grid-double');
+        this.textContent = 'Grid: Off';
+      } else if (b.classList.contains('dev-grid')) {
+        b.classList.remove('dev-grid');
+        b.classList.add('dev-grid-double');
+        this.textContent = 'Grid: Double';
+      } else {
+        b.classList.add('dev-grid');
+        this.textContent = 'Grid: Single';
+      }
+    ">Grid: Off</button>
+  </div>
+
+</body>
+</html>

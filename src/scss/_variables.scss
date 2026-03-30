@@ -100,12 +100,13 @@ $ug-prose-max-width: 35rem !default;         // Optimal reading measure (~65 cha
 $ug-paragraph-indent: false !default;        // Use indent instead of margin between paragraphs
 
 // Calculated values (used by rhythm mixins)
-$ug-base: 16 * ($ug-base-font-size / 100%) !default;
-$ug-base-desktop: 16 * ($ug-base-font-size-desktop / 100%) !default;
+@use "sass:math" as vars-math;
+$ug-base: 16 * vars-math.div($ug-base-font-size, 100%) !default;
+$ug-base-desktop: 16 * vars-math.div($ug-base-font-size-desktop, 100%) !default;
 $ug-leading: round($ug-base * $ug-base-leading) !default;
 $ug-leading-desktop: round($ug-base-desktop * $ug-base-leading-desktop) !default;
-$ug-leading-rem: $ug-leading / $ug-base !default;
-$ug-leading-rem-desktop: $ug-leading-desktop / $ug-base-desktop !default;
+$ug-leading-rem: vars-math.div($ug-leading, $ug-base) !default;
+$ug-leading-rem-desktop: vars-math.div($ug-leading-desktop, $ug-base-desktop) !default;
 
 // ---- Modular Scale (from Gutenberg) ----
 // Used for proportional type sizing in prose context.

@@ -9,6 +9,10 @@
 // Modifiers: --compact, --brown, --full
 // ==========================================================================
 
+
+@use "variables" as *;
+@use "mixins" as *;
+
 .ug-header {
   display: flex;
   align-items: flex-start;

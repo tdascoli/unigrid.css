@@ -10,6 +10,10 @@
 // Modifiers: --full, --half, --third, --dark, --light, --center, --bottom
 // ==========================================================================
 
+
+@use "variables" as *;
+@use "mixins" as *;
+
 .ug-hero {
   position: relative;
   display: flex;

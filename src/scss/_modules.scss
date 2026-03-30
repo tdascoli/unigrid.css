@@ -22,6 +22,8 @@
 
 @use "sass:math";
 @use "sass:map";
+@use "variables" as *;
+@use "mixins" as *;
 
 // ---- Module Grid Configuration ----
 // Each breakpoint defines: columns, gutter (vw), module size (vw), outer margin (vw)

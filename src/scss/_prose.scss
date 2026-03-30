@@ -23,6 +23,8 @@
 
 @use "sass:list";
 @use "sass:map";
+@use "variables" as *;
+@use "mixins" as *;
 
 .ug-prose {
   font-family: $ug-font-family;

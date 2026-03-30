@@ -4,6 +4,7 @@
 
 @use "sass:map";
 @use "sass:math";
+@use "variables" as *;
 
 // ---- Responsive Breakpoint ----
 // Usage: @include ug-breakpoint("md") { ... }
@@ -56,9 +57,9 @@
 // ---- DIN Aspect Ratio ----
 @mixin ug-ratio-din($landscape: false) {
   @if $landscape {
-    aspect-ratio: #{$ug-ratio} #{unquote("/")} 1;
+    aspect-ratio: #{$ug-ratio} #{"/"} 1;
   } @else {
-    aspect-ratio: 1 #{unquote("/")} #{$ug-ratio};
+    aspect-ratio: 1 #{"/"} #{$ug-ratio};
   }
 }
 

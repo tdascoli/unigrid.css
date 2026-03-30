@@ -4,6 +4,10 @@
 // Line-height and font sizing aligned to Gutenberg vertical rhythm.
 // ==========================================================================
 
+
+@use "variables" as *;
+@use "mixins" as *;
+
 *,
 *::before,
 *::after {

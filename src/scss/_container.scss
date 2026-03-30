@@ -7,6 +7,10 @@
 // Modifiers: --narrow, --wide, --fluid, --flush
 // ==========================================================================
 
+
+@use "variables" as *;
+@use "mixins" as *;
+
 .ug-container {
   width: 100%;
   padding-left: #{$ug-leading-rem * 1.5}rem;
