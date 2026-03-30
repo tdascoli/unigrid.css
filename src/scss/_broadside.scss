@@ -23,7 +23,7 @@
 .ug-broadside {
   display: grid;
   grid-template-columns: repeat(var(--ug-format-cols, $ug-columns), 1fr);
-  gap: $ug-gap;
+  gap: var(--ug-leading);
   width: 100%;
   min-height: 0;
 

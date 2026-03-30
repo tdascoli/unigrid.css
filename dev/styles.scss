@@ -82,12 +82,12 @@ body.dev-debug {
 .dev-cell {
   background: $ug-warm-gray;
   border: 1px solid $ug-light-gray;
-  padding: #{$ug-leading-rem * 0.5}rem;
+  padding: calc(var(--ug-leading) * 0.5);
   @include ug-font-size("xs");
   @include ug-rhythm-line-height(1);
   color: $ug-medium-gray;
   text-align: center;
-  min-height: #{$ug-leading-rem * 2}rem;
+  min-height: calc(var(--ug-leading) * 2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -95,7 +95,7 @@ body.dev-debug {
 
 .dev-code {
   background: $ug-warm-gray;
-  padding: #{$ug-leading-rem * 0.125}rem #{$ug-leading-rem * 0.25}rem;
+  padding: calc(var(--ug-leading) * 0.125) calc(var(--ug-leading) * 0.25);
   @include ug-font-size("xs");
   @include ug-rhythm-line-height(1);
   font-family: "SF Mono", "Fira Code", monospace;
