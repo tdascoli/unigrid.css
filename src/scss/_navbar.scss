@@ -230,6 +230,59 @@
     }
   }
 
+  // -- Dropdown: flat in mobile menu --
+  @include ug-breakpoint-down("md") {
+    .ug-dropdown {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    // Always show dropdown menu items inline (no popup)
+    .ug-dropdown__menu {
+      position: static;
+      display: flex;
+      flex-direction: column;
+      background: none;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+      min-width: 0;
+    }
+
+    // Indent dropdown links
+    .ug-dropdown__link {
+      display: flex;
+      align-items: center;
+      height: calc(var(--ug-leading) * 2);
+      padding: 0 calc(var(--ug-leading) * 2.5);
+      @include ug-font-size("base");
+      color: rgba(255, 255, 255, 0.5);
+      text-decoration: none;
+
+      &:hover {
+        color: $ug-white;
+        background-color: rgba(255, 255, 255, 0.05);
+      }
+    }
+
+    // Hide caret in mobile
+    .ug-dropdown__caret {
+      display: none;
+    }
+
+    // Hide dropdown dividers/headers or style them flat
+    .ug-dropdown__divider {
+      height: 1px;
+      background-color: rgba(255, 255, 255, 0.1);
+      margin: calc(var(--ug-leading) * 0.25) calc(var(--ug-leading) * 2.5);
+    }
+
+    .ug-dropdown__header {
+      padding: 0 calc(var(--ug-leading) * 2.5);
+      color: rgba(255, 255, 255, 0.3);
+    }
+  }
+
   // ==============================
   // Modifiers
   // ==============================
