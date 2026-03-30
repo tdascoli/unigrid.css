@@ -338,6 +338,134 @@
       </div>
     </section>
 
+    <!-- Dropdown -->
+    <section class="dev-section">
+      <p class="dev-section-title">Dropdown — .ug-dropdown</p>
+
+      <p class="ug-label ug-mb--2">Button Dropdown</p>
+      <div class="ug-mb--3" style="display:flex;flex-wrap:wrap;gap:0.5rem">
+        <div class="ug-dropdown">
+          <input type="checkbox" class="ug-dropdown__toggle" id="dd-btn1">
+          <label class="ug-btn ug-dropdown__trigger" for="dd-btn1">
+            Actions <span class="ug-dropdown__caret"></span>
+          </label>
+          <ul class="ug-dropdown__menu">
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Edit</a></li>
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Duplicate</a></li>
+            <li class="ug-dropdown__divider"></li>
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Delete</a></li>
+          </ul>
+        </div>
+
+        <div class="ug-dropdown">
+          <input type="checkbox" class="ug-dropdown__toggle" id="dd-btn2">
+          <label class="ug-btn ug-btn--outline ug-dropdown__trigger" for="dd-btn2">
+            Options <span class="ug-dropdown__caret"></span>
+          </label>
+          <ul class="ug-dropdown__menu">
+            <li class="ug-dropdown__header">Settings</li>
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Profile</a></li>
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Preferences</a></li>
+            <li class="ug-dropdown__divider"></li>
+            <li class="ug-dropdown__header">Account</li>
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Sign Out</a></li>
+          </ul>
+        </div>
+
+        <div class="ug-dropdown">
+          <input type="checkbox" class="ug-dropdown__toggle" id="dd-btn3">
+          <label class="ug-btn ug-btn--sm ug-dropdown__trigger" for="dd-btn3">
+            Small <span class="ug-dropdown__caret"></span>
+          </label>
+          <ul class="ug-dropdown__menu">
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Option A</a></li>
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Option B</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="ug-label ug-mb--2">Color Variants</p>
+      <div class="ug-mb--3" style="display:flex;flex-wrap:wrap;gap:0.5rem">
+        <div class="ug-dropdown">
+          <input type="checkbox" class="ug-dropdown__toggle" id="dd-red">
+          <label class="ug-btn ug-btn--red ug-dropdown__trigger" for="dd-red">
+            Danger <span class="ug-dropdown__caret"></span>
+          </label>
+          <ul class="ug-dropdown__menu">
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Confirm Delete</a></li>
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Cancel</a></li>
+          </ul>
+        </div>
+
+        <div class="ug-dropdown">
+          <input type="checkbox" class="ug-dropdown__toggle" id="dd-blue">
+          <label class="ug-btn ug-btn--blue ug-dropdown__trigger" for="dd-blue">
+            Export <span class="ug-dropdown__caret"></span>
+          </label>
+          <ul class="ug-dropdown__menu">
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">PDF</a></li>
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">CSV</a></li>
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">JSON</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="ug-label ug-mb--2">Right-aligned + Upward</p>
+      <div class="ug-mb--3" style="display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:flex-end">
+        <div class="ug-dropdown ug-dropdown--right">
+          <input type="checkbox" class="ug-dropdown__toggle" id="dd-right">
+          <label class="ug-btn ug-btn--outline ug-dropdown__trigger" for="dd-right">
+            Right <span class="ug-dropdown__caret"></span>
+          </label>
+          <ul class="ug-dropdown__menu">
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Aligned right</a></li>
+            <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">No overflow</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="ug-label ug-mb--2">Navbar Dropdown</p>
+      <nav class="ug-navbar ug-mb--3">
+        <div class="ug-navbar__inner">
+          <a class="ug-navbar__brand" href="#">Park Service</a>
+          <ul class="ug-navbar__menu" style="display:flex">
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Home</a></li>
+            <li class="ug-navbar__item ug-dropdown">
+              <input type="checkbox" class="ug-dropdown__toggle" id="dd-nav1">
+              <label class="ug-navbar__link ug-dropdown__trigger" for="dd-nav1">
+                Parks <span class="ug-dropdown__caret"></span>
+              </label>
+              <ul class="ug-dropdown__menu">
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Yellowstone</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Yosemite</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Grand Canyon</a></li>
+                <li class="ug-dropdown__divider"></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">View All Parks</a></li>
+              </ul>
+            </li>
+            <li class="ug-navbar__item ug-dropdown">
+              <input type="checkbox" class="ug-dropdown__toggle" id="dd-nav2">
+              <label class="ug-navbar__link ug-dropdown__trigger" for="dd-nav2">
+                Resources <span class="ug-dropdown__caret"></span>
+              </label>
+              <ul class="ug-dropdown__menu">
+                <li class="ug-dropdown__header">Planning</li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Maps</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Fees &amp; Passes</a></li>
+                <li class="ug-dropdown__divider"></li>
+                <li class="ug-dropdown__header">Learn</li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">History</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="#">Wildlife</a></li>
+              </ul>
+            </li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <p class="ug-caption">Pure CSS toggle via hidden checkbox. Caret rotates when menu opens. Add the optional JS snippet (see source) to close on outside click.</p>
+    </section>
+
     <!-- Table -->
     <section class="dev-section">
       <p class="dev-section-title">Table — .ug-table</p>
