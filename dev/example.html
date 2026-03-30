@@ -69,7 +69,7 @@
        EXAMPLE: NPS Park Folder — Yellowstone (Format A4, 4 panels)
        ============================================================ -->
 
-  <!-- Header Band -->
+  <!-- Header Band with integrated Navbar -->
   <header class="ug-header">
     <div class="ug-header__logo">
       <svg viewBox="0 0 40 52" fill="white" xmlns="http://www.w3.org/2000/svg">
@@ -81,26 +81,23 @@
       <h1>Yellowstone</h1>
       <p class="ug-header__subtitle">National Park / Wyoming, Montana, Idaho</p>
     </div>
+    <nav class="ug-navbar">
+      <div class="ug-navbar__inner">
+        <button class="ug-navbar__toggle" onclick="this.nextElementSibling.classList.toggle('ug-navbar__menu--open')">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="ug-navbar__menu">
+          <li class="ug-navbar__item"><a class="ug-navbar__link ug-navbar__link--active" href="#">Home</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Things To Do</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Plan Your Visit</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Fees &amp; Passes</a></li>
+          <li class="ug-navbar__divider"></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Map</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
   </header>
-
-  <!-- Navbar -->
-  <nav class="ug-navbar ug-navbar--dark">
-    <div class="ug-navbar__inner">
-      <span></span>
-      <button class="ug-navbar__toggle" onclick="this.nextElementSibling.classList.toggle('ug-navbar__menu--open')">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="ug-navbar__menu">
-        <li class="ug-navbar__item"><a class="ug-navbar__link ug-navbar__link--active" href="#">Home</a></li>
-        <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Things To Do</a></li>
-        <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Plan Your Visit</a></li>
-        <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Fees &amp; Passes</a></li>
-        <li class="ug-navbar__divider"></li>
-        <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Map</a></li>
-        <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
 
   <!-- Broadside: A4 Format (4 panels) -->
   <div class="ug-format ug-format--a4">

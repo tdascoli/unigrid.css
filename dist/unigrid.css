@@ -692,8 +692,7 @@ textarea {
 }
 
 .ug-header {
-  display: grid;
-  grid-template-columns: auto 1fr;
+  display: flex;
   align-items: center;
   gap: 1.5rem;
   background-color: #1a1a1a;
@@ -701,6 +700,7 @@ textarea {
   padding: 1rem 1.5rem;
   width: 100%;
   grid-column: 1/-1;
+  flex-wrap: wrap;
 }
 .ug-header__logo {
   width: 3rem;
@@ -716,6 +716,7 @@ textarea {
   display: flex;
   flex-direction: column;
   gap: 0;
+  flex-shrink: 0;
 }
 .ug-header__title h1 {
   font-size: 3rem;
@@ -731,12 +732,54 @@ textarea {
   line-height: 1.2;
   letter-spacing: -0.02em;
   margin: 0;
+  flex-shrink: 0;
 }
 .ug-header__subtitle {
   font-size: 1.25rem;
   font-weight: 300;
   opacity: 0.85;
   margin: 0;
+}
+.ug-header .ug-navbar {
+  flex: 1;
+  background: transparent;
+  border: none;
+  min-height: 0;
+}
+.ug-header .ug-navbar__inner {
+  padding: 0;
+  max-width: none;
+  min-height: 0;
+  justify-content: flex-end;
+}
+.ug-header .ug-navbar__brand {
+  display: none;
+}
+.ug-header .ug-navbar__link {
+  color: rgba(255, 255, 255, 0.7);
+}
+.ug-header .ug-navbar__link:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.ug-header .ug-navbar__link--active {
+  color: #ffffff;
+}
+.ug-header .ug-navbar__toggle {
+  color: #ffffff;
+}
+.ug-header .ug-navbar__divider {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+@media (max-width: 767px) {
+  .ug-header .ug-navbar__menu {
+    background-color: #333333;
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+    left: 0;
+    right: 0;
+    position: fixed;
+    top: auto;
+  }
 }
 .ug-header--compact {
   padding: 0.5rem 1rem;
