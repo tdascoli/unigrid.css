@@ -17,6 +17,7 @@
 .ug-navbar {
   width: 100%;
   background-color: $ug-white;
+  // Total height = 2 leading: links(2 leading) + border compensated
   border-bottom: 1px solid $ug-light-gray;
   position: relative;
   z-index: 50;
@@ -29,7 +30,8 @@
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 #{$ug-leading-rem}rem;
-    min-height: #{$ug-leading-rem * 2}rem;
+    // 2 leading minus 1px border = exact grid alignment
+    height: calc(#{$ug-leading-rem * 2}rem - 1px);
   }
 
   // -- Brand / Logo area (optional, left side) --
@@ -112,11 +114,12 @@
 
   // -- Link --
   &__link {
-    display: block;
-    padding: #{$ug-leading-rem * 0.5}rem #{$ug-leading-rem * 0.5}rem;
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 #{$ug-leading-rem * 0.5}rem;
     @include ug-font-size("base");
     @include ug-font-weight("light");
-    @include ug-rhythm-line-height(1);
     color: $ug-dark-gray;
     text-decoration: none;
     white-space: nowrap;
@@ -132,7 +135,10 @@
     }
 
     @include ug-breakpoint-down("md") {
-      padding: #{$ug-leading-rem * 0.5}rem #{$ug-leading-rem}rem;
+      display: flex;
+      align-items: center;
+      height: #{$ug-leading-rem * 2}rem;
+      padding: 0 #{$ug-leading-rem}rem;
       @include ug-font-size("base");
     }
   }

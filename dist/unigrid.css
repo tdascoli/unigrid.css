@@ -837,7 +837,7 @@ textarea {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 1.625rem;
-  min-height: 3.25rem;
+  height: calc(3.25rem - 1px);
 }
 .ug-navbar__brand {
   display: flex;
@@ -907,12 +907,12 @@ textarea {
   align-items: center;
 }
 .ug-navbar__link {
-  display: block;
-  padding: 0.8125rem 0.8125rem;
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 0.8125rem;
   font-size: 1rem;
   font-weight: 300;
-  line-height: 26px;
-  line-height: 1.625rem;
   color: #333333;
   text-decoration: none;
   white-space: nowrap;
@@ -927,7 +927,10 @@ textarea {
 }
 @media (max-width: 767px) {
   .ug-navbar__link {
-    padding: 0.8125rem 1.625rem;
+    display: flex;
+    align-items: center;
+    height: 3.25rem;
+    padding: 0 1.625rem;
     font-size: 1rem;
   }
 }
