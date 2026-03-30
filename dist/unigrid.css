@@ -711,14 +711,13 @@ textarea {
   flex-wrap: wrap;
 }
 .ug-header__logo {
-  width: auto;
   height: 4.875rem;
   flex-shrink: 0;
 }
 .ug-header__logo img,
 .ug-header__logo svg {
-  width: 100%;
-  height: auto;
+  height: 100%;
+  width: auto;
 }
 .ug-header__title {
   display: flex;

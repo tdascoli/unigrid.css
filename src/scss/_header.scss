@@ -26,14 +26,13 @@
 
   // -- Elements --
   &__logo {
-    width: auto;
     height: #{$ug-leading-rem * 3}rem;
     flex-shrink: 0;
 
     img,
     svg {
-      width: 100%;
-      height: auto;
+      height: 100%;
+      width: auto;
     }
   }
 
