@@ -94,19 +94,11 @@ body.dev-debug {
 }
 
 .dev-code {
-  position: absolute;
-  right: 0;
-  top: 0;
   background: $ug-warm-gray;
   padding: 0 calc(var(--ug-leading) * 0.25);
   @include ug-font-size("xs");
   line-height: inherit;
+  vertical-align: baseline;
   font-family: "SF Mono", "Fira Code", monospace;
   border-radius: 2px;
-  color: $ug-medium-gray;
-}
-
-// Parent headings need relative for dev-code positioning
-h1, h2, h3, h4, h5, h6 {
-  position: relative;
 }
