@@ -29,9 +29,10 @@
 }
 
 .dev-page {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: ug-space(5);
+  @extend .ug-container;
+  @extend .ug-container--narrow;
+  padding-top: ug-space(5);
+  padding-bottom: ug-space(5);
 }
 
 .dev-section {

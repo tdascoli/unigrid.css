@@ -55,6 +55,41 @@ textarea {
   color: inherit;
 }
 
+.ug-container {
+  width: 100%;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.ug-container--narrow {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.ug-container--wide {
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.ug-container--fluid {
+  max-width: none;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.ug-container--flush {
+  padding-left: 0;
+  padding-right: 0;
+}
+@media (max-width: 767px) {
+  .ug-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .ug-container--flush {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 .ug-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
