@@ -21,6 +21,8 @@ export default defineConfig({
         components: resolve(__dirname, "dev/components.html"),
         cheatsheet: resolve(__dirname, "dev/cheatsheet.html"),
         example: resolve(__dirname, "dev/example.html"),
+        exampleHero: resolve(__dirname, "dev/example-hero.html"),
+        exampleSection: resolve(__dirname, "dev/example-section.html"),
       },
     },
   },
