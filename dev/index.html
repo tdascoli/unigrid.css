@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unigrid CSS — Dev</title>
-  <link rel="icon" href="unigrid.svg" sizes="any" type="image/svg+xml">
-  <link rel="preconnect" href="https://rsms.me/">
-  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-  <link rel="stylesheet" href="./styles.scss">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unigrid CSS — Dev</title>
+    <link rel="icon" href="unigrid.svg" sizes="any" type="image/svg+xml">
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="./styles.scss">
 </head>
 <body>
 
-  <header class="ug-header">
+<header class="ug-header">
     <div class="ug-header__title">
-      <a href="index.html">Unigrid</a>
-      <p class="ug-header__subtitle">CSS Framework</p>
+        <a href="index.html">Unigrid</a>
+        <p class="ug-header__subtitle">CSS Framework</p>
     </div>
     <nav class="ug-navbar">
       <div class="ug-navbar__inner">
@@ -29,7 +29,7 @@
             <li class="ug-navbar__item"><a class="ug-navbar__link" href="/typography.html">Typography</a></li>
             <li class="ug-navbar__item"><a class="ug-navbar__link" href="/components.html">Components</a></li>
             <li class="ug-navbar__item"><a class="ug-navbar__link" href="/cheatsheet.html">Cheatsheet</a></li>
-            <li class="ug-navbar__item ug-dropdown">
+            <li class="ug-navbar__item ug-dropdown ug-dropdown--right">
               <button class="ug-navbar__link ug-dropdown__trigger">
                 Examples <span class="ug-dropdown__caret"></span>
               </button>
@@ -43,85 +43,90 @@
         </ul>
       </div>
     </nav>
-  </header>
+</header>
 
-  <div class="ug-container ug-pt--5 ug-pb--5">
+<div class="ug-container ug-pt--5 ug-pb--5">
 
     <section class="dev-section">
-      <p class="dev-section-title">About</p>
-      <div class="ug-grid">
-        <div class="ug-col--8">
-          <p class="ug-lead">A CSS grid framework inspired by Massimo Vignelli's Unigrid system for the National Park Service. Built with SCSS, native CSS Grid, and BEM naming.</p>
-          <p class="ug-body">The Unigrid is a standardized graphic and production system. Its 10 basic formats (A1–A4, A6, B1–B4, B6) are all built from a single panel unit of 99 × 210 mm, based on DIN/ISO proportions (1:√2).</p>
+        <p class="dev-section-title">About</p>
+        <div class="ug-grid">
+            <div class="ug-col--8">
+                <p class="ug-lead">A CSS grid framework inspired by Massimo Vignelli's Unigrid system for the National
+                    Park Service. Built with SCSS, native CSS Grid, and BEM naming.</p>
+                <p class="ug-body">The Unigrid is a standardized graphic and production system. Its 10 basic formats
+                    (A1–A4, A6, B1–B4, B6) are all built from a single panel unit of 99 × 210 mm, based on DIN/ISO
+                    proportions (1:√2).</p>
+            </div>
+            <div class="ug-col--4">
+                <div class="ug-infobox">
+                    <p class="ug-infobox__title">Quick Links</p>
+                    <p class="ug-body--sm">
+                        <a href="/grid.html">Grid System</a><br>
+                        <a href="/formats.html">10 Formats</a><br>
+                        <a href="/typography.html">Typography</a><br>
+                        <a href="/components.html">Components</a><br>
+                        <a href="/cheatsheet.html">Cheatsheet</a>
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="ug-col--4">
-          <div class="ug-infobox">
-            <p class="ug-infobox__title">Quick Links</p>
-            <p class="ug-body--sm">
-              <a href="/grid.html">Grid System</a><br>
-              <a href="/formats.html">10 Formats</a><br>
-              <a href="/typography.html">Typography</a><br>
-              <a href="/components.html">Components</a><br>
-              <a href="/cheatsheet.html">Cheatsheet</a>
-            </p>
-          </div>
-        </div>
-      </div>
     </section>
 
     <section class="dev-section">
-      <p class="dev-section-title">NPS Color Palette</p>
-      <div class="ug-grid">
-        <div class="ug-col--2 ug-bg--black ug-p--3"><span class="ug-label">Black</span></div>
-        <div class="ug-col--2 ug-bg--brown ug-p--3"><span class="ug-label">Brown</span></div>
-        <div class="ug-col--2 ug-bg--red ug-p--3"><span class="ug-label">Red</span></div>
-        <div class="ug-col--2 ug-bg--green ug-p--3"><span class="ug-label">Green</span></div>
-        <div class="ug-col--2 ug-bg--blue ug-p--3"><span class="ug-label">Blue</span></div>
-        <div class="ug-col--2 ug-bg--warm-gray ug-p--3"><span class="ug-label ug-text--dark-gray">Warm Gray</span></div>
-      </div>
+        <p class="dev-section-title">NPS Color Palette</p>
+        <div class="ug-grid">
+            <div class="ug-col--2 ug-bg--black ug-p--3"><span class="ug-label">Black</span></div>
+            <div class="ug-col--2 ug-bg--brown ug-p--3"><span class="ug-label">Brown</span></div>
+            <div class="ug-col--2 ug-bg--red ug-p--3"><span class="ug-label">Red</span></div>
+            <div class="ug-col--2 ug-bg--green ug-p--3"><span class="ug-label">Green</span></div>
+            <div class="ug-col--2 ug-bg--blue ug-p--3"><span class="ug-label">Blue</span></div>
+            <div class="ug-col--2 ug-bg--warm-gray ug-p--3"><span class="ug-label ug-text--dark-gray">Warm Gray</span>
+            </div>
+        </div>
     </section>
 
     <section class="dev-section">
-      <p class="dev-section-title">Quick Demo — Format A4 Broadside</p>
-      <div class="ug-format ug-format--a4">
-        <div class="ug-broadside ug-broadside--stack">
-          <section class="ug-panel ug-panel--dark">
-            <div class="ug-panel__body">
-              <h2 class="ug-h2">Welcome</h2>
-              <p class="ug-body--sm">Panel 1 of 4</p>
+        <p class="dev-section-title">Quick Demo — Format A4 Broadside</p>
+        <div class="ug-format ug-format--a4">
+            <div class="ug-broadside ug-broadside--stack">
+                <section class="ug-panel ug-panel--dark">
+                    <div class="ug-panel__body">
+                        <h2 class="ug-h2">Welcome</h2>
+                        <p class="ug-body--sm">Panel 1 of 4</p>
+                    </div>
+                </section>
+                <section class="ug-panel">
+                    <div class="ug-panel__body">
+                        <h3 class="ug-h3">Explore</h3>
+                        <p class="ug-body--sm">Panel 2 of 4</p>
+                    </div>
+                </section>
+                <section class="ug-panel ug-panel--gray">
+                    <div class="ug-panel__body">
+                        <h3 class="ug-h3">Discover</h3>
+                        <p class="ug-body--sm">Panel 3 of 4</p>
+                    </div>
+                </section>
+                <section class="ug-panel">
+                    <div class="ug-panel__body">
+                        <h3 class="ug-h3">Plan</h3>
+                        <p class="ug-body--sm">Panel 4 of 4</p>
+                    </div>
+                </section>
             </div>
-          </section>
-          <section class="ug-panel">
-            <div class="ug-panel__body">
-              <h3 class="ug-h3">Explore</h3>
-              <p class="ug-body--sm">Panel 2 of 4</p>
-            </div>
-          </section>
-          <section class="ug-panel ug-panel--gray">
-            <div class="ug-panel__body">
-              <h3 class="ug-h3">Discover</h3>
-              <p class="ug-body--sm">Panel 3 of 4</p>
-            </div>
-          </section>
-          <section class="ug-panel">
-            <div class="ug-panel__body">
-              <h3 class="ug-h3">Plan</h3>
-              <p class="ug-body--sm">Panel 4 of 4</p>
-            </div>
-          </section>
         </div>
-      </div>
     </section>
 
-  </div>
+</div>
 
 
-  <!-- Dev Toolbar -->
-  <div class="dev-toolbar">
+<!-- Dev Toolbar -->
+<div class="dev-toolbar">
     <button class="dev-toolbar__btn" onclick="
       document.body.classList.toggle('dev-debug');
       this.textContent = document.body.classList.contains('dev-debug') ? 'Margins: On' : 'Margins: Off';
-    ">Margins: Off</button>
+    ">Margins: Off
+    </button>
     <button class="dev-toolbar__btn" onclick="
       var b = document.body;
       if (b.classList.contains('dev-grid-double')) {
@@ -135,8 +140,9 @@
         b.classList.add('dev-grid');
         this.textContent = 'Grid: Single';
       }
-    ">Grid: Off</button>
-  </div>
+    ">Grid: Off
+    </button>
+</div>
 
   <script src="./dropdown.js"></script>
 </body>

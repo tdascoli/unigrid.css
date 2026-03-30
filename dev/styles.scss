@@ -91,6 +91,15 @@ body.dev-debug {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &__no-alignment {
+    text-align: initial;
+    justify-content: initial;
+
+    p {
+      width: 100%;
+    }
+  }
 }
 
 .dev-code {

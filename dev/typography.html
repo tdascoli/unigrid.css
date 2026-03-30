@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unigrid CSS — Typography</title>
-  <link rel="icon" href="unigrid.svg" sizes="any" type="image/svg+xml">
-  <link rel="preconnect" href="https://rsms.me/">
-  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-  <link rel="stylesheet" href="./styles.scss">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unigrid CSS — Typography</title>
+    <link rel="icon" href="unigrid.svg" sizes="any" type="image/svg+xml">
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="./styles.scss">
 </head>
 <body>
 
-  <header class="ug-header">
+<header class="ug-header">
     <div class="ug-header__title">
-      <a href="index.html">Unigrid</a>
-      <p class="ug-header__subtitle">CSS Framework</p>
+        <a href="index.html">Unigrid</a>
+        <p class="ug-header__subtitle">CSS Framework</p>
     </div>
     <nav class="ug-navbar">
       <div class="ug-navbar__inner">
@@ -29,7 +29,7 @@
             <li class="ug-navbar__item"><a class="ug-navbar__link ug-navbar__link--active" href="/typography.html">Typography</a></li>
             <li class="ug-navbar__item"><a class="ug-navbar__link" href="/components.html">Components</a></li>
             <li class="ug-navbar__item"><a class="ug-navbar__link" href="/cheatsheet.html">Cheatsheet</a></li>
-            <li class="ug-navbar__item ug-dropdown">
+            <li class="ug-navbar__item ug-dropdown ug-dropdown--right">
               <button class="ug-navbar__link ug-dropdown__trigger">
                 Examples <span class="ug-dropdown__caret"></span>
               </button>
@@ -43,74 +43,84 @@
         </ul>
       </div>
     </nav>
-  </header>
+</header>
 
-  <div class="ug-container ug-pt--5 ug-pb--5">
+<div class="ug-container ug-pt--5 ug-pb--5">
     <h1 class="ug-h1">Typography</h1>
     <p class="ug-lead">Helvetica hierarchy — bold headlines, regular body, light captions. Flush-left, ragged-right.</p>
 
     <section class="dev-section">
-      <p class="dev-section-title">Headings</p>
-      <h1 class="ug-h1">Heading 1 <span class="dev-code">.ug-h1</span></h1>
-      <h2 class="ug-h2">Heading 2 <span class="dev-code">.ug-h2</span></h2>
-      <h3 class="ug-h3">Heading 3 <span class="dev-code">.ug-h3</span></h3>
-      <h4 class="ug-h4">Heading 4 <span class="dev-code">.ug-h4</span></h4>
+        <p class="dev-section-title">Headings</p>
+        <h1 class="ug-h1">Heading 1 <span class="dev-code">.ug-h1</span></h1>
+        <h2 class="ug-h2">Heading 2 <span class="dev-code">.ug-h2</span></h2>
+        <h3 class="ug-h3">Heading 3 <span class="dev-code">.ug-h3</span></h3>
+        <h4 class="ug-h4">Heading 4 <span class="dev-code">.ug-h4</span></h4>
     </section>
 
     <section class="dev-section">
-      <p class="dev-section-title">Body Text</p>
-      <p class="ug-body--lg ug-mb--3">Large body text — for emphasis. <span class="dev-code">.ug-body--lg</span></p>
-      <p class="ug-body ug-mb--3">Regular body text — the default reading size. The Unigrid system uses Helvetica exclusively, set flush-left and ragged-right. Typography follows a strict hierarchy with bold headlines, regular body text, and light captions. <span class="dev-code">.ug-body</span></p>
-      <p class="ug-body--sm ug-mb--3">Small body text — for secondary content and dense information areas. <span class="dev-code">.ug-body--sm</span></p>
+        <p class="dev-section-title">Body Text</p>
+        <p class="ug-body--lg ug-mb--3">Large body text — for emphasis. <span class="dev-code">.ug-body--lg</span></p>
+        <p class="ug-body ug-mb--3">Regular body text — the default reading size. The Unigrid system uses Helvetica
+            exclusively, set flush-left and ragged-right. Typography follows a strict hierarchy with bold headlines,
+            regular body text, and light captions. <span class="dev-code">.ug-body</span></p>
+        <p class="ug-body--sm ug-mb--3">Small body text — for secondary content and dense information areas. <span
+                class="dev-code">.ug-body--sm</span></p>
     </section>
 
     <section class="dev-section">
-      <p class="dev-section-title">Lead / Intro</p>
-      <p class="ug-lead">This is lead text — used for introductory paragraphs that need visual emphasis without being a heading. <span class="dev-code">.ug-lead</span></p>
+        <p class="dev-section-title">Lead / Intro</p>
+        <p class="ug-lead">This is lead text — used for introductory paragraphs that need visual emphasis without being
+            a heading. <span class="dev-code">.ug-lead</span></p>
     </section>
 
     <section class="dev-section">
-      <p class="dev-section-title">Caption & Label</p>
-      <p class="ug-caption ug-mb--3">This is a caption — used for image descriptions and annotations. <span class="dev-code">.ug-caption</span></p>
-      <p class="ug-label">This is a label — uppercase, bold, small <span class="dev-code">.ug-label</span></p>
+        <p class="dev-section-title">Caption & Label</p>
+        <p class="ug-caption ug-mb--3">This is a caption — used for image descriptions and annotations. <span
+                class="dev-code">.ug-caption</span></p>
+        <p class="ug-label">This is a label — uppercase, bold, small <span class="dev-code">.ug-label</span></p>
     </section>
 
     <section class="dev-section">
-      <p class="dev-section-title">Text Alignment</p>
-      <div class="ug-grid">
-        <div class="ug-col--4 dev-cell"><p class="ug-text--left">.ug-text--left</p></div>
-        <div class="ug-col--4 dev-cell"><p class="ug-text--center">.ug-text--center</p></div>
-        <div class="ug-col--4 dev-cell"><p class="ug-text--right">.ug-text--right</p></div>
-      </div>
+        <p class="dev-section-title">Text Alignment</p>
+        <div class="ug-grid">
+            <div class="ug-col--4 dev-cell dev-cell__no-alignment"><p class="ug-text--left">.ug-text--left</p></div>
+            <div class="ug-col--4 dev-cell dev-cell__no-alignment"><p class="ug-text--center">.ug-text--center</p></div>
+            <div class="ug-col--4 dev-cell dev-cell__no-alignment"><p class="ug-text--right">.ug-text--right</p></div>
+        </div>
     </section>
 
     <section class="dev-section">
-      <p class="dev-section-title">Text Colors</p>
-      <div class="ug-grid">
-        <div class="ug-col--3"><p class="ug-body ug-text--black">.ug-text--black</p></div>
-        <div class="ug-col--3"><p class="ug-body ug-text--medium-gray">.ug-text--medium-gray</p></div>
-        <div class="ug-col--3"><p class="ug-body ug-text--red">.ug-text--red</p></div>
-        <div class="ug-col--3 ug-bg--black ug-p--2"><p class="ug-body ug-text--white">.ug-text--white</p></div>
-      </div>
+        <p class="dev-section-title">Text Colors</p>
+        <div class="ug-grid">
+            <div class="ug-col--3"><p class="ug-body ug-text--black">.ug-text--black</p></div>
+            <div class="ug-col--3"><p class="ug-body ug-text--medium-gray">.ug-text--medium-gray</p></div>
+            <div class="ug-col--3"><p class="ug-body ug-text--red">.ug-text--red</p></div>
+            <div class="ug-col--3 ug-bg--black ug-p--2"><p class="ug-body ug-text--white">.ug-text--white</p></div>
+        </div>
     </section>
 
     <section class="dev-section">
-      <p class="dev-section-title">Multi-Column Text</p>
-      <div class="ug-text--cols-3">
-        <p class="ug-body">The Unigrid system was designed by Massimo Vignelli in 1977 for the National Park Service. It standardized all NPS site folders into a unified design system. The broadside approach means each folder is printed as a single flat sheet, then accordion-folded. All formats share the same folded cover size of 99 × 210 mm, conforming to international travel folder standards. The system uses DIN proportions (1:√2) ensuring consistent scaling when folded.</p>
-      </div>
-      <p class="ug-caption ug-mt--3">.ug-text--cols-3 — collapses to single column on mobile</p>
+        <p class="dev-section-title">Multi-Column Text</p>
+        <div class="ug-text--cols-3">
+            <p class="ug-body">The Unigrid system was designed by Massimo Vignelli in 1977 for the National Park
+                Service. It standardized all NPS site folders into a unified design system. The broadside approach means
+                each folder is printed as a single flat sheet, then accordion-folded. All formats share the same folded
+                cover size of 99 × 210 mm, conforming to international travel folder standards. The system uses DIN
+                proportions (1:√2) ensuring consistent scaling when folded.</p>
+        </div>
+        <p class="ug-caption ug-mt--3">.ug-text--cols-3 — collapses to single column on mobile</p>
     </section>
 
-  </div>
+</div>
 
 
-  <!-- Dev Toolbar -->
-  <div class="dev-toolbar">
+<!-- Dev Toolbar -->
+<div class="dev-toolbar">
     <button class="dev-toolbar__btn" onclick="
       document.body.classList.toggle('dev-debug');
       this.textContent = document.body.classList.contains('dev-debug') ? 'Margins: On' : 'Margins: Off';
-    ">Margins: Off</button>
+    ">Margins: Off
+    </button>
     <button class="dev-toolbar__btn" onclick="
       var b = document.body;
       if (b.classList.contains('dev-grid-double')) {
@@ -124,8 +134,9 @@
         b.classList.add('dev-grid');
         this.textContent = 'Grid: Single';
       }
-    ">Grid: Off</button>
-  </div>
+    ">Grid: Off
+    </button>
+</div>
 
   <script src="./dropdown.js"></script>
 </body>

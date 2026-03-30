@@ -15,6 +15,8 @@
   border-spacing: 0;
   @include ug-rhythm-margin-bottom(1);
 
+  font-feature-settings: 'tnum' 1;
+
   // ---- Header ----
   th {
     @include ug-font-size("sm");
