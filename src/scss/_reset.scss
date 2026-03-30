@@ -10,6 +10,14 @@
   padding: 0;
 }
 
+:root {
+  font-family: $ug-font-family;
+  font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+}
+@supports (font-variation-settings: normal) {
+  :root { font-family: $ug-font-family-variable; }
+}
+
 html {
   font-size: 100%;
   -webkit-text-size-adjust: 100%;

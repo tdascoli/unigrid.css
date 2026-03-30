@@ -111,8 +111,8 @@
   &__link {
     display: block;
     padding: ug-space(2) ug-space(3);
-    @include ug-font-size("sm");
-    @include ug-font-weight("regular");
+    @include ug-font-size("base");
+    @include ug-font-weight("light");
     color: $ug-dark-gray;
     text-decoration: none;
     white-space: nowrap;

@@ -15,7 +15,7 @@
   gap: ug-space(4);
   background-color: $ug-black;
   color: $ug-white;
-  padding: ug-space(3) ug-space(4);
+  padding: ug-space(3) ug-space(5);
   width: 100%;
   grid-column: 1 / -1;
   flex-wrap: wrap;
@@ -41,7 +41,7 @@
 
     h1 {
       @include ug-font-size("3xl");
-      @include ug-font-weight("black");
+      @include ug-font-weight("bold");
       line-height: $ug-line-height-tight;
       letter-spacing: -0.02em;
       text-transform: none;
@@ -51,7 +51,7 @@
 
   &__name {
     @include ug-font-size("3xl");
-    @include ug-font-weight("black");
+    @include ug-font-weight("bold");
     line-height: $ug-line-height-tight;
     letter-spacing: -0.02em;
     margin: 0;
@@ -122,7 +122,7 @@
 
   // -- Modifiers --
   &--compact {
-    padding: ug-space(2) ug-space(3);
+    padding: ug-space(2) ug-space(5);
 
     .ug-header__title h1,
     .ug-header__name {

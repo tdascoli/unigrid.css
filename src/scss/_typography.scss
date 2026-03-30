@@ -12,7 +12,7 @@
 
 .ug-h1 {
   @include ug-font-size("3xl");
-  @include ug-font-weight("black");
+  @include ug-font-weight("extra-bold");
   line-height: $ug-line-height-tight;
   letter-spacing: -0.02em;
   margin-bottom: ug-space(3);
