@@ -862,10 +862,11 @@ textarea {
   cursor: pointer;
   background: none;
   border: 1px solid currentColor;
-  padding: 0 calc(var(--ug-leading) * 0.5);
-  height: var(--ug-leading);
+  padding: 0 calc(var(--ug-leading) * 0.75);
+  height: calc(var(--ug-leading) * 1.5);
+  margin-top: calc(var(--ug-leading) * 0.5);
   color: inherit;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
