@@ -56,10 +56,10 @@
     color: inherit;
     @include ug-font-size("sm");
     @include ug-font-weight("bold");
-    text-transform: uppercase;
     letter-spacing: 0.05em;
     font-family: inherit;
     transition: background-color 0.15s, color 0.15s;
+    z-index: $ug-navbar-toggle-z-index;
 
     &:hover {
       background-color: rgba(255, 255, 255, 0.1);
@@ -80,14 +80,13 @@
   }
 
   // When menu is open, swap text
-  &__menu--open ~ &__toggle &__label,
-  &__toggle--active &__label {
-    display: none;
-  }
-
-  &__menu--open ~ &__toggle &__close,
-  &__toggle--active &__close {
-    display: inline;
+  &__toggle--active {
+    .ug-navbar__toggle__label {
+      display: none;
+    }
+    .ug-navbar__toggle__close {
+      display: inline;
+    }
   }
 
   // -- Hamburger variant --

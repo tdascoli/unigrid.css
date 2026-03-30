@@ -40,7 +40,7 @@
       border: none;
       padding: 0;
       font: inherit;
-      color: inherit;
+      @include ug-font-weight("light");
     }
   }
 
@@ -133,6 +133,12 @@
   // ==============================
 
   // Active state (current page is in this dropdown)
+  &--active {
+    > .ug-navbar__link {
+      color: $ug-white !important;
+    }
+  }
+
   &--active > &__trigger {
     color: $ug-black;
   }

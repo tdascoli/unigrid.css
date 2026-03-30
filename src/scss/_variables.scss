@@ -177,3 +177,7 @@ $ug-formats: (
   "b4": (panels-wide: 2, panels-long: 4),
   "b6": (panels-wide: 2, panels-long: 6),
 ) !default;
+
+
+// ---- z-Index Definitions ----
+$ug-navbar-toggle-z-index: 1000;
