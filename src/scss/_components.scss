@@ -126,7 +126,7 @@
   letter-spacing: 0.1em;
   color: $ug-medium-gray;
   border-bottom: 2px solid $ug-black;
-  margin-top: 0;
+  @include ug-rhythm-margin-top(0.5);
 
   &--bold {
     line-height: calc(var(--ug-leading) - 3px);

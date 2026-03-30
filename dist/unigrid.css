@@ -2093,7 +2093,7 @@ h6,
   letter-spacing: 0.1em;
   color: #666666;
   border-bottom: 2px solid #1a1a1a;
-  margin-top: 0;
+  margin-top: calc(var(--ug-leading) * 0.5);
 }
 .ug-label-divider--bold {
   line-height: calc(var(--ug-leading) - 3px);
