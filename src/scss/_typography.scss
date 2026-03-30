@@ -18,7 +18,8 @@
     @include ug-rhythm-font-size(list.nth($props, 1));
     @include ug-rhythm-line-height(list.nth($props, 2));
     @include ug-font-weight("bold");
-    @include ug-rhythm-margin-bottom(list.nth($props, 4));
+    @include ug-rhythm-margin-bottom(0.5);
+    margin-top: 0;
 
     @if $heading == "h1" {
       @include ug-font-weight("extra-bold");
@@ -49,7 +50,8 @@
   @include ug-rhythm-font-size(1.2);
   @include ug-font-weight("light");
   @include ug-rhythm-line-height(1);
-  @include ug-rhythm-margin-bottom(1);
+  @include ug-rhythm-margin-bottom(0.5);
+  margin-top: 0;
 }
 
 // ---- Caption ----
