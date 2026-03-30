@@ -8,20 +8,6 @@
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
   <link rel="stylesheet" href="./styles.scss">
   <style>
-    .example-hero {
-      background: linear-gradient(135deg, #274a5a 0%, #1a1a1a 100%);
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 2rem;
-      min-height: 300px;
-    }
-    .example-hero__caption {
-      font-size: 0.7rem;
-      opacity: 0.5;
-      margin-top: 0.5rem;
-    }
     .example-map-placeholder {
       background: linear-gradient(180deg, #d4cfc7 0%, #e8e5e0 30%, #d4cfc7 100%);
       display: flex;
@@ -118,10 +104,12 @@
 
       <!-- Panel 1: Hero / Cover -->
       <section class="ug-panel ug-panel--flush">
-        <div class="example-hero">
-          <p class="ug-label" style="opacity:0.6;margin-bottom:0.5rem">Established 1872</p>
-          <h2 class="ug-h1 ug-mb--0" style="font-size:2.5rem">The World's First National Park</h2>
-          <p class="example-hero__caption">Old Faithful erupts approximately every 90 minutes</p>
+        <div class="ug-hero ug-hero--blue ug-hero--auto" style="min-height:100%;padding:2rem">
+          <div class="ug-hero__content">
+            <p class="ug-hero__subtitle">Established 1872</p>
+            <h2 class="ug-hero__title">The World's First National Park</h2>
+            <p class="ug-hero__lead">Old Faithful erupts approximately every 90 minutes</p>
+          </div>
         </div>
       </section>
 
