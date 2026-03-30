@@ -1913,15 +1913,18 @@ textarea {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: #666666;
-  padding-bottom: 0.8125rem;
-  border-bottom: 2px solid #1a1a1a;
+  padding-bottom: 1.625rem;
+  border: none;
   margin-top: 0;
+  background-image: linear-gradient(to bottom, transparent calc(100% - 2px), #1a1a1a calc(100% - 2px));
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 .ug-label-divider--bold {
-  border-bottom-width: 3px;
+  background-image: linear-gradient(to bottom, transparent calc(100% - 3px), #1a1a1a calc(100% - 3px));
 }
 .ug-label-divider--light {
-  border-bottom-color: #e8e5e0;
+  background-image: linear-gradient(to bottom, transparent calc(100% - 2px), #e8e5e0 calc(100% - 2px));
 }
 
 .ug-modules {

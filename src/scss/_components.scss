@@ -124,15 +124,13 @@
 }
 
 // ---- Label Divider ----
-// Uppercase label with a bottom border, used as a subsection separator.
-// Total height: line-height (1 leading) + padding-bottom (0.5 leading)
-//             + 2px border + margin-bottom (1 leading) = on-grid
+// Uppercase label with a bottom line, used as a subsection separator.
+// Line drawn via background-image to avoid border shifting the grid.
+// Total: line-height (1 leading) + padding-bottom (1 leading)
+//        + margin-bottom (1 leading) = all on-grid.
 //
 // Block: .ug-label-divider
 // Modifiers: --bold, --light
-//
-// Usage:
-//   <p class="ug-label-divider">Section Name</p>
 
 .ug-label-divider {
   @include ug-font-size("sm");
@@ -142,15 +140,30 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: $ug-medium-gray;
-  padding-bottom: #{$ug-leading-rem * 0.5}rem;
-  border-bottom: 2px solid $ug-black;
+  padding-bottom: #{$ug-leading-rem}rem;
+  border: none;
   margin-top: 0;
+  background-image: linear-gradient(
+    to bottom,
+    transparent calc(100% - 2px),
+    $ug-black calc(100% - 2px)
+  );
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 
   &--bold {
-    border-bottom-width: 3px;
+    background-image: linear-gradient(
+      to bottom,
+      transparent calc(100% - 3px),
+      $ug-black calc(100% - 3px)
+    );
   }
 
   &--light {
-    border-bottom-color: $ug-light-gray;
+    background-image: linear-gradient(
+      to bottom,
+      transparent calc(100% - 2px),
+      $ug-light-gray calc(100% - 2px)
+    );
   }
 }
