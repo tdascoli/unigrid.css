@@ -2012,6 +2012,9 @@ h6,
   letter-spacing: 0.08em;
   color: #666666;
 }
+.ug-dropdown--active > .ug-dropdown__trigger {
+  color: #1a1a1a;
+}
 .ug-dropdown--right > .ug-dropdown__menu {
   left: auto;
   right: 0;

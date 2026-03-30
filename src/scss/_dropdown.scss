@@ -123,6 +123,11 @@
   // Modifiers
   // ==============================
 
+  // Active state (current page is in this dropdown)
+  &--active > &__trigger {
+    color: $ug-black;
+  }
+
   // Right-aligned menu
   &--right > &__menu {
     left: auto;
