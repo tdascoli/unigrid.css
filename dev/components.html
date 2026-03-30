@@ -10,18 +10,31 @@
 </head>
 <body>
 
-  <nav class="dev-nav">
-    <a class="dev-nav__link" href="/">Overview</a>
-    <a class="dev-nav__link" href="/grid.html">Grid</a>
-    <a class="dev-nav__link" href="/formats.html">Formats</a>
-    <a class="dev-nav__link" href="/modules.html">Modules</a>
-    <a class="dev-nav__link" href="/typography.html">Typography</a>
-    <a class="dev-nav__link dev-nav__link--active" href="/components.html">Components</a>
-    <a class="dev-nav__link" href="/cheatsheet.html">Cheatsheet</a>
-    <a class="dev-nav__link" href="/example.html">Example</a>
-  </nav>
+  <header class="ug-header ug-header--compact">
+    <div class="ug-header__title">
+      <h1>Unigrid</h1>
+      <p class="ug-header__subtitle">CSS Framework</p>
+    </div>
+    <nav class="ug-navbar">
+      <div class="ug-navbar__inner">
+        <button class="ug-navbar__toggle" onclick="this.nextElementSibling.classList.toggle('ug-navbar__menu--open')">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="ug-navbar__menu">
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/">Overview</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/grid.html">Grid</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/formats.html">Formats</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/modules.html">Modules</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/typography.html">Typography</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link ug-navbar__link--active" href="/components.html">Components</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/cheatsheet.html">Cheatsheet</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/example.html">Example</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
 
-  <div class="dev-page">
+  <div class="ug-container ug-container--narrow ug-pt--5 ug-pb--5">
     <h1 class="ug-h1">Components</h1>
     <p class="ug-lead">Reusable UI elements from the Unigrid system.</p>
 
@@ -104,7 +117,7 @@
         </div>
       </nav>
 
-      <p class="ug-label ug-mb--2">Header + Navbar combination</p>
+      <p class="ug-label ug-mb--2">Integrated: Navbar inside Header (same line)</p>
       <div class="ug-mb--3">
         <header class="ug-header ug-header--compact">
           <div class="ug-header__logo">
@@ -116,22 +129,21 @@
             <h1>Zion</h1>
             <p class="ug-header__subtitle">National Park / Utah</p>
           </div>
+          <nav class="ug-navbar">
+            <div class="ug-navbar__inner">
+              <button class="ug-navbar__toggle" onclick="this.nextElementSibling.classList.toggle('ug-navbar__menu--open')">
+                <span></span><span></span><span></span>
+              </button>
+              <ul class="ug-navbar__menu">
+                <li class="ug-navbar__item"><a class="ug-navbar__link ug-navbar__link--active" href="#">Home</a></li>
+                <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Things To Do</a></li>
+                <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Plan Your Visit</a></li>
+                <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Fees &amp; Passes</a></li>
+                <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Map</a></li>
+              </ul>
+            </div>
+          </nav>
         </header>
-        <nav class="ug-navbar ug-navbar--dark">
-          <div class="ug-navbar__inner">
-            <span></span>
-            <button class="ug-navbar__toggle" onclick="this.nextElementSibling.classList.toggle('ug-navbar__menu--open')">
-              <span></span><span></span><span></span>
-            </button>
-            <ul class="ug-navbar__menu">
-              <li class="ug-navbar__item"><a class="ug-navbar__link ug-navbar__link--active" href="#">Home</a></li>
-              <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Things To Do</a></li>
-              <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Plan Your Visit</a></li>
-              <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Fees & Passes</a></li>
-              <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Map</a></li>
-            </ul>
-          </div>
-        </nav>
       </div>
 
       <p class="ug-caption">Resize the browser to see the hamburger menu. Click it to toggle <code class="dev-code">.ug-navbar__menu--open</code>.</p>

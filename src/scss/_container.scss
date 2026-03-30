@@ -1,0 +1,53 @@
+// ==========================================================================
+// Unigrid CSS Framework — Container (BEM)
+//
+// Block: .ug-container
+// Modifiers: --narrow, --wide, --fluid, --flush
+//
+// Default: full viewport width with left/right padding.
+// --narrow: centered with max-width (like Bootstrap's container).
+// ==========================================================================
+
+.ug-container {
+  width: 100%;
+  padding-left: $ug-container-padding;
+  padding-right: $ug-container-padding;
+
+  // -- Centered, max-width container --
+  &--narrow {
+    max-width: $ug-container-max-width;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  // -- Wider max-width --
+  &--wide {
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  // -- No max-width, no padding (true full-bleed) --
+  &--fluid {
+    max-width: none;
+    padding-left: $ug-container-padding;
+    padding-right: $ug-container-padding;
+  }
+
+  // -- No padding (for edge-to-edge content) --
+  &--flush {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  // -- Responsive padding --
+  @include ug-breakpoint-down("md") {
+    padding-left: ug-space(3);
+    padding-right: ug-space(3);
+
+    &--flush {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
