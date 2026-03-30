@@ -1818,6 +1818,183 @@ textarea {
   outline: 1px solid hsla(210, 80%, 60%, 0.5);
 }
 
+.ug-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8125rem;
+  padding: calc(0.8125rem - 2px) 1.625rem;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 26px;
+  line-height: 1.625rem;
+  font-family: inherit;
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 2px solid #1a1a1a;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+.ug-btn:hover {
+  background-color: #333333;
+  border-color: #333333;
+  color: #ffffff;
+  text-decoration: none;
+}
+.ug-btn:active {
+  background-color: rgb(13.25, 13.25, 13.25);
+  border-color: rgb(13.25, 13.25, 13.25);
+}
+.ug-btn--brown {
+  background-color: #4a3728;
+  border-color: #4a3728;
+}
+.ug-btn--brown:hover {
+  background-color: rgb(100.4842105263, 74.6842105263, 54.3157894737);
+  border-color: rgb(100.4842105263, 74.6842105263, 54.3157894737);
+}
+.ug-btn--red {
+  background-color: #c1272d;
+  border-color: #c1272d;
+}
+.ug-btn--red:hover {
+  background-color: rgb(215.125862069, 57.674137931, 63.8086206897);
+  border-color: rgb(215.125862069, 57.674137931, 63.8086206897);
+}
+.ug-btn--green {
+  background-color: #2d5a27;
+  border-color: #2d5a27;
+}
+.ug-btn--green:hover {
+  background-color: rgb(59.2325581395, 118.4651162791, 51.3348837209);
+  border-color: rgb(59.2325581395, 118.4651162791, 51.3348837209);
+}
+.ug-btn--blue {
+  background-color: #274a5a;
+  border-color: #274a5a;
+}
+.ug-btn--blue:hover {
+  background-color: rgb(51.3348837209, 97.4046511628, 118.4651162791);
+  border-color: rgb(51.3348837209, 97.4046511628, 118.4651162791);
+}
+.ug-btn--light {
+  background-color: #f5f2ed;
+  border-color: #f5f2ed;
+  color: #1a1a1a;
+}
+.ug-btn--light:hover {
+  background-color: rgb(235.8928571429, 230.1607142857, 220.6071428571);
+  border-color: rgb(235.8928571429, 230.1607142857, 220.6071428571);
+  color: #1a1a1a;
+}
+.ug-btn--outline {
+  background-color: transparent;
+  color: #1a1a1a;
+}
+.ug-btn--outline:hover {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+.ug-btn--outline.ug-btn--brown {
+  border-color: #4a3728;
+  color: #4a3728;
+  background-color: transparent;
+}
+.ug-btn--outline.ug-btn--brown:hover {
+  background-color: #4a3728;
+  color: #ffffff;
+}
+.ug-btn--outline.ug-btn--red {
+  border-color: #c1272d;
+  color: #c1272d;
+  background-color: transparent;
+}
+.ug-btn--outline.ug-btn--red:hover {
+  background-color: #c1272d;
+  color: #ffffff;
+}
+.ug-btn--outline.ug-btn--green {
+  border-color: #2d5a27;
+  color: #2d5a27;
+  background-color: transparent;
+}
+.ug-btn--outline.ug-btn--green:hover {
+  background-color: #2d5a27;
+  color: #ffffff;
+}
+.ug-btn--outline.ug-btn--blue {
+  border-color: #274a5a;
+  color: #274a5a;
+  background-color: transparent;
+}
+.ug-btn--outline.ug-btn--blue:hover {
+  background-color: #274a5a;
+  color: #ffffff;
+}
+.ug-btn--outline.ug-btn--light {
+  border-color: #e8e5e0;
+  color: #333333;
+  background-color: transparent;
+}
+.ug-btn--outline.ug-btn--light:hover {
+  background-color: #f5f2ed;
+  color: #1a1a1a;
+}
+.ug-btn--ghost {
+  background-color: transparent;
+  border-color: transparent;
+  color: #1a1a1a;
+}
+.ug-btn--ghost:hover {
+  background-color: #f5f2ed;
+  border-color: #f5f2ed;
+  color: #1a1a1a;
+}
+.ug-btn--sm {
+  font-size: 0.875rem;
+  padding: calc(0.40625rem - 2px) 0.8125rem;
+}
+.ug-btn--lg {
+  font-size: 1.25rem;
+  padding: calc(1.21875rem - 2px) 2.4375rem;
+}
+.ug-btn--block {
+  display: flex;
+  width: 100%;
+}
+.ug-btn--disabled, .ug-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.ug-btn__icon {
+  display: inline-flex;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+}
+.ug-btn__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ug-btn-group {
+  display: inline-flex;
+  gap: 0;
+}
+.ug-btn-group .ug-btn {
+  border-radius: 0;
+}
+.ug-btn-group .ug-btn:not(:last-child) {
+  border-right-width: 1px;
+}
+.ug-btn-group .ug-btn:not(:first-child) {
+  border-left-width: 1px;
+}
+
 .ug-block {
   padding: 26px 26px;
   padding: 1.625rem 1.625rem;
