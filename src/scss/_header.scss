@@ -26,8 +26,8 @@
 
   // -- Elements --
   &__logo {
-    width: 3rem;
-    height: auto;
+    width: auto;
+    height: #{$ug-leading-rem * 3}rem;
     flex-shrink: 0;
 
     img,
@@ -129,6 +129,11 @@
   // -- Modifiers --
   &--compact {
     padding: #{$ug-leading-rem * 0.5}rem #{$ug-leading-rem * 1.5}rem;
+
+    .ug-header__logo {
+      width: auto;
+      height: #{$ug-leading-rem * 2}rem;
+    }
 
     .ug-header__title h1,
     .ug-header__title a,

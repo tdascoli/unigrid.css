@@ -711,8 +711,8 @@ textarea {
   flex-wrap: wrap;
 }
 .ug-header__logo {
-  width: 3rem;
-  height: auto;
+  width: auto;
+  height: 4.875rem;
   flex-shrink: 0;
 }
 .ug-header__logo img,
@@ -799,6 +799,10 @@ textarea {
 }
 .ug-header--compact {
   padding: 0.8125rem 2.4375rem;
+}
+.ug-header--compact .ug-header__logo {
+  width: auto;
+  height: 3.25rem;
 }
 .ug-header--compact .ug-header__title h1,
 .ug-header--compact .ug-header__title a,
