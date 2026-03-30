@@ -26,19 +26,35 @@
 }
 
 // ---- Spacing Utilities ----
-// .ug-p--{0-8}, .ug-m--{0-8}, .ug-mt--{0-8}, .ug-mb--{0-8}
+// Uses var(--ug-leading) so values adapt at the desktop breakpoint.
+// Multipliers: 0=0, 1=0.25, 2=0.5, 3=1, 4=1.5, 5=2, 6=3, 7=4, 8=6
 
-@each $n, $val in $ug-spaces {
-  .ug-p--#{$n} { padding: $val; }
-  .ug-m--#{$n} { margin: $val; }
-  .ug-mt--#{$n} { margin-top: $val; }
-  .ug-mb--#{$n} { margin-bottom: $val; }
-  .ug-ml--#{$n} { margin-left: $val; }
-  .ug-mr--#{$n} { margin-right: $val; }
-  .ug-pt--#{$n} { padding-top: $val; }
-  .ug-pb--#{$n} { padding-bottom: $val; }
-  .ug-pl--#{$n} { padding-left: $val; }
-  .ug-pr--#{$n} { padding-right: $val; }
+$_ug-space-multipliers: (0: 0, 1: 0.25, 2: 0.5, 3: 1, 4: 1.5, 5: 2, 6: 3, 7: 4, 8: 6);
+
+@each $n, $mult in $_ug-space-multipliers {
+  @if $n == 0 {
+    .ug-p--0  { padding: 0; }
+    .ug-m--0  { margin: 0; }
+    .ug-mt--0 { margin-top: 0; }
+    .ug-mb--0 { margin-bottom: 0; }
+    .ug-ml--0 { margin-left: 0; }
+    .ug-mr--0 { margin-right: 0; }
+    .ug-pt--0 { padding-top: 0; }
+    .ug-pb--0 { padding-bottom: 0; }
+    .ug-pl--0 { padding-left: 0; }
+    .ug-pr--0 { padding-right: 0; }
+  } @else {
+    .ug-p--#{$n}  { padding: calc(var(--ug-leading) * #{$mult}); }
+    .ug-m--#{$n}  { margin: calc(var(--ug-leading) * #{$mult}); }
+    .ug-mt--#{$n} { margin-top: calc(var(--ug-leading) * #{$mult}); }
+    .ug-mb--#{$n} { margin-bottom: calc(var(--ug-leading) * #{$mult}); }
+    .ug-ml--#{$n} { margin-left: calc(var(--ug-leading) * #{$mult}); }
+    .ug-mr--#{$n} { margin-right: calc(var(--ug-leading) * #{$mult}); }
+    .ug-pt--#{$n} { padding-top: calc(var(--ug-leading) * #{$mult}); }
+    .ug-pb--#{$n} { padding-bottom: calc(var(--ug-leading) * #{$mult}); }
+    .ug-pl--#{$n} { padding-left: calc(var(--ug-leading) * #{$mult}); }
+    .ug-pr--#{$n} { padding-right: calc(var(--ug-leading) * #{$mult}); }
+  }
 }
 
 // ---- Display ----
