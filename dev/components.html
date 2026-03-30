@@ -18,6 +18,7 @@
     <a class="dev-nav__link" href="/typography.html">Typography</a>
     <a class="dev-nav__link dev-nav__link--active" href="/components.html">Components</a>
     <a class="dev-nav__link" href="/cheatsheet.html">Cheatsheet</a>
+    <a class="dev-nav__link" href="/example.html">Example</a>
   </nav>
 
   <div class="dev-page">
@@ -61,6 +62,79 @@
           <p class="ug-header__subtitle">National Park / Utah</p>
         </div>
       </header>
+    </section>
+
+    <!-- Navbar -->
+    <section class="dev-section">
+      <p class="dev-section-title">Navbar — .ug-navbar</p>
+
+      <p class="ug-label ug-mb--2">Default (light)</p>
+      <nav class="ug-navbar ug-mb--3">
+        <div class="ug-navbar__inner">
+          <a class="ug-navbar__brand" href="#">Yellowstone</a>
+          <button class="ug-navbar__toggle" onclick="this.nextElementSibling.classList.toggle('ug-navbar__menu--open')">
+            <span></span><span></span><span></span>
+          </button>
+          <ul class="ug-navbar__menu">
+            <li class="ug-navbar__item"><a class="ug-navbar__link ug-navbar__link--active" href="#">Home</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Things To Do</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Plan Your Visit</a></li>
+            <li class="ug-navbar__divider"></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Map</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <p class="ug-label ug-mb--2">Dark</p>
+      <nav class="ug-navbar ug-navbar--dark ug-mb--3">
+        <div class="ug-navbar__inner">
+          <a class="ug-navbar__brand" href="#">Grand Canyon</a>
+          <button class="ug-navbar__toggle" onclick="this.nextElementSibling.classList.toggle('ug-navbar__menu--open')">
+            <span></span><span></span><span></span>
+          </button>
+          <ul class="ug-navbar__menu">
+            <li class="ug-navbar__item"><a class="ug-navbar__link ug-navbar__link--active" href="#">Home</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">South Rim</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">North Rim</a></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Trails</a></li>
+            <li class="ug-navbar__divider"></li>
+            <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Alerts</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <p class="ug-label ug-mb--2">Header + Navbar combination</p>
+      <div class="ug-mb--3">
+        <header class="ug-header ug-header--compact">
+          <div class="ug-header__logo">
+            <svg viewBox="0 0 40 52" fill="white" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 0 L40 52 L0 52 Z" opacity="0.8"/>
+            </svg>
+          </div>
+          <div class="ug-header__title">
+            <h1>Zion</h1>
+            <p class="ug-header__subtitle">National Park / Utah</p>
+          </div>
+        </header>
+        <nav class="ug-navbar ug-navbar--dark">
+          <div class="ug-navbar__inner">
+            <span></span>
+            <button class="ug-navbar__toggle" onclick="this.nextElementSibling.classList.toggle('ug-navbar__menu--open')">
+              <span></span><span></span><span></span>
+            </button>
+            <ul class="ug-navbar__menu">
+              <li class="ug-navbar__item"><a class="ug-navbar__link ug-navbar__link--active" href="#">Home</a></li>
+              <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Things To Do</a></li>
+              <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Plan Your Visit</a></li>
+              <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Fees & Passes</a></li>
+              <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Map</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <p class="ug-caption">Resize the browser to see the hamburger menu. Click it to toggle <code class="dev-code">.ug-navbar__menu--open</code>.</p>
     </section>
 
     <!-- Infobox -->

@@ -1,0 +1,239 @@
+// ==========================================================================
+// Unigrid CSS Framework — Navbar (BEM)
+//
+// Horizontal navigation bar, designed to sit below the header band or
+// standalone. Includes responsive mobile menu with hamburger toggle.
+//
+// Block: .ug-navbar
+// Elements: __inner, __brand, __toggle, __menu, __item, __link, __divider
+// Modifiers: --dark, --fixed, --transparent
+//            __menu--open (JS-toggled)
+//            __link--active
+// ==========================================================================
+
+.ug-navbar {
+  width: 100%;
+  background-color: $ug-white;
+  border-bottom: 1px solid $ug-light-gray;
+  position: relative;
+  z-index: 50;
+
+  // -- Inner container --
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 ug-space(4);
+    min-height: 3rem;
+  }
+
+  // -- Brand / Logo area (optional, left side) --
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: ug-space(2);
+    @include ug-font-size("sm");
+    @include ug-font-weight("bold");
+    text-decoration: none;
+    color: inherit;
+    flex-shrink: 0;
+  }
+
+  // -- Hamburger Toggle (mobile only) --
+  &__toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: ug-space(2);
+    margin-right: -(ug-space(2));
+    color: inherit;
+
+    // Hamburger icon (3 lines)
+    span {
+      display: block;
+      width: 1.25rem;
+      height: 2px;
+      background-color: currentColor;
+      transition: transform 0.2s, opacity 0.2s;
+
+      & + span {
+        margin-top: 4px;
+      }
+    }
+
+    @include ug-breakpoint-down("md") {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  // -- Menu (list of links) --
+  &__menu {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    // Mobile: hidden by default, shown when --open
+    @include ug-breakpoint-down("md") {
+      display: none;
+      flex-direction: column;
+      align-items: stretch;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: inherit;
+      border-bottom: 1px solid $ug-light-gray;
+      padding: ug-space(2) 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+      &--open {
+        display: flex;
+      }
+    }
+  }
+
+  // -- Menu Item --
+  &__item {
+    display: flex;
+    align-items: center;
+  }
+
+  // -- Link --
+  &__link {
+    display: block;
+    padding: ug-space(2) ug-space(3);
+    @include ug-font-size("sm");
+    @include ug-font-weight("regular");
+    color: $ug-dark-gray;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.15s, background-color 0.15s;
+
+    &:hover {
+      color: $ug-black;
+      background-color: $ug-warm-gray;
+    }
+
+    &--active {
+      @include ug-font-weight("bold");
+      color: $ug-black;
+    }
+
+    @include ug-breakpoint-down("md") {
+      padding: ug-space(3) ug-space(4);
+      @include ug-font-size("base");
+    }
+  }
+
+  // -- Divider (vertical on desktop, horizontal on mobile) --
+  &__divider {
+    width: 1px;
+    height: 1rem;
+    background-color: $ug-light-gray;
+    margin: 0 ug-space(1);
+
+    @include ug-breakpoint-down("md") {
+      width: auto;
+      height: 1px;
+      margin: ug-space(1) ug-space(4);
+    }
+  }
+
+  // ==============================
+  // Modifiers
+  // ==============================
+
+  // -- Dark variant --
+  &--dark {
+    background-color: $ug-black;
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+
+    .ug-navbar__link {
+      color: rgba(255, 255, 255, 0.7);
+
+      &:hover {
+        color: $ug-white;
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      &--active {
+        color: $ug-white;
+      }
+    }
+
+    .ug-navbar__brand {
+      color: $ug-white;
+    }
+
+    .ug-navbar__toggle {
+      color: $ug-white;
+    }
+
+    .ug-navbar__divider {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .ug-navbar__menu {
+      @include ug-breakpoint-down("md") {
+        background-color: $ug-black;
+        border-bottom-color: rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+
+  // -- Fixed to top --
+  &--fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  // -- Transparent (for overlay on hero) --
+  &--transparent {
+    background-color: transparent;
+    border-bottom-color: transparent;
+
+    .ug-navbar__link {
+      color: rgba(255, 255, 255, 0.8);
+
+      &:hover {
+        color: $ug-white;
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      &--active {
+        color: $ug-white;
+      }
+    }
+
+    .ug-navbar__brand {
+      color: $ug-white;
+    }
+
+    .ug-navbar__toggle {
+      color: $ug-white;
+    }
+
+    .ug-navbar__menu {
+      @include ug-breakpoint-down("md") {
+        background-color: $ug-black;
+      }
+    }
+  }
+}
+
+// ---- Minimal JS toggle helper ----
+// Add/remove .ug-navbar__menu--open with:
+//   document.querySelector('.ug-navbar__toggle').addEventListener('click', () => {
+//     document.querySelector('.ug-navbar__menu').classList.toggle('ug-navbar__menu--open');
+//   });
