@@ -863,10 +863,10 @@ textarea {
   color: inherit;
   font-size: 0.875rem;
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: 0.05em;
   font-family: inherit;
   transition: background-color 0.15s, color 0.15s;
+  z-index: 1000;
 }
 .ug-navbar__toggle:hover {
   background-color: rgba(255, 255, 255, 0.1);
@@ -882,10 +882,10 @@ textarea {
     display: inline-flex;
   }
 }
-.ug-navbar__menu--open ~ .ug-navbar__toggle .ug-navbar__label, .ug-navbar__toggle--active .ug-navbar__label {
+.ug-navbar__toggle--active .ug-navbar__toggle__label {
   display: none;
 }
-.ug-navbar__menu--open ~ .ug-navbar__toggle .ug-navbar__close, .ug-navbar__toggle--active .ug-navbar__close {
+.ug-navbar__toggle--active .ug-navbar__toggle__close {
   display: inline;
 }
 .ug-navbar__toggle--hamburger {
@@ -2043,7 +2043,7 @@ h6,
   border: none;
   padding: 0;
   font: inherit;
-  color: inherit;
+  font-weight: 300;
 }
 .ug-dropdown__caret {
   display: inline-block;
@@ -2111,6 +2111,9 @@ h6,
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #666666;
+}
+.ug-dropdown--active > .ug-navbar__link {
+  color: #ffffff !important;
 }
 .ug-dropdown--active > .ug-dropdown__trigger {
   color: #1a1a1a;
@@ -2210,6 +2213,156 @@ h6,
 }
 .ug-table-responsive .ug-table {
   margin-bottom: 0;
+}
+
+.ug-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: 1px solid #e8e5e0;
+  overflow: hidden;
+}
+.ug-card__image {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+.ug-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.ug-card__image--square {
+  aspect-ratio: 1;
+}
+.ug-card__image--landscape {
+  aspect-ratio: 16/9;
+}
+.ug-card__image--din {
+  aspect-ratio: 1.4142/1;
+}
+.ug-card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: var(--ug-leading) calc(var(--ug-leading) * 1.5);
+}
+.ug-card__title {
+  font-size: 1.2rem;
+  line-height: calc(var(--ug-leading) * 1);
+  font-weight: 700;
+  margin-bottom: calc(var(--ug-leading) * 0.5);
+  margin-top: 0;
+}
+.ug-card__subtitle {
+  font-size: 0.875rem;
+  line-height: calc(var(--ug-leading) * 1);
+  color: #666666;
+  margin-top: 0;
+  margin-bottom: calc(var(--ug-leading) * 0.5);
+}
+.ug-card__text {
+  font-size: 0.875rem;
+  line-height: calc(var(--ug-leading) * 1);
+  color: #333333;
+  flex: 1;
+}
+.ug-card__footer {
+  padding: calc(var(--ug-leading) * 0.5) calc(var(--ug-leading) * 1.5);
+  border-top: 1px solid #e8e5e0;
+  font-size: 0.75rem;
+  line-height: calc(var(--ug-leading) * 1);
+  color: #666666;
+}
+.ug-card__actions {
+  display: flex;
+  gap: calc(var(--ug-leading) * 0.5);
+  padding: var(--ug-leading) calc(var(--ug-leading) * 1.5);
+  padding-top: 0;
+}
+.ug-card--dark {
+  background-color: #1a1a1a;
+  border-color: #1a1a1a;
+  color: #ffffff;
+}
+.ug-card--dark .ug-card__text {
+  color: rgba(255, 255, 255, 0.7);
+}
+.ug-card--dark .ug-card__subtitle {
+  color: rgba(255, 255, 255, 0.5);
+}
+.ug-card--dark .ug-card__footer {
+  border-top-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+}
+.ug-card--bordered {
+  border-width: 2px;
+  border-color: #1a1a1a;
+}
+.ug-card--flat {
+  border: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+.ug-card--horizontal {
+  flex-direction: row;
+}
+.ug-card--horizontal .ug-card__image {
+  width: 40%;
+  flex-shrink: 0;
+}
+.ug-card--horizontal .ug-card__image img {
+  height: 100%;
+}
+.ug-card--horizontal .ug-card__body {
+  flex: 1;
+}
+@media (max-width: 767px) {
+  .ug-card--horizontal {
+    flex-direction: column;
+  }
+  .ug-card--horizontal .ug-card__image {
+    width: 100%;
+  }
+}
+.ug-card--accent-red {
+  border-top: 3px solid #c1272d;
+}
+.ug-card--accent-brown {
+  border-top: 3px solid #4a3728;
+}
+.ug-card--accent-green {
+  border-top: 3px solid #2d5a27;
+}
+.ug-card--accent-blue {
+  border-top: 3px solid #274a5a;
+}
+
+.ug-card-grid {
+  display: grid;
+  gap: var(--ug-leading);
+}
+.ug-card-grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+.ug-card-grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.ug-card-grid--4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 1023px) {
+  .ug-card-grid--4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ug-card-grid--3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 767px) {
+  .ug-card-grid--2, .ug-card-grid--3, .ug-card-grid--4 {
+    grid-template-columns: 1fr;
+  }
 }
 
 .ug-form__group {
