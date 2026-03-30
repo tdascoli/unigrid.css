@@ -1147,6 +1147,65 @@ textarea {
   color: #ffffff;
 }
 
+.ug-section {
+  width: 100%;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  padding: 1rem 2rem;
+}
+.ug-section__title {
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.ug-section__subtitle {
+  font-size: 0.875rem;
+  font-weight: 300;
+  opacity: 0.7;
+  margin: 0;
+}
+.ug-section--compact {
+  padding: 0.5rem 2rem;
+}
+.ug-section--compact .ug-section__title {
+  font-size: 1.25rem;
+}
+.ug-section--large {
+  padding: 2rem 2rem;
+}
+.ug-section--large .ug-section__title {
+  font-size: 3rem;
+}
+.ug-section--brown {
+  background-color: #4a3728;
+}
+.ug-section--red {
+  background-color: #c1272d;
+}
+.ug-section--green {
+  background-color: #2d5a27;
+}
+.ug-section--blue {
+  background-color: #274a5a;
+}
+.ug-section--light {
+  background-color: #f5f2ed;
+  color: #1a1a1a;
+}
+@media (max-width: 767px) {
+  .ug-section {
+    padding: 1rem 1rem;
+  }
+  .ug-section--large {
+    padding: 1.5rem 1rem;
+  }
+  .ug-section--compact {
+    padding: 0.5rem 1rem;
+  }
+}
+
 .ug-h1 {
   font-size: 3rem;
   font-weight: 900;

@@ -1,0 +1,85 @@
+// ==========================================================================
+// Unigrid CSS Framework — Section Title (BEM)
+//
+// The signature black band with white heading spanning the full width.
+// A defining visual element of the Unigrid system, used to separate
+// major content sections in NPS folders.
+//
+// Block: .ug-section
+// Elements: __title, __subtitle
+// Modifiers: --brown, --red, --green, --blue, --light, --compact, --large
+// ==========================================================================
+
+.ug-section {
+  width: 100%;
+  background-color: $ug-black;
+  color: $ug-white;
+  padding: ug-space(3) ug-space(5);
+
+  // -- Title --
+  &__title {
+    @include ug-font-size("2xl");
+    @include ug-font-weight("black");
+    line-height: $ug-line-height-tight;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  // -- Subtitle (optional, right of or below title) --
+  &__subtitle {
+    @include ug-font-size("sm");
+    @include ug-font-weight("light");
+    opacity: 0.7;
+    margin: 0;
+  }
+
+  // ==============================
+  // Size Modifiers
+  // ==============================
+
+  &--compact {
+    padding: ug-space(2) ug-space(5);
+
+    .ug-section__title {
+      @include ug-font-size("lg");
+    }
+  }
+
+  &--large {
+    padding: ug-space(5) ug-space(5);
+
+    .ug-section__title {
+      @include ug-font-size("3xl");
+    }
+  }
+
+  // ==============================
+  // Color Modifiers
+  // ==============================
+
+  &--brown { background-color: $ug-brown; }
+  &--red   { background-color: $ug-red; }
+  &--green { background-color: $ug-green; }
+  &--blue  { background-color: $ug-blue; }
+
+  &--light {
+    background-color: $ug-warm-gray;
+    color: $ug-black;
+  }
+
+  // ==============================
+  // Responsive
+  // ==============================
+
+  @include ug-breakpoint-down("md") {
+    padding: ug-space(3) ug-space(3);
+
+    &--large {
+      padding: ug-space(4) ug-space(3);
+    }
+
+    &--compact {
+      padding: ug-space(2) ug-space(3);
+    }
+  }
+}
