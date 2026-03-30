@@ -11,9 +11,11 @@
 @use "mixins" as *;
 
 // ---- Headings (from $ug-headings map) ----
-// Each: (font-size rem, line-height × leading, margin-top × leading, margin-bottom × leading)
+// Styles applied to both the HTML element (h1-h6) and the utility class (.ug-h1-.ug-h6).
+// The .ug-h* classes are for non-heading elements that need heading styling.
 
 @each $heading, $props in $ug-headings {
+  #{$heading},
   .ug-#{$heading} {
     @include ug-rhythm-font-size(list.nth($props, 1));
     @include ug-rhythm-line-height(list.nth($props, 2));

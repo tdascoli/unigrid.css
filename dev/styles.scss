@@ -95,9 +95,10 @@ body.dev-debug {
 
 .dev-code {
   background: $ug-warm-gray;
-  padding: calc(var(--ug-leading) * 0.125) calc(var(--ug-leading) * 0.25);
+  padding: 0 calc(var(--ug-leading) * 0.25);
   @include ug-font-size("xs");
-  @include ug-rhythm-line-height(1);
+  line-height: inherit;
+  vertical-align: baseline;
   font-family: "SF Mono", "Fira Code", monospace;
   border-radius: 2px;
 }

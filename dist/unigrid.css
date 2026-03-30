@@ -1249,6 +1249,7 @@ textarea {
   }
 }
 
+h1,
 .ug-h1 {
   font-size: 2.5rem;
   line-height: calc(var(--ug-leading) * 2);
@@ -1259,6 +1260,7 @@ textarea {
   letter-spacing: -0.02em;
 }
 
+h2,
 .ug-h2 {
   font-size: 1.6875rem;
   line-height: calc(var(--ug-leading) * 2);
@@ -1267,6 +1269,7 @@ textarea {
   margin-top: 0;
 }
 
+h3,
 .ug-h3 {
   font-size: 1.375rem;
   line-height: calc(var(--ug-leading) * 1);
@@ -1275,6 +1278,7 @@ textarea {
   margin-top: 0;
 }
 
+h4,
 .ug-h4 {
   font-size: 1.2rem;
   line-height: calc(var(--ug-leading) * 1);
@@ -1283,6 +1287,7 @@ textarea {
   margin-top: 0;
 }
 
+h5,
 .ug-h5 {
   font-size: 1rem;
   line-height: calc(var(--ug-leading) * 1);
@@ -1291,6 +1296,7 @@ textarea {
   margin-top: 0;
 }
 
+h6,
 .ug-h6 {
   font-size: 1rem;
   line-height: calc(var(--ug-leading) * 1);
