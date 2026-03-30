@@ -2088,7 +2088,7 @@ h6,
   font-size: 0.875rem;
   font-weight: 700;
   line-height: calc(var(--ug-leading) - 2px);
-  margin-bottom: calc(var(--ug-leading) * 1);
+  margin-bottom: calc(var(--ug-leading) * 0.5 - 2px);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: #666666;
@@ -2098,6 +2098,7 @@ h6,
 .ug-label-divider--bold {
   line-height: calc(var(--ug-leading) - 3px);
   border-bottom-width: 3px;
+  margin-bottom: calc(var(--ug-leading) * 0.5 - 3px);
 }
 .ug-label-divider--light {
   border-bottom-color: #e8e5e0;

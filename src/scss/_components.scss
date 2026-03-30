@@ -121,7 +121,7 @@
   @include ug-font-size("sm");
   @include ug-font-weight("bold");
   line-height: calc(var(--ug-leading) - 2px);
-  @include ug-rhythm-margin-bottom(1);
+  margin-bottom: calc(var(--ug-leading) * 0.5 - 2px);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: $ug-medium-gray;
@@ -131,6 +131,7 @@
   &--bold {
     line-height: calc(var(--ug-leading) - 3px);
     border-bottom-width: 3px;
+    margin-bottom: calc(var(--ug-leading) * 0.5 - 3px);
   }
 
   &--light {
