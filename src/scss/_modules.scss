@@ -67,11 +67,11 @@ $_xs-margin: map.get($_xs, margin);
 
 .ug-modules {
   padding: $_xs-g 0 0 $_xs-margin;
-  margin-right: -#{$_xs-g};
+  gap: $_xs-g;
 }
 
 .ug-module {
-  margin: 0 $_xs-g $_xs-g 0;
+  margin: 0;
 }
 
 @each $w in (1, 2, 3) {
@@ -105,8 +105,8 @@ $_xs-margin: map.get($_xs, margin);
   $_sm-m: map.get($_sm, module);
   $_sm-margin: map.get($_sm, margin);
 
-  .ug-modules { padding: $_sm-g 0 0 $_sm-margin; margin-right: -#{$_sm-g}; }
-  .ug-module { margin: 0 $_sm-g $_sm-g 0; }
+  .ug-modules { padding: $_sm-g 0 0 $_sm-margin; gap: $_sm-g; }
+  .ug-module { margin: 0; }
 
   @each $w in (1, 2, 3, 4) {
     @for $h from 1 through $ug-module-max-height {
@@ -138,8 +138,8 @@ $_xs-margin: map.get($_xs, margin);
   $_md-m: map.get($_md, module);
   $_md-margin: map.get($_md, margin);
 
-  .ug-modules { padding: $_md-g 0 0 $_md-margin; margin-right: -#{$_md-g}; }
-  .ug-module { margin: 0 $_md-g $_md-g 0; }
+  .ug-modules { padding: $_md-g 0 0 $_md-margin; gap: $_md-g; }
+  .ug-module { margin: 0; }
 
   @each $w in (1, 2, 3, 4, 6) {
     @for $h from 1 through $ug-module-max-height {
@@ -171,8 +171,8 @@ $_xs-margin: map.get($_xs, margin);
   $_lg-m: map.get($_lg, module);
   $_lg-margin: map.get($_lg, margin);
 
-  .ug-modules { padding: $_lg-g 0 0 $_lg-margin; margin-right: -#{$_lg-g}; }
-  .ug-module { margin: 0 $_lg-g $_lg-g 0; }
+  .ug-modules { padding: $_lg-g 0 0 $_lg-margin; gap: $_lg-g; }
+  .ug-module { margin: 0; }
 
   @each $w in (1, 2, 3, 4, 6, 8) {
     @for $h from 1 through $ug-module-max-height {
@@ -204,8 +204,8 @@ $_xs-margin: map.get($_xs, margin);
   $_xl-m: map.get($_xl, module);
   $_xl-margin: map.get($_xl, margin);
 
-  .ug-modules { padding: $_xl-g 0 0 $_xl-margin; margin-right: -#{$_xl-g}; }
-  .ug-module { margin: 0 $_xl-g $_xl-g 0; }
+  .ug-modules { padding: $_xl-g 0 0 $_xl-margin; gap: $_xl-g; }
+  .ug-module { margin: 0; }
 
   @each $w in (1, 2, 3, 4, 6, 8, 12) {
     @for $h from 1 through $ug-module-max-height {
