@@ -2268,6 +2268,83 @@ h6,
   }
 }
 
+.ug-accordion__item {
+  border-bottom: 1px solid #e8e5e0;
+}
+.ug-accordion__item[open] > .ug-accordion__header .ug-accordion__caret {
+  transform: rotate(180deg);
+}
+.ug-accordion__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(var(--ug-leading) * 0.5) 0;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: calc(var(--ug-leading) * 1);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  transition: color 0.15s;
+}
+.ug-accordion__header::-webkit-details-marker {
+  display: none;
+}
+.ug-accordion__header::marker {
+  content: "";
+}
+.ug-accordion__header:hover {
+  color: #666666;
+}
+.ug-accordion__caret {
+  display: inline-block;
+  width: 0.6em;
+  height: 0.6em;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+  margin-left: var(--ug-leading);
+}
+.ug-accordion__body {
+  padding: 0 0 var(--ug-leading) 0;
+  font-size: 0.875rem;
+  line-height: calc(var(--ug-leading) * 1);
+  color: #333333;
+}
+.ug-accordion--bordered {
+  border: 1px solid #e8e5e0;
+}
+.ug-accordion--bordered .ug-accordion__item {
+  border-bottom: 1px solid #e8e5e0;
+}
+.ug-accordion--bordered .ug-accordion__item:last-child {
+  border-bottom: none;
+}
+.ug-accordion--bordered .ug-accordion__header {
+  padding: calc(var(--ug-leading) * 0.5) var(--ug-leading);
+}
+.ug-accordion--bordered .ug-accordion__body {
+  padding: 0 var(--ug-leading) var(--ug-leading);
+}
+.ug-accordion--flush .ug-accordion__item {
+  border-bottom: none;
+}
+.ug-accordion--dark {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+.ug-accordion--dark .ug-accordion__item {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+.ug-accordion--dark .ug-accordion__header:hover {
+  color: rgba(255, 255, 255, 0.6);
+}
+.ug-accordion--dark .ug-accordion__body {
+  color: rgba(255, 255, 255, 0.7);
+}
+
 .ug-table {
   width: 100%;
   border-collapse: collapse;

@@ -1,0 +1,123 @@
+// ==========================================================================
+// Unigrid CSS Framework — Accordion (BEM)
+//
+// Pure HTML/CSS accordion using <details>/<summary>. No JS required.
+// Caret rotates when open.
+//
+// Block: .ug-accordion
+// Elements: __item, __header, __caret, __body
+// Modifiers: --bordered, --flush, --dark
+// ==========================================================================
+
+@use "variables" as *;
+@use "mixins" as *;
+
+.ug-accordion {
+
+  // ---- Item (details element) ----
+  &__item {
+    border-bottom: 1px solid $ug-light-gray;
+
+    &[open] > .ug-accordion__header .ug-accordion__caret {
+      transform: rotate(180deg);
+    }
+  }
+
+  // ---- Header (summary element) ----
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: calc(var(--ug-leading) * 0.5) 0;
+    @include ug-font-size("base");
+    @include ug-font-weight("bold");
+    @include ug-rhythm-line-height(1);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    transition: color 0.15s;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::marker {
+      content: "";
+    }
+
+    &:hover {
+      color: $ug-medium-gray;
+    }
+  }
+
+  // ---- Caret ----
+  &__caret {
+    display: inline-block;
+    width: 0.6em;
+    height: 0.6em;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+    margin-left: var(--ug-leading);
+  }
+
+  // ---- Body ----
+  &__body {
+    padding: 0 0 var(--ug-leading) 0;
+    @include ug-font-size("sm");
+    @include ug-rhythm-line-height(1);
+    color: $ug-dark-gray;
+  }
+
+  // ==============================
+  // Modifiers
+  // ==============================
+
+  // Bordered: border on all sides
+  &--bordered {
+    border: 1px solid $ug-light-gray;
+
+    .ug-accordion__item {
+      border-bottom: 1px solid $ug-light-gray;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    .ug-accordion__header {
+      padding: calc(var(--ug-leading) * 0.5) var(--ug-leading);
+    }
+
+    .ug-accordion__body {
+      padding: 0 var(--ug-leading) var(--ug-leading);
+    }
+  }
+
+  // Flush: no borders at all
+  &--flush {
+    .ug-accordion__item {
+      border-bottom: none;
+    }
+  }
+
+  // Dark
+  &--dark {
+    background-color: $ug-black;
+    color: $ug-white;
+
+    .ug-accordion__item {
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .ug-accordion__header:hover {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .ug-accordion__body {
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+}
