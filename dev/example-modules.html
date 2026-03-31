@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unigrid CSS — Module Examples</title>
+  <link rel="icon" href="unigrid.svg" sizes="any" type="image/svg+xml">
+  <link rel="preconnect" href="https://rsms.me/">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <link rel="stylesheet" href="./styles.scss">
+  <style>
+    .mod-tile {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1rem;
+      color: #fff;
+      overflow: hidden;
+    }
+    .mod-tile__title {
+      font-weight: 700;
+      font-size: 1rem;
+      line-height: 1.2;
+      margin: 0;
+    }
+    .mod-tile__sub {
+      font-size: 0.7rem;
+      opacity: 0.6;
+      margin: 0;
+    }
+    .mod-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+    }
+    .mod-stat__number {
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1;
+      margin: 0;
+    }
+    .mod-stat__label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      opacity: 0.7;
+      margin-top: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="ug-header">
+    <div class="ug-header__title">
+      <a href="index.html">Unigrid</a>
+      <p class="ug-header__subtitle">CSS Framework</p>
+    </div>
+    <nav class="ug-navbar">
+      <div class="ug-navbar__inner">
+        <button class="ug-navbar__toggle" onclick="var m=this.parentElement.querySelector('.ug-navbar__menu');m.classList.toggle('ug-navbar__menu--open');this.classList.toggle('ug-navbar__toggle--active')">
+          <span class="ug-navbar__toggle__label">Menu</span>
+          <span class="ug-navbar__toggle__close">Close</span>
+        </button>
+        <ul class="ug-navbar__menu">
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="/">Overview</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="/grid.html">Grid</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="/formats.html">Formats</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="/modules.html">Modules</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="/typography.html">Typography</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="/components.html">Components</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="/cheatsheet.html">Cheatsheet</a></li>
+          <li class="ug-navbar__item ug-dropdown ug-dropdown--right ug-dropdown--active">
+              <button class="ug-navbar__link ug-dropdown__trigger">
+                Examples <span class="ug-dropdown__caret"></span>
+              </button>
+              <ul class="ug-dropdown__menu">
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example.html">Unigrid</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-hero.html">Hero</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-prose.html">Prose</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-section.html">Section</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-modules.html">Modules</a></li>
+              </ul>
+            </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============================================================
+       EXAMPLE 1: NPS Park Dashboard — Stats + Feature Tiles
+       ============================================================ -->
+
+  <div class="ug-section">
+    <h2 class="ug-section__title">Yellowstone — Park Dashboard</h2>
+  </div>
+
+  <!-- Stats Row -->
+  <div class="ug-modules">
+    <div class="ug-module ug-module--1x3 mod-stat" style="background:#1a1a1a">
+      <p class="mod-stat__number">2.2M</p>
+      <p class="mod-stat__label">Acres</p>
+    </div>
+    <div class="ug-module ug-module--1x3 mod-stat" style="background:#274a5a">
+      <p class="mod-stat__number">4.5M</p>
+      <p class="mod-stat__label">Annual Visitors</p>
+    </div>
+    <div class="ug-module ug-module--1x3 mod-stat" style="background:#2d5a27">
+      <p class="mod-stat__number">500+</p>
+      <p class="mod-stat__label">Geysers</p>
+    </div>
+    <div class="ug-module ug-module--1x3 mod-stat" style="background:#4a3728">
+      <p class="mod-stat__number">1872</p>
+      <p class="mod-stat__label">Established</p>
+    </div>
+  </div>
+
+  <!-- Feature Tiles: Hero + Supporting -->
+  <div class="ug-modules">
+    <div class="ug-module ug-module--3x6 mod-tile" style="background:linear-gradient(to top, #1a1a1a, #274a5a)">
+      <p class="mod-tile__sub">Featured</p>
+      <p class="mod-tile__title" style="font-size:1.5rem">Old Faithful &amp; the Upper Geyser Basin</p>
+      <p class="mod-tile__sub" style="margin-top:0.5rem">Home to the world's most famous geyser, erupting approximately every 90 minutes.</p>
+    </div>
+    <div class="ug-module ug-module--1x3 mod-tile" style="background:linear-gradient(to top, #1a1a1a, #c1272d)">
+      <p class="mod-tile__title">Grand Prismatic Spring</p>
+      <p class="mod-tile__sub">Largest hot spring in the US</p>
+    </div>
+    <div class="ug-module ug-module--1x3 mod-tile" style="background:linear-gradient(to top, #1a1a1a, #2d5a27)">
+      <p class="mod-tile__title">Lamar Valley</p>
+      <p class="mod-tile__sub">Best wildlife viewing</p>
+    </div>
+    <div class="ug-module ug-module--1x3 mod-tile" style="background:linear-gradient(to top, #1a1a1a, #4a3728)">
+      <p class="mod-tile__title">Mammoth Hot Springs</p>
+      <p class="mod-tile__sub">Terraced limestone formations</p>
+    </div>
+    <div class="ug-module ug-module--1x3 mod-tile" style="background:linear-gradient(to top, #1a1a1a, #333)">
+      <p class="mod-tile__title">Yellowstone Lake</p>
+      <p class="mod-tile__sub">Largest high-altitude lake in NA</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       EXAMPLE 2: Photo Grid — Mixed Sizes
+       ============================================================ -->
+
+  <div class="ug-section ug-section--compact">
+    <h2 class="ug-section__title">Photo Gallery</h2>
+  </div>
+
+  <div class="ug-modules">
+    <div class="ug-module ug-module--2x4 mod-tile" style="background:linear-gradient(135deg, #274a5a, #1a1a1a)">
+      <p class="mod-tile__title">Grand Canyon of the Yellowstone</p>
+      <p class="mod-tile__sub">20 miles long, 1,200 feet deep</p>
+    </div>
+    <div class="ug-module ug-module--2x4 mod-tile" style="background:linear-gradient(135deg, #2d5a27, #1a1a1a)">
+      <p class="mod-tile__title">Tower Falls</p>
+      <p class="mod-tile__sub">132-foot waterfall</p>
+    </div>
+    <div class="ug-module ug-module--2x4 mod-tile" style="background:linear-gradient(135deg, #c1272d, #1a1a1a)">
+      <p class="mod-tile__title">Norris Geyser Basin</p>
+      <p class="mod-tile__sub">Hottest and most dynamic</p>
+    </div>
+    <div class="ug-module ug-module--1x6 mod-tile" style="background:linear-gradient(135deg, #4a3728, #1a1a1a)">
+      <p class="mod-tile__title">Hayden Valley — Panorama</p>
+      <p class="mod-tile__sub">Prime bison and grizzly habitat</p>
+    </div>
+    <div class="ug-module ug-module--1x6 mod-tile" style="background:linear-gradient(135deg, #333, #1a1a1a)">
+      <p class="mod-tile__title">Firehole River — Panorama</p>
+      <p class="mod-tile__sub">Warm waters from thermal features</p>
+    </div>
+    <div class="ug-module ug-module--1x3 mod-tile" style="background:linear-gradient(to top, #1a1a1a, #274a5a)">
+      <p class="mod-tile__title">Morning Glory Pool</p>
+    </div>
+    <div class="ug-module ug-module--1x3 mod-tile" style="background:linear-gradient(to top, #1a1a1a, #c1272d)">
+      <p class="mod-tile__title">Dragon's Mouth Spring</p>
+    </div>
+    <div class="ug-module ug-module--1x3 mod-tile" style="background:linear-gradient(to top, #1a1a1a, #2d5a27)">
+      <p class="mod-tile__title">Mud Volcano</p>
+    </div>
+    <div class="ug-module ug-module--1x3 mod-tile" style="background:linear-gradient(to top, #1a1a1a, #4a3728)">
+      <p class="mod-tile__title">Artist Point</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       EXAMPLE 3: Activities Grid — Cards in Modules
+       ============================================================ -->
+
+  <div class="ug-section ug-section--compact ug-section--brown">
+    <h2 class="ug-section__title">Things To Do</h2>
+    <p class="ug-section__subtitle">Activities for every season</p>
+  </div>
+
+  <div class="ug-modules">
+    <div class="ug-module ug-module--2x2 mod-stat" style="background:#c1272d">
+      <p class="mod-stat__number" style="font-size:2.5rem">🌋</p>
+      <p class="mod-stat__label">Geysers &amp; Hot Springs</p>
+    </div>
+    <div class="ug-module ug-module--2x2 mod-stat" style="background:#2d5a27">
+      <p class="mod-stat__number" style="font-size:2.5rem">🥾</p>
+      <p class="mod-stat__label">Hiking &amp; Backpacking</p>
+    </div>
+    <div class="ug-module ug-module--2x2 mod-stat" style="background:#274a5a">
+      <p class="mod-stat__number" style="font-size:2.5rem">🐻</p>
+      <p class="mod-stat__label">Wildlife Watching</p>
+    </div>
+    <div class="ug-module ug-module--2x2 mod-stat" style="background:#4a3728">
+      <p class="mod-stat__number" style="font-size:2.5rem">🎣</p>
+      <p class="mod-stat__label">Fishing</p>
+    </div>
+    <div class="ug-module ug-module--2x2 mod-stat" style="background:#333">
+      <p class="mod-stat__number" style="font-size:2.5rem">⛺</p>
+      <p class="mod-stat__label">Camping</p>
+    </div>
+    <div class="ug-module ug-module--2x2 mod-stat" style="background:#1a1a1a">
+      <p class="mod-stat__number" style="font-size:2.5rem">🌌</p>
+      <p class="mod-stat__label">Stargazing</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       EXAMPLE 4: Info + Map Layout
+       ============================================================ -->
+
+  <div class="ug-section ug-section--compact">
+    <h2 class="ug-section__title">Visitor Information</h2>
+  </div>
+
+  <div class="ug-modules">
+    <div class="ug-module ug-module--3x4 mod-tile" style="background:linear-gradient(180deg, #d4cfc7, #e8e5e0);color:#666;justify-content:center;align-items:center">
+      <p style="font-size:0.875rem">Park Map</p>
+      <p style="font-size:0.7rem;opacity:0.6;margin-top:0.25rem">2.2 million acres across 3 states</p>
+    </div>
+    <div class="ug-module ug-module--1x4 ug-module--auto-height" style="padding:1.5rem;background:#f5f2ed">
+      <p class="ug-label ug-mb--2">Entrance Fees</p>
+      <p class="ug-body--sm">Vehicle: $35 (7 days)</p>
+      <p class="ug-body--sm">Individual: $20 (7 days)</p>
+      <p class="ug-body--sm">Annual Pass: $70</p>
+    </div>
+    <div class="ug-module ug-module--1x4 ug-module--auto-height" style="padding:1.5rem;background:#f5f2ed">
+      <p class="ug-label ug-mb--2">Hours &amp; Seasons</p>
+      <p class="ug-body--sm">Open year-round</p>
+      <p class="ug-body--sm">Most roads: late April – early November</p>
+      <p class="ug-body--sm">Peak season: July – August</p>
+    </div>
+    <div class="ug-module ug-module--1x4 ug-module--auto-height" style="padding:1.5rem;background:#1a1a1a;color:#fff">
+      <p class="ug-label ug-mb--2" style="color:rgba(255,255,255,0.5)">Emergency</p>
+      <p class="ug-body--sm">911 or (307) 344-7381</p>
+      <p class="ug-body--sm" style="opacity:0.6;margin-top:0.5rem">Stay 100 yards from bears/wolves. Stay on boardwalks in thermal areas.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="ug-section">
+    <p class="ug-section__title" style="font-size:0.75rem;font-weight:400;opacity:0.5">National Park Service / U.S. Department of the Interior — Built with Unigrid.css</p>
+  </div>
+
+  <!-- Dev Toolbar -->
+  <div class="dev-toolbar">
+    <button class="dev-toolbar__btn" onclick="
+      document.body.classList.toggle('dev-debug');
+      this.textContent = document.body.classList.contains('dev-debug') ? 'Margins: On' : 'Margins: Off';
+    ">Margins: Off</button>
+    <button class="dev-toolbar__btn" onclick="
+      var b = document.body;
+      if (b.classList.contains('dev-grid-double')) {
+        b.classList.remove('dev-grid-double');
+        this.textContent = 'Grid: Off';
+      } else if (b.classList.contains('dev-grid')) {
+        b.classList.remove('dev-grid');
+        b.classList.add('dev-grid-double');
+        this.textContent = 'Grid: Double';
+      } else {
+        b.classList.add('dev-grid');
+        this.textContent = 'Grid: Single';
+      }
+    ">Grid: Off</button>
+  </div>
+
+  <script src="./dropdown.js"></script>
+</body>
+</html>
