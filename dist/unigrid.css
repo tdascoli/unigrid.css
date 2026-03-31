@@ -2685,18 +2685,17 @@ h6,
 
 .ug-modules {
   position: relative;
-  font-size: 0;
+  display: flex;
+  flex-wrap: wrap;
   box-sizing: border-box;
   width: 100%;
 }
 
 .ug-module {
   position: relative;
-  display: inline-block;
-  vertical-align: top;
-  font-size: 1rem;
   box-sizing: border-box;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .ug-modules {
