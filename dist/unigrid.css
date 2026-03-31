@@ -2905,7 +2905,7 @@ h6,
 }
 
 .ug-modules {
-  padding: 2.381vw 4.7619vw 0 4.7619vw;
+  padding: 2.381vw 0 0 4.7619vw;
   gap: 2.381vw;
 }
 
@@ -3022,7 +3022,7 @@ h6,
 
 @media screen and (min-width: 640px) {
   .ug-modules {
-    padding: 2.1277vw 4.2553vw 0 4.2553vw;
+    padding: 2.1277vw 0 0 4.2553vw;
     gap: 2.1277vw;
   }
   .ug-module {
@@ -3157,7 +3157,7 @@ h6,
 }
 @media screen and (min-width: 1024px) {
   .ug-modules {
-    padding: 1.7544vw 3.5088vw 0 3.5088vw;
+    padding: 1.7544vw 0 0 3.5088vw;
     gap: 1.7544vw;
   }
   .ug-module {
@@ -3322,7 +3322,7 @@ h6,
 }
 @media screen and (min-width: 1300px) {
   .ug-modules {
-    padding: 1.4925vw 2.9851vw 0 2.9851vw;
+    padding: 1.4925vw 0 0 2.9851vw;
     gap: 1.4925vw;
   }
   .ug-module {
@@ -3517,7 +3517,7 @@ h6,
 }
 @media screen and (min-width: 1600px) {
   .ug-modules {
-    padding: 1.1494vw 2.2989vw 0 2.2989vw;
+    padding: 1.1494vw 0 0 2.2989vw;
     gap: 1.1494vw;
   }
   .ug-module {
