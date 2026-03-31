@@ -39,6 +39,7 @@
                 <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-hero.html">Hero</a></li>
                 <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-prose.html">Prose</a></li>
                 <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-section.html">Section</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-modules.html">Modules</a></li>
               </ul>
             </li>
         </ul>
@@ -347,6 +348,235 @@
           <a class="ug-btn ug-btn--outline" href="#">Terrain</a>
         </div>
       </div>
+    </section>
+
+    <!-- Tabs -->
+    <section class="dev-section">
+      <p class="dev-section-title">Tabs — .ug-tabs</p>
+
+      <p class="ug-label ug-mb--2">Default</p>
+      <div class="ug-tabs ug-mb--3">
+        <ul class="ug-tabs__nav">
+          <li class="ug-tabs__item"><button class="ug-tabs__link ug-tabs__link--active" data-ug-tab="t1-overview">Overview</button></li>
+          <li class="ug-tabs__item"><button class="ug-tabs__link" data-ug-tab="t1-features">Features</button></li>
+          <li class="ug-tabs__item"><button class="ug-tabs__link" data-ug-tab="t1-safety">Safety</button></li>
+        </ul>
+        <div class="ug-tabs__content">
+          <div class="ug-tabs__panel ug-tabs__panel--active" data-ug-panel="t1-overview">
+            <p class="ug-body">Yellowstone was established as the world's first national park in 1872. The park spans 2.2 million acres across Wyoming, Montana, and Idaho.</p>
+          </div>
+          <div class="ug-tabs__panel" data-ug-panel="t1-features">
+            <p class="ug-body">Over 10,000 thermal features including 500+ geysers, hot springs, mudpots, and fumaroles — the greatest concentration on Earth.</p>
+          </div>
+          <div class="ug-tabs__panel" data-ug-panel="t1-safety">
+            <p class="ug-body">Stay on boardwalks in thermal areas. Keep 100 yards from bears and wolves. Carry bear spray on all hikes.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="ug-label ug-mb--2">Bordered</p>
+      <div class="ug-tabs ug-tabs--bordered ug-mb--3">
+        <ul class="ug-tabs__nav">
+          <li class="ug-tabs__item"><button class="ug-tabs__link ug-tabs__link--active" data-ug-tab="t2-map">Map</button></li>
+          <li class="ug-tabs__item"><button class="ug-tabs__link" data-ug-tab="t2-satellite">Satellite</button></li>
+          <li class="ug-tabs__item"><button class="ug-tabs__link" data-ug-tab="t2-terrain">Terrain</button></li>
+        </ul>
+        <div class="ug-tabs__content">
+          <div class="ug-tabs__panel ug-tabs__panel--active" data-ug-panel="t2-map">
+            <p class="ug-body--sm">Standard park map with roads, trails, and facilities.</p>
+          </div>
+          <div class="ug-tabs__panel" data-ug-panel="t2-satellite">
+            <p class="ug-body--sm">Satellite imagery showing terrain and vegetation.</p>
+          </div>
+          <div class="ug-tabs__panel" data-ug-panel="t2-terrain">
+            <p class="ug-body--sm">Topographic view with elevation contours.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="ug-label ug-mb--2">Pills</p>
+      <div class="ug-tabs ug-tabs--pills ug-mb--3">
+        <ul class="ug-tabs__nav">
+          <li class="ug-tabs__item"><button class="ug-tabs__link ug-tabs__link--active" data-ug-tab="t3-all">All Parks</button></li>
+          <li class="ug-tabs__item"><button class="ug-tabs__link" data-ug-tab="t3-west">Western</button></li>
+          <li class="ug-tabs__item"><button class="ug-tabs__link" data-ug-tab="t3-east">Eastern</button></li>
+        </ul>
+        <div class="ug-tabs__content">
+          <div class="ug-tabs__panel ug-tabs__panel--active" data-ug-panel="t3-all">
+            <p class="ug-body--sm">Showing all 63 national parks across the United States.</p>
+          </div>
+          <div class="ug-tabs__panel" data-ug-panel="t3-west">
+            <p class="ug-body--sm">Western parks: Yellowstone, Yosemite, Grand Canyon, Zion, Grand Teton...</p>
+          </div>
+          <div class="ug-tabs__panel" data-ug-panel="t3-east">
+            <p class="ug-body--sm">Eastern parks: Acadia, Great Smoky Mountains, Shenandoah, Everglades...</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="ug-label ug-mb--2">Vertical</p>
+      <div class="ug-tabs ug-tabs--vertical ug-mb--3">
+        <ul class="ug-tabs__nav">
+          <li class="ug-tabs__item"><button class="ug-tabs__link ug-tabs__link--active" data-ug-tab="t4-general">General Info</button></li>
+          <li class="ug-tabs__item"><button class="ug-tabs__link" data-ug-tab="t4-fees">Fees &amp; Passes</button></li>
+          <li class="ug-tabs__item"><button class="ug-tabs__link" data-ug-tab="t4-hours">Hours</button></li>
+          <li class="ug-tabs__item"><button class="ug-tabs__link" data-ug-tab="t4-contact">Contact</button></li>
+        </ul>
+        <div class="ug-tabs__content">
+          <div class="ug-tabs__panel ug-tabs__panel--active" data-ug-panel="t4-general">
+            <h4>General Information</h4>
+            <p class="ug-body--sm">Yellowstone National Park covers 2,219,791 acres across three states. The park has five entrances and is open year-round, though some roads and facilities are seasonal.</p>
+          </div>
+          <div class="ug-tabs__panel" data-ug-panel="t4-fees">
+            <h4>Fees &amp; Passes</h4>
+            <p class="ug-body--sm">Vehicle: $35 (7 days). Individual: $20. Annual Pass: $70. Lifetime Senior Pass: $80.</p>
+          </div>
+          <div class="ug-tabs__panel" data-ug-panel="t4-hours">
+            <h4>Hours of Operation</h4>
+            <p class="ug-body--sm">The park is open 24 hours a day, year-round. Visitor centers typically open 8am–6pm in summer, reduced hours in winter.</p>
+          </div>
+          <div class="ug-tabs__panel" data-ug-panel="t4-contact">
+            <h4>Contact</h4>
+            <p class="ug-body--sm">General Info: (307) 344-7381. Emergency: 911. Website: nps.gov/yell</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pagination -->
+    <section class="dev-section">
+      <p class="dev-section-title">Pagination — .ug-pagination</p>
+
+      <p class="ug-label ug-mb--2">Numbered</p>
+      <nav class="ug-pagination ug-mb--3">
+        <a class="ug-pagination__arrow" href="#">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 1L3 6l5 5"/></svg>
+        </a>
+        <ul class="ug-pagination__list">
+          <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">1</a></li>
+          <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">2</a></li>
+          <li class="ug-pagination__item ug-pagination__item--current"><a class="ug-pagination__link" href="#">3</a></li>
+          <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">4</a></li>
+          <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">5</a></li>
+        </ul>
+        <a class="ug-pagination__arrow" href="#">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 1l5 5-5 5"/></svg>
+        </a>
+      </nav>
+
+      <p class="ug-label ug-mb--2">Numbered with ellipsis</p>
+      <nav class="ug-pagination ug-mb--3">
+        <a class="ug-pagination__arrow" href="#">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 1L3 6l5 5"/></svg>
+        </a>
+        <ul class="ug-pagination__list">
+          <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">1</a></li>
+          <li class="ug-pagination__item"><span class="ug-pagination__ellipsis">&hellip;</span></li>
+          <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">4</a></li>
+          <li class="ug-pagination__item ug-pagination__item--current"><a class="ug-pagination__link" href="#">5</a></li>
+          <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">6</a></li>
+          <li class="ug-pagination__item"><span class="ug-pagination__ellipsis">&hellip;</span></li>
+          <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">42</a></li>
+        </ul>
+        <a class="ug-pagination__arrow" href="#">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 1l5 5-5 5"/></svg>
+        </a>
+      </nav>
+
+      <p class="ug-label ug-mb--2">First page (prev disabled)</p>
+      <nav class="ug-pagination ug-mb--3">
+        <a class="ug-pagination__arrow ug-pagination__arrow--disabled" href="#">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 1L3 6l5 5"/></svg>
+        </a>
+        <ul class="ug-pagination__list">
+          <li class="ug-pagination__item ug-pagination__item--current"><a class="ug-pagination__link" href="#">1</a></li>
+          <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">2</a></li>
+          <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">3</a></li>
+        </ul>
+        <a class="ug-pagination__arrow" href="#">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 1l5 5-5 5"/></svg>
+        </a>
+      </nav>
+
+      <p class="ug-label ug-mb--2">Block (prev / next with labels)</p>
+      <nav class="ug-pagination ug-pagination--block ug-mb--3">
+        <a class="ug-pagination__prev" href="#">
+          <span class="ug-pagination__label">
+            <svg viewBox="0 0 12 12" width="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 1L3 6l5 5"/></svg>
+            Previous
+          </span>
+          <span class="ug-pagination__title">Applying for a permit</span>
+        </a>
+        <a class="ug-pagination__next" href="#">
+          <span class="ug-pagination__label">
+            Next
+            <svg viewBox="0 0 12 12" width="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 1l5 5-5 5"/></svg>
+          </span>
+          <span class="ug-pagination__title">Fees and passes</span>
+        </a>
+      </nav>
+
+      <p class="ug-label ug-mb--2">Block (next only)</p>
+      <nav class="ug-pagination ug-pagination--block ug-mb--3">
+        <a class="ug-pagination__next" href="#" style="margin-left:auto">
+          <span class="ug-pagination__label">
+            Next
+            <svg viewBox="0 0 12 12" width="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 1l5 5-5 5"/></svg>
+          </span>
+          <span class="ug-pagination__title">Getting started</span>
+        </a>
+      </nav>
+    </section>
+
+    <!-- Accordion -->
+    <section class="dev-section">
+      <p class="dev-section-title">Accordion — .ug-accordion</p>
+
+      <p class="ug-label ug-mb--2">Default</p>
+      <div class="ug-accordion ug-mb--3">
+        <details class="ug-accordion__item" open>
+          <summary class="ug-accordion__header">What are the entrance fees? <span class="ug-accordion__caret"></span></summary>
+          <div class="ug-accordion__body">Vehicle: $35 (7 days). Individual: $20 (7 days). Annual Pass: $70. Lifetime Senior Pass: $80.</div>
+        </details>
+        <details class="ug-accordion__item">
+          <summary class="ug-accordion__header">When is the park open? <span class="ug-accordion__caret"></span></summary>
+          <div class="ug-accordion__body">The park is open year-round. Most roads open late April through early November. Some facilities are seasonal.</div>
+        </details>
+        <details class="ug-accordion__item">
+          <summary class="ug-accordion__header">How do I get there? <span class="ug-accordion__caret"></span></summary>
+          <div class="ug-accordion__body">Five entrances: North, Northeast, East, South, West. Nearest airports: Bozeman (BZN) and Jackson Hole (JAC).</div>
+        </details>
+      </div>
+
+      <p class="ug-label ug-mb--2">Bordered</p>
+      <div class="ug-accordion ug-accordion--bordered ug-mb--3">
+        <details class="ug-accordion__item">
+          <summary class="ug-accordion__header">Hiking &amp; Trails <span class="ug-accordion__caret"></span></summary>
+          <div class="ug-accordion__body">Over 1,000 miles of trails from easy lakeside walks to strenuous mountain ascents. Popular trails include Cascade Canyon, Lake Solitude, and the Paintbrush-Cascade loop.</div>
+        </details>
+        <details class="ug-accordion__item">
+          <summary class="ug-accordion__header">Wildlife Viewing <span class="ug-accordion__caret"></span></summary>
+          <div class="ug-accordion__body">Home to grizzly bears, wolves, bison, elk, and moose. Dawn and dusk offer the best viewing opportunities. Always maintain safe distances.</div>
+        </details>
+        <details class="ug-accordion__item">
+          <summary class="ug-accordion__header">Camping <span class="ug-accordion__caret"></span></summary>
+          <div class="ug-accordion__body">12 campgrounds with over 2,000 sites. Reservations recommended for summer months. Backcountry permits required for overnight stays.</div>
+        </details>
+      </div>
+
+      <p class="ug-label ug-mb--2">Dark</p>
+      <div class="ug-accordion ug-accordion--dark ug-accordion--bordered ug-mb--3">
+        <details class="ug-accordion__item">
+          <summary class="ug-accordion__header">Bear Safety <span class="ug-accordion__caret"></span></summary>
+          <div class="ug-accordion__body">Carry bear spray and know how to use it. Make noise on trails. Never approach bears. Store food in bear-proof containers.</div>
+        </details>
+        <details class="ug-accordion__item">
+          <summary class="ug-accordion__header">Thermal Area Safety <span class="ug-accordion__caret"></span></summary>
+          <div class="ug-accordion__body">Stay on boardwalks at all times. Water in hot springs can cause severe burns. Ground may be fragile and thin. Swimming in thermal features is prohibited.</div>
+        </details>
+      </div>
+
+      <p class="ug-caption">Uses native <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code> elements — no JavaScript required.</p>
     </section>
 
     <!-- Dropdown -->
@@ -937,5 +1167,6 @@
   </div>
 
   <script src="./dropdown.js"></script>
+  <script src="./tabs.js"></script>
 </body>
 </html>

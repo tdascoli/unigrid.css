@@ -45,6 +45,7 @@
                 <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-hero.html">Hero</a></li>
                 <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-prose.html">Prose</a></li>
                 <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-section.html">Section</a></li>
+                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-modules.html">Modules</a></li>
               </ul>
             </li>
         </ul>
@@ -231,6 +232,70 @@
           <tr><td><code>.ug-form__help</code></td><td>Help text below input</td></tr>
           <tr><td><code>.ug-form__error</code></td><td>Error text (red)</td></tr>
           <tr><td><code>.ug-form--inline</code></td><td>Horizontal form layout</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Tabs -->
+    <section class="dev-section">
+      <p class="dev-section-title">Tabs</p>
+      <table class="cs-table">
+        <thead><tr><th>Class</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.ug-tabs</code></td><td>Tab wrapper</td></tr>
+          <tr><td><code>.ug-tabs__nav</code></td><td>Tab navigation list</td></tr>
+          <tr><td><code>.ug-tabs__item</code></td><td>Tab item (li)</td></tr>
+          <tr><td><code>.ug-tabs__link</code></td><td>Tab button/link</td></tr>
+          <tr><td><code>.ug-tabs__link--active</code></td><td>Active tab (underlined)</td></tr>
+          <tr><td><code>.ug-tabs__content</code></td><td>Panel container</td></tr>
+          <tr><td><code>.ug-tabs__panel</code></td><td>Content panel (hidden by default)</td></tr>
+          <tr><td><code>.ug-tabs__panel--active</code></td><td>Visible panel</td></tr>
+          <tr><td><code>.ug-tabs--bordered</code></td><td>Box border around active tab</td></tr>
+          <tr><td><code>.ug-tabs--pills</code></td><td>Pill-style tab buttons</td></tr>
+          <tr><td><code>.ug-tabs--vertical</code></td><td>Vertical sidebar tabs (stacks on mobile)</td></tr>
+          <tr><td><code>data-ug-tab="id"</code></td><td>Tab trigger (on button)</td></tr>
+          <tr><td><code>data-ug-panel="id"</code></td><td>Panel target (matching id)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Pagination -->
+    <section class="dev-section">
+      <p class="dev-section-title">Pagination</p>
+      <table class="cs-table">
+        <thead><tr><th>Class</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.ug-pagination</code></td><td>Pagination wrapper (centered)</td></tr>
+          <tr><td><code>.ug-pagination__list</code></td><td>Numbered page list (ul)</td></tr>
+          <tr><td><code>.ug-pagination__item</code></td><td>Page item (li)</td></tr>
+          <tr><td><code>.ug-pagination__item--current</code></td><td>Current page (bold + underline)</td></tr>
+          <tr><td><code>.ug-pagination__link</code></td><td>Page number link</td></tr>
+          <tr><td><code>.ug-pagination__ellipsis</code></td><td>Ellipsis between page numbers</td></tr>
+          <tr><td><code>.ug-pagination__arrow</code></td><td>Prev/next arrow</td></tr>
+          <tr><td><code>.ug-pagination__arrow--disabled</code></td><td>Disabled arrow (first/last page)</td></tr>
+          <tr><td><code>.ug-pagination--block</code></td><td>Block-level prev/next with labels</td></tr>
+          <tr><td><code>.ug-pagination__prev</code></td><td>Previous block link</td></tr>
+          <tr><td><code>.ug-pagination__next</code></td><td>Next block link</td></tr>
+          <tr><td><code>.ug-pagination__label</code></td><td>"Previous"/"Next" label text</td></tr>
+          <tr><td><code>.ug-pagination__title</code></td><td>Page/section title in block mode</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Accordion -->
+    <section class="dev-section">
+      <p class="dev-section-title">Accordion</p>
+      <table class="cs-table">
+        <thead><tr><th>Class</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.ug-accordion</code></td><td>Accordion wrapper</td></tr>
+          <tr><td><code>.ug-accordion__item</code></td><td>Accordion item (<code>&lt;details&gt;</code>)</td></tr>
+          <tr><td><code>.ug-accordion__header</code></td><td>Toggle header (<code>&lt;summary&gt;</code>)</td></tr>
+          <tr><td><code>.ug-accordion__caret</code></td><td>Arrow icon (rotates when open)</td></tr>
+          <tr><td><code>.ug-accordion__body</code></td><td>Collapsible content area</td></tr>
+          <tr><td><code>.ug-accordion--bordered</code></td><td>Border on all sides with padding</td></tr>
+          <tr><td><code>.ug-accordion--flush</code></td><td>No borders</td></tr>
+          <tr><td><code>.ug-accordion--dark</code></td><td>Dark background</td></tr>
         </tbody>
       </table>
     </section>
@@ -472,5 +537,6 @@
   </div>
 
   <script src="./dropdown.js"></script>
+  <script src="./tabs.js"></script>
 </body>
 </html>

@@ -24,6 +24,7 @@ export default defineConfig({
         exampleHero: resolve(__dirname, "dev/example-hero.html"),
         exampleSection: resolve(__dirname, "dev/example-section.html"),
         exampleProse: resolve(__dirname, "dev/example-prose.html"),
+        exampleModules: resolve(__dirname, "dev/example-modules.html"),
       },
     },
   },
