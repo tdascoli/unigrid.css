@@ -1,0 +1,178 @@
+// ==========================================================================
+// Unigrid CSS Framework — Tabs (BEM)
+//
+// Tab navigation with content panels. Toggle via JS (.ug-tab--active).
+//
+// Block: .ug-tabs
+// Elements: __nav, __item, __link, __content, __panel
+// Modifiers: --bordered, --pills, --vertical
+//            __link--active, __panel--active
+// ==========================================================================
+
+@use "variables" as *;
+@use "mixins" as *;
+
+.ug-tabs {
+
+  // ---- Tab Navigation ----
+  &__nav {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: 2px solid $ug-light-gray;
+  }
+
+  &__item {
+    display: flex;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    padding: calc(var(--ug-leading) * 0.5) var(--ug-leading);
+    @include ug-font-size("sm");
+    @include ug-font-weight("bold");
+    @include ug-rhythm-line-height(1);
+    color: $ug-medium-gray;
+    text-decoration: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+    position: relative;
+    transition: color 0.15s;
+    margin-bottom: -2px;
+    border-bottom: 2px solid transparent;
+
+    &:hover {
+      color: $ug-black;
+    }
+
+    &--active {
+      color: $ug-black;
+      border-bottom-color: $ug-black;
+    }
+  }
+
+  // ---- Tab Content ----
+  &__content {
+    padding: var(--ug-leading) 0;
+  }
+
+  &__panel {
+    display: none;
+
+    &--active {
+      display: block;
+    }
+  }
+
+  // ==============================
+  // Modifiers
+  // ==============================
+
+  // Bordered tabs (box around active tab)
+  &--bordered {
+    .ug-tabs__nav {
+      border-bottom: 1px solid $ug-light-gray;
+    }
+
+    .ug-tabs__link {
+      border: 1px solid transparent;
+      border-bottom: none;
+      margin-bottom: -1px;
+      padding: calc(var(--ug-leading) * 0.5) var(--ug-leading);
+
+      &--active {
+        border-color: $ug-light-gray;
+        background-color: $ug-white;
+        // Hide bottom border by overlapping the nav border
+        box-shadow: 0 1px 0 0 $ug-white;
+      }
+    }
+  }
+
+  // Pill tabs (rounded backgrounds)
+  &--pills {
+    .ug-tabs__nav {
+      border-bottom: none;
+      gap: calc(var(--ug-leading) * 0.25);
+    }
+
+    .ug-tabs__link {
+      border-bottom: none;
+      margin-bottom: 0;
+      border-radius: 2px;
+
+      &:hover {
+        background-color: $ug-warm-gray;
+      }
+
+      &--active {
+        background-color: $ug-black;
+        color: $ug-white;
+
+        &:hover {
+          background-color: $ug-dark-gray;
+        }
+      }
+    }
+  }
+
+  // Vertical tabs (sidebar layout)
+  &--vertical {
+    display: flex;
+    gap: var(--ug-leading);
+
+    .ug-tabs__nav {
+      flex-direction: column;
+      border-bottom: none;
+      border-right: 2px solid $ug-light-gray;
+      flex-shrink: 0;
+      min-width: calc(var(--ug-leading) * 8);
+    }
+
+    .ug-tabs__link {
+      margin-bottom: 0;
+      margin-right: -2px;
+      border-bottom: none;
+      border-right: 2px solid transparent;
+
+      &--active {
+        border-right-color: $ug-black;
+        border-bottom-color: transparent;
+      }
+    }
+
+    .ug-tabs__content {
+      flex: 1;
+      padding: 0;
+    }
+
+    @include ug-breakpoint-down("md") {
+      flex-direction: column;
+
+      .ug-tabs__nav {
+        flex-direction: row;
+        border-right: none;
+        border-bottom: 2px solid $ug-light-gray;
+        min-width: 0;
+        overflow-x: auto;
+      }
+
+      .ug-tabs__link {
+        margin-right: 0;
+        margin-bottom: -2px;
+        border-right: none;
+        border-bottom: 2px solid transparent;
+        white-space: nowrap;
+
+        &--active {
+          border-right-color: transparent;
+          border-bottom-color: $ug-black;
+        }
+      }
+    }
+  }
+}
