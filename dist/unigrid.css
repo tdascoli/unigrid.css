@@ -2893,6 +2893,12 @@ h6,
   box-sizing: border-box;
   width: 100%;
 }
+.ug-modules--flush {
+  padding: 0;
+}
+.ug-modules--flush .ug-module {
+  margin: 0;
+}
 
 .ug-module {
   position: relative;

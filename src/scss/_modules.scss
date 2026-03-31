@@ -43,6 +43,14 @@ $ug-module-max-height: 6;
   flex-wrap: wrap;
   box-sizing: border-box;
   width: 100%;
+
+  &--flush {
+    padding: 0;
+
+    .ug-module {
+      margin: 0;
+    }
+  }
 }
 
 // ---- Individual Module ----
