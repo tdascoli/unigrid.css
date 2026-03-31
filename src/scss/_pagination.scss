@@ -1,0 +1,160 @@
+// ==========================================================================
+// Unigrid CSS Framework — Pagination (BEM)
+//
+// Inspired by GOV.UK Design System pagination.
+// Two variants: block-level (prev/next with labels) and numbered list.
+//
+// Block: .ug-pagination
+// Elements: __prev, __next, __label, __title, __list, __item, __link,
+//           __ellipsis, __arrow
+// Modifiers: --block
+//            __item--current, __item--ellipsis
+// ==========================================================================
+
+@use "variables" as *;
+@use "mixins" as *;
+
+.ug-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  @include ug-rhythm-margin-top(1);
+  @include ug-rhythm-margin-bottom(1);
+
+  // ==============================
+  // Numbered Pagination
+  // ==============================
+
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    display: flex;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: calc(var(--ug-leading) * 1.5);
+    height: calc(var(--ug-leading) * 1.5);
+    padding: 0 calc(var(--ug-leading) * 0.25);
+    @include ug-font-size("base");
+    @include ug-font-weight("regular");
+    color: $ug-black;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.15s, color 0.15s;
+
+    &:hover {
+      border-bottom-color: $ug-black;
+    }
+  }
+
+  // Current page
+  &__item--current &__link {
+    @include ug-font-weight("bold");
+    border-bottom-color: $ug-black;
+  }
+
+  // Ellipsis
+  &__ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: calc(var(--ug-leading) * 1.5);
+    height: calc(var(--ug-leading) * 1.5);
+    @include ug-font-size("base");
+    color: $ug-medium-gray;
+  }
+
+  // Arrow icons (prev/next in numbered mode)
+  &__arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: calc(var(--ug-leading) * 1.5);
+    height: calc(var(--ug-leading) * 1.5);
+    @include ug-font-size("base");
+    color: $ug-black;
+    text-decoration: none;
+    transition: color 0.15s;
+
+    &:hover {
+      color: $ug-medium-gray;
+    }
+
+    // Disabled arrow
+    &--disabled {
+      color: $ug-light-gray;
+      pointer-events: none;
+    }
+
+    // SVG/icon inside
+    svg {
+      width: 0.75em;
+      height: 0.75em;
+    }
+  }
+
+  // ==============================
+  // Block Pagination (prev/next)
+  // ==============================
+
+  &--block {
+    flex-direction: column;
+    gap: var(--ug-leading);
+    align-items: stretch;
+
+    @include ug-breakpoint("md") {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  &__prev,
+  &__next {
+    display: flex;
+    flex-direction: column;
+    padding: var(--ug-leading);
+    text-decoration: none;
+    color: $ug-black;
+    border: 1px solid $ug-light-gray;
+    transition: border-color 0.15s, background-color 0.15s;
+    flex: 1;
+
+    &:hover {
+      border-color: $ug-black;
+      background-color: $ug-warm-gray;
+    }
+  }
+
+  &__next {
+    text-align: right;
+    align-items: flex-end;
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--ug-leading) * 0.25);
+    @include ug-font-size("sm");
+    @include ug-rhythm-line-height(1);
+    @include ug-font-weight("regular");
+    color: $ug-medium-gray;
+    @include ug-rhythm-margin-bottom(0.5);
+  }
+
+  &__title {
+    @include ug-font-size("lg");
+    @include ug-rhythm-line-height(1);
+    @include ug-font-weight("bold");
+  }
+}
