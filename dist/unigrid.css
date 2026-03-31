@@ -2272,7 +2272,7 @@ h6,
   border-bottom: 1px solid #e8e5e0;
 }
 .ug-accordion__item[open] > .ug-accordion__header .ug-accordion__caret {
-  transform: rotate(180deg);
+  transform: rotate(-135deg);
 }
 .ug-accordion__header {
   display: flex;

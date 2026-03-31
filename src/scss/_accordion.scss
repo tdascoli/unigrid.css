@@ -19,7 +19,7 @@
     border-bottom: 1px solid $ug-light-gray;
 
     &[open] > .ug-accordion__header .ug-accordion__caret {
-      transform: rotate(180deg);
+      transform: rotate(-135deg);
     }
   }
 
