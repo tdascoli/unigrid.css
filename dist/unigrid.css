@@ -2902,7 +2902,7 @@ h6,
 }
 
 .ug-modules {
-  padding: 0;
+  padding: 2.381vw 0 0 4.7619vw;
 }
 
 .ug-module {
@@ -3018,7 +3018,7 @@ h6,
 
 @media screen and (min-width: 640px) {
   .ug-modules {
-    padding: 0;
+    padding: 2.1277vw 0 0 4.2553vw;
   }
   .ug-module {
     margin: 0 2.1277vw 2.1277vw 0;
@@ -3152,7 +3152,7 @@ h6,
 }
 @media screen and (min-width: 1024px) {
   .ug-modules {
-    padding: 0;
+    padding: 1.7544vw 0 0 3.5088vw;
   }
   .ug-module {
     margin: 0 1.7544vw 1.7544vw 0;
@@ -3316,7 +3316,7 @@ h6,
 }
 @media screen and (min-width: 1300px) {
   .ug-modules {
-    padding: 0;
+    padding: 1.4925vw 0 0 2.9851vw;
   }
   .ug-module {
     margin: 0 1.4925vw 1.4925vw 0;
@@ -3510,7 +3510,7 @@ h6,
 }
 @media screen and (min-width: 1600px) {
   .ug-modules {
-    padding: 0;
+    padding: 1.1494vw 0 0 2.2989vw;
   }
   .ug-module {
     margin: 0 1.1494vw 1.1494vw 0;
