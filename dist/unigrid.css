@@ -2277,7 +2277,7 @@ h6,
 .ug-accordion__header {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   padding: calc(var(--ug-leading) * 0.5) 0;
   font-size: 1rem;
   font-weight: 700;
@@ -2305,7 +2305,7 @@ h6,
   transform: rotate(45deg);
   transition: transform 0.2s;
   flex-shrink: 0;
-  margin-left: calc(var(--ug-leading) * 0.5);
+  margin-left: var(--ug-leading);
 }
 .ug-accordion__body {
   padding: 0 0 var(--ug-leading) 0;
