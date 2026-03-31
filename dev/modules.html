@@ -1,90 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unigrid CSS — Modules</title>
-  <link rel="icon" href="unigrid.svg" sizes="any" type="image/svg+xml">
-  <link rel="preconnect" href="https://rsms.me/">
-  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-  <link rel="stylesheet" href="./styles.scss">
-  <style>
-    .demo-mod {
-      background: var(--c, #e8e5e0);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      color: #666;
-      border: 1px solid rgba(0,0,0,0.08);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unigrid CSS — Modules</title>
+    <link rel="icon" href="unigrid.svg" sizes="any" type="image/svg+xml">
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="./styles.scss">
+    <style>
+        .demo-mod {
+            background: var(--c, #e8e5e0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: #666;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+    </style>
 </head>
 <body>
 
-  <header class="ug-header">
+<header class="ug-header">
     <div class="ug-header__title">
-      <a href="index.html">Unigrid</a>
-      <p class="ug-header__subtitle">CSS Framework</p>
+        <a href="index.html">Unigrid</a>
+        <p class="ug-header__subtitle">CSS Framework</p>
     </div>
     <nav class="ug-navbar">
-      <div class="ug-navbar__inner">
-        <button class="ug-navbar__toggle" onclick="var m=this.parentElement.querySelector('.ug-navbar__menu');m.classList.toggle('ug-navbar__menu--open');this.classList.toggle('ug-navbar__toggle--active')">
-          <span class="ug-navbar__toggle__label">Menu</span>
-          <span class="ug-navbar__toggle__close">Close</span>
-        </button>
-        <ul class="ug-navbar__menu">
-            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/">Overview</a></li>
-            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/grid.html">Grid</a></li>
-            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/formats.html">Formats</a></li>
-            <li class="ug-navbar__item"><a class="ug-navbar__link ug-navbar__link--active" href="/modules.html">Modules</a></li>
-            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/typography.html">Typography</a></li>
-            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/components.html">Components</a></li>
-            <li class="ug-navbar__item"><a class="ug-navbar__link" href="/cheatsheet.html">Cheatsheet</a></li>
-            <li class="ug-navbar__item ug-dropdown ug-dropdown--right">
-              <button class="ug-navbar__link ug-dropdown__trigger">
-                Examples <span class="ug-dropdown__caret"></span>
-              </button>
-              <ul class="ug-dropdown__menu">
-                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example.html">Unigrid</a></li>
-                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-hero.html">Hero</a></li>
-                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-prose.html">Prose</a></li>
-                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-section.html">Section</a></li>
-                <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-modules.html">Modules</a></li>
-              </ul>
-            </li>
-        </ul>
-      </div>
+        <div class="ug-navbar__inner">
+            <button class="ug-navbar__toggle"
+                    onclick="var m=this.parentElement.querySelector('.ug-navbar__menu');m.classList.toggle('ug-navbar__menu--open');this.classList.toggle('ug-navbar__toggle--active')">
+                <span class="ug-navbar__toggle__label">Menu</span>
+                <span class="ug-navbar__toggle__close">Close</span>
+            </button>
+            <ul class="ug-navbar__menu">
+                <li class="ug-navbar__item"><a class="ug-navbar__link" href="/">Overview</a></li>
+                <li class="ug-navbar__item"><a class="ug-navbar__link" href="/grid.html">Grid</a></li>
+                <li class="ug-navbar__item"><a class="ug-navbar__link" href="/formats.html">Formats</a></li>
+                <li class="ug-navbar__item"><a class="ug-navbar__link ug-navbar__link--active" href="/modules.html">Modules</a>
+                </li>
+                <li class="ug-navbar__item"><a class="ug-navbar__link" href="/typography.html">Typography</a></li>
+                <li class="ug-navbar__item"><a class="ug-navbar__link" href="/components.html">Components</a></li>
+                <li class="ug-navbar__item"><a class="ug-navbar__link" href="/cheatsheet.html">Cheatsheet</a></li>
+                <li class="ug-navbar__item ug-dropdown ug-dropdown--right">
+                    <button class="ug-navbar__link ug-dropdown__trigger">
+                        Examples <span class="ug-dropdown__caret"></span>
+                    </button>
+                    <ul class="ug-dropdown__menu">
+                        <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example.html">Unigrid</a></li>
+                        <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-hero.html">Hero</a>
+                        </li>
+                        <li class="ug-dropdown__item"><a class="ug-dropdown__link" href="/example-prose.html">Prose</a>
+                        </li>
+                        <li class="ug-dropdown__item"><a class="ug-dropdown__link"
+                                                         href="/example-section.html">Section</a></li>
+                        <li class="ug-dropdown__item"><a class="ug-dropdown__link"
+                                                         href="/example-modules.html">Modules</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </nav>
-  </header>
+</header>
 
-  <div class="ug-container ug-pt--5 ug-pb--5">
+<div class="ug-container ug-pt--5 ug-pb--5">
     <h1 class="ug-h1">Square Module System</h1>
-    <p class="ug-lead">Viewport-proportional modules inspired by Uniweb. The base unit "U" is a square. Responsive column reduction: 12 → 8 → 6 → 4 → 3.</p>
+    <p class="ug-lead">Viewport-proportional modules inspired by Uniweb. The base unit "U" is a square. Responsive
+        column reduction: 12 → 8 → 6 → 4 → 3.</p>
+</div>
+<section class="dev-section">
+    <div class="ug-container">
+        <p class="dev-section-title">Square Modules (1×1)</p>
+        <p class="ug-caption ug-mb--3">Each 1×1 module is a perfect square. Resize the browser to see them scale
+            proportionally.</p>
+    </div>
+    <div class="ug-modules">
+        <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
+        <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
+        <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
+        <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
+        <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
+        <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
+        <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
+        <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
+        <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
+        <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
+        <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
+        <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
+    </div>
+</section>
 
-    <section class="dev-section">
-      <p class="dev-section-title">Square Modules (1×1)</p>
-      <p class="ug-caption ug-mb--3">Each 1×1 module is a perfect square. Resize the browser to see them scale proportionally.</p>
-      <div class="ug-modules">
-        <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
-        <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
-        <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
-        <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
-        <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
-        <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
-        <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
-        <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
-        <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
-        <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
-        <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
-        <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
-      </div>
-    </section>
-
-    <section class="dev-section">
-      <p class="dev-section-title">Various Sizes</p>
-      <p class="ug-caption ug-mb--3">.ug-module--{height}x{width} — 2×2 is always a square (2 modules tall, 2 wide).</p>
-      <div class="ug-modules">
+<section class="dev-section">
+    <div class="ug-container">
+    <p class="dev-section-title">Various Sizes</p>
+    <p class="ug-caption ug-mb--3">.ug-module--{height}x{width} — 2×2 is always a square (2 modules tall, 2 wide).</p>
+    </div>
+    <div class="ug-modules">
         <div class="ug-module ug-module--2x2 demo-mod" style="--c:#c1272d;color:#fff">2×2</div>
         <div class="ug-module ug-module--2x2 demo-mod">2×2</div>
         <div class="ug-module ug-module--1x2 demo-mod" style="--c:#274a5a;color:#fff">1×2</div>
@@ -92,74 +104,116 @@
         <div class="ug-module ug-module--1x2 demo-mod" style="--c:#2d5a27;color:#fff">1×2</div>
         <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
         <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
-      </div>
-    </section>
+    </div>
+</section>
 
-    <section class="dev-section">
-      <p class="dev-section-title">Tall Modules</p>
-      <div class="ug-modules">
+<section class="dev-section">
+    <div class="ug-container">
+    <p class="dev-section-title">Tall Modules</p>
+    </div>
+    <div class="ug-modules">
         <div class="ug-module ug-module--3x1 demo-mod" style="--c:#c1272d;color:#fff">3×1</div>
         <div class="ug-module ug-module--3x2 demo-mod">3×2</div>
         <div class="ug-module ug-module--3x3 demo-mod" style="--c:#274a5a;color:#fff">3×3</div>
         <div class="ug-module ug-module--1x6 demo-mod" style="--c:#4a3728;color:#fff">1×6</div>
-      </div>
-    </section>
+    </div>
+</section>
 
-    <section class="dev-section">
-      <p class="dev-section-title">Full-Width Row</p>
-      <div class="ug-modules">
+<section class="dev-section">
+    <div class="ug-container">
+    <p class="dev-section-title">Full-Width Row</p>
+    </div>
+    <div class="ug-modules">
         <div class="ug-module ug-module--1x12 demo-mod" style="--c:#1a1a1a;color:#fff">1×12 — full width</div>
-      </div>
-    </section>
+    </div>
+</section>
 
-    <section class="dev-section">
-      <p class="dev-section-title">Auto Height</p>
-      <p class="ug-caption ug-mb--3">Use .ug-module--auto-height for content-driven height.</p>
-      <div class="ug-modules">
+<section class="dev-section">
+    <div class="ug-container">
+    <p class="dev-section-title">Auto Height</p>
+    <p class="ug-caption ug-mb--3">Use .ug-module--auto-height for content-driven height.</p>
+    </div>
+    <div class="ug-modules">
         <div class="ug-module ug-module--1x4 ug-module--auto-height demo-mod" style="padding:1rem">
-          <p style="font-size:0.875rem">This module has auto height, so it grows with its content. The width is still 4 modules wide.</p>
+            <p style="font-size:0.875rem">This module has auto height, so it grows with its content. The width is still
+                4 modules wide.</p>
         </div>
         <div class="ug-module ug-module--2x4 demo-mod" style="--c:#274a5a;color:#fff">2×4 (fixed)</div>
         <div class="ug-module ug-module--1x4 ug-module--auto-height demo-mod" style="padding:1rem">
-          <p style="font-size:0.875rem">Another auto-height module.</p>
+            <p style="font-size:0.875rem">Another auto-height module.</p>
         </div>
-      </div>
-    </section>
+    </div>
+</section>
 
-    <section class="dev-section">
-      <p class="dev-section-title">Responsive Behavior</p>
-      <p class="ug-body ug-mb--3">The module grid reduces columns at each breakpoint:</p>
-      <table class="ug-table ug-table--striped ug-mb--3">
+<section class="dev-section ug-container">
+    <p class="dev-section-title">Responsive Behavior</p>
+    <p class="ug-body ug-mb--3">The module grid reduces columns at each breakpoint:</p>
+    <table class="ug-table ug-table--striped ug-mb--3">
         <thead>
-          <tr>
+        <tr>
             <th>Breakpoint</th>
             <th>Columns</th>
             <th>Module (vw)</th>
             <th>Gutter (vw)</th>
             <th>Outer Margin</th>
             <th>Class Prefix</th>
-          </tr>
+        </tr>
         </thead>
         <tbody>
-          <tr><td>&ge;1600px (xl)</td><td>12</td><td>6.8966</td><td>1.1494</td><td>2.2989</td><td><code>.ug-module--{h}x{w}</code></td></tr>
-          <tr><td>1300–1599px (lg)</td><td>8</td><td>10.4478</td><td>1.4925</td><td>2.9851</td><td><code>.ug-module--lg-{h}x{w}</code></td></tr>
-          <tr><td>1024–1299px (md)</td><td>6</td><td>14.0351</td><td>1.7544</td><td>3.5088</td><td><code>.ug-module--md-{h}x{w}</code></td></tr>
-          <tr><td>640–1023px (sm)</td><td>4</td><td>21.2766</td><td>2.1277</td><td>4.2553</td><td><code>.ug-module--sm-{h}x{w}</code></td></tr>
-          <tr><td>&le;639px (xs)</td><td>3</td><td>28.5714</td><td>2.3810</td><td>4.7619</td><td><code>.ug-module--xs-{h}x{w}</code></td></tr>
+        <tr>
+            <td>&ge;1600px (xl)</td>
+            <td>12</td>
+            <td>6.8966</td>
+            <td>1.1494</td>
+            <td>2.2989</td>
+            <td><code>.ug-module--{h}x{w}</code></td>
+        </tr>
+        <tr>
+            <td>1300–1599px (lg)</td>
+            <td>8</td>
+            <td>10.4478</td>
+            <td>1.4925</td>
+            <td>2.9851</td>
+            <td><code>.ug-module--lg-{h}x{w}</code></td>
+        </tr>
+        <tr>
+            <td>1024–1299px (md)</td>
+            <td>6</td>
+            <td>14.0351</td>
+            <td>1.7544</td>
+            <td>3.5088</td>
+            <td><code>.ug-module--md-{h}x{w}</code></td>
+        </tr>
+        <tr>
+            <td>640–1023px (sm)</td>
+            <td>4</td>
+            <td>21.2766</td>
+            <td>2.1277</td>
+            <td>4.2553</td>
+            <td><code>.ug-module--sm-{h}x{w}</code></td>
+        </tr>
+        <tr>
+            <td>&le;639px (xs)</td>
+            <td>3</td>
+            <td>28.5714</td>
+            <td>2.3810</td>
+            <td>4.7619</td>
+            <td><code>.ug-module--xs-{h}x{w}</code></td>
+        </tr>
         </tbody>
-      </table>
-      <p class="ug-body--sm">Apply responsive overrides: <code class="dev-code">.ug-module--2x4 .ug-module--lg-2x3 .ug-module--sm-1x4 .ug-module--xs-1x3</code></p>
-    </section>
+    </table>
+    <p class="ug-body--sm">Apply responsive overrides: <code class="dev-code">.ug-module--2x4 .ug-module--lg-2x3
+        .ug-module--sm-1x4 .ug-module--xs-1x3</code></p>
+</section>
 
-  </div>
 
-
-  <!-- Dev Toolbar -->
-  <div class="dev-toolbar">
+<!-- Dev Toolbar -->
+<div class="dev-toolbar">
     <button class="dev-toolbar__btn" onclick="
       document.body.classList.toggle('dev-debug');
       this.textContent = document.body.classList.contains('dev-debug') ? 'Margins: On' : 'Margins: Off';
-    ">Margins: Off</button>
+    ">Margins: Off
+    </button>
     <button class="dev-toolbar__btn" onclick="
       var b = document.body;
       if (b.classList.contains('dev-grid-double')) {
@@ -173,10 +227,11 @@
         b.classList.add('dev-grid');
         this.textContent = 'Grid: Single';
       }
-    ">Grid: Off</button>
-  </div>
+    ">Grid: Off
+    </button>
+</div>
 
-  <script src="./dropdown.js"></script>
-  <script src="./tabs.js"></script>
+<script src="./dropdown.js"></script>
+<script src="./tabs.js"></script>
 </body>
 </html>
