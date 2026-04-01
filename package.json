@@ -1,12 +1,31 @@
 {
   "name": "unigrid.css",
   "version": "0.3.0",
-  "description": "A CSS grid framework inspired by Massimo Vignelli's Unigrid system for the National Park Service",
+  "description": "A CSS grid framework inspired by Massimo Vignelli's Unigrid system for the National Park Service. Vertical rhythm, square modules, BEM naming.",
   "main": "dist/unigrid.css",
   "style": "dist/unigrid.css",
+  "sass": "src/scss/unigrid.scss",
+  "unpkg": "dist/unigrid.min.css",
+  "jsdelivr": "dist/unigrid.min.css",
+  "exports": {
+    ".": {
+      "style": "./dist/unigrid.css",
+      "sass": "./src/scss/unigrid.scss",
+      "default": "./dist/unigrid.css"
+    },
+    "./dist/*": "./dist/*",
+    "./src/*": "./src/*"
+  },
   "files": [
-    "dist/",
-    "src/"
+    "dist/unigrid.css",
+    "dist/unigrid.min.css",
+    "dist/unigrid.js",
+    "dist/unigrid.min.js",
+    "dist/dropdown.js",
+    "dist/tabs.js",
+    "dist/scrollspy.js",
+    "src/scss/",
+    "src/js/"
   ],
   "scripts": {
     "dev": "vite",
@@ -16,6 +35,7 @@
     "watch": "npm run watch:css & npm run watch:js",
     "watch:css": "sass src/scss/unigrid.scss dist/unigrid.css --style=expanded --watch",
     "watch:js": "node scripts/build-js.mjs --watch",
+    "prepublishOnly": "npm run build",
     "preview": "vite preview"
   },
   "keywords": [
@@ -26,12 +46,21 @@
     "vignelli",
     "design-system",
     "nps",
-    "bem"
+    "bem",
+    "vertical-rhythm",
+    "gutenberg",
+    "typography",
+    "responsive"
   ],
   "license": "MIT",
+  "author": "tdascoli",
+  "homepage": "https://tdascoli.github.io/unigrid.css/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tdascoli/unigrid.css.git"
+    "url": "git+https://github.com/tdascoli/unigrid.css.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tdascoli/unigrid.css/issues"
   },
   "devDependencies": {
     "esbuild": "^0.24.0",
