@@ -1,0 +1,122 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  activeNav?: string;
+}
+
+const { title, description, activeNav } = Astro.props;
+const base = import.meta.env.BASE_URL;
+
+const nav = [
+  { heading: 'Getting Started', items: [
+    { label: 'Introduction', href: `${base}docs/getting-started` },
+  ]},
+  { heading: 'Layout', items: [
+    { label: 'Grid', href: `${base}docs/grid` },
+    { label: 'Container', href: `${base}docs/container` },
+    { label: 'Formats', href: `${base}docs/formats` },
+    { label: 'Modules', href: `${base}docs/modules` },
+  ]},
+  { heading: 'Typography', items: [
+    { label: 'Typography', href: `${base}docs/typography` },
+    { label: 'Prose', href: `${base}docs/prose` },
+  ]},
+  { heading: 'Components', items: [
+    { label: 'Header', href: `${base}docs/components/header` },
+    { label: 'Navbar', href: `${base}docs/components/navbar` },
+    { label: 'Footer', href: `${base}docs/components/footer` },
+    { label: 'Hero', href: `${base}docs/components/hero` },
+    { label: 'Section', href: `${base}docs/components/section` },
+    { label: 'Buttons', href: `${base}docs/components/buttons` },
+    { label: 'Cards', href: `${base}docs/components/cards` },
+    { label: 'Tables', href: `${base}docs/components/tables` },
+    { label: 'Forms', href: `${base}docs/components/forms` },
+    { label: 'Dropdown', href: `${base}docs/components/dropdown` },
+    { label: 'Tabs', href: `${base}docs/components/tabs` },
+    { label: 'Accordion', href: `${base}docs/components/accordion` },
+    { label: 'Pagination', href: `${base}docs/components/pagination` },
+    { label: 'Sidebar', href: `${base}docs/components/sidebar` },
+    { label: 'Divider', href: `${base}docs/components/divider` },
+    { label: 'Infobox', href: `${base}docs/components/infobox` },
+  ]},
+  { heading: 'Utilities', items: [
+    { label: 'Spacing', href: `${base}docs/utilities/spacing` },
+    { label: 'Colors', href: `${base}docs/utilities/colors` },
+    { label: 'Visibility', href: `${base}docs/utilities/visibility` },
+  ]},
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title} — Unigrid.css</title>
+  <meta name="description" content={description || 'CSS framework inspired by Vignelli\'s Unigrid system'}>
+  <link rel="icon" href={`${base}unigrid.svg`} sizes="any" type="image/svg+xml">
+  <link rel="preconnect" href="https://rsms.me/">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+</head>
+<body>
+
+  <header class="ug-header">
+    <div class="ug-header__title">
+      <a href={`${base}`}>Unigrid</a>
+      <p class="ug-header__subtitle">CSS Framework</p>
+    </div>
+    <nav class="ug-navbar">
+      <div class="ug-navbar__inner">
+        <button class="ug-navbar__toggle" onclick="var m=this.parentElement.querySelector('.ug-navbar__menu');m.classList.toggle('ug-navbar__menu--open');this.classList.toggle('ug-navbar__toggle--active')">
+          <span class="ug-navbar__toggle__label">Menu</span>
+          <span class="ug-navbar__toggle__close">Close</span>
+        </button>
+        <ul class="ug-navbar__menu">
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href={`${base}docs/getting-started`}>Docs</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href={`${base}docs/components/buttons`}>Components</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="https://github.com/tdascoli/unigrid.css">GitHub</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <div class="ug-sidebar-layout ug-sidebar-layout--bordered ug-sidebar-layout--sticky">
+    <aside class="ug-sidebar-layout__sidebar">
+      <nav style="padding-top: var(--ug-leading)">
+        {nav.map(section => (
+          <div class="docs-sidebar__section">
+            <p class="docs-sidebar__heading">{section.heading}</p>
+            {section.items.map(item => (
+              <a class={`docs-sidebar__link ${activeNav === item.label ? 'docs-sidebar__link--active' : ''}`}
+                 href={item.href}>{item.label}</a>
+            ))}
+          </div>
+        ))}
+      </nav>
+    </aside>
+    <main class="ug-sidebar-layout__main">
+      <div class="ug-container ug-pt--5 ug-pb--5">
+        <slot />
+      </div>
+    </main>
+  </div>
+
+  <footer class="ug-footer ug-footer--compact">
+    <div class="ug-footer__inner">
+      <p class="ug-footer__text">Inspired by Massimo Vignelli's Unigrid system for the National Park Service</p>
+      <nav>
+        <ul class="ug-footer__nav">
+          <li><a class="ug-footer__link" href="https://github.com/tdascoli/unigrid.css">GitHub</a></li>
+          <li><a class="ug-footer__link" href={`${base}docs/getting-started`}>Docs</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>
+
+<style lang="scss" is:global>
+  @use "../styles/docs.scss";
+</style>

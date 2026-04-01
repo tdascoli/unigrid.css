@@ -1,0 +1,91 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+import CodeExample from '../../components/CodeExample.astro';
+---
+
+<DocsLayout title="Getting Started" activeNav="Introduction">
+
+<h1>Getting Started</h1>
+<p class="ug-lead">Unigrid.css is a CSS framework inspired by Massimo Vignelli's Unigrid system for the National Park Service. Built with SCSS, native CSS Grid, vertical rhythm, and BEM naming.</p>
+
+<h2>Installation</h2>
+
+<h3>npm</h3>
+<pre class="docs-install__code">npm install unigrid.css</pre>
+
+<p class="ug-body ug-mt--3">Import in your SCSS:</p>
+<pre class="docs-install__code">@use "unigrid.css/src/scss/unigrid" as *;</pre>
+
+<h3 class="ug-mt--5">CDN</h3>
+<p class="ug-body">Add to your HTML <code>&lt;head&gt;</code>:</p>
+<pre class="docs-install__code">&lt;link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/unigrid.css/dist/unigrid.min.css"&gt;</pre>
+
+<h3 class="ug-mt--5">JavaScript (optional)</h3>
+<p class="ug-body">For dropdowns and tabs:</p>
+<pre class="docs-install__code">&lt;script src="https://cdn.jsdelivr.net/npm/unigrid.css/dist/dropdown.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/unigrid.css/dist/tabs.js"&gt;&lt;/script&gt;</pre>
+
+<hr class="ug-divider">
+
+<h2>Quick Start</h2>
+
+<CodeExample title="Basic page structure">
+<Fragment set:html={`<header class="ug-header">
+  <div class="ug-header__title">
+    <h1>Site Name</h1>
+  </div>
+</header>
+
+<div class="ug-container">
+  <div class="ug-grid">
+    <div class="ug-col--8">Main content</div>
+    <div class="ug-col--4">Sidebar</div>
+  </div>
+</div>`} />
+</CodeExample>
+
+<hr class="ug-divider">
+
+<h2>SCSS Customization</h2>
+<p class="ug-body">Override variables before importing:</p>
+
+<pre class="docs-install__code">// Custom overrides
+$ug-black: #222;
+$ug-font-family: "Frutiger", sans-serif;
+$ug-base-leading: 1.5;
+
+@use "unigrid.css/src/scss/unigrid" as *;</pre>
+
+<h3 class="ug-mt--5">Key Variables</h3>
+
+<table class="ug-table ug-table--striped">
+  <thead><tr><th>Variable</th><th>Default</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>$ug-columns</code></td><td>12</td><td>Grid column count</td></tr>
+    <tr><td><code>$ug-font-family</code></td><td>Inter, sans-serif</td><td>Base font</td></tr>
+    <tr><td><code>$ug-black</code></td><td>#1a1a1a</td><td>Primary dark color</td></tr>
+    <tr><td><code>$ug-red</code></td><td>#c1272d</td><td>Accent color</td></tr>
+    <tr><td><code>$ug-base-leading</code></td><td>1.625</td><td>Mobile line-height multiplier</td></tr>
+    <tr><td><code>$ug-base-leading-desktop</code></td><td>1.7</td><td>Desktop line-height multiplier</td></tr>
+    <tr><td><code>$ug-prose-max-width</code></td><td>35rem</td><td>Optimal reading measure</td></tr>
+    <tr><td><code>$ug-container-max-width</code></td><td>1280px</td><td>Container max-width</td></tr>
+  </tbody>
+</table>
+
+<hr class="ug-divider">
+
+<h2>Vertical Rhythm</h2>
+<p class="ug-body">All spacing is based on a single CSS custom property <code>--ug-leading</code> that adapts at the desktop breakpoint:</p>
+
+<table class="ug-table">
+  <thead><tr><th>Breakpoint</th><th>Base font</th><th>Leading</th><th>--ug-leading</th></tr></thead>
+  <tbody>
+    <tr><td>Mobile (default)</td><td>16px</td><td>× 1.625</td><td>26px</td></tr>
+    <tr><td>Desktop (≥ 35rem)</td><td>18px</td><td>× 1.7</td><td>31px</td></tr>
+  </tbody>
+</table>
+
+<p class="ug-body ug-mt--3">Every margin, padding, line-height, and height uses <code>calc(var(--ug-leading) * N)</code> to stay on the baseline grid.</p>
+
+</DocsLayout>

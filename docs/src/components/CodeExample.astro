@@ -1,0 +1,23 @@
+---
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props;
+const html = await Astro.slots.render('default');
+// Escape HTML for display in <code>
+const escaped = html.trim()
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;');
+---
+
+<div class="docs-example">
+  {title && <p class="ug-label" style="padding: calc(var(--ug-leading) * 0.5) var(--ug-leading); margin: 0; border-bottom: 1px solid #e8e5e0;">{title}</p>}
+  <div class="docs-example__preview">
+    <Fragment set:html={html} />
+  </div>
+  <div class="docs-example__code">
+    <pre><code>{escaped}</code></pre>
+  </div>
+</div>

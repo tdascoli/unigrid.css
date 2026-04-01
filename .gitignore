@@ -1,5 +1,8 @@
 node_modules/
 dev/dist/
+docs/dist/
+docs/node_modules/
+docs/.astro/
 .DS_Store
 *.map
 /.idea/

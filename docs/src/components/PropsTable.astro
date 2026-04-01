@@ -1,0 +1,24 @@
+---
+interface Props {
+  items: Array<{ class: string; description: string }>;
+}
+
+const { items } = Astro.props;
+---
+
+<table class="ug-table ug-table--striped">
+  <thead>
+    <tr>
+      <th>Class</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    {items.map(item => (
+      <tr>
+        <td><code>{item.class}</code></td>
+        <td>{item.description}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
