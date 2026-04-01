@@ -1,0 +1,90 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import CodeExample from '../../../components/CodeExample.astro';
+import PropsTable from '../../../components/PropsTable.astro';
+---
+
+<DocsLayout title="Hero" activeNav="Hero">
+
+<h1>Hero</h1>
+<p class="ug-lead">Full-width hero sections with background support, overlays, and flexible content positioning.</p>
+
+<h2>Default (dark, bottom-aligned)</h2>
+
+<CodeExample>
+<Fragment set:html={`<section class="ug-hero ug-hero--dark ug-hero--auto">
+  <div class="ug-hero__content">
+    <p class="ug-hero__subtitle">Established 1872</p>
+    <h2 class="ug-hero__title">The World's First National Park</h2>
+    <p class="ug-hero__lead">2.2 million acres of breathtaking wilderness.</p>
+    <div class="ug-hero__actions">
+      <a class="ug-hero__btn ug-hero__btn--filled" href="#">Plan Your Visit</a>
+      <a class="ug-hero__btn" href="#">Explore Map</a>
+    </div>
+  </div>
+</section>`} />
+</CodeExample>
+
+<h2>Center Aligned</h2>
+
+<CodeExample>
+<Fragment set:html={`<section class="ug-hero ug-hero--blue ug-hero--center ug-hero--auto">
+  <div class="ug-hero__content">
+    <h2 class="ug-hero__title">Explore the Wilderness</h2>
+    <p class="ug-hero__lead">Over 1,000 miles of trails through pristine landscapes.</p>
+  </div>
+</section>`} />
+</CodeExample>
+
+<h2>Light Variant</h2>
+
+<CodeExample>
+<Fragment set:html={`<section class="ug-hero ug-hero--light ug-hero--auto">
+  <div class="ug-hero__content">
+    <h2 class="ug-hero__title" style="color:#1a1a1a">Natural Heritage</h2>
+    <p class="ug-hero__lead" style="color:#333">Preserving America's natural and cultural heritage.</p>
+  </div>
+</section>`} />
+</CodeExample>
+
+<h2>With Background Image</h2>
+<pre class="docs-install__code">&lt;section class="ug-hero ug-hero--full"&gt;
+  &lt;div class="ug-hero__background"&gt;
+    &lt;img src="park.jpg" alt=""&gt;
+  &lt;/div&gt;
+  &lt;div class="ug-hero__overlay"&gt;&lt;/div&gt;
+  &lt;div class="ug-hero__content"&gt;
+    &lt;h1 class="ug-hero__title"&gt;Park Name&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</pre>
+
+<h2>Height Variants</h2>
+<table class="ug-table ug-table--striped">
+  <thead><tr><th>Modifier</th><th>Height</th></tr></thead>
+  <tbody>
+    <tr><td><code>--full</code></td><td>100vh (rounded to leading)</td></tr>
+    <tr><td><code>--half</code></td><td>50vh (default)</td></tr>
+    <tr><td><code>--third</code></td><td>33vh</td></tr>
+    <tr><td><code>--auto</code></td><td>Content-driven</td></tr>
+    <tr><td><code>--din</code></td><td>DIN landscape aspect ratio</td></tr>
+  </tbody>
+</table>
+
+<h2>Class Reference</h2>
+<PropsTable items={[
+  { class: '.ug-hero', description: 'Hero section (default: dark, bottom, 50vh)' },
+  { class: '.ug-hero__background', description: 'Background image/video container' },
+  { class: '.ug-hero__overlay', description: 'Gradient overlay' },
+  { class: '.ug-hero__content', description: 'Content wrapper' },
+  { class: '.ug-hero__title', description: 'Hero heading' },
+  { class: '.ug-hero__subtitle', description: 'Subtitle' },
+  { class: '.ug-hero__lead', description: 'Lead paragraph' },
+  { class: '.ug-hero__actions', description: 'Button group' },
+  { class: '.ug-hero__btn / --filled', description: 'Hero buttons' },
+  { class: '.ug-hero--full|half|third|auto|din', description: 'Height variants' },
+  { class: '.ug-hero--center|top|bottom', description: 'Content alignment' },
+  { class: '.ug-hero--dark|light', description: 'Color scheme' },
+  { class: '.ug-hero--brown|green|blue|red', description: 'NPS color backgrounds' },
+]} />
+
+</DocsLayout>

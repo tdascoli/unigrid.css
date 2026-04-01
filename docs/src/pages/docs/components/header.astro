@@ -1,0 +1,93 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import CodeExample from '../../../components/CodeExample.astro';
+import PropsTable from '../../../components/PropsTable.astro';
+---
+
+<DocsLayout title="Header" activeNav="Header">
+
+<h1>Header</h1>
+<p class="ug-lead">The signature black header band from the Unigrid system. Can embed a navbar for integrated navigation.</p>
+
+<h2>Default</h2>
+
+<CodeExample>
+<Fragment set:html={`<header class="ug-header">
+  <div class="ug-header__title">
+    <h1>Yellowstone</h1>
+    <p class="ug-header__subtitle">National Park / Wyoming</p>
+  </div>
+</header>`} />
+</CodeExample>
+
+<h2>With Logo</h2>
+
+<CodeExample>
+<Fragment set:html={`<header class="ug-header">
+  <div class="ug-header__logo">
+    <svg viewBox="0 0 40 52" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 0 L40 52 L0 52 Z" opacity="0.8"/>
+    </svg>
+  </div>
+  <div class="ug-header__title">
+    <h1>Grand Canyon</h1>
+    <p class="ug-header__subtitle">National Park / Arizona</p>
+  </div>
+</header>`} />
+</CodeExample>
+
+<h2>Compact</h2>
+
+<CodeExample>
+<Fragment set:html={`<header class="ug-header ug-header--compact">
+  <div class="ug-header__title">
+    <a href="#">Zion</a>
+    <p class="ug-header__subtitle">National Park / Utah</p>
+  </div>
+</header>`} />
+</CodeExample>
+
+<h2>Brown Variant</h2>
+
+<CodeExample>
+<Fragment set:html={`<header class="ug-header ug-header--brown">
+  <div class="ug-header__title">
+    <h1>Acadia</h1>
+    <p class="ug-header__subtitle">National Park / Maine</p>
+  </div>
+</header>`} />
+</CodeExample>
+
+<h2>With Embedded Navbar</h2>
+<p class="ug-body">Place a <code>.ug-navbar</code> inside the header for an integrated layout — brand left, menu right.</p>
+
+<CodeExample>
+<Fragment set:html={`<header class="ug-header ug-header--compact">
+  <div class="ug-header__title">
+    <a href="#">Site Name</a>
+  </div>
+  <nav class="ug-navbar">
+    <div class="ug-navbar__inner">
+      <ul class="ug-navbar__menu" style="display:flex">
+        <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Home</a></li>
+        <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">About</a></li>
+        <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>`} />
+</CodeExample>
+
+<h2>Class Reference</h2>
+<PropsTable items={[
+  { class: '.ug-header', description: 'Header band (black background)' },
+  { class: '.ug-header__logo', description: 'Logo container (height-based)' },
+  { class: '.ug-header__title', description: 'Title wrapper' },
+  { class: '.ug-header__name', description: 'Park name (alternative to h1)' },
+  { class: '.ug-header__subtitle', description: 'Subtitle text' },
+  { class: '.ug-header--compact', description: 'Smaller padding and font' },
+  { class: '.ug-header--brown', description: 'Brown background' },
+  { class: '.ug-header--full', description: 'Full grid column span' },
+]} />
+
+</DocsLayout>

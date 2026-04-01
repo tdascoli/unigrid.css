@@ -1,0 +1,74 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+import CodeExample from '../../components/CodeExample.astro';
+import PropsTable from '../../components/PropsTable.astro';
+---
+
+<DocsLayout title="Typography" activeNav="Typography">
+
+<h1>Typography</h1>
+<p class="ug-lead">Heading styles generated from a configurable map, body text, captions, and labels. All aligned to the vertical rhythm.</p>
+
+<h2>Headings</h2>
+<p class="ug-body">Applied to both HTML elements (h1-h6) and utility classes (.ug-h1-.ug-h6).</p>
+
+<CodeExample>
+<Fragment set:html={`<h1>Heading 1</h1>
+<h2>Heading 2</h2>
+<h3>Heading 3</h3>
+<h4>Heading 4</h4>
+<h5>Heading 5</h5>
+<h6>Heading 6</h6>`} />
+</CodeExample>
+
+<h2>Body Text</h2>
+
+<CodeExample>
+<Fragment set:html={`<p class="ug-body--lg">Large body text — for emphasis.</p>
+<p class="ug-body">Regular body text — the default reading size.</p>
+<p class="ug-body--sm">Small body text — for secondary content.</p>`} />
+</CodeExample>
+
+<h2>Lead / Intro</h2>
+
+<CodeExample>
+<Fragment set:html={`<p class="ug-lead">This is lead text — used for introductory paragraphs that need visual emphasis.</p>`} />
+</CodeExample>
+
+<h2>Caption &amp; Label</h2>
+
+<CodeExample>
+<Fragment set:html={`<p class="ug-caption">This is a caption — used for image descriptions and annotations.</p>
+<p class="ug-label">This is a label — uppercase, bold, small</p>`} />
+</CodeExample>
+
+<h2>Text Alignment</h2>
+
+<CodeExample>
+<Fragment set:html={`<p class="ug-text--left">Left aligned</p>
+<p class="ug-text--center">Center aligned</p>
+<p class="ug-text--right">Right aligned</p>`} />
+</CodeExample>
+
+<h2>Multi-Column Text</h2>
+
+<CodeExample>
+<Fragment set:html={`<div class="ug-text--cols-3">
+  <p>The Unigrid system was designed by Massimo Vignelli in 1977 for the National Park Service. It standardized all NPS site folders into a unified design system. The broadside approach means each folder is printed as a single flat sheet, then accordion-folded.</p>
+</div>`} />
+</CodeExample>
+
+<h2>Class Reference</h2>
+<PropsTable items={[
+  { class: 'h1–h6 / .ug-h1–.ug-h6', description: 'Heading styles (from $ug-headings map)' },
+  { class: '.ug-body', description: 'Body text' },
+  { class: '.ug-body--sm', description: 'Small body text' },
+  { class: '.ug-body--lg', description: 'Large body text' },
+  { class: '.ug-lead', description: 'Lead / intro paragraph' },
+  { class: '.ug-caption', description: 'Caption text (gray)' },
+  { class: '.ug-label', description: 'Uppercase bold label' },
+  { class: '.ug-text--left|center|right', description: 'Text alignment' },
+  { class: '.ug-text--cols-2|3|4', description: 'Multi-column text' },
+]} />
+
+</DocsLayout>

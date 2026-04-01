@@ -1,0 +1,54 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+import CodeExample from '../../components/CodeExample.astro';
+import PropsTable from '../../components/PropsTable.astro';
+---
+
+<DocsLayout title="Container" activeNav="Container">
+
+<h1>Container</h1>
+<p class="ug-lead">Full-width container with leading-based padding. Use modifiers for centered max-width layouts.</p>
+
+<h2>Default</h2>
+<p class="ug-body">Full viewport width with horizontal padding (1.5 leading, 1 leading on mobile).</p>
+
+<CodeExample>
+<Fragment set:html={`<div class="ug-container" style="background:#e8e5e0">
+  <p>Full width with padding</p>
+</div>`} />
+</CodeExample>
+
+<h2>Narrow (centered)</h2>
+
+<CodeExample>
+<Fragment set:html={`<div class="ug-container ug-container--narrow" style="background:#e8e5e0">
+  <p>Max-width 1280px, centered</p>
+</div>`} />
+</CodeExample>
+
+<h2>Wide</h2>
+
+<CodeExample>
+<Fragment set:html={`<div class="ug-container ug-container--wide" style="background:#e8e5e0">
+  <p>Max-width 1600px, centered</p>
+</div>`} />
+</CodeExample>
+
+<h2>Flush (no padding)</h2>
+
+<CodeExample>
+<Fragment set:html={`<div class="ug-container ug-container--flush" style="background:#e8e5e0">
+  <p>Edge-to-edge, no padding</p>
+</div>`} />
+</CodeExample>
+
+<h2>Class Reference</h2>
+<PropsTable items={[
+  { class: '.ug-container', description: 'Full width with horizontal padding' },
+  { class: '.ug-container--narrow', description: 'Centered, max-width 1280px' },
+  { class: '.ug-container--wide', description: 'Centered, max-width 1600px' },
+  { class: '.ug-container--fluid', description: 'Full width with padding, no max-width' },
+  { class: '.ug-container--flush', description: 'No padding (edge-to-edge)' },
+]} />
+
+</DocsLayout>
