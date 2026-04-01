@@ -1,0 +1,117 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import CodeExample from '../../../components/CodeExample.astro';
+import PropsTable from '../../../components/PropsTable.astro';
+---
+
+<DocsLayout title="Pagination" activeNav="Pagination">
+
+<h1>Pagination</h1>
+<p class="ug-lead">Page navigation with numbered links, ellipsis, arrow controls, and block-style previous/next variants.</p>
+
+<h2>Numbered Pagination</h2>
+
+<CodeExample title="Basic numbered pagination">
+<Fragment set:html={`<nav class="ug-pagination">
+  <ul class="ug-pagination__list">
+    <li class="ug-pagination__item">
+      <a class="ug-pagination__arrow" href="#">
+        <svg viewBox="0 0 24 24" width="16" height="16"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      </a>
+    </li>
+    <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">1</a></li>
+    <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">2</a></li>
+    <li class="ug-pagination__item ug-pagination__item--current"><a class="ug-pagination__link" href="#">3</a></li>
+    <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">4</a></li>
+    <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">5</a></li>
+    <li class="ug-pagination__item">
+      <a class="ug-pagination__arrow" href="#">
+        <svg viewBox="0 0 24 24" width="16" height="16"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      </a>
+    </li>
+  </ul>
+</nav>`} />
+</CodeExample>
+
+<h2>With Ellipsis</h2>
+
+<CodeExample title="Ellipsis for long page lists">
+<Fragment set:html={`<nav class="ug-pagination">
+  <ul class="ug-pagination__list">
+    <li class="ug-pagination__item">
+      <a class="ug-pagination__arrow" href="#">
+        <svg viewBox="0 0 24 24" width="16" height="16"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      </a>
+    </li>
+    <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">1</a></li>
+    <li class="ug-pagination__item"><span class="ug-pagination__ellipsis">&hellip;</span></li>
+    <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">7</a></li>
+    <li class="ug-pagination__item ug-pagination__item--current"><a class="ug-pagination__link" href="#">8</a></li>
+    <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">9</a></li>
+    <li class="ug-pagination__item"><span class="ug-pagination__ellipsis">&hellip;</span></li>
+    <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">24</a></li>
+    <li class="ug-pagination__item">
+      <a class="ug-pagination__arrow" href="#">
+        <svg viewBox="0 0 24 24" width="16" height="16"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      </a>
+    </li>
+  </ul>
+</nav>`} />
+</CodeExample>
+
+<h2>Disabled Arrow</h2>
+
+<CodeExample title="First page (previous disabled)">
+<Fragment set:html={`<nav class="ug-pagination">
+  <ul class="ug-pagination__list">
+    <li class="ug-pagination__item">
+      <span class="ug-pagination__arrow ug-pagination__arrow--disabled">
+        <svg viewBox="0 0 24 24" width="16" height="16"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      </span>
+    </li>
+    <li class="ug-pagination__item ug-pagination__item--current"><a class="ug-pagination__link" href="#">1</a></li>
+    <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">2</a></li>
+    <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">3</a></li>
+    <li class="ug-pagination__item">
+      <a class="ug-pagination__arrow" href="#">
+        <svg viewBox="0 0 24 24" width="16" height="16"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      </a>
+    </li>
+  </ul>
+</nav>`} />
+</CodeExample>
+
+<h2>Block Pagination</h2>
+
+<CodeExample title="Block previous/next links">
+<Fragment set:html={`<nav class="ug-pagination ug-pagination--block">
+  <a class="ug-pagination__prev" href="#">
+    <span class="ug-pagination__label">Previous</span>
+    <span class="ug-pagination__title">Getting Started</span>
+  </a>
+  <a class="ug-pagination__next" href="#">
+    <span class="ug-pagination__label">Next</span>
+    <span class="ug-pagination__title">Grid System</span>
+  </a>
+</nav>`} />
+</CodeExample>
+
+<h2>Class Reference</h2>
+
+<PropsTable items={[
+  { class: '.ug-pagination', description: 'Pagination container' },
+  { class: '.ug-pagination__list', description: 'Pagination items list' },
+  { class: '.ug-pagination__item', description: 'Individual page item' },
+  { class: '.ug-pagination__item--current', description: 'Currently active page' },
+  { class: '.ug-pagination__link', description: 'Page number link' },
+  { class: '.ug-pagination__ellipsis', description: 'Ellipsis separator' },
+  { class: '.ug-pagination__arrow', description: 'Previous/next arrow button' },
+  { class: '.ug-pagination__arrow--disabled', description: 'Disabled arrow state' },
+  { class: '.ug-pagination--block', description: 'Block-style prev/next layout' },
+  { class: '.ug-pagination__prev', description: 'Block previous link' },
+  { class: '.ug-pagination__next', description: 'Block next link' },
+  { class: '.ug-pagination__label', description: 'Block link label (Previous/Next)' },
+  { class: '.ug-pagination__title', description: 'Block link page title' },
+]} />
+
+</DocsLayout>

@@ -1,0 +1,192 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+import CodeExample from '../../components/CodeExample.astro';
+import PropsTable from '../../components/PropsTable.astro';
+---
+
+<DocsLayout title="Formats" activeNav="Formats">
+
+<h1>Formats</h1>
+<p class="ug-lead">DIN-inspired page formats that define panel-based layout containers. The A-series uses single-width panels and the B-series uses double-width panels, with column counts from 1 to 6.</p>
+
+<h2>How Formats Work</h2>
+<p class="ug-body">Each format sets CSS custom properties for panel width and column count. When a <code>.ug-grid</code> or <code>.ug-broadside</code> is placed inside a format container, its <code>grid-template-columns</code> is automatically configured to match the format's column count.</p>
+
+<table class="ug-table ug-table--striped ug-mb--3">
+  <thead>
+    <tr><th>Format</th><th>Panels Wide</th><th>Panels Long</th><th>Columns</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>.ug-format--a1</code></td><td>1</td><td>1</td><td>1</td></tr>
+    <tr><td><code>.ug-format--a2</code></td><td>1</td><td>2</td><td>2</td></tr>
+    <tr><td><code>.ug-format--a3</code></td><td>1</td><td>3</td><td>3</td></tr>
+    <tr><td><code>.ug-format--a4</code></td><td>1</td><td>4</td><td>4</td></tr>
+    <tr><td><code>.ug-format--a6</code></td><td>1</td><td>6</td><td>6</td></tr>
+    <tr><td><code>.ug-format--b1</code></td><td>2</td><td>1</td><td>1</td></tr>
+    <tr><td><code>.ug-format--b2</code></td><td>2</td><td>2</td><td>2</td></tr>
+    <tr><td><code>.ug-format--b3</code></td><td>2</td><td>3</td><td>3</td></tr>
+    <tr><td><code>.ug-format--b4</code></td><td>2</td><td>4</td><td>4</td></tr>
+    <tr><td><code>.ug-format--b6</code></td><td>2</td><td>6</td><td>6</td></tr>
+  </tbody>
+</table>
+
+<h2>A-Series: Single Width</h2>
+
+<h3>A1 Format (1 column)</h3>
+
+<CodeExample title="A1 format">
+<Fragment set:html={`<div class="ug-format ug-format--a1" style="background:#f5f2ed;padding:1rem">
+  <div class="ug-grid">
+    <div style="background:#e8e5e0;padding:1rem;text-align:center">Single column content</div>
+  </div>
+</div>`} />
+</CodeExample>
+
+<h3>A2 Format (2 columns)</h3>
+
+<CodeExample title="A2 format">
+<Fragment set:html={`<div class="ug-format ug-format--a2" style="background:#f5f2ed;padding:1rem">
+  <div class="ug-grid">
+    <div style="background:#e8e5e0;padding:1rem;text-align:center">Column 1</div>
+    <div style="background:#e8e5e0;padding:1rem;text-align:center">Column 2</div>
+  </div>
+</div>`} />
+</CodeExample>
+
+<h3>A3 Format (3 columns)</h3>
+
+<CodeExample title="A3 format">
+<Fragment set:html={`<div class="ug-format ug-format--a3" style="background:#f5f2ed;padding:1rem">
+  <div class="ug-grid">
+    <div style="background:#e8e5e0;padding:1rem;text-align:center">Col 1</div>
+    <div style="background:#e8e5e0;padding:1rem;text-align:center">Col 2</div>
+    <div style="background:#e8e5e0;padding:1rem;text-align:center">Col 3</div>
+  </div>
+</div>`} />
+</CodeExample>
+
+<h3>A4 Format (4 columns)</h3>
+
+<CodeExample title="A4 format">
+<Fragment set:html={`<div class="ug-format ug-format--a4" style="background:#f5f2ed;padding:1rem">
+  <div class="ug-grid">
+    <div style="background:#e8e5e0;padding:1rem;text-align:center">Col 1</div>
+    <div style="background:#e8e5e0;padding:1rem;text-align:center">Col 2</div>
+    <div style="background:#e8e5e0;padding:1rem;text-align:center">Col 3</div>
+    <div style="background:#e8e5e0;padding:1rem;text-align:center">Col 4</div>
+  </div>
+</div>`} />
+</CodeExample>
+
+<h3>A6 Format (6 columns)</h3>
+
+<CodeExample title="A6 format">
+<Fragment set:html={`<div class="ug-format ug-format--a6" style="background:#f5f2ed;padding:1rem">
+  <div class="ug-grid">
+    <div style="background:#e8e5e0;padding:0.5rem;text-align:center">1</div>
+    <div style="background:#e8e5e0;padding:0.5rem;text-align:center">2</div>
+    <div style="background:#e8e5e0;padding:0.5rem;text-align:center">3</div>
+    <div style="background:#e8e5e0;padding:0.5rem;text-align:center">4</div>
+    <div style="background:#e8e5e0;padding:0.5rem;text-align:center">5</div>
+    <div style="background:#e8e5e0;padding:0.5rem;text-align:center">6</div>
+  </div>
+</div>`} />
+</CodeExample>
+
+<h2>B-Series: Double Width</h2>
+<p class="ug-body">B-series formats use double-width panels, giving the container more horizontal space while maintaining the same column counts.</p>
+
+<h3>B1 Format (1 column, double width)</h3>
+
+<CodeExample title="B1 format">
+<Fragment set:html={`<div class="ug-format ug-format--b1" style="background:#f5f2ed;padding:1rem">
+  <div class="ug-grid">
+    <div style="background:#e8e5e0;padding:1rem;text-align:center">Full width content (double panel)</div>
+  </div>
+</div>`} />
+</CodeExample>
+
+<h3>B2 Format (2 columns, double width)</h3>
+
+<CodeExample title="B2 format">
+<Fragment set:html={`<div class="ug-format ug-format--b2" style="background:#f5f2ed;padding:1rem">
+  <div class="ug-grid">
+    <div style="background:#e8e5e0;padding:1rem;text-align:center">Column 1</div>
+    <div style="background:#e8e5e0;padding:1rem;text-align:center">Column 2</div>
+  </div>
+</div>`} />
+</CodeExample>
+
+<h3>B3 Format (3 columns, double width)</h3>
+
+<CodeExample title="B3 format">
+<Fragment set:html={`<div class="ug-format ug-format--b3" style="background:#f5f2ed;padding:1rem">
+  <div class="ug-grid">
+    <div style="background:#e8e5e0;padding:1rem;text-align:center">Col 1</div>
+    <div style="background:#e8e5e0;padding:1rem;text-align:center">Col 2</div>
+    <div style="background:#e8e5e0;padding:1rem;text-align:center">Col 3</div>
+  </div>
+</div>`} />
+</CodeExample>
+
+<h3>B4 Format (4 columns, double width)</h3>
+
+<CodeExample title="B4 format">
+<Fragment set:html={`<div class="ug-format ug-format--b4" style="background:#f5f2ed;padding:1rem">
+  <div class="ug-grid">
+    <div style="background:#e8e5e0;padding:1rem;text-align:center">Col 1</div>
+    <div style="background:#e8e5e0;padding:1rem;text-align:center">Col 2</div>
+    <div style="background:#e8e5e0;padding:1rem;text-align:center">Col 3</div>
+    <div style="background:#e8e5e0;padding:1rem;text-align:center">Col 4</div>
+  </div>
+</div>`} />
+</CodeExample>
+
+<h3>B6 Format (6 columns, double width)</h3>
+
+<CodeExample title="B6 format">
+<Fragment set:html={`<div class="ug-format ug-format--b6" style="background:#f5f2ed;padding:1rem">
+  <div class="ug-grid">
+    <div style="background:#e8e5e0;padding:0.5rem;text-align:center">1</div>
+    <div style="background:#e8e5e0;padding:0.5rem;text-align:center">2</div>
+    <div style="background:#e8e5e0;padding:0.5rem;text-align:center">3</div>
+    <div style="background:#e8e5e0;padding:0.5rem;text-align:center">4</div>
+    <div style="background:#e8e5e0;padding:0.5rem;text-align:center">5</div>
+    <div style="background:#e8e5e0;padding:0.5rem;text-align:center">6</div>
+  </div>
+</div>`} />
+</CodeExample>
+
+<h2>DIN Aspect Ratios</h2>
+<p class="ug-body">Companion utility classes for DIN-standard aspect ratios (1:1.4142).</p>
+
+<CodeExample title="DIN ratio utilities">
+<Fragment set:html={`<div style="display:flex;gap:1rem;flex-wrap:wrap">
+  <div class="ug-ratio--din" style="width:100px;background:#e8e5e0;display:flex;align-items:center;justify-content:center">
+    DIN portrait
+  </div>
+  <div class="ug-ratio--din-landscape" style="height:100px;background:#e8e5e0;display:flex;align-items:center;justify-content:center">
+    DIN landscape
+  </div>
+</div>`} />
+</CodeExample>
+
+<h2>Class Reference</h2>
+
+<PropsTable items={[
+  { class: '.ug-format', description: 'Base format container (centered, full width)' },
+  { class: '.ug-format--a1', description: 'A-series, 1 panel wide, 1 column' },
+  { class: '.ug-format--a2', description: 'A-series, 1 panel wide, 2 columns' },
+  { class: '.ug-format--a3', description: 'A-series, 1 panel wide, 3 columns' },
+  { class: '.ug-format--a4', description: 'A-series, 1 panel wide, 4 columns' },
+  { class: '.ug-format--a6', description: 'A-series, 1 panel wide, 6 columns' },
+  { class: '.ug-format--b1', description: 'B-series, 2 panels wide, 1 column' },
+  { class: '.ug-format--b2', description: 'B-series, 2 panels wide, 2 columns' },
+  { class: '.ug-format--b3', description: 'B-series, 2 panels wide, 3 columns' },
+  { class: '.ug-format--b4', description: 'B-series, 2 panels wide, 4 columns' },
+  { class: '.ug-format--b6', description: 'B-series, 2 panels wide, 6 columns' },
+  { class: '.ug-ratio--din', description: 'DIN portrait aspect ratio (1:1.414)' },
+  { class: '.ug-ratio--din-landscape', description: 'DIN landscape aspect ratio (1.414:1)' },
+]} />
+
+</DocsLayout>

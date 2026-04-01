@@ -1,0 +1,191 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import CodeExample from '../../../components/CodeExample.astro';
+import PropsTable from '../../../components/PropsTable.astro';
+---
+
+<DocsLayout title="Cards" activeNav="Cards">
+
+<h1>Cards</h1>
+<p class="ug-lead">Versatile card components with image, body, footer, and multiple style variants including dark, bordered, flat, horizontal, and accent colors.</p>
+
+<h2>Default Card</h2>
+
+<CodeExample title="Basic card">
+<Fragment set:html={`<div class="ug-card" style="max-width:320px">
+  <div class="ug-card__image">
+    <img src="https://placehold.co/640x360/e8e5e0/666?text=Image" alt="Card image" />
+  </div>
+  <div class="ug-card__body">
+    <h3 class="ug-card__title">Card Title</h3>
+    <p class="ug-card__subtitle">Subtitle text</p>
+    <p class="ug-card__text">This is the card body text with a brief description of the card content.</p>
+  </div>
+  <div class="ug-card__footer">
+    <a class="ug-btn ug-btn--sm" href="#">Learn More</a>
+  </div>
+</div>`} />
+</CodeExample>
+
+<h2>Dark Card</h2>
+
+<CodeExample title="Dark variant">
+<Fragment set:html={`<div class="ug-card ug-card--dark" style="max-width:320px">
+  <div class="ug-card__image">
+    <img src="https://placehold.co/640x360/333/999?text=Image" alt="Card image" />
+  </div>
+  <div class="ug-card__body">
+    <h3 class="ug-card__title">Dark Card</h3>
+    <p class="ug-card__subtitle">Dark themed subtitle</p>
+    <p class="ug-card__text">Dark cards invert the color scheme for use on light backgrounds or dramatic layouts.</p>
+  </div>
+</div>`} />
+</CodeExample>
+
+<h2>Bordered Card</h2>
+
+<CodeExample title="Bordered variant">
+<Fragment set:html={`<div class="ug-card ug-card--bordered" style="max-width:320px">
+  <div class="ug-card__body">
+    <h3 class="ug-card__title">Bordered Card</h3>
+    <p class="ug-card__text">A card with a visible border and no shadow, for a more understated appearance.</p>
+  </div>
+</div>`} />
+</CodeExample>
+
+<h2>Flat Card</h2>
+
+<CodeExample title="Flat variant">
+<Fragment set:html={`<div class="ug-card ug-card--flat" style="max-width:320px">
+  <div class="ug-card__body">
+    <h3 class="ug-card__title">Flat Card</h3>
+    <p class="ug-card__text">No shadow or border. Useful when the card sits on a colored background or inside another container.</p>
+  </div>
+</div>`} />
+</CodeExample>
+
+<h2>Horizontal Card</h2>
+
+<CodeExample title="Horizontal layout">
+<Fragment set:html={`<div class="ug-card ug-card--horizontal" style="max-width:600px">
+  <div class="ug-card__image">
+    <img src="https://placehold.co/300x200/e8e5e0/666?text=Image" alt="Card image" />
+  </div>
+  <div class="ug-card__body">
+    <h3 class="ug-card__title">Horizontal Card</h3>
+    <p class="ug-card__text">Image and content sit side by side. Stacks vertically on small screens.</p>
+  </div>
+</div>`} />
+</CodeExample>
+
+<h2>Accent Cards</h2>
+
+<CodeExample title="Color accent variants">
+<Fragment set:html={`<div style="display:flex;gap:1rem;flex-wrap:wrap">
+  <div class="ug-card ug-card--accent-red" style="max-width:220px">
+    <div class="ug-card__body">
+      <h3 class="ug-card__title">Red Accent</h3>
+      <p class="ug-card__text">Top border accent in NPS red.</p>
+    </div>
+  </div>
+  <div class="ug-card ug-card--accent-brown" style="max-width:220px">
+    <div class="ug-card__body">
+      <h3 class="ug-card__title">Brown Accent</h3>
+      <p class="ug-card__text">Top border accent in NPS brown.</p>
+    </div>
+  </div>
+  <div class="ug-card ug-card--accent-green" style="max-width:220px">
+    <div class="ug-card__body">
+      <h3 class="ug-card__title">Green Accent</h3>
+      <p class="ug-card__text">Top border accent in NPS green.</p>
+    </div>
+  </div>
+  <div class="ug-card ug-card--accent-blue" style="max-width:220px">
+    <div class="ug-card__body">
+      <h3 class="ug-card__title">Blue Accent</h3>
+      <p class="ug-card__text">Top border accent in NPS blue.</p>
+    </div>
+  </div>
+</div>`} />
+</CodeExample>
+
+<h2>Image Aspect Ratios</h2>
+
+<CodeExample title="Image variants">
+<Fragment set:html={`<div style="display:flex;gap:1rem;flex-wrap:wrap">
+  <div class="ug-card" style="max-width:200px">
+    <div class="ug-card__image ug-card__image--square">
+      <img src="https://placehold.co/400x400/e8e5e0/666?text=Square" alt="Square" />
+    </div>
+    <div class="ug-card__body">
+      <h3 class="ug-card__title">Square</h3>
+    </div>
+  </div>
+  <div class="ug-card" style="max-width:200px">
+    <div class="ug-card__image ug-card__image--landscape">
+      <img src="https://placehold.co/400x300/e8e5e0/666?text=Landscape" alt="Landscape" />
+    </div>
+    <div class="ug-card__body">
+      <h3 class="ug-card__title">Landscape</h3>
+    </div>
+  </div>
+  <div class="ug-card" style="max-width:200px">
+    <div class="ug-card__image ug-card__image--din">
+      <img src="https://placehold.co/300x424/e8e5e0/666?text=DIN" alt="DIN ratio" />
+    </div>
+    <div class="ug-card__body">
+      <h3 class="ug-card__title">DIN</h3>
+    </div>
+  </div>
+</div>`} />
+</CodeExample>
+
+<h2>Card Grid</h2>
+
+<CodeExample title="Card grid layouts">
+<Fragment set:html={`<div class="ug-card-grid ug-card-grid--3">
+  <div class="ug-card">
+    <div class="ug-card__body">
+      <h3 class="ug-card__title">Card One</h3>
+      <p class="ug-card__text">Three-column card grid layout.</p>
+    </div>
+  </div>
+  <div class="ug-card">
+    <div class="ug-card__body">
+      <h3 class="ug-card__title">Card Two</h3>
+      <p class="ug-card__text">Cards automatically fill the grid.</p>
+    </div>
+  </div>
+  <div class="ug-card">
+    <div class="ug-card__body">
+      <h3 class="ug-card__title">Card Three</h3>
+      <p class="ug-card__text">Responsive on smaller screens.</p>
+    </div>
+  </div>
+</div>`} />
+</CodeExample>
+
+<h2>Class Reference</h2>
+
+<PropsTable items={[
+  { class: '.ug-card', description: 'Card container' },
+  { class: '.ug-card__image', description: 'Card image container' },
+  { class: '.ug-card__image--square', description: 'Square aspect ratio image' },
+  { class: '.ug-card__image--landscape', description: 'Landscape aspect ratio image' },
+  { class: '.ug-card__image--din', description: 'DIN (1:1.414) aspect ratio image' },
+  { class: '.ug-card__body', description: 'Card content area' },
+  { class: '.ug-card__title', description: 'Card heading' },
+  { class: '.ug-card__subtitle', description: 'Card subtitle' },
+  { class: '.ug-card__text', description: 'Card body text' },
+  { class: '.ug-card__footer', description: 'Card footer area' },
+  { class: '.ug-card__actions', description: 'Card action buttons container' },
+  { class: '.ug-card--dark', description: 'Dark background variant' },
+  { class: '.ug-card--bordered', description: 'Border instead of shadow' },
+  { class: '.ug-card--flat', description: 'No shadow or border' },
+  { class: '.ug-card--horizontal', description: 'Side-by-side image and content' },
+  { class: '.ug-card--accent-red|brown|green|blue', description: 'Colored top border accent' },
+  { class: '.ug-card-grid', description: 'Auto-grid container for cards' },
+  { class: '.ug-card-grid--2|3|4', description: 'Column count variants' },
+]} />
+
+</DocsLayout>

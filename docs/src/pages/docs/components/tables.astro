@@ -1,0 +1,149 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import CodeExample from '../../../components/CodeExample.astro';
+import PropsTable from '../../../components/PropsTable.astro';
+---
+
+<DocsLayout title="Tables" activeNav="Tables">
+
+<h1>Tables</h1>
+<p class="ug-lead">Styled table components with striped rows, borders, compact sizing, dark headers, hover states, and responsive wrapping.</p>
+
+<h2>Default Table</h2>
+
+<CodeExample title="Default table">
+<Fragment set:html={`<table class="ug-table">
+  <thead>
+    <tr><th>Name</th><th>Location</th><th>Established</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Yellowstone</td><td>Wyoming</td><td>1872</td></tr>
+    <tr><td>Yosemite</td><td>California</td><td>1890</td></tr>
+    <tr><td>Grand Canyon</td><td>Arizona</td><td>1919</td></tr>
+  </tbody>
+</table>`} />
+</CodeExample>
+
+<h2>Striped Table</h2>
+
+<CodeExample title="Striped rows">
+<Fragment set:html={`<table class="ug-table ug-table--striped">
+  <thead>
+    <tr><th>Name</th><th>Location</th><th>Established</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Yellowstone</td><td>Wyoming</td><td>1872</td></tr>
+    <tr><td>Yosemite</td><td>California</td><td>1890</td></tr>
+    <tr><td>Grand Canyon</td><td>Arizona</td><td>1919</td></tr>
+    <tr><td>Zion</td><td>Utah</td><td>1919</td></tr>
+  </tbody>
+</table>`} />
+</CodeExample>
+
+<h2>Bordered Table</h2>
+
+<CodeExample title="Bordered cells">
+<Fragment set:html={`<table class="ug-table ug-table--bordered">
+  <thead>
+    <tr><th>Name</th><th>Area (acres)</th><th>Visitors (M)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Great Smoky Mountains</td><td>522,427</td><td>12.1</td></tr>
+    <tr><td>Grand Canyon</td><td>1,218,375</td><td>5.9</td></tr>
+    <tr><td>Zion</td><td>147,242</td><td>4.5</td></tr>
+  </tbody>
+</table>`} />
+</CodeExample>
+
+<h2>Compact Table</h2>
+
+<CodeExample title="Compact sizing">
+<Fragment set:html={`<table class="ug-table ug-table--compact">
+  <thead>
+    <tr><th>Code</th><th>Name</th><th>State</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>YELL</td><td>Yellowstone</td><td>WY</td></tr>
+    <tr><td>YOSE</td><td>Yosemite</td><td>CA</td></tr>
+    <tr><td>GRCA</td><td>Grand Canyon</td><td>AZ</td></tr>
+    <tr><td>ZION</td><td>Zion</td><td>UT</td></tr>
+    <tr><td>GLAC</td><td>Glacier</td><td>MT</td></tr>
+  </tbody>
+</table>`} />
+</CodeExample>
+
+<h2>Dark Header</h2>
+
+<CodeExample title="Dark header variant">
+<Fragment set:html={`<table class="ug-table ug-table--dark">
+  <thead>
+    <tr><th>Name</th><th>Type</th><th>Length</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Bright Angel Trail</td><td>Out and back</td><td>12 mi</td></tr>
+    <tr><td>Half Dome</td><td>Out and back</td><td>14 mi</td></tr>
+    <tr><td>Angels Landing</td><td>Out and back</td><td>5.4 mi</td></tr>
+  </tbody>
+</table>`} />
+</CodeExample>
+
+<h2>Hover Table</h2>
+
+<CodeExample title="Hover rows">
+<Fragment set:html={`<table class="ug-table ug-table--hover">
+  <thead>
+    <tr><th>Name</th><th>Location</th><th>Elevation</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Mount Rainier</td><td>Washington</td><td>14,411 ft</td></tr>
+    <tr><td>Denali</td><td>Alaska</td><td>20,310 ft</td></tr>
+    <tr><td>Mount Whitney</td><td>California</td><td>14,505 ft</td></tr>
+  </tbody>
+</table>`} />
+</CodeExample>
+
+<h2>Responsive Table</h2>
+
+<CodeExample title="Responsive wrapper">
+<Fragment set:html={`<div class="ug-table-responsive">
+  <table class="ug-table ug-table--striped">
+    <thead>
+      <tr><th>Name</th><th>State</th><th>Established</th><th>Area</th><th>Visitors</th><th>Highlights</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Yellowstone</td><td>Wyoming</td><td>1872</td><td>2,219,791 ac</td><td>4.9M</td><td>Geysers, hot springs</td></tr>
+      <tr><td>Yosemite</td><td>California</td><td>1890</td><td>761,748 ac</td><td>3.3M</td><td>Granite cliffs, waterfalls</td></tr>
+      <tr><td>Grand Canyon</td><td>Arizona</td><td>1919</td><td>1,218,375 ac</td><td>5.9M</td><td>Canyon, Colorado River</td></tr>
+    </tbody>
+  </table>
+</div>`} />
+</CodeExample>
+
+<h2>Combined Modifiers</h2>
+
+<CodeExample title="Striped, bordered, hover">
+<Fragment set:html={`<table class="ug-table ug-table--striped ug-table--bordered ug-table--hover">
+  <thead>
+    <tr><th>Name</th><th>Location</th><th>Year</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Acadia</td><td>Maine</td><td>1919</td></tr>
+    <tr><td>Rocky Mountain</td><td>Colorado</td><td>1915</td></tr>
+    <tr><td>Olympic</td><td>Washington</td><td>1938</td></tr>
+  </tbody>
+</table>`} />
+</CodeExample>
+
+<h2>Class Reference</h2>
+
+<PropsTable items={[
+  { class: '.ug-table', description: 'Base table styling' },
+  { class: '.ug-table--striped', description: 'Alternating row backgrounds' },
+  { class: '.ug-table--bordered', description: 'Borders on all cells' },
+  { class: '.ug-table--compact', description: 'Reduced cell padding' },
+  { class: '.ug-table--dark', description: 'Dark header row' },
+  { class: '.ug-table--hover', description: 'Highlight rows on hover' },
+  { class: '.ug-table-responsive', description: 'Scrollable wrapper for wide tables' },
+]} />
+
+</DocsLayout>

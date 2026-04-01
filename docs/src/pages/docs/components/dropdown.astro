@@ -1,0 +1,134 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import CodeExample from '../../../components/CodeExample.astro';
+import PropsTable from '../../../components/PropsTable.astro';
+---
+
+<DocsLayout title="Dropdown" activeNav="Dropdown">
+
+<h1>Dropdown</h1>
+<p class="ug-lead">Dropdown menus triggered by buttons or navbar links, with support for headers, dividers, directional variants, and active states.</p>
+
+<h2>Button Dropdown</h2>
+
+<CodeExample title="Basic dropdown (open)">
+<Fragment set:html={`<div class="ug-dropdown ug-dropdown--open" style="position:relative;display:inline-block">
+  <button class="ug-dropdown__trigger ug-btn">
+    Options <span class="ug-dropdown__caret"></span>
+  </button>
+  <div class="ug-dropdown__menu">
+    <a class="ug-dropdown__link" href="#">Action One</a>
+    <a class="ug-dropdown__link" href="#">Action Two</a>
+    <a class="ug-dropdown__link" href="#">Action Three</a>
+  </div>
+</div>`} />
+</CodeExample>
+
+<h2>With Header and Divider</h2>
+
+<CodeExample title="Dropdown with sections">
+<Fragment set:html={`<div class="ug-dropdown ug-dropdown--open" style="position:relative;display:inline-block">
+  <button class="ug-dropdown__trigger ug-btn">
+    Account <span class="ug-dropdown__caret"></span>
+  </button>
+  <div class="ug-dropdown__menu">
+    <div class="ug-dropdown__header">Navigation</div>
+    <a class="ug-dropdown__link" href="#">Dashboard</a>
+    <a class="ug-dropdown__link" href="#">Profile</a>
+    <div class="ug-dropdown__divider"></div>
+    <a class="ug-dropdown__link" href="#">Sign Out</a>
+  </div>
+</div>`} />
+</CodeExample>
+
+<h2>Active Item</h2>
+
+<CodeExample title="Active dropdown item">
+<Fragment set:html={`<div class="ug-dropdown ug-dropdown--open" style="position:relative;display:inline-block">
+  <button class="ug-dropdown__trigger ug-btn">
+    Select <span class="ug-dropdown__caret"></span>
+  </button>
+  <div class="ug-dropdown__menu">
+    <a class="ug-dropdown__link" href="#">Option A</a>
+    <a class="ug-dropdown__link ug-dropdown__link--active" href="#">Option B (active)</a>
+    <a class="ug-dropdown__link" href="#">Option C</a>
+  </div>
+</div>`} />
+</CodeExample>
+
+<h2>Right-Aligned</h2>
+
+<CodeExample title="Right-aligned menu">
+<Fragment set:html={`<div style="text-align:right">
+  <div class="ug-dropdown ug-dropdown--right ug-dropdown--open" style="position:relative;display:inline-block">
+    <button class="ug-dropdown__trigger ug-btn">
+      Align Right <span class="ug-dropdown__caret"></span>
+    </button>
+    <div class="ug-dropdown__menu">
+      <a class="ug-dropdown__link" href="#">Action One</a>
+      <a class="ug-dropdown__link" href="#">Action Two</a>
+    </div>
+  </div>
+</div>`} />
+</CodeExample>
+
+<h2>Upward Dropdown</h2>
+
+<CodeExample title="Dropup variant">
+<Fragment set:html={`<div style="padding-top:120px">
+  <div class="ug-dropdown ug-dropdown--up ug-dropdown--open" style="position:relative;display:inline-block">
+    <button class="ug-dropdown__trigger ug-btn">
+      Drop Up <span class="ug-dropdown__caret"></span>
+    </button>
+    <div class="ug-dropdown__menu">
+      <a class="ug-dropdown__link" href="#">Action One</a>
+      <a class="ug-dropdown__link" href="#">Action Two</a>
+    </div>
+  </div>
+</div>`} />
+</CodeExample>
+
+<h2>Navbar Dropdown</h2>
+<p class="ug-body">Dropdowns integrate seamlessly into the navbar component. At desktop sizes, the dropdown menu appears below the link; on mobile, it appears inline within the menu.</p>
+
+<CodeExample title="Dropdown inside navbar">
+<Fragment set:html={`<nav class="ug-navbar">
+  <div class="ug-navbar__inner">
+    <a class="ug-navbar__brand" href="#">SiteName</a>
+    <ul class="ug-navbar__menu">
+      <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Home</a></li>
+      <li class="ug-navbar__item ug-dropdown ug-dropdown--open">
+        <a class="ug-navbar__link ug-dropdown__trigger" href="#">
+          Explore <span class="ug-dropdown__caret"></span>
+        </a>
+        <div class="ug-dropdown__menu">
+          <a class="ug-dropdown__link" href="#">Parks</a>
+          <a class="ug-dropdown__link" href="#">Trails</a>
+          <div class="ug-dropdown__divider"></div>
+          <a class="ug-dropdown__link" href="#">Campgrounds</a>
+        </div>
+      </li>
+      <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Contact</a></li>
+    </ul>
+  </div>
+</nav>`} />
+</CodeExample>
+
+<h2>Class Reference</h2>
+
+<PropsTable items={[
+  { class: '.ug-dropdown', description: 'Dropdown container' },
+  { class: '.ug-dropdown__trigger', description: 'Trigger element (button or link)' },
+  { class: '.ug-dropdown__caret', description: 'Caret arrow indicator' },
+  { class: '.ug-dropdown__menu', description: 'Dropdown menu panel' },
+  { class: '.ug-dropdown__link', description: 'Menu item link' },
+  { class: '.ug-dropdown__link--active', description: 'Active/selected menu item' },
+  { class: '.ug-dropdown__divider', description: 'Horizontal separator in menu' },
+  { class: '.ug-dropdown__header', description: 'Section header in menu' },
+  { class: '.ug-dropdown--open', description: 'Open state (shows menu)' },
+  { class: '.ug-dropdown--right', description: 'Right-align the menu' },
+  { class: '.ug-dropdown--up', description: 'Open upward instead of downward' },
+  { class: '.ug-dropdown--active', description: 'Active state for navbar integration' },
+]} />
+
+</DocsLayout>

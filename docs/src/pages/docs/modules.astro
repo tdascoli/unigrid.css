@@ -1,0 +1,124 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+import CodeExample from '../../components/CodeExample.astro';
+import PropsTable from '../../components/PropsTable.astro';
+---
+
+<DocsLayout title="Modules" activeNav="Modules">
+
+<h1>Modules</h1>
+<p class="ug-lead">A square-based module system for creating flexible, proportional layouts. Modules are sized using a WxH notation relative to a base unit, creating visually consistent grids.</p>
+
+<h2>How Modules Work</h2>
+<p class="ug-body">Modules are placed inside a <code>.ug-modules</code> container and sized using classes like <code>.ug-module--2x1</code> (2 units wide, 1 unit tall). The base unit is calculated as a fraction of the viewport width, ensuring proportional scaling across screen sizes.</p>
+
+<p class="ug-body">The container uses flexbox with wrapping, and modules flow naturally from left to right. Gaps between modules are built into the system using viewport-relative spacing.</p>
+
+<h2>Basic Modules</h2>
+
+<CodeExample title="Square modules (1x1)">
+<Fragment set:html={`<div class="ug-modules">
+  <div class="ug-module ug-module--1x1" style="background:#e8e5e0;display:flex;align-items:center;justify-content:center">1x1</div>
+  <div class="ug-module ug-module--1x1" style="background:#d5d0c8;display:flex;align-items:center;justify-content:center">1x1</div>
+  <div class="ug-module ug-module--1x1" style="background:#e8e5e0;display:flex;align-items:center;justify-content:center">1x1</div>
+</div>`} />
+</CodeExample>
+
+<h2>Wide Modules</h2>
+
+<CodeExample title="Horizontal span modules">
+<Fragment set:html={`<div class="ug-modules">
+  <div class="ug-module ug-module--2x1" style="background:#e8e5e0;display:flex;align-items:center;justify-content:center">2x1</div>
+  <div class="ug-module ug-module--1x1" style="background:#d5d0c8;display:flex;align-items:center;justify-content:center">1x1</div>
+</div>`} />
+</CodeExample>
+
+<CodeExample title="Larger wide modules">
+<Fragment set:html={`<div class="ug-modules">
+  <div class="ug-module ug-module--3x1" style="background:#e8e5e0;display:flex;align-items:center;justify-content:center">3x1</div>
+  <div class="ug-module ug-module--4x1" style="background:#d5d0c8;display:flex;align-items:center;justify-content:center">4x1</div>
+</div>`} />
+</CodeExample>
+
+<h2>Tall Modules</h2>
+
+<CodeExample title="Vertical span modules">
+<Fragment set:html={`<div class="ug-modules">
+  <div class="ug-module ug-module--1x2" style="background:#e8e5e0;display:flex;align-items:center;justify-content:center">1x2</div>
+  <div class="ug-module ug-module--1x1" style="background:#d5d0c8;display:flex;align-items:center;justify-content:center">1x1</div>
+  <div class="ug-module ug-module--1x1" style="background:#e8e5e0;display:flex;align-items:center;justify-content:center">1x1</div>
+</div>`} />
+</CodeExample>
+
+<h2>Large Rectangular Modules</h2>
+
+<CodeExample title="2x2 and 3x2 modules">
+<Fragment set:html={`<div class="ug-modules">
+  <div class="ug-module ug-module--2x2" style="background:#e8e5e0;display:flex;align-items:center;justify-content:center">2x2</div>
+  <div class="ug-module ug-module--3x2" style="background:#d5d0c8;display:flex;align-items:center;justify-content:center">3x2</div>
+</div>`} />
+</CodeExample>
+
+<h2>Mixed Layout</h2>
+
+<CodeExample title="Combined module sizes">
+<Fragment set:html={`<div class="ug-modules">
+  <div class="ug-module ug-module--2x2" style="background:#e8e5e0;display:flex;align-items:center;justify-content:center">2x2</div>
+  <div class="ug-module ug-module--1x1" style="background:#d5d0c8;display:flex;align-items:center;justify-content:center">1x1</div>
+  <div class="ug-module ug-module--1x1" style="background:#e8e5e0;display:flex;align-items:center;justify-content:center">1x1</div>
+  <div class="ug-module ug-module--3x1" style="background:#d5d0c8;display:flex;align-items:center;justify-content:center">3x1</div>
+</div>`} />
+</CodeExample>
+
+<h2>Flush Modules</h2>
+<p class="ug-body">Remove the outer padding from the modules container for edge-to-edge layouts.</p>
+
+<CodeExample title="Flush variant">
+<Fragment set:html={`<div class="ug-modules ug-modules--flush">
+  <div class="ug-module ug-module--2x1" style="background:#e8e5e0;display:flex;align-items:center;justify-content:center">2x1</div>
+  <div class="ug-module ug-module--1x1" style="background:#d5d0c8;display:flex;align-items:center;justify-content:center">1x1</div>
+</div>`} />
+</CodeExample>
+
+<h2>Auto Height</h2>
+<p class="ug-body">Use <code>.ug-module--auto-height</code> to let the module height be determined by its content instead of the square ratio.</p>
+
+<CodeExample title="Auto height module">
+<Fragment set:html={`<div class="ug-modules">
+  <div class="ug-module ug-module--2x1 ug-module--auto-height" style="background:#e8e5e0;padding:1rem">
+    <h3>Auto Height</h3>
+    <p>This module grows to fit its content rather than maintaining a fixed aspect ratio.</p>
+  </div>
+  <div class="ug-module ug-module--1x1" style="background:#d5d0c8;display:flex;align-items:center;justify-content:center">1x1</div>
+</div>`} />
+</CodeExample>
+
+<h2>Available Sizes</h2>
+
+<table class="ug-table ug-table--striped ug-table--compact ug-mb--3">
+  <thead>
+    <tr><th>Width x Height</th><th>1 tall</th><th>2 tall</th><th>3 tall</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1 wide</td><td><code>1x1</code></td><td><code>1x2</code></td><td><code>1x3</code></td></tr>
+    <tr><td>2 wide</td><td><code>2x1</code></td><td><code>2x2</code></td><td><code>2x3</code></td></tr>
+    <tr><td>3 wide</td><td><code>3x1</code></td><td><code>3x2</code></td><td><code>3x3</code></td></tr>
+    <tr><td>4 wide</td><td><code>4x1</code></td><td><code>4x2</code></td><td><code>4x3</code></td></tr>
+    <tr><td>5 wide</td><td><code>5x1</code></td><td><code>5x2</code></td><td><code>5x3</code></td></tr>
+    <tr><td>6 wide</td><td><code>6x1</code></td><td><code>6x2</code></td><td><code>6x3</code></td></tr>
+  </tbody>
+</table>
+
+<h2>Class Reference</h2>
+
+<PropsTable items={[
+  { class: '.ug-modules', description: 'Module container (flexbox with viewport-relative gaps)' },
+  { class: '.ug-modules--flush', description: 'Remove outer padding' },
+  { class: '.ug-module', description: 'Base module element' },
+  { class: '.ug-module--WxH (e.g. 2x1)', description: 'Module size: width x height in base units' },
+  { class: '.ug-module--auto-height', description: 'Content-driven height instead of fixed ratio' },
+  { class: '.ug-module--no-margin', description: 'Remove module margin' },
+  { class: '.ug-module--sm-WxH', description: 'Responsive module size at small breakpoint' },
+]} />
+
+</DocsLayout>

@@ -1,0 +1,170 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import CodeExample from '../../../components/CodeExample.astro';
+import PropsTable from '../../../components/PropsTable.astro';
+---
+
+<DocsLayout title="Forms" activeNav="Forms">
+
+<h1>Forms</h1>
+<p class="ug-lead">Form elements styled to the vertical rhythm, including inputs, selects, textareas, checkboxes, radios, sizing, inline layout, and validation states.</p>
+
+<h2>Text Input</h2>
+
+<CodeExample title="Text input with label">
+<Fragment set:html={`<div class="ug-form__group">
+  <label class="ug-form__label">Full Name</label>
+  <input class="ug-form__input" type="text" placeholder="Enter your name" />
+</div>
+<div class="ug-form__group">
+  <label class="ug-form__label">Email Address</label>
+  <input class="ug-form__input" type="email" placeholder="you@example.com" />
+  <span class="ug-form__help">We will never share your email.</span>
+</div>`} />
+</CodeExample>
+
+<h2>Select</h2>
+
+<CodeExample title="Select dropdown">
+<Fragment set:html={`<div class="ug-form__group">
+  <label class="ug-form__label">Favorite Park</label>
+  <select class="ug-form__select">
+    <option value="">Choose a park...</option>
+    <option value="yellowstone">Yellowstone</option>
+    <option value="yosemite">Yosemite</option>
+    <option value="grand-canyon">Grand Canyon</option>
+    <option value="zion">Zion</option>
+  </select>
+</div>`} />
+</CodeExample>
+
+<h2>Textarea</h2>
+
+<CodeExample title="Textarea">
+<Fragment set:html={`<div class="ug-form__group">
+  <label class="ug-form__label">Your Message</label>
+  <textarea class="ug-form__textarea" rows="4" placeholder="Write your message here..."></textarea>
+</div>`} />
+</CodeExample>
+
+<h2>Checkboxes</h2>
+
+<CodeExample title="Checkbox inputs">
+<Fragment set:html={`<div class="ug-form__group">
+  <label class="ug-form__label">Interests</label>
+  <label class="ug-form__checkbox">
+    <input type="checkbox" checked />
+    <span>Hiking</span>
+  </label>
+  <label class="ug-form__checkbox">
+    <input type="checkbox" />
+    <span>Camping</span>
+  </label>
+  <label class="ug-form__checkbox">
+    <input type="checkbox" />
+    <span>Wildlife Photography</span>
+  </label>
+</div>`} />
+</CodeExample>
+
+<h2>Radio Buttons</h2>
+
+<CodeExample title="Radio inputs">
+<Fragment set:html={`<div class="ug-form__group">
+  <label class="ug-form__label">Skill Level</label>
+  <label class="ug-form__radio">
+    <input type="radio" name="skill" checked />
+    <span>Beginner</span>
+  </label>
+  <label class="ug-form__radio">
+    <input type="radio" name="skill" />
+    <span>Intermediate</span>
+  </label>
+  <label class="ug-form__radio">
+    <input type="radio" name="skill" />
+    <span>Advanced</span>
+  </label>
+</div>`} />
+</CodeExample>
+
+<h2>Input Sizes</h2>
+
+<CodeExample title="Small and large inputs">
+<Fragment set:html={`<div class="ug-form__group">
+  <label class="ug-form__label">Small Input</label>
+  <input class="ug-form__input ug-form__input--sm" type="text" placeholder="Small" />
+</div>
+<div class="ug-form__group">
+  <label class="ug-form__label">Default Input</label>
+  <input class="ug-form__input" type="text" placeholder="Default" />
+</div>
+<div class="ug-form__group">
+  <label class="ug-form__label">Large Input</label>
+  <input class="ug-form__input ug-form__input--lg" type="text" placeholder="Large" />
+</div>`} />
+</CodeExample>
+
+<h2>Inline Form</h2>
+
+<CodeExample title="Inline layout">
+<Fragment set:html={`<form class="ug-form--inline">
+  <div class="ug-form__group">
+    <label class="ug-form__label">Name</label>
+    <input class="ug-form__input" type="text" placeholder="Name" />
+  </div>
+  <div class="ug-form__group">
+    <label class="ug-form__label">Email</label>
+    <input class="ug-form__input" type="email" placeholder="Email" />
+  </div>
+  <a class="ug-btn" href="#">Submit</a>
+</form>`} />
+</CodeExample>
+
+<h2>Error State</h2>
+
+<CodeExample title="Validation error">
+<Fragment set:html={`<div class="ug-form__group">
+  <label class="ug-form__label">Email Address</label>
+  <input class="ug-form__input" type="email" value="not-an-email" required />
+  <span class="ug-form__error">Please enter a valid email address.</span>
+</div>`} />
+</CodeExample>
+
+<h2>Disabled State</h2>
+
+<CodeExample title="Disabled inputs">
+<Fragment set:html={`<div class="ug-form__group">
+  <label class="ug-form__label">Disabled Input</label>
+  <input class="ug-form__input" type="text" value="Cannot edit this" disabled />
+</div>
+<div class="ug-form__group">
+  <label class="ug-form__label">Disabled Select</label>
+  <select class="ug-form__select" disabled>
+    <option>Cannot change this</option>
+  </select>
+</div>
+<div class="ug-form__group">
+  <label class="ug-form__label">Disabled Textarea</label>
+  <textarea class="ug-form__textarea" disabled>Cannot edit this</textarea>
+</div>`} />
+</CodeExample>
+
+<h2>Class Reference</h2>
+
+<PropsTable items={[
+  { class: '.ug-form__group', description: 'Form field group wrapper' },
+  { class: '.ug-form__label', description: 'Field label' },
+  { class: '.ug-form__input', description: 'Text input field' },
+  { class: '.ug-form__input--sm', description: 'Small input size' },
+  { class: '.ug-form__input--lg', description: 'Large input size' },
+  { class: '.ug-form__select', description: 'Select dropdown' },
+  { class: '.ug-form__textarea', description: 'Textarea field' },
+  { class: '.ug-form__checkbox', description: 'Checkbox wrapper (label + input + span)' },
+  { class: '.ug-form__radio', description: 'Radio button wrapper (label + input + span)' },
+  { class: '.ug-form__help', description: 'Help text below a field' },
+  { class: '.ug-form__error', description: 'Error message text' },
+  { class: '.ug-form--inline', description: 'Inline form layout' },
+  { class: '.ug-form--disabled', description: 'Disabled form state (also :disabled)' },
+]} />
+
+</DocsLayout>

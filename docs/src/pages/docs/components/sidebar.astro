@@ -1,0 +1,124 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import CodeExample from '../../../components/CodeExample.astro';
+import PropsTable from '../../../components/PropsTable.astro';
+---
+
+<DocsLayout title="Sidebar" activeNav="Sidebar">
+
+<h1>Sidebar</h1>
+<p class="ug-lead">Sidebar layout component with left/right positioning, sticky behavior, bordered variant, and built-in navigation styles.</p>
+
+<h2>Left Sidebar (Default)</h2>
+
+<CodeExample title="Default left sidebar">
+<Fragment set:html={`<div class="ug-sidebar-layout">
+  <aside class="ug-sidebar-layout__sidebar">
+    <nav class="ug-sidebar-layout__nav">
+      <a class="ug-sidebar-layout__nav-link ug-sidebar-layout__nav-link--active" href="#">Overview</a>
+      <a class="ug-sidebar-layout__nav-link" href="#">Getting Started</a>
+      <a class="ug-sidebar-layout__nav-link" href="#">Configuration</a>
+      <a class="ug-sidebar-layout__nav-link" href="#">API Reference</a>
+    </nav>
+  </aside>
+  <main class="ug-sidebar-layout__main">
+    <h2>Main Content Area</h2>
+    <p>This is the main content alongside the left sidebar. The sidebar defaults to the left side and the main content fills the remaining space.</p>
+  </main>
+</div>`} />
+</CodeExample>
+
+<h2>Right Sidebar</h2>
+
+<CodeExample title="Right-positioned sidebar">
+<Fragment set:html={`<div class="ug-sidebar-layout ug-sidebar-layout--right">
+  <aside class="ug-sidebar-layout__sidebar">
+    <nav class="ug-sidebar-layout__nav">
+      <a class="ug-sidebar-layout__nav-link" href="#">Related Topics</a>
+      <a class="ug-sidebar-layout__nav-link" href="#">Resources</a>
+      <a class="ug-sidebar-layout__nav-link" href="#">Downloads</a>
+    </nav>
+  </aside>
+  <main class="ug-sidebar-layout__main">
+    <h2>Main Content</h2>
+    <p>With the right variant, the sidebar moves to the right side of the layout. Useful for supplementary navigation or related links.</p>
+  </main>
+</div>`} />
+</CodeExample>
+
+<h2>Sticky Sidebar</h2>
+<p class="ug-body">The sticky variant keeps the sidebar visible as the user scrolls through long content.</p>
+
+<CodeExample title="Sticky sidebar">
+<Fragment set:html={`<div class="ug-sidebar-layout ug-sidebar-layout--sticky">
+  <aside class="ug-sidebar-layout__sidebar">
+    <nav class="ug-sidebar-layout__nav">
+      <a class="ug-sidebar-layout__nav-link ug-sidebar-layout__nav-link--active" href="#">Section 1</a>
+      <a class="ug-sidebar-layout__nav-link" href="#">Section 2</a>
+      <a class="ug-sidebar-layout__nav-link" href="#">Section 3</a>
+      <a class="ug-sidebar-layout__nav-link" href="#">Section 4</a>
+    </nav>
+  </aside>
+  <main class="ug-sidebar-layout__main">
+    <h2>Sticky Navigation</h2>
+    <p>The sidebar stays fixed in the viewport as the user scrolls. This is especially useful for documentation or long-form content with a table of contents.</p>
+    <p>Scroll this container to see the effect in context.</p>
+  </main>
+</div>`} />
+</CodeExample>
+
+<h2>Bordered Sidebar</h2>
+
+<CodeExample title="Bordered variant">
+<Fragment set:html={`<div class="ug-sidebar-layout ug-sidebar-layout--bordered">
+  <aside class="ug-sidebar-layout__sidebar">
+    <nav class="ug-sidebar-layout__nav">
+      <a class="ug-sidebar-layout__nav-link ug-sidebar-layout__nav-link--active" href="#">Dashboard</a>
+      <a class="ug-sidebar-layout__nav-link" href="#">Settings</a>
+      <a class="ug-sidebar-layout__nav-link" href="#">Reports</a>
+    </nav>
+  </aside>
+  <main class="ug-sidebar-layout__main">
+    <h2>Bordered Layout</h2>
+    <p>A visible border separates the sidebar from the main content area, providing clearer visual distinction.</p>
+  </main>
+</div>`} />
+</CodeExample>
+
+<h2>Custom Width Sidebar</h2>
+<p class="ug-body">Override the default sidebar width using a CSS custom property or inline style.</p>
+
+<CodeExample title="Custom width">
+<Fragment set:html={`<div class="ug-sidebar-layout">
+  <aside class="ug-sidebar-layout__sidebar" style="flex-basis:300px;min-width:300px">
+    <nav class="ug-sidebar-layout__nav">
+      <a class="ug-sidebar-layout__nav-link ug-sidebar-layout__nav-link--active" href="#">Home</a>
+      <a class="ug-sidebar-layout__nav-link" href="#">Explore</a>
+      <a class="ug-sidebar-layout__nav-link" href="#">Maps</a>
+      <a class="ug-sidebar-layout__nav-link" href="#">Contact</a>
+    </nav>
+  </aside>
+  <main class="ug-sidebar-layout__main">
+    <h2>Wider Sidebar</h2>
+    <p>This sidebar has been set to 300px width using an inline style. You can also set the width via custom properties in your own CSS.</p>
+  </main>
+</div>`} />
+</CodeExample>
+
+<h2>Class Reference</h2>
+
+<PropsTable items={[
+  { class: '.ug-sidebar-layout', description: 'Sidebar layout container (flexbox)' },
+  { class: '.ug-sidebar-layout__sidebar', description: 'Sidebar panel' },
+  { class: '.ug-sidebar-layout__main', description: 'Main content area' },
+  { class: '.ug-sidebar-layout--right', description: 'Sidebar on the right side' },
+  { class: '.ug-sidebar-layout--sticky', description: 'Sticky sidebar on scroll' },
+  { class: '.ug-sidebar-layout--bordered', description: 'Border between sidebar and main' },
+  { class: '.ug-sidebar-layout__nav', description: 'Sidebar navigation list' },
+  { class: '.ug-sidebar-layout__nav-item', description: 'Navigation list item' },
+  { class: '.ug-sidebar-layout__nav-link', description: 'Navigation link' },
+  { class: '.ug-sidebar-layout__nav-link--active', description: 'Active navigation link' },
+  { class: '.ug-sidebar-layout__sidebar--visible', description: 'Force sidebar visible on mobile' },
+]} />
+
+</DocsLayout>
