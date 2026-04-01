@@ -22,6 +22,8 @@
       var link = e.target.closest('[data-ug-tab]');
       if (!link) return;
 
+      e.preventDefault();
+
       var tabs = link.closest('.ug-tabs');
       if (!tabs) return;
 

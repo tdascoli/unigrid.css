@@ -4,6 +4,9 @@
     function init() {
       document.addEventListener("click", function(e) {
         var trigger = e.target.closest(".ug-dropdown__trigger");
+        if (trigger) {
+          e.preventDefault();
+        }
         document.querySelectorAll(".ug-dropdown--open").forEach(function(dd) {
           if (!trigger || dd !== trigger.closest(".ug-dropdown")) {
             dd.classList.remove("ug-dropdown--open");
@@ -37,6 +40,7 @@
       document.addEventListener("click", function(e) {
         var link = e.target.closest("[data-ug-tab]");
         if (!link) return;
+        e.preventDefault();
         var tabs = link.closest(".ug-tabs");
         if (!tabs) return;
         var target = link.getAttribute("data-ug-tab");

@@ -3,6 +3,9 @@
     function init() {
       document.addEventListener("click", function(e) {
         var trigger = e.target.closest(".ug-dropdown__trigger");
+        if (trigger) {
+          e.preventDefault();
+        }
         document.querySelectorAll(".ug-dropdown--open").forEach(function(dd) {
           if (!trigger || dd !== trigger.closest(".ug-dropdown")) {
             dd.classList.remove("ug-dropdown--open");

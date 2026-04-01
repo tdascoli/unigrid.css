@@ -10,6 +10,10 @@
     document.addEventListener('click', function (e) {
       var trigger = e.target.closest('.ug-dropdown__trigger');
 
+      if (trigger) {
+        e.preventDefault();
+      }
+
       // Close all other dropdowns
       document.querySelectorAll('.ug-dropdown--open').forEach(function (dd) {
         if (!trigger || dd !== trigger.closest('.ug-dropdown')) {
