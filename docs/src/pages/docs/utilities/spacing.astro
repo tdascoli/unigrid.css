@@ -1,0 +1,60 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import CodeExample from '../../../components/CodeExample.astro';
+import PropsTable from '../../../components/PropsTable.astro';
+---
+
+<DocsLayout title="Spacing" activeNav="Spacing">
+
+<h1>Spacing</h1>
+<p class="ug-lead">Margin and padding utilities based on the vertical rhythm. All values use <code>calc(var(--ug-leading) * N)</code> so they adapt at the desktop breakpoint.</p>
+
+<h2>Scale</h2>
+<table class="ug-table ug-table--striped">
+  <thead><tr><th>Level</th><th>Multiplier</th><th>Mobile (26px)</th><th>Desktop (31px)</th></tr></thead>
+  <tbody>
+    <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+    <tr><td>1</td><td>0.25</td><td>6.5px</td><td>7.75px</td></tr>
+    <tr><td>2</td><td>0.5</td><td>13px</td><td>15.5px</td></tr>
+    <tr><td>3</td><td>1</td><td>26px</td><td>31px</td></tr>
+    <tr><td>4</td><td>1.5</td><td>39px</td><td>46.5px</td></tr>
+    <tr><td>5</td><td>2</td><td>52px</td><td>62px</td></tr>
+    <tr><td>6</td><td>3</td><td>78px</td><td>93px</td></tr>
+    <tr><td>7</td><td>4</td><td>104px</td><td>124px</td></tr>
+    <tr><td>8</td><td>6</td><td>156px</td><td>186px</td></tr>
+  </tbody>
+</table>
+
+<h2>Margin</h2>
+
+<CodeExample title="Margin bottom" code={`<div style="background:#e8e5e0">
+  <p class="ug-mb--3" style="background:#274a5a;color:#fff;padding:0.5rem">ug-mb--3 (1 leading)</p>
+  <p class="ug-mb--5" style="background:#274a5a;color:#fff;padding:0.5rem">ug-mb--5 (2 leading)</p>
+  <p style="background:#274a5a;color:#fff;padding:0.5rem">No margin</p>
+</div>`} />
+
+<h2>Padding</h2>
+
+<CodeExample title="Padding" code={`<div class="ug-p--3" style="background:#e8e5e0">
+  <p>ug-p--3 (1 leading padding on all sides)</p>
+</div>`} />
+
+<CodeExample title="Padding top + bottom" code={`<div class="ug-pt--5 ug-pb--5" style="background:#e8e5e0">
+  <p>ug-pt--5 ug-pb--5 (2 leading top and bottom)</p>
+</div>`} />
+
+<h2>Class Reference</h2>
+<PropsTable items={[
+  { class: '.ug-m--N (0-8)', description: 'Margin on all sides' },
+  { class: '.ug-mt--N', description: 'Margin top' },
+  { class: '.ug-mb--N', description: 'Margin bottom' },
+  { class: '.ug-ml--N', description: 'Margin left' },
+  { class: '.ug-mr--N', description: 'Margin right' },
+  { class: '.ug-p--N (0-8)', description: 'Padding on all sides' },
+  { class: '.ug-pt--N', description: 'Padding top' },
+  { class: '.ug-pb--N', description: 'Padding bottom' },
+  { class: '.ug-pl--N', description: 'Padding left' },
+  { class: '.ug-pr--N', description: 'Padding right' },
+]} />
+
+</DocsLayout>

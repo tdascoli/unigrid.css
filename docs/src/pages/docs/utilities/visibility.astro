@@ -1,0 +1,61 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import CodeExample from '../../../components/CodeExample.astro';
+import PropsTable from '../../../components/PropsTable.astro';
+---
+
+<DocsLayout title="Visibility" activeNav="Visibility">
+
+<h1>Visibility</h1>
+<p class="ug-lead">Responsive display utilities to show or hide elements at specific breakpoints.</p>
+
+<h2>Basic</h2>
+
+<CodeExample code={`<p class="ug-hidden">This is always hidden</p>
+<p>This is always visible</p>`} />
+
+<h2>Responsive: Hide Above Breakpoint</h2>
+<p class="ug-body">Use <code>.ug-hidden--bp-up</code> to hide an element above a breakpoint.</p>
+
+<CodeExample code={`<p class="ug-hidden--md-up" style="background:#e8e5e0;padding:0.5rem">
+  Visible on mobile, hidden on tablet and up
+</p>`} />
+
+<table class="ug-table ug-table--striped">
+  <thead><tr><th>Class</th><th>Hidden when</th></tr></thead>
+  <tbody>
+    <tr><td><code>.ug-hidden--sm-up</code></td><td>≥ 480px</td></tr>
+    <tr><td><code>.ug-hidden--md-up</code></td><td>≥ 768px</td></tr>
+    <tr><td><code>.ug-hidden--lg-up</code></td><td>≥ 1024px</td></tr>
+    <tr><td><code>.ug-hidden--xl-up</code></td><td>≥ 1280px</td></tr>
+  </tbody>
+</table>
+
+<h2>Responsive: Hide Below Breakpoint</h2>
+<p class="ug-body">Use <code>.ug-hidden--bp-down</code> to hide an element below a breakpoint.</p>
+
+<CodeExample code={`<p class="ug-hidden--md-down" style="background:#e8e5e0;padding:0.5rem">
+  Hidden on mobile, visible on tablet and up
+</p>`} />
+
+<table class="ug-table ug-table--striped">
+  <thead><tr><th>Class</th><th>Hidden when</th></tr></thead>
+  <tbody>
+    <tr><td><code>.ug-hidden--sm-down</code></td><td>&lt; 480px</td></tr>
+    <tr><td><code>.ug-hidden--md-down</code></td><td>&lt; 768px</td></tr>
+    <tr><td><code>.ug-hidden--lg-down</code></td><td>&lt; 1024px</td></tr>
+    <tr><td><code>.ug-hidden--xl-down</code></td><td>&lt; 1280px</td></tr>
+  </tbody>
+</table>
+
+<h2>Other Utilities</h2>
+
+<PropsTable items={[
+  { class: '.ug-hidden', description: 'Always hidden (display: none)' },
+  { class: '.ug-full-width', description: 'Span all grid columns (grid-column: 1 / -1)' },
+  { class: '.ug-align--start|center|end|stretch', description: 'Vertical alignment (align-self)' },
+  { class: '.ug-justify--start|center|end|stretch', description: 'Horizontal alignment (justify-self)' },
+  { class: '.ug-place--center', description: 'Center both axes' },
+]} />
+
+</DocsLayout>

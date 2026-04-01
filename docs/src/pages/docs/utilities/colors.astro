@@ -1,0 +1,75 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import CodeExample from '../../../components/CodeExample.astro';
+import PropsTable from '../../../components/PropsTable.astro';
+---
+
+<DocsLayout title="Colors" activeNav="Colors">
+
+<h1>Colors</h1>
+<p class="ug-lead">NPS-inspired color palette with background and text color utilities.</p>
+
+<h2>Palette</h2>
+<table class="ug-table">
+  <thead><tr><th>Name</th><th>Variable</th><th>Hex</th><th>Preview</th></tr></thead>
+  <tbody>
+    <tr><td>Black</td><td><code>$ug-black</code></td><td>#1a1a1a</td><td><span style="display:inline-block;width:2rem;height:1rem;background:#1a1a1a;vertical-align:middle"></span></td></tr>
+    <tr><td>White</td><td><code>$ug-white</code></td><td>#ffffff</td><td><span style="display:inline-block;width:2rem;height:1rem;background:#fff;border:1px solid #e8e5e0;vertical-align:middle"></span></td></tr>
+    <tr><td>Warm Gray</td><td><code>$ug-warm-gray</code></td><td>#f5f2ed</td><td><span style="display:inline-block;width:2rem;height:1rem;background:#f5f2ed;border:1px solid #e8e5e0;vertical-align:middle"></span></td></tr>
+    <tr><td>Dark Gray</td><td><code>$ug-dark-gray</code></td><td>#333333</td><td><span style="display:inline-block;width:2rem;height:1rem;background:#333;vertical-align:middle"></span></td></tr>
+    <tr><td>Medium Gray</td><td><code>$ug-medium-gray</code></td><td>#666666</td><td><span style="display:inline-block;width:2rem;height:1rem;background:#666;vertical-align:middle"></span></td></tr>
+    <tr><td>Light Gray</td><td><code>$ug-light-gray</code></td><td>#e8e5e0</td><td><span style="display:inline-block;width:2rem;height:1rem;background:#e8e5e0;vertical-align:middle"></span></td></tr>
+    <tr><td>Red</td><td><code>$ug-red</code></td><td>#c1272d</td><td><span style="display:inline-block;width:2rem;height:1rem;background:#c1272d;vertical-align:middle"></span></td></tr>
+    <tr><td>Brown</td><td><code>$ug-brown</code></td><td>#4a3728</td><td><span style="display:inline-block;width:2rem;height:1rem;background:#4a3728;vertical-align:middle"></span></td></tr>
+    <tr><td>Green</td><td><code>$ug-green</code></td><td>#2d5a27</td><td><span style="display:inline-block;width:2rem;height:1rem;background:#2d5a27;vertical-align:middle"></span></td></tr>
+    <tr><td>Blue</td><td><code>$ug-blue</code></td><td>#274a5a</td><td><span style="display:inline-block;width:2rem;height:1rem;background:#274a5a;vertical-align:middle"></span></td></tr>
+  </tbody>
+</table>
+
+<h2>Background Colors</h2>
+<p class="ug-body">Dark backgrounds automatically set white text.</p>
+
+<CodeExample code={`<div class="ug-grid ug-grid--no-gap">
+  <div class="ug-col--2 ug-bg--black ug-p--3"><span class="ug-label">Black</span></div>
+  <div class="ug-col--2 ug-bg--brown ug-p--3"><span class="ug-label">Brown</span></div>
+  <div class="ug-col--2 ug-bg--red ug-p--3"><span class="ug-label">Red</span></div>
+  <div class="ug-col--2 ug-bg--green ug-p--3"><span class="ug-label">Green</span></div>
+  <div class="ug-col--2 ug-bg--blue ug-p--3"><span class="ug-label">Blue</span></div>
+  <div class="ug-col--2 ug-bg--warm-gray ug-p--3"><span class="ug-label" style="color:#333">Warm Gray</span></div>
+</div>`} />
+
+<h2>Text Colors</h2>
+
+<CodeExample code={`<p class="ug-text--black">Black text</p>
+<p class="ug-text--medium-gray">Medium gray text</p>
+<p class="ug-text--red">Red text</p>
+<p class="ug-text--green">Green text</p>
+<p class="ug-text--blue">Blue text</p>`} />
+
+<h2>SCSS Customization</h2>
+<p class="ug-body">Override any color variable before importing:</p>
+<pre class="docs-install__code">$ug-black: #222;
+$ug-red: #e74c3c;
+$ug-font-family: "Custom Font", sans-serif;
+@use "unigrid.css/src/scss/unigrid" as *;</pre>
+
+<h2>Class Reference</h2>
+<PropsTable items={[
+  { class: '.ug-bg--black', description: 'Black background, white text' },
+  { class: '.ug-bg--brown', description: 'Brown background, white text' },
+  { class: '.ug-bg--red', description: 'Red background, white text' },
+  { class: '.ug-bg--green', description: 'Green background, white text' },
+  { class: '.ug-bg--blue', description: 'Blue background, white text' },
+  { class: '.ug-bg--warm-gray', description: 'Warm gray background' },
+  { class: '.ug-bg--white', description: 'White background' },
+  { class: '.ug-text--black', description: 'Black text' },
+  { class: '.ug-text--dark-gray', description: 'Dark gray text' },
+  { class: '.ug-text--medium-gray', description: 'Medium gray text' },
+  { class: '.ug-text--red', description: 'Red text' },
+  { class: '.ug-text--brown', description: 'Brown text' },
+  { class: '.ug-text--green', description: 'Green text' },
+  { class: '.ug-text--blue', description: 'Blue text' },
+  { class: '.ug-text--white', description: 'White text' },
+]} />
+
+</DocsLayout>
