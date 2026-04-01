@@ -6,3 +6,4 @@ docs/.astro/
 .DS_Store
 *.map
 /.idea/
+.astro/
