@@ -1,0 +1,102 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import CodeExample from '../../../components/CodeExample.astro';
+import PropsTable from '../../../components/PropsTable.astro';
+---
+
+<DocsLayout title="Scrollspy" activeNav="Scrollspy">
+
+<h1>Scrollspy</h1>
+<p class="ug-lead">Highlights navigation links based on scroll position using IntersectionObserver. Ideal for table of contents sidebars.</p>
+
+<h2>Basic Usage</h2>
+<p class="ug-body">Add <code>data-ug-scrollspy</code> to a nav element containing links that point to section IDs. The scrollspy script automatically highlights the current section.</p>
+
+<CodeExample title="Scrollspy navigation" code={`<nav class="ug-scrollspy" data-ug-scrollspy>
+  <div class="ug-scrollspy__nav">
+    <a class="ug-scrollspy__link" href="#overview">Overview</a>
+    <a class="ug-scrollspy__link" href="#features">Features</a>
+    <a class="ug-scrollspy__link" href="#install">Installation</a>
+  </div>
+</nav>
+
+<!-- Sections with matching IDs -->
+<section id="overview">...</section>
+<section id="features">...</section>
+<section id="install">...</section>`} />
+
+<h2>With Nested Links</h2>
+<p class="ug-body">Use <code>--nested</code> for indented sub-section links.</p>
+
+<CodeExample title="Nested scrollspy" code={`<nav class="ug-scrollspy" data-ug-scrollspy>
+  <div class="ug-scrollspy__nav">
+    <a class="ug-scrollspy__link" href="#getting-started">Getting Started</a>
+    <a class="ug-scrollspy__link ug-scrollspy__link--nested" href="#installation">Installation</a>
+    <a class="ug-scrollspy__link ug-scrollspy__link--nested" href="#configuration">Configuration</a>
+    <a class="ug-scrollspy__link" href="#components">Components</a>
+    <a class="ug-scrollspy__link ug-scrollspy__link--nested" href="#buttons">Buttons</a>
+    <a class="ug-scrollspy__link ug-scrollspy__link--nested" href="#cards">Cards</a>
+  </div>
+</nav>`} />
+
+<h2>Active State</h2>
+
+<CodeExample title="Active link styling" code={`<nav class="ug-scrollspy">
+  <div class="ug-scrollspy__nav">
+    <a class="ug-scrollspy__link" href="#">Inactive link</a>
+    <a class="ug-scrollspy__link ug-scrollspy__link--active" href="#">Active link</a>
+    <a class="ug-scrollspy__link" href="#">Inactive link</a>
+  </div>
+</nav>`} />
+
+<h2>JavaScript</h2>
+<p class="ug-body">Include the scrollspy script (part of <code>unigrid.min.js</code> bundle or load individually):</p>
+
+<pre class="docs-install__code">&lt;!-- Bundled (includes dropdown + tabs + scrollspy) --&gt;
+&lt;script src="dist/unigrid.min.js"&gt;&lt;/script&gt;
+
+&lt;!-- Or individual --&gt;
+&lt;script src="dist/scrollspy.js"&gt;&lt;/script&gt;</pre>
+
+<h2>Options</h2>
+<p class="ug-body">Configure via data attributes on the <code>data-ug-scrollspy</code> element:</p>
+
+<table class="ug-table ug-table--striped">
+  <thead><tr><th>Attribute</th><th>Default</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>data-ug-scrollspy-offset</code></td><td>100</td><td>Top offset in pixels before a section is considered active</td></tr>
+    <tr><td><code>data-ug-scrollspy-class</code></td><td>ug-scrollspy__link--active</td><td>CSS class to add to the active link</td></tr>
+  </tbody>
+</table>
+
+<h2>Sidebar Example</h2>
+<p class="ug-body">Combine with <code>.ug-sidebar-layout--sticky</code> for a sticky table of contents:</p>
+
+<pre class="docs-install__code">&lt;div class="ug-sidebar-layout ug-sidebar-layout--right ug-sidebar-layout--sticky"&gt;
+  &lt;aside class="ug-sidebar-layout__sidebar"&gt;
+    &lt;nav class="ug-scrollspy" data-ug-scrollspy&gt;
+      &lt;div class="ug-scrollspy__nav"&gt;
+        &lt;a class="ug-scrollspy__link" href="#section1"&gt;Section 1&lt;/a&gt;
+        &lt;a class="ug-scrollspy__link" href="#section2"&gt;Section 2&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/nav&gt;
+  &lt;/aside&gt;
+  &lt;main class="ug-sidebar-layout__main"&gt;
+    &lt;section id="section1"&gt;...&lt;/section&gt;
+    &lt;section id="section2"&gt;...&lt;/section&gt;
+  &lt;/main&gt;
+&lt;/div&gt;</pre>
+
+<h2>Class Reference</h2>
+<PropsTable items={[
+  { class: '.ug-scrollspy', description: 'Scrollspy wrapper (sticky positioning)' },
+  { class: '.ug-scrollspy__nav', description: 'Navigation list with left border' },
+  { class: '.ug-scrollspy__link', description: 'Navigation link' },
+  { class: '.ug-scrollspy__link--active', description: 'Active state (bold, black left border)' },
+  { class: '.ug-scrollspy__link--nested', description: 'Indented sub-section link' },
+  { class: 'data-ug-scrollspy', description: 'Attribute to initialize scrollspy JS' },
+  { class: 'data-ug-scrollspy-offset', description: 'Top offset in px (default: 100)' },
+  { class: 'data-ug-scrollspy-class', description: 'Custom active class name' },
+]} />
+
+</DocsLayout>
