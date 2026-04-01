@@ -12,35 +12,27 @@ import PropsTable from '../../components/PropsTable.astro';
 <h2>Default</h2>
 <p class="ug-body">Full viewport width with horizontal padding (1.5 leading, 1 leading on mobile).</p>
 
-<CodeExample>
-<Fragment set:html={`<div class="ug-container" style="background:#e8e5e0">
+<CodeExample code={`<div class="ug-container" style="background:#e8e5e0">
   <p>Full width with padding</p>
 </div>`} />
-</CodeExample>
 
 <h2>Narrow (centered)</h2>
 
-<CodeExample>
-<Fragment set:html={`<div class="ug-container ug-container--narrow" style="background:#e8e5e0">
+<CodeExample code={`<div class="ug-container ug-container--narrow" style="background:#e8e5e0">
   <p>Max-width 1280px, centered</p>
 </div>`} />
-</CodeExample>
 
 <h2>Wide</h2>
 
-<CodeExample>
-<Fragment set:html={`<div class="ug-container ug-container--wide" style="background:#e8e5e0">
+<CodeExample code={`<div class="ug-container ug-container--wide" style="background:#e8e5e0">
   <p>Max-width 1600px, centered</p>
 </div>`} />
-</CodeExample>
 
 <h2>Flush (no padding)</h2>
 
-<CodeExample>
-<Fragment set:html={`<div class="ug-container ug-container--flush" style="background:#e8e5e0">
+<CodeExample code={`<div class="ug-container ug-container--flush" style="background:#e8e5e0">
   <p>Edge-to-edge, no padding</p>
 </div>`} />
-</CodeExample>
 
 <h2>Class Reference</h2>
 <PropsTable items={[

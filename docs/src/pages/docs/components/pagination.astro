@@ -11,8 +11,7 @@ import PropsTable from '../../../components/PropsTable.astro';
 
 <h2>Numbered Pagination</h2>
 
-<CodeExample title="Basic numbered pagination">
-<Fragment set:html={`<nav class="ug-pagination">
+<CodeExample title="Basic numbered pagination" code={`<nav class="ug-pagination">
   <ul class="ug-pagination__list">
     <li class="ug-pagination__item">
       <a class="ug-pagination__arrow" href="#">
@@ -31,12 +30,10 @@ import PropsTable from '../../../components/PropsTable.astro';
     </li>
   </ul>
 </nav>`} />
-</CodeExample>
 
 <h2>With Ellipsis</h2>
 
-<CodeExample title="Ellipsis for long page lists">
-<Fragment set:html={`<nav class="ug-pagination">
+<CodeExample title="Ellipsis for long page lists" code={`<nav class="ug-pagination">
   <ul class="ug-pagination__list">
     <li class="ug-pagination__item">
       <a class="ug-pagination__arrow" href="#">
@@ -57,12 +54,10 @@ import PropsTable from '../../../components/PropsTable.astro';
     </li>
   </ul>
 </nav>`} />
-</CodeExample>
 
 <h2>Disabled Arrow</h2>
 
-<CodeExample title="First page (previous disabled)">
-<Fragment set:html={`<nav class="ug-pagination">
+<CodeExample title="First page (previous disabled)" code={`<nav class="ug-pagination">
   <ul class="ug-pagination__list">
     <li class="ug-pagination__item">
       <span class="ug-pagination__arrow ug-pagination__arrow--disabled">
@@ -79,12 +74,10 @@ import PropsTable from '../../../components/PropsTable.astro';
     </li>
   </ul>
 </nav>`} />
-</CodeExample>
 
 <h2>Block Pagination</h2>
 
-<CodeExample title="Block previous/next links">
-<Fragment set:html={`<nav class="ug-pagination ug-pagination--block">
+<CodeExample title="Block previous/next links" code={`<nav class="ug-pagination ug-pagination--block">
   <a class="ug-pagination__prev" href="#">
     <span class="ug-pagination__label">Previous</span>
     <span class="ug-pagination__title">Getting Started</span>
@@ -94,7 +87,6 @@ import PropsTable from '../../../components/PropsTable.astro';
     <span class="ug-pagination__title">Grid System</span>
   </a>
 </nav>`} />
-</CodeExample>
 
 <h2>Class Reference</h2>
 

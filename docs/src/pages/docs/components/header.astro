@@ -11,19 +11,16 @@ import PropsTable from '../../../components/PropsTable.astro';
 
 <h2>Default</h2>
 
-<CodeExample>
-<Fragment set:html={`<header class="ug-header">
+<CodeExample code={`<header class="ug-header">
   <div class="ug-header__title">
     <h1>Yellowstone</h1>
     <p class="ug-header__subtitle">National Park / Wyoming</p>
   </div>
 </header>`} />
-</CodeExample>
 
 <h2>With Logo</h2>
 
-<CodeExample>
-<Fragment set:html={`<header class="ug-header">
+<CodeExample code={`<header class="ug-header">
   <div class="ug-header__logo">
     <svg viewBox="0 0 40 52" fill="white" xmlns="http://www.w3.org/2000/svg">
       <path d="M20 0 L40 52 L0 52 Z" opacity="0.8"/>
@@ -34,35 +31,29 @@ import PropsTable from '../../../components/PropsTable.astro';
     <p class="ug-header__subtitle">National Park / Arizona</p>
   </div>
 </header>`} />
-</CodeExample>
 
 <h2>Compact</h2>
 
-<CodeExample>
-<Fragment set:html={`<header class="ug-header ug-header--compact">
+<CodeExample code={`<header class="ug-header ug-header--compact">
   <div class="ug-header__title">
     <a href="#">Zion</a>
     <p class="ug-header__subtitle">National Park / Utah</p>
   </div>
 </header>`} />
-</CodeExample>
 
 <h2>Brown Variant</h2>
 
-<CodeExample>
-<Fragment set:html={`<header class="ug-header ug-header--brown">
+<CodeExample code={`<header class="ug-header ug-header--brown">
   <div class="ug-header__title">
     <h1>Acadia</h1>
     <p class="ug-header__subtitle">National Park / Maine</p>
   </div>
 </header>`} />
-</CodeExample>
 
 <h2>With Embedded Navbar</h2>
 <p class="ug-body">Place a <code>.ug-navbar</code> inside the header for an integrated layout — brand left, menu right.</p>
 
-<CodeExample>
-<Fragment set:html={`<header class="ug-header ug-header--compact">
+<CodeExample code={`<header class="ug-header ug-header--compact">
   <div class="ug-header__title">
     <a href="#">Site Name</a>
   </div>
@@ -76,7 +67,6 @@ import PropsTable from '../../../components/PropsTable.astro';
     </div>
   </nav>
 </header>`} />
-</CodeExample>
 
 <h2>Class Reference</h2>
 <PropsTable items={[

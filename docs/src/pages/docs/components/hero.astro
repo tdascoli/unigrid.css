@@ -11,8 +11,7 @@ import PropsTable from '../../../components/PropsTable.astro';
 
 <h2>Default (dark, bottom-aligned)</h2>
 
-<CodeExample>
-<Fragment set:html={`<section class="ug-hero ug-hero--dark ug-hero--auto">
+<CodeExample code={`<section class="ug-hero ug-hero--dark ug-hero--auto">
   <div class="ug-hero__content">
     <p class="ug-hero__subtitle">Established 1872</p>
     <h2 class="ug-hero__title">The World's First National Park</h2>
@@ -23,29 +22,24 @@ import PropsTable from '../../../components/PropsTable.astro';
     </div>
   </div>
 </section>`} />
-</CodeExample>
 
 <h2>Center Aligned</h2>
 
-<CodeExample>
-<Fragment set:html={`<section class="ug-hero ug-hero--blue ug-hero--center ug-hero--auto">
+<CodeExample code={`<section class="ug-hero ug-hero--blue ug-hero--center ug-hero--auto">
   <div class="ug-hero__content">
     <h2 class="ug-hero__title">Explore the Wilderness</h2>
     <p class="ug-hero__lead">Over 1,000 miles of trails through pristine landscapes.</p>
   </div>
 </section>`} />
-</CodeExample>
 
 <h2>Light Variant</h2>
 
-<CodeExample>
-<Fragment set:html={`<section class="ug-hero ug-hero--light ug-hero--auto">
+<CodeExample code={`<section class="ug-hero ug-hero--light ug-hero--auto">
   <div class="ug-hero__content">
     <h2 class="ug-hero__title" style="color:#1a1a1a">Natural Heritage</h2>
     <p class="ug-hero__lead" style="color:#333">Preserving America's natural and cultural heritage.</p>
   </div>
 </section>`} />
-</CodeExample>
 
 <h2>With Background Image</h2>
 <pre class="docs-install__code">&lt;section class="ug-hero ug-hero--full"&gt;

@@ -11,52 +11,40 @@ import PropsTable from '../../../components/PropsTable.astro';
 
 <h2>Default Divider</h2>
 
-<CodeExample title="Thin horizontal rule">
-<Fragment set:html={`<p>Content above the divider.</p>
+<CodeExample title="Thin horizontal rule" code={`<p>Content above the divider.</p>
 <hr class="ug-divider" />
 <p>Content below the divider.</p>`} />
-</CodeExample>
 
 <h2>Bold Divider</h2>
 
-<CodeExample title="Bold (3px) divider">
-<Fragment set:html={`<p>Content above the bold divider.</p>
+<CodeExample title="Bold (3px) divider" code={`<p>Content above the bold divider.</p>
 <hr class="ug-divider ug-divider--bold" />
 <p>Content below the bold divider.</p>`} />
-</CodeExample>
 
 <h2>Label Divider</h2>
 <p class="ug-body">A labeled divider with uppercase text and a bottom border, useful for section headings in sidebars, footers, or forms.</p>
 
-<CodeExample title="Default label divider">
-<Fragment set:html={`<div class="ug-label-divider">Related Articles</div>
+<CodeExample title="Default label divider" code={`<div class="ug-label-divider">Related Articles</div>
 <p>Content that follows the labeled section divider.</p>`} />
-</CodeExample>
 
 <h2>Bold Label Divider</h2>
 
-<CodeExample title="Bold label divider">
-<Fragment set:html={`<div class="ug-label-divider ug-label-divider--bold">Featured Content</div>
+<CodeExample title="Bold label divider" code={`<div class="ug-label-divider ug-label-divider--bold">Featured Content</div>
 <p>Content that follows the bold labeled section divider.</p>`} />
-</CodeExample>
 
 <h2>Light Label Divider</h2>
 
-<CodeExample title="Light label divider">
-<Fragment set:html={`<div class="ug-label-divider ug-label-divider--light">Optional Section</div>
+<CodeExample title="Light label divider" code={`<div class="ug-label-divider ug-label-divider--light">Optional Section</div>
 <p>Content that follows the light labeled section divider.</p>`} />
-</CodeExample>
 
 <h2>Multiple Dividers in Context</h2>
 
-<CodeExample title="Dividers separating content blocks">
-<Fragment set:html={`<div class="ug-label-divider">Park Information</div>
+<CodeExample title="Dividers separating content blocks" code={`<div class="ug-label-divider">Park Information</div>
 <p>General information about park access, hours, and fees.</p>
 <hr class="ug-divider" />
 <p>Additional notes on seasonal closures and construction.</p>
 <div class="ug-label-divider ug-label-divider--bold">Emergency Contacts</div>
 <p>In case of emergency, call 911 or contact the nearest ranger station.</p>`} />
-</CodeExample>
 
 <h2>Class Reference</h2>
 

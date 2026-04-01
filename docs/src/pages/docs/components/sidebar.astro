@@ -11,8 +11,7 @@ import PropsTable from '../../../components/PropsTable.astro';
 
 <h2>Left Sidebar (Default)</h2>
 
-<CodeExample title="Default left sidebar">
-<Fragment set:html={`<div class="ug-sidebar-layout">
+<CodeExample title="Default left sidebar" code={`<div class="ug-sidebar-layout">
   <aside class="ug-sidebar-layout__sidebar">
     <nav class="ug-sidebar-layout__nav">
       <a class="ug-sidebar-layout__nav-link ug-sidebar-layout__nav-link--active" href="#">Overview</a>
@@ -26,12 +25,10 @@ import PropsTable from '../../../components/PropsTable.astro';
     <p>This is the main content alongside the left sidebar. The sidebar defaults to the left side and the main content fills the remaining space.</p>
   </main>
 </div>`} />
-</CodeExample>
 
 <h2>Right Sidebar</h2>
 
-<CodeExample title="Right-positioned sidebar">
-<Fragment set:html={`<div class="ug-sidebar-layout ug-sidebar-layout--right">
+<CodeExample title="Right-positioned sidebar" code={`<div class="ug-sidebar-layout ug-sidebar-layout--right">
   <aside class="ug-sidebar-layout__sidebar">
     <nav class="ug-sidebar-layout__nav">
       <a class="ug-sidebar-layout__nav-link" href="#">Related Topics</a>
@@ -44,13 +41,11 @@ import PropsTable from '../../../components/PropsTable.astro';
     <p>With the right variant, the sidebar moves to the right side of the layout. Useful for supplementary navigation or related links.</p>
   </main>
 </div>`} />
-</CodeExample>
 
 <h2>Sticky Sidebar</h2>
 <p class="ug-body">The sticky variant keeps the sidebar visible as the user scrolls through long content.</p>
 
-<CodeExample title="Sticky sidebar">
-<Fragment set:html={`<div class="ug-sidebar-layout ug-sidebar-layout--sticky">
+<CodeExample title="Sticky sidebar" code={`<div class="ug-sidebar-layout ug-sidebar-layout--sticky">
   <aside class="ug-sidebar-layout__sidebar">
     <nav class="ug-sidebar-layout__nav">
       <a class="ug-sidebar-layout__nav-link ug-sidebar-layout__nav-link--active" href="#">Section 1</a>
@@ -65,12 +60,10 @@ import PropsTable from '../../../components/PropsTable.astro';
     <p>Scroll this container to see the effect in context.</p>
   </main>
 </div>`} />
-</CodeExample>
 
 <h2>Bordered Sidebar</h2>
 
-<CodeExample title="Bordered variant">
-<Fragment set:html={`<div class="ug-sidebar-layout ug-sidebar-layout--bordered">
+<CodeExample title="Bordered variant" code={`<div class="ug-sidebar-layout ug-sidebar-layout--bordered">
   <aside class="ug-sidebar-layout__sidebar">
     <nav class="ug-sidebar-layout__nav">
       <a class="ug-sidebar-layout__nav-link ug-sidebar-layout__nav-link--active" href="#">Dashboard</a>
@@ -83,13 +76,11 @@ import PropsTable from '../../../components/PropsTable.astro';
     <p>A visible border separates the sidebar from the main content area, providing clearer visual distinction.</p>
   </main>
 </div>`} />
-</CodeExample>
 
 <h2>Custom Width Sidebar</h2>
 <p class="ug-body">Override the default sidebar width using a CSS custom property or inline style.</p>
 
-<CodeExample title="Custom width">
-<Fragment set:html={`<div class="ug-sidebar-layout">
+<CodeExample title="Custom width" code={`<div class="ug-sidebar-layout">
   <aside class="ug-sidebar-layout__sidebar" style="flex-basis:300px;min-width:300px">
     <nav class="ug-sidebar-layout__nav">
       <a class="ug-sidebar-layout__nav-link ug-sidebar-layout__nav-link--active" href="#">Home</a>
@@ -103,7 +94,6 @@ import PropsTable from '../../../components/PropsTable.astro';
     <p>This sidebar has been set to 300px width using an inline style. You can also set the width via custom properties in your own CSS.</p>
   </main>
 </div>`} />
-</CodeExample>
 
 <h2>Class Reference</h2>
 

@@ -16,82 +16,66 @@ import PropsTable from '../../components/PropsTable.astro';
 
 <h2>Basic Modules</h2>
 
-<CodeExample title="Square modules (1x1)">
-<Fragment set:html={`<div class="ug-modules">
+<CodeExample title="Square modules (1x1)" code={`<div class="ug-modules">
   <div class="ug-module ug-module--1x1" style="background:#e8e5e0;display:flex;align-items:center;justify-content:center">1x1</div>
   <div class="ug-module ug-module--1x1" style="background:#d5d0c8;display:flex;align-items:center;justify-content:center">1x1</div>
   <div class="ug-module ug-module--1x1" style="background:#e8e5e0;display:flex;align-items:center;justify-content:center">1x1</div>
 </div>`} />
-</CodeExample>
 
 <h2>Wide Modules</h2>
 
-<CodeExample title="Horizontal span modules">
-<Fragment set:html={`<div class="ug-modules">
+<CodeExample title="Horizontal span modules" code={`<div class="ug-modules">
   <div class="ug-module ug-module--2x1" style="background:#e8e5e0;display:flex;align-items:center;justify-content:center">2x1</div>
   <div class="ug-module ug-module--1x1" style="background:#d5d0c8;display:flex;align-items:center;justify-content:center">1x1</div>
 </div>`} />
-</CodeExample>
 
-<CodeExample title="Larger wide modules">
-<Fragment set:html={`<div class="ug-modules">
+<CodeExample title="Larger wide modules" code={`<div class="ug-modules">
   <div class="ug-module ug-module--3x1" style="background:#e8e5e0;display:flex;align-items:center;justify-content:center">3x1</div>
   <div class="ug-module ug-module--4x1" style="background:#d5d0c8;display:flex;align-items:center;justify-content:center">4x1</div>
 </div>`} />
-</CodeExample>
 
 <h2>Tall Modules</h2>
 
-<CodeExample title="Vertical span modules">
-<Fragment set:html={`<div class="ug-modules">
+<CodeExample title="Vertical span modules" code={`<div class="ug-modules">
   <div class="ug-module ug-module--1x2" style="background:#e8e5e0;display:flex;align-items:center;justify-content:center">1x2</div>
   <div class="ug-module ug-module--1x1" style="background:#d5d0c8;display:flex;align-items:center;justify-content:center">1x1</div>
   <div class="ug-module ug-module--1x1" style="background:#e8e5e0;display:flex;align-items:center;justify-content:center">1x1</div>
 </div>`} />
-</CodeExample>
 
 <h2>Large Rectangular Modules</h2>
 
-<CodeExample title="2x2 and 3x2 modules">
-<Fragment set:html={`<div class="ug-modules">
+<CodeExample title="2x2 and 3x2 modules" code={`<div class="ug-modules">
   <div class="ug-module ug-module--2x2" style="background:#e8e5e0;display:flex;align-items:center;justify-content:center">2x2</div>
   <div class="ug-module ug-module--3x2" style="background:#d5d0c8;display:flex;align-items:center;justify-content:center">3x2</div>
 </div>`} />
-</CodeExample>
 
 <h2>Mixed Layout</h2>
 
-<CodeExample title="Combined module sizes">
-<Fragment set:html={`<div class="ug-modules">
+<CodeExample title="Combined module sizes" code={`<div class="ug-modules">
   <div class="ug-module ug-module--2x2" style="background:#e8e5e0;display:flex;align-items:center;justify-content:center">2x2</div>
   <div class="ug-module ug-module--1x1" style="background:#d5d0c8;display:flex;align-items:center;justify-content:center">1x1</div>
   <div class="ug-module ug-module--1x1" style="background:#e8e5e0;display:flex;align-items:center;justify-content:center">1x1</div>
   <div class="ug-module ug-module--3x1" style="background:#d5d0c8;display:flex;align-items:center;justify-content:center">3x1</div>
 </div>`} />
-</CodeExample>
 
 <h2>Flush Modules</h2>
 <p class="ug-body">Remove the outer padding from the modules container for edge-to-edge layouts.</p>
 
-<CodeExample title="Flush variant">
-<Fragment set:html={`<div class="ug-modules ug-modules--flush">
+<CodeExample title="Flush variant" code={`<div class="ug-modules ug-modules--flush">
   <div class="ug-module ug-module--2x1" style="background:#e8e5e0;display:flex;align-items:center;justify-content:center">2x1</div>
   <div class="ug-module ug-module--1x1" style="background:#d5d0c8;display:flex;align-items:center;justify-content:center">1x1</div>
 </div>`} />
-</CodeExample>
 
 <h2>Auto Height</h2>
 <p class="ug-body">Use <code>.ug-module--auto-height</code> to let the module height be determined by its content instead of the square ratio.</p>
 
-<CodeExample title="Auto height module">
-<Fragment set:html={`<div class="ug-modules">
+<CodeExample title="Auto height module" code={`<div class="ug-modules">
   <div class="ug-module ug-module--2x1 ug-module--auto-height" style="background:#e8e5e0;padding:1rem">
     <h3>Auto Height</h3>
     <p>This module grows to fit its content rather than maintaining a fixed aspect ratio.</p>
   </div>
   <div class="ug-module ug-module--1x1" style="background:#d5d0c8;display:flex;align-items:center;justify-content:center">1x1</div>
 </div>`} />
-</CodeExample>
 
 <h2>Available Sizes</h2>
 

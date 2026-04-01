@@ -12,20 +12,16 @@ import PropsTable from '../../components/PropsTable.astro';
 <h2>Basic Grid</h2>
 <p class="ug-body">Wrap columns in <code>.ug-grid</code>. Use <code>.ug-col--N</code> for column spans (1-12).</p>
 
-<CodeExample title="Equal columns">
-<Fragment set:html={`<div class="ug-grid">
+<CodeExample title="Equal columns" code={`<div class="ug-grid">
   <div class="ug-col--4" style="background:#e8e5e0;padding:0.5rem;text-align:center">.ug-col--4</div>
   <div class="ug-col--4" style="background:#e8e5e0;padding:0.5rem;text-align:center">.ug-col--4</div>
   <div class="ug-col--4" style="background:#e8e5e0;padding:0.5rem;text-align:center">.ug-col--4</div>
 </div>`} />
-</CodeExample>
 
-<CodeExample title="Asymmetric">
-<Fragment set:html={`<div class="ug-grid">
+<CodeExample title="Asymmetric" code={`<div class="ug-grid">
   <div class="ug-col--8" style="background:#e8e5e0;padding:0.5rem;text-align:center">.ug-col--8</div>
   <div class="ug-col--4" style="background:#e8e5e0;padding:0.5rem;text-align:center">.ug-col--4</div>
 </div>`} />
-</CodeExample>
 
 <h2>Responsive</h2>
 <p class="ug-body">Use <code>{`.ug-col--{bp}-{n}`}</code> for responsive column spans.</p>
@@ -41,23 +37,19 @@ import PropsTable from '../../components/PropsTable.astro';
   </tbody>
 </table>
 
-<CodeExample title="Responsive: stacks on mobile">
-<Fragment set:html={`<div class="ug-grid">
+<CodeExample title="Responsive: stacks on mobile" code={`<div class="ug-grid">
   <div class="ug-col--12 ug-col--md-6 ug-col--lg-4" style="background:#e8e5e0;padding:0.5rem;text-align:center">Column</div>
   <div class="ug-col--12 ug-col--md-6 ug-col--lg-4" style="background:#e8e5e0;padding:0.5rem;text-align:center">Column</div>
   <div class="ug-col--12 ug-col--md-12 ug-col--lg-4" style="background:#e8e5e0;padding:0.5rem;text-align:center">Column</div>
 </div>`} />
-</CodeExample>
 
 <h2>Modifiers</h2>
 
-<CodeExample title="No gap">
-<Fragment set:html={`<div class="ug-grid ug-grid--no-gap">
+<CodeExample title="No gap" code={`<div class="ug-grid ug-grid--no-gap">
   <div class="ug-col--4" style="background:#e8e5e0;padding:0.5rem;text-align:center;border:1px solid #fff">1</div>
   <div class="ug-col--4" style="background:#e8e5e0;padding:0.5rem;text-align:center;border:1px solid #fff">2</div>
   <div class="ug-col--4" style="background:#e8e5e0;padding:0.5rem;text-align:center;border:1px solid #fff">3</div>
 </div>`} />
-</CodeExample>
 
 <h2>Class Reference</h2>
 

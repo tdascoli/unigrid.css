@@ -11,42 +11,33 @@ import PropsTable from '../../../components/PropsTable.astro';
 
 <h2>Default Infobox</h2>
 
-<CodeExample title="Default infobox">
-<Fragment set:html={`<div class="ug-infobox">
+<CodeExample title="Default infobox" code={`<div class="ug-infobox">
   <div class="ug-infobox__title">Important Notice</div>
   <p>Road construction on the main park loop may cause delays of up to 30 minutes. Plan your visit accordingly and check current conditions before departing.</p>
 </div>`} />
-</CodeExample>
 
 <h2>Infobox without Title</h2>
 
-<CodeExample title="Simple infobox">
-<Fragment set:html={`<div class="ug-infobox">
+<CodeExample title="Simple infobox" code={`<div class="ug-infobox">
   <p>All visitors must carry bear spray in the backcountry. Canisters are available for rent at the visitor center.</p>
 </div>`} />
-</CodeExample>
 
 <h2>Dark Infobox</h2>
 
-<CodeExample title="Dark variant">
-<Fragment set:html={`<div class="ug-infobox ug-infobox--dark">
+<CodeExample title="Dark variant" code={`<div class="ug-infobox ug-infobox--dark">
   <div class="ug-infobox__title">Fire Danger: High</div>
   <p>Open fires are prohibited in all areas of the park until further notice. Only gas stoves permitted in designated camping areas.</p>
 </div>`} />
-</CodeExample>
 
 <h2>Dark Infobox without Title</h2>
 
-<CodeExample title="Simple dark infobox">
-<Fragment set:html={`<div class="ug-infobox ug-infobox--dark">
+<CodeExample title="Simple dark infobox" code={`<div class="ug-infobox ug-infobox--dark">
   <p>The park entrance fee is $35 per vehicle, valid for 7 days. Annual passes are available for $70.</p>
 </div>`} />
-</CodeExample>
 
 <h2>Multiple Infoboxes</h2>
 
-<CodeExample title="Infoboxes in context">
-<Fragment set:html={`<div class="ug-infobox">
+<CodeExample title="Infoboxes in context" code={`<div class="ug-infobox">
   <div class="ug-infobox__title">Tip</div>
   <p>Arrive before 9 AM to avoid crowds at popular trailheads.</p>
 </div>
@@ -56,7 +47,6 @@ import PropsTable from '../../../components/PropsTable.astro';
     <p>Approaching wildlife within 100 yards is prohibited. Use binoculars or a telephoto lens for safe viewing.</p>
   </div>
 </div>`} />
-</CodeExample>
 
 <h2>Class Reference</h2>
 

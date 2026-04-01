@@ -11,8 +11,7 @@ import PropsTable from '../../../components/PropsTable.astro';
 
 <h2>Default Navbar</h2>
 
-<CodeExample title="Default navbar">
-<Fragment set:html={`<nav class="ug-navbar">
+<CodeExample title="Default navbar" code={`<nav class="ug-navbar">
   <div class="ug-navbar__inner">
     <a class="ug-navbar__brand" href="#">SiteName</a>
     <button class="ug-navbar__toggle" aria-label="Toggle menu">Menu</button>
@@ -24,12 +23,10 @@ import PropsTable from '../../../components/PropsTable.astro';
     </ul>
   </div>
 </nav>`} />
-</CodeExample>
 
 <h2>Dark Navbar</h2>
 
-<CodeExample title="Dark variant">
-<Fragment set:html={`<nav class="ug-navbar ug-navbar--dark">
+<CodeExample title="Dark variant" code={`<nav class="ug-navbar ug-navbar--dark">
   <div class="ug-navbar__inner">
     <a class="ug-navbar__brand" href="#">SiteName</a>
     <ul class="ug-navbar__menu">
@@ -39,13 +36,11 @@ import PropsTable from '../../../components/PropsTable.astro';
     </ul>
   </div>
 </nav>`} />
-</CodeExample>
 
 <h2>Embedded Navbar (inside Header)</h2>
 <p class="ug-body">When placed inside a <code>.ug-header</code>, the navbar adopts embedded styling with transparent background and adjusted spacing.</p>
 
-<CodeExample title="Embedded in header">
-<Fragment set:html={`<header class="ug-header" style="background:#2b2b2b;position:relative">
+<CodeExample title="Embedded in header" code={`<header class="ug-header" style="background:#2b2b2b;position:relative">
   <nav class="ug-navbar">
     <div class="ug-navbar__inner">
       <a class="ug-navbar__brand" href="#">ParkName</a>
@@ -57,12 +52,10 @@ import PropsTable from '../../../components/PropsTable.astro';
     </div>
   </nav>
 </header>`} />
-</CodeExample>
 
 <h2>With Divider</h2>
 
-<CodeExample title="Navbar with divider">
-<Fragment set:html={`<nav class="ug-navbar">
+<CodeExample title="Navbar with divider" code={`<nav class="ug-navbar">
   <div class="ug-navbar__inner">
     <a class="ug-navbar__brand" href="#">SiteName</a>
     <ul class="ug-navbar__menu">
@@ -73,12 +66,10 @@ import PropsTable from '../../../components/PropsTable.astro';
     </ul>
   </div>
 </nav>`} />
-</CodeExample>
 
 <h2>Transparent Navbar</h2>
 
-<CodeExample title="Transparent variant">
-<Fragment set:html={`<div style="background:#3a7d44;padding:1rem">
+<CodeExample title="Transparent variant" code={`<div style="background:#3a7d44;padding:1rem">
   <nav class="ug-navbar ug-navbar--transparent">
     <div class="ug-navbar__inner">
       <a class="ug-navbar__brand" href="#">ParkName</a>
@@ -90,7 +81,6 @@ import PropsTable from '../../../components/PropsTable.astro';
     </div>
   </nav>
 </div>`} />
-</CodeExample>
 
 <h2>Class Reference</h2>
 

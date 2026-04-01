@@ -11,8 +11,7 @@ import PropsTable from '../../../components/PropsTable.astro';
 
 <h2>Default Card</h2>
 
-<CodeExample title="Basic card">
-<Fragment set:html={`<div class="ug-card" style="max-width:320px">
+<CodeExample title="Basic card" code={`<div class="ug-card" style="max-width:320px">
   <div class="ug-card__image">
     <img src="https://placehold.co/640x360/e8e5e0/666?text=Image" alt="Card image" />
   </div>
@@ -25,12 +24,10 @@ import PropsTable from '../../../components/PropsTable.astro';
     <a class="ug-btn ug-btn--sm" href="#">Learn More</a>
   </div>
 </div>`} />
-</CodeExample>
 
 <h2>Dark Card</h2>
 
-<CodeExample title="Dark variant">
-<Fragment set:html={`<div class="ug-card ug-card--dark" style="max-width:320px">
+<CodeExample title="Dark variant" code={`<div class="ug-card ug-card--dark" style="max-width:320px">
   <div class="ug-card__image">
     <img src="https://placehold.co/640x360/333/999?text=Image" alt="Card image" />
   </div>
@@ -40,34 +37,28 @@ import PropsTable from '../../../components/PropsTable.astro';
     <p class="ug-card__text">Dark cards invert the color scheme for use on light backgrounds or dramatic layouts.</p>
   </div>
 </div>`} />
-</CodeExample>
 
 <h2>Bordered Card</h2>
 
-<CodeExample title="Bordered variant">
-<Fragment set:html={`<div class="ug-card ug-card--bordered" style="max-width:320px">
+<CodeExample title="Bordered variant" code={`<div class="ug-card ug-card--bordered" style="max-width:320px">
   <div class="ug-card__body">
     <h3 class="ug-card__title">Bordered Card</h3>
     <p class="ug-card__text">A card with a visible border and no shadow, for a more understated appearance.</p>
   </div>
 </div>`} />
-</CodeExample>
 
 <h2>Flat Card</h2>
 
-<CodeExample title="Flat variant">
-<Fragment set:html={`<div class="ug-card ug-card--flat" style="max-width:320px">
+<CodeExample title="Flat variant" code={`<div class="ug-card ug-card--flat" style="max-width:320px">
   <div class="ug-card__body">
     <h3 class="ug-card__title">Flat Card</h3>
     <p class="ug-card__text">No shadow or border. Useful when the card sits on a colored background or inside another container.</p>
   </div>
 </div>`} />
-</CodeExample>
 
 <h2>Horizontal Card</h2>
 
-<CodeExample title="Horizontal layout">
-<Fragment set:html={`<div class="ug-card ug-card--horizontal" style="max-width:600px">
+<CodeExample title="Horizontal layout" code={`<div class="ug-card ug-card--horizontal" style="max-width:600px">
   <div class="ug-card__image">
     <img src="https://placehold.co/300x200/e8e5e0/666?text=Image" alt="Card image" />
   </div>
@@ -76,12 +67,10 @@ import PropsTable from '../../../components/PropsTable.astro';
     <p class="ug-card__text">Image and content sit side by side. Stacks vertically on small screens.</p>
   </div>
 </div>`} />
-</CodeExample>
 
 <h2>Accent Cards</h2>
 
-<CodeExample title="Color accent variants">
-<Fragment set:html={`<div style="display:flex;gap:1rem;flex-wrap:wrap">
+<CodeExample title="Color accent variants" code={`<div style="display:flex;gap:1rem;flex-wrap:wrap">
   <div class="ug-card ug-card--accent-red" style="max-width:220px">
     <div class="ug-card__body">
       <h3 class="ug-card__title">Red Accent</h3>
@@ -107,12 +96,10 @@ import PropsTable from '../../../components/PropsTable.astro';
     </div>
   </div>
 </div>`} />
-</CodeExample>
 
 <h2>Image Aspect Ratios</h2>
 
-<CodeExample title="Image variants">
-<Fragment set:html={`<div style="display:flex;gap:1rem;flex-wrap:wrap">
+<CodeExample title="Image variants" code={`<div style="display:flex;gap:1rem;flex-wrap:wrap">
   <div class="ug-card" style="max-width:200px">
     <div class="ug-card__image ug-card__image--square">
       <img src="https://placehold.co/400x400/e8e5e0/666?text=Square" alt="Square" />
@@ -138,12 +125,10 @@ import PropsTable from '../../../components/PropsTable.astro';
     </div>
   </div>
 </div>`} />
-</CodeExample>
 
 <h2>Card Grid</h2>
 
-<CodeExample title="Card grid layouts">
-<Fragment set:html={`<div class="ug-card-grid ug-card-grid--3">
+<CodeExample title="Card grid layouts" code={`<div class="ug-card-grid ug-card-grid--3">
   <div class="ug-card">
     <div class="ug-card__body">
       <h3 class="ug-card__title">Card One</h3>
@@ -163,7 +148,6 @@ import PropsTable from '../../../components/PropsTable.astro';
     </div>
   </div>
 </div>`} />
-</CodeExample>
 
 <h2>Class Reference</h2>
 

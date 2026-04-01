@@ -11,8 +11,7 @@ import PropsTable from '../../../components/PropsTable.astro';
 
 <h2>Default Table</h2>
 
-<CodeExample title="Default table">
-<Fragment set:html={`<table class="ug-table">
+<CodeExample title="Default table" code={`<table class="ug-table">
   <thead>
     <tr><th>Name</th><th>Location</th><th>Established</th></tr>
   </thead>
@@ -22,12 +21,10 @@ import PropsTable from '../../../components/PropsTable.astro';
     <tr><td>Grand Canyon</td><td>Arizona</td><td>1919</td></tr>
   </tbody>
 </table>`} />
-</CodeExample>
 
 <h2>Striped Table</h2>
 
-<CodeExample title="Striped rows">
-<Fragment set:html={`<table class="ug-table ug-table--striped">
+<CodeExample title="Striped rows" code={`<table class="ug-table ug-table--striped">
   <thead>
     <tr><th>Name</th><th>Location</th><th>Established</th></tr>
   </thead>
@@ -38,12 +35,10 @@ import PropsTable from '../../../components/PropsTable.astro';
     <tr><td>Zion</td><td>Utah</td><td>1919</td></tr>
   </tbody>
 </table>`} />
-</CodeExample>
 
 <h2>Bordered Table</h2>
 
-<CodeExample title="Bordered cells">
-<Fragment set:html={`<table class="ug-table ug-table--bordered">
+<CodeExample title="Bordered cells" code={`<table class="ug-table ug-table--bordered">
   <thead>
     <tr><th>Name</th><th>Area (acres)</th><th>Visitors (M)</th></tr>
   </thead>
@@ -53,12 +48,10 @@ import PropsTable from '../../../components/PropsTable.astro';
     <tr><td>Zion</td><td>147,242</td><td>4.5</td></tr>
   </tbody>
 </table>`} />
-</CodeExample>
 
 <h2>Compact Table</h2>
 
-<CodeExample title="Compact sizing">
-<Fragment set:html={`<table class="ug-table ug-table--compact">
+<CodeExample title="Compact sizing" code={`<table class="ug-table ug-table--compact">
   <thead>
     <tr><th>Code</th><th>Name</th><th>State</th></tr>
   </thead>
@@ -70,12 +63,10 @@ import PropsTable from '../../../components/PropsTable.astro';
     <tr><td>GLAC</td><td>Glacier</td><td>MT</td></tr>
   </tbody>
 </table>`} />
-</CodeExample>
 
 <h2>Dark Header</h2>
 
-<CodeExample title="Dark header variant">
-<Fragment set:html={`<table class="ug-table ug-table--dark">
+<CodeExample title="Dark header variant" code={`<table class="ug-table ug-table--dark">
   <thead>
     <tr><th>Name</th><th>Type</th><th>Length</th></tr>
   </thead>
@@ -85,12 +76,10 @@ import PropsTable from '../../../components/PropsTable.astro';
     <tr><td>Angels Landing</td><td>Out and back</td><td>5.4 mi</td></tr>
   </tbody>
 </table>`} />
-</CodeExample>
 
 <h2>Hover Table</h2>
 
-<CodeExample title="Hover rows">
-<Fragment set:html={`<table class="ug-table ug-table--hover">
+<CodeExample title="Hover rows" code={`<table class="ug-table ug-table--hover">
   <thead>
     <tr><th>Name</th><th>Location</th><th>Elevation</th></tr>
   </thead>
@@ -100,12 +89,10 @@ import PropsTable from '../../../components/PropsTable.astro';
     <tr><td>Mount Whitney</td><td>California</td><td>14,505 ft</td></tr>
   </tbody>
 </table>`} />
-</CodeExample>
 
 <h2>Responsive Table</h2>
 
-<CodeExample title="Responsive wrapper">
-<Fragment set:html={`<div class="ug-table-responsive">
+<CodeExample title="Responsive wrapper" code={`<div class="ug-table-responsive">
   <table class="ug-table ug-table--striped">
     <thead>
       <tr><th>Name</th><th>State</th><th>Established</th><th>Area</th><th>Visitors</th><th>Highlights</th></tr>
@@ -117,12 +104,10 @@ import PropsTable from '../../../components/PropsTable.astro';
     </tbody>
   </table>
 </div>`} />
-</CodeExample>
 
 <h2>Combined Modifiers</h2>
 
-<CodeExample title="Striped, bordered, hover">
-<Fragment set:html={`<table class="ug-table ug-table--striped ug-table--bordered ug-table--hover">
+<CodeExample title="Striped, bordered, hover" code={`<table class="ug-table ug-table--striped ug-table--bordered ug-table--hover">
   <thead>
     <tr><th>Name</th><th>Location</th><th>Year</th></tr>
   </thead>
@@ -132,7 +117,6 @@ import PropsTable from '../../../components/PropsTable.astro';
     <tr><td>Olympic</td><td>Washington</td><td>1938</td></tr>
   </tbody>
 </table>`} />
-</CodeExample>
 
 <h2>Class Reference</h2>
 

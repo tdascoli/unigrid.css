@@ -14,8 +14,7 @@ import PropsTable from '../../components/PropsTable.astro';
 
 <h2>Basic Prose</h2>
 
-<CodeExample title="Prose container with typical content">
-<Fragment set:html={`<div class="ug-prose">
+<CodeExample title="Prose container with typical content" code={`<div class="ug-prose">
   <h1>The National Park Idea</h1>
   <p>The national park concept is generally credited to the artist George Catlin, who wrote in 1832 that the government should preserve nature "in a magnificent park... a nation's park."</p>
   <h2>Early History</h2>
@@ -24,49 +23,39 @@ import PropsTable from '../../components/PropsTable.astro';
   <h3>The Organic Act</h3>
   <p>The founding legislation directed the Service to "conserve the scenery and the natural and historic objects and wildlife therein, and to provide for the enjoyment of the same."</p>
 </div>`} />
-</CodeExample>
 
 <h2>Lead Paragraph</h2>
 
-<CodeExample title="Lead paragraph styling">
-<Fragment set:html={`<div class="ug-prose">
+<CodeExample title="Lead paragraph styling" code={`<div class="ug-prose">
   <p class="ug-prose__lead">This is a lead paragraph with slightly larger text to introduce an article or section. It draws the reader in with a more prominent visual weight.</p>
   <p>Regular body text follows at the standard size and weight.</p>
 </div>`} />
-</CodeExample>
 
 <h2>Links</h2>
 
-<CodeExample title="Link styling in prose">
-<Fragment set:html={`<div class="ug-prose">
+<CodeExample title="Link styling in prose" code={`<div class="ug-prose">
   <p>Learn more about <a href="#">Yellowstone National Park</a> and its geothermal features. Visit the <a href="#">official park website</a> for current conditions and alerts.</p>
 </div>`} />
-</CodeExample>
 
 <h2>Inline Text Elements</h2>
 
-<CodeExample title="Inline formatting">
-<Fragment set:html={`<div class="ug-prose">
+<CodeExample title="Inline formatting" code={`<div class="ug-prose">
   <p>Text can be <strong>bold</strong>, <em>italic</em>, or <mark>highlighted</mark>. Use <abbr title="National Park Service">NPS</abbr> abbreviations, <small>small text</small>, or <code>inline code</code>.</p>
   <p>Subscript H<sub>2</sub>O and superscript E=mc<sup>2</sup> are also supported.</p>
 </div>`} />
-</CodeExample>
 
 <h2>Blockquote</h2>
 
-<CodeExample title="Blockquote">
-<Fragment set:html={`<div class="ug-prose">
+<CodeExample title="Blockquote" code={`<div class="ug-prose">
   <blockquote>
     <p>In every walk with nature, one receives far more than he seeks.</p>
     <cite>John Muir</cite>
   </blockquote>
 </div>`} />
-</CodeExample>
 
 <h2>Lists</h2>
 
-<CodeExample title="Ordered and unordered lists">
-<Fragment set:html={`<div class="ug-prose">
+<CodeExample title="Ordered and unordered lists" code={`<div class="ug-prose">
   <h3>Things to Bring</h3>
   <ul>
     <li>Water (at least 1 liter per hour of hiking)</li>
@@ -82,23 +71,19 @@ import PropsTable from '../../components/PropsTable.astro';
     <li>Tell someone your itinerary</li>
   </ol>
 </div>`} />
-</CodeExample>
 
 <h2>Code Block</h2>
 
-<CodeExample title="Preformatted code">
-<Fragment set:html={`<div class="ug-prose">
+<CodeExample title="Preformatted code" code={`<div class="ug-prose">
   <pre><code>&lt;div class="ug-prose"&gt;
   &lt;h1&gt;Your Content Here&lt;/h1&gt;
   &lt;p&gt;Just wrap your HTML in the prose class.&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 </div>`} />
-</CodeExample>
 
 <h2>Table in Prose</h2>
 
-<CodeExample title="Table inside prose">
-<Fragment set:html={`<div class="ug-prose">
+<CodeExample title="Table inside prose" code={`<div class="ug-prose">
   <table>
     <thead>
       <tr><th>Park</th><th>State</th><th>Year</th></tr>
@@ -110,52 +95,43 @@ import PropsTable from '../../components/PropsTable.astro';
     </tbody>
   </table>
 </div>`} />
-</CodeExample>
 
 <h2>Horizontal Rule</h2>
 
-<CodeExample title="Divider in prose">
-<Fragment set:html={`<div class="ug-prose">
+<CodeExample title="Divider in prose" code={`<div class="ug-prose">
   <p>Content before the divider.</p>
   <hr />
   <p>Content after the divider.</p>
   <hr class="ug-divider--bold" />
   <p>Content after a bold divider.</p>
 </div>`} />
-</CodeExample>
 
 <h2>Figure and Caption</h2>
 
-<CodeExample title="Figure with caption">
-<Fragment set:html={`<div class="ug-prose">
+<CodeExample title="Figure with caption" code={`<div class="ug-prose">
   <figure>
     <img src="https://placehold.co/700x400/e8e5e0/666?text=Landscape+Photo" alt="Landscape" />
     <figcaption>A scenic overlook in the park, showing the valley below and distant mountain peaks.</figcaption>
   </figure>
 </div>`} />
-</CodeExample>
 
 <h2>Indented Paragraphs</h2>
 <p class="ug-body">Use <code>.ug-prose--indent</code> to indent the first line of consecutive paragraphs, a traditional book typography style.</p>
 
-<CodeExample title="Indented paragraphs">
-<Fragment set:html={`<div class="ug-prose ug-prose--indent">
+<CodeExample title="Indented paragraphs" code={`<div class="ug-prose ug-prose--indent">
   <p>The first paragraph is not indented, following traditional typographic convention.</p>
   <p>Subsequent paragraphs receive a first-line indent to signal a new paragraph without extra vertical space. This creates a denser, more book-like reading experience.</p>
   <p>This style is particularly effective for long-form narrative content where the extra vertical spacing between paragraphs would disrupt the flow.</p>
 </div>`} />
-</CodeExample>
 
 <h2>Grid Layout</h2>
 <p class="ug-body">Use <code>.ug-prose--grid</code> to show the underlying baseline grid for debugging vertical rhythm alignment.</p>
 
-<CodeExample title="Debug grid overlay">
-<Fragment set:html={`<div class="ug-prose ug-prose--debug">
+<CodeExample title="Debug grid overlay" code={`<div class="ug-prose ug-prose--debug">
   <h2>Debug Mode</h2>
   <p>Each element is highlighted with its type label, making it easy to verify that all elements snap correctly to the baseline grid.</p>
   <blockquote><p>Blockquotes are highlighted too.</p></blockquote>
 </div>`} />
-</CodeExample>
 
 <h2>Class Reference</h2>
 

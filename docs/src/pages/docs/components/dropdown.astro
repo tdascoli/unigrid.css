@@ -11,8 +11,7 @@ import PropsTable from '../../../components/PropsTable.astro';
 
 <h2>Button Dropdown</h2>
 
-<CodeExample title="Basic dropdown (open)">
-<Fragment set:html={`<div class="ug-dropdown ug-dropdown--open" style="position:relative;display:inline-block">
+<CodeExample title="Basic dropdown (open)" code={`<div class="ug-dropdown ug-dropdown--open" style="position:relative;display:inline-block">
   <button class="ug-dropdown__trigger ug-btn">
     Options <span class="ug-dropdown__caret"></span>
   </button>
@@ -22,12 +21,10 @@ import PropsTable from '../../../components/PropsTable.astro';
     <a class="ug-dropdown__link" href="#">Action Three</a>
   </div>
 </div>`} />
-</CodeExample>
 
 <h2>With Header and Divider</h2>
 
-<CodeExample title="Dropdown with sections">
-<Fragment set:html={`<div class="ug-dropdown ug-dropdown--open" style="position:relative;display:inline-block">
+<CodeExample title="Dropdown with sections" code={`<div class="ug-dropdown ug-dropdown--open" style="position:relative;display:inline-block">
   <button class="ug-dropdown__trigger ug-btn">
     Account <span class="ug-dropdown__caret"></span>
   </button>
@@ -39,12 +36,10 @@ import PropsTable from '../../../components/PropsTable.astro';
     <a class="ug-dropdown__link" href="#">Sign Out</a>
   </div>
 </div>`} />
-</CodeExample>
 
 <h2>Active Item</h2>
 
-<CodeExample title="Active dropdown item">
-<Fragment set:html={`<div class="ug-dropdown ug-dropdown--open" style="position:relative;display:inline-block">
+<CodeExample title="Active dropdown item" code={`<div class="ug-dropdown ug-dropdown--open" style="position:relative;display:inline-block">
   <button class="ug-dropdown__trigger ug-btn">
     Select <span class="ug-dropdown__caret"></span>
   </button>
@@ -54,12 +49,10 @@ import PropsTable from '../../../components/PropsTable.astro';
     <a class="ug-dropdown__link" href="#">Option C</a>
   </div>
 </div>`} />
-</CodeExample>
 
 <h2>Right-Aligned</h2>
 
-<CodeExample title="Right-aligned menu">
-<Fragment set:html={`<div style="text-align:right">
+<CodeExample title="Right-aligned menu" code={`<div style="text-align:right">
   <div class="ug-dropdown ug-dropdown--right ug-dropdown--open" style="position:relative;display:inline-block">
     <button class="ug-dropdown__trigger ug-btn">
       Align Right <span class="ug-dropdown__caret"></span>
@@ -70,12 +63,10 @@ import PropsTable from '../../../components/PropsTable.astro';
     </div>
   </div>
 </div>`} />
-</CodeExample>
 
 <h2>Upward Dropdown</h2>
 
-<CodeExample title="Dropup variant">
-<Fragment set:html={`<div style="padding-top:120px">
+<CodeExample title="Dropup variant" code={`<div style="padding-top:120px">
   <div class="ug-dropdown ug-dropdown--up ug-dropdown--open" style="position:relative;display:inline-block">
     <button class="ug-dropdown__trigger ug-btn">
       Drop Up <span class="ug-dropdown__caret"></span>
@@ -86,13 +77,11 @@ import PropsTable from '../../../components/PropsTable.astro';
     </div>
   </div>
 </div>`} />
-</CodeExample>
 
 <h2>Navbar Dropdown</h2>
 <p class="ug-body">Dropdowns integrate seamlessly into the navbar component. At desktop sizes, the dropdown menu appears below the link; on mobile, it appears inline within the menu.</p>
 
-<CodeExample title="Dropdown inside navbar">
-<Fragment set:html={`<nav class="ug-navbar">
+<CodeExample title="Dropdown inside navbar" code={`<nav class="ug-navbar">
   <div class="ug-navbar__inner">
     <a class="ug-navbar__brand" href="#">SiteName</a>
     <ul class="ug-navbar__menu">
@@ -112,7 +101,6 @@ import PropsTable from '../../../components/PropsTable.astro';
     </ul>
   </div>
 </nav>`} />
-</CodeExample>
 
 <h2>Class Reference</h2>
 
