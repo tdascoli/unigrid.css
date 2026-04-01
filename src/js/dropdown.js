@@ -14,8 +14,9 @@
         e.preventDefault();
       }
 
-      // Close all other dropdowns
+      // Close all other dropdowns (skip those inside .docs-example__preview)
       document.querySelectorAll('.ug-dropdown--open').forEach(function (dd) {
+        if (dd.closest('.docs-example__preview')) return;
         if (!trigger || dd !== trigger.closest('.ug-dropdown')) {
           dd.classList.remove('ug-dropdown--open');
         }
