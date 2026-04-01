@@ -95,12 +95,83 @@ const nav = [
         ))}
       </nav>
     </aside>
-    <main class="ug-sidebar-layout__main">
-      <div class="ug-container ug-pt--5 ug-pb--5">
+    <main class="ug-sidebar-layout__main" style="display:flex;gap:var(--ug-leading)">
+      <div class="ug-container ug-pt--5 ug-pb--5" style="flex:1;min-width:0" id="docs-content">
         <slot />
       </div>
+      <aside class="docs-toc" id="docs-toc">
+        <nav class="ug-scrollspy" data-ug-scrollspy>
+          <p class="docs-sidebar__heading">On this page</p>
+          <div class="ug-scrollspy__nav" id="docs-toc-nav"></div>
+        </nav>
+      </aside>
     </main>
   </div>
+
+  <script is:inline>
+    // Auto-generate table of contents from h2 headings
+    (function() {
+      function buildToc() {
+        var content = document.getElementById('docs-content');
+        var tocNav = document.getElementById('docs-toc-nav');
+        if (!content || !tocNav) return;
+
+        var headings = content.querySelectorAll('h2');
+        if (headings.length < 2) {
+          document.getElementById('docs-toc').style.display = 'none';
+          return;
+        }
+
+        headings.forEach(function(h, i) {
+          if (!h.id) h.id = 'section-' + i;
+          var a = document.createElement('a');
+          a.className = 'ug-scrollspy__link';
+          a.href = '#' + h.id;
+          a.textContent = h.textContent;
+          tocNav.appendChild(a);
+        });
+
+        // Init scrollspy on the generated nav
+        initScrollspy();
+      }
+
+      function initScrollspy() {
+        document.querySelectorAll('[data-ug-scrollspy]').forEach(function(nav) {
+          var links = nav.querySelectorAll('.ug-scrollspy__link');
+          if (!links.length) return;
+
+          var targets = [];
+          links.forEach(function(link) {
+            var href = link.getAttribute('href');
+            if (!href || href.charAt(0) !== '#') return;
+            var target = document.querySelector(href);
+            if (target) targets.push({ link: link, target: target });
+          });
+          if (!targets.length) return;
+
+          var visibleSections = new Set();
+          var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) visibleSections.add(entry.target.id);
+              else visibleSections.delete(entry.target.id);
+            });
+            var activeId = null;
+            for (var i = 0; i < targets.length; i++) {
+              if (visibleSections.has(targets[i].target.id)) { activeId = targets[i].target.id; break; }
+            }
+            targets.forEach(function(item) {
+              item.link.classList.toggle('ug-scrollspy__link--active', item.target.id === activeId);
+            });
+          }, { rootMargin: '-100px 0px -50% 0px', threshold: 0 });
+
+          targets.forEach(function(item) { observer.observe(item.target); });
+        });
+      }
+
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', buildToc);
+      else buildToc();
+    })();
+  </script>
 
   <footer class="ug-footer ug-footer--compact">
     <div class="ug-footer__inner">

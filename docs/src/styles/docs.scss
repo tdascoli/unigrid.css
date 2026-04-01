@@ -3,6 +3,17 @@
 
 // ---- Docs-specific styles ----
 
+// Table of contents (right sidebar)
+.docs-toc {
+  width: calc(var(--ug-leading) * 10);
+  flex-shrink: 0;
+  padding-top: calc(var(--ug-leading) * 5);
+
+  @media (max-width: 1200px) {
+    display: none;
+  }
+}
+
 .docs-sidebar {
   @include ug-font-size("sm");
 
