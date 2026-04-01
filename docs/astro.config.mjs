@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 
 export default defineConfig({
   site: 'https://tdascoli.github.io',
-  base: '/unigrid.css',
+  base: '/unigrid.css/',
   vite: {
     css: {
       preprocessorOptions: {
