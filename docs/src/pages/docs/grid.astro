@@ -1,0 +1,69 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+import CodeExample from '../../components/CodeExample.astro';
+import PropsTable from '../../components/PropsTable.astro';
+---
+
+<DocsLayout title="Grid" activeNav="Grid">
+
+<h1>Grid System</h1>
+<p class="ug-lead">A 12-column CSS Grid with responsive breakpoints, alignment utilities, and subgrid support.</p>
+
+<h2>Basic Grid</h2>
+<p class="ug-body">Wrap columns in <code>.ug-grid</code>. Use <code>.ug-col--N</code> for column spans (1-12).</p>
+
+<CodeExample title="Equal columns" code={`<div class="ug-grid">
+  <div class="ug-col--4" style="background:#e8e5e0;padding:0.5rem;text-align:center">.ug-col--4</div>
+  <div class="ug-col--4" style="background:#e8e5e0;padding:0.5rem;text-align:center">.ug-col--4</div>
+  <div class="ug-col--4" style="background:#e8e5e0;padding:0.5rem;text-align:center">.ug-col--4</div>
+</div>`} />
+
+<CodeExample title="Asymmetric" code={`<div class="ug-grid">
+  <div class="ug-col--8" style="background:#e8e5e0;padding:0.5rem;text-align:center">.ug-col--8</div>
+  <div class="ug-col--4" style="background:#e8e5e0;padding:0.5rem;text-align:center">.ug-col--4</div>
+</div>`} />
+
+<h2>Responsive</h2>
+<p class="ug-body">Use <code>{`.ug-col--{bp}-{n}`}</code> for responsive column spans.</p>
+
+<table class="ug-table ug-table--striped ug-mb--3">
+  <thead><tr><th>Prefix</th><th>Breakpoint</th><th>Width</th></tr></thead>
+  <tbody>
+    <tr><td>(none)</td><td>Default</td><td>All sizes</td></tr>
+    <tr><td><code>sm</code></td><td>≥ 480px</td><td>Phone landscape</td></tr>
+    <tr><td><code>md</code></td><td>≥ 768px</td><td>Tablet</td></tr>
+    <tr><td><code>lg</code></td><td>≥ 1024px</td><td>Desktop</td></tr>
+    <tr><td><code>xl</code></td><td>≥ 1280px</td><td>Large desktop</td></tr>
+  </tbody>
+</table>
+
+<CodeExample title="Responsive: stacks on mobile" code={`<div class="ug-grid">
+  <div class="ug-col--12 ug-col--md-6 ug-col--lg-4" style="background:#e8e5e0;padding:0.5rem;text-align:center">Column</div>
+  <div class="ug-col--12 ug-col--md-6 ug-col--lg-4" style="background:#e8e5e0;padding:0.5rem;text-align:center">Column</div>
+  <div class="ug-col--12 ug-col--md-12 ug-col--lg-4" style="background:#e8e5e0;padding:0.5rem;text-align:center">Column</div>
+</div>`} />
+
+<h2>Modifiers</h2>
+
+<CodeExample title="No gap" code={`<div class="ug-grid ug-grid--no-gap">
+  <div class="ug-col--4" style="background:#e8e5e0;padding:0.5rem;text-align:center;border:1px solid #fff">1</div>
+  <div class="ug-col--4" style="background:#e8e5e0;padding:0.5rem;text-align:center;border:1px solid #fff">2</div>
+  <div class="ug-col--4" style="background:#e8e5e0;padding:0.5rem;text-align:center;border:1px solid #fff">3</div>
+</div>`} />
+
+<h2>Class Reference</h2>
+
+<PropsTable items={[
+  { class: '.ug-grid', description: '12-column grid container' },
+  { class: '.ug-grid--no-gap', description: 'Remove gap between columns' },
+  { class: '.ug-grid--dense', description: 'Dense auto-flow packing' },
+  { class: '.ug-grid--rows', description: 'Add 20 explicit rows' },
+  { class: '.ug-col--N (1-12)', description: 'Column span' },
+  { class: '.ug-col--start-N (1-12)', description: 'Column start position' },
+  { class: '.ug-col--bp-N (sm|md|lg|xl)', description: 'Responsive column span' },
+  { class: '.ug-row--N (1-10)', description: 'Row span' },
+  { class: '.ug-row--start-N (1-10)', description: 'Row start position' },
+  { class: '.ug-subgrid', description: 'CSS subgrid alignment' },
+]} />
+
+</DocsLayout>

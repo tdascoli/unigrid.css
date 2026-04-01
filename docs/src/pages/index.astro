@@ -1,0 +1,230 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unigrid.css — A CSS framework inspired by Vignelli's Unigrid system</title>
+  <meta name="description" content="CSS grid framework with vertical rhythm, square modules, and BEM naming. Inspired by Massimo Vignelli's Unigrid system for the National Park Service.">
+  <link rel="icon" href={`${base}unigrid.svg`} sizes="any" type="image/svg+xml">
+  <link rel="preconnect" href="https://rsms.me/">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+</head>
+<body>
+
+  <header class="ug-header">
+    <div class="ug-header__title">
+      <a href={`${base}`}>Unigrid</a>
+      <p class="ug-header__subtitle">CSS Framework</p>
+    </div>
+    <nav class="ug-navbar">
+      <div class="ug-navbar__inner">
+        <button class="ug-navbar__toggle" onclick="var m=this.parentElement.querySelector('.ug-navbar__menu');m.classList.toggle('ug-navbar__menu--open');this.classList.toggle('ug-navbar__toggle--active')">
+          <span class="ug-navbar__toggle__label">Menu</span>
+          <span class="ug-navbar__toggle__close">Close</span>
+        </button>
+        <ul class="ug-navbar__menu">
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href={`${base}docs/getting-started`}>Docs</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href={`${base}docs/components/header`}>Components</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href="https://github.com/tdascoli/unigrid.css">GitHub</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="ug-hero ug-hero--half ug-hero--center" style="background: linear-gradient(135deg, #1a1a1a 0%, #274a5a 100%)">
+    <div class="ug-hero__content">
+      <p class="ug-hero__subtitle">Inspired by Massimo Vignelli</p>
+      <h1 class="ug-hero__title" style="font-size: clamp(2rem, 5vw, 4rem)">Build with the Unigrid System</h1>
+      <p class="ug-hero__lead">A CSS framework with vertical rhythm, square modules, and BEM naming — inspired by the National Park Service's iconic design system.</p>
+      <div class="ug-hero__actions">
+        <a class="ug-hero__btn ug-hero__btn--filled" href={`${base}docs/getting-started`}>Get Started</a>
+        <a class="ug-hero__btn" href="https://github.com/tdascoli/unigrid.css">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Install -->
+  <div class="ug-container ug-container--narrow ug-pt--5 ug-pb--5">
+    <h2 class="ug-h2">Installation</h2>
+
+    <div class="docs-install">
+      <div class="docs-install__tabs">
+        <button class="docs-install__tab docs-install__tab--active" onclick="switchInstall(this, 'npm')">npm</button>
+        <button class="docs-install__tab" onclick="switchInstall(this, 'cdn')">CDN</button>
+        <button class="docs-install__tab" onclick="switchInstall(this, 'download')">Download</button>
+      </div>
+      <div class="docs-install__panel docs-install__panel--active" data-install="npm">
+        <pre class="docs-install__code">npm install unigrid.css</pre>
+        <p class="ug-body--sm ug-mt--3">Then import in your SCSS:</p>
+        <pre class="docs-install__code">@use "unigrid.css/src/scss/unigrid" as *;</pre>
+      </div>
+      <div class="docs-install__panel" data-install="cdn">
+        <p class="ug-body--sm ug-mb--3">Add to your HTML &lt;head&gt;:</p>
+        <pre class="docs-install__code">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/unigrid.css/dist/unigrid.min.css"&gt;</pre>
+        <p class="ug-body--sm ug-mt--3">Optional JavaScript (dropdowns, tabs):</p>
+        <pre class="docs-install__code">&lt;script src="https://cdn.jsdelivr.net/npm/unigrid.css/dist/dropdown.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/unigrid.css/dist/tabs.js"&gt;&lt;/script&gt;</pre>
+      </div>
+      <div class="docs-install__panel" data-install="download">
+        <p class="ug-body--sm ug-mb--3">Download the latest release from GitHub:</p>
+        <a class="ug-btn ug-btn--outline" href="https://github.com/tdascoli/unigrid.css/releases">Download from GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="ug-section">
+    <h2 class="ug-section__title">Features</h2>
+  </div>
+
+  <div class="ug-container ug-container--narrow ug-pt--5 ug-pb--5">
+    <div class="ug-grid">
+      <div class="ug-col--4 ug-col--sm-12">
+        <h3 class="ug-h4">12-Column Grid</h3>
+        <p class="ug-body--sm">Responsive CSS Grid with 4 breakpoints. Column spans, row spans, subgrid, and alignment utilities.</p>
+      </div>
+      <div class="ug-col--4 ug-col--sm-12">
+        <h3 class="ug-h4">10 Unigrid Formats</h3>
+        <p class="ug-body--sm">A-series (1 panel wide) and B-series (2 panels wide). Based on real NPS specifications with DIN proportions.</p>
+      </div>
+      <div class="ug-col--4 ug-col--sm-12">
+        <h3 class="ug-h4">Square Modules</h3>
+        <p class="ug-body--sm">Viewport-proportional module system with responsive column reduction: 12 → 8 → 6 → 4 → 3.</p>
+      </div>
+      <div class="ug-col--4 ug-col--sm-12">
+        <h3 class="ug-h4">Vertical Rhythm</h3>
+        <p class="ug-body--sm">All spacing based on a single leading unit via CSS custom property. Adapts at desktop breakpoint.</p>
+      </div>
+      <div class="ug-col--4 ug-col--sm-12">
+        <h3 class="ug-h4">BEM Naming</h3>
+        <p class="ug-body--sm">Consistent Block__Element--Modifier naming. All classes prefixed with <code>ug-</code>.</p>
+      </div>
+      <div class="ug-col--4 ug-col--sm-12">
+        <h3 class="ug-h4">SCSS + Customizable</h3>
+        <p class="ug-body--sm">Full <code>!default</code> variables. Override colors, fonts, breakpoints, and formats before import.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Components Preview -->
+  <div class="ug-section ug-section--compact">
+    <h2 class="ug-section__title">Components</h2>
+  </div>
+
+  <div class="ug-container ug-container--narrow ug-pt--5 ug-pb--5">
+    <div class="ug-grid">
+      <div class="ug-col--3 ug-col--sm-6">
+        <a href={`${base}docs/components/header`} class="ug-card" style="text-decoration:none">
+          <div class="ug-card__body"><h4 class="ug-card__title">Header</h4><p class="ug-card__text">Signature black band</p></div>
+        </a>
+      </div>
+      <div class="ug-col--3 ug-col--sm-6">
+        <a href={`${base}docs/components/navbar`} class="ug-card" style="text-decoration:none">
+          <div class="ug-card__body"><h4 class="ug-card__title">Navbar</h4><p class="ug-card__text">Navigation with mobile menu</p></div>
+        </a>
+      </div>
+      <div class="ug-col--3 ug-col--sm-6">
+        <a href={`${base}docs/components/hero`} class="ug-card" style="text-decoration:none">
+          <div class="ug-card__body"><h4 class="ug-card__title">Hero</h4><p class="ug-card__text">Full-width hero sections</p></div>
+        </a>
+      </div>
+      <div class="ug-col--3 ug-col--sm-6">
+        <a href={`${base}docs/components/buttons`} class="ug-card" style="text-decoration:none">
+          <div class="ug-card__body"><h4 class="ug-card__title">Buttons</h4><p class="ug-card__text">Filled, outline, ghost</p></div>
+        </a>
+      </div>
+      <div class="ug-col--3 ug-col--sm-6">
+        <a href={`${base}docs/components/cards`} class="ug-card" style="text-decoration:none">
+          <div class="ug-card__body"><h4 class="ug-card__title">Cards</h4><p class="ug-card__text">Content containers</p></div>
+        </a>
+      </div>
+      <div class="ug-col--3 ug-col--sm-6">
+        <a href={`${base}docs/components/forms`} class="ug-card" style="text-decoration:none">
+          <div class="ug-card__body"><h4 class="ug-card__title">Forms</h4><p class="ug-card__text">Inputs, select, textarea</p></div>
+        </a>
+      </div>
+      <div class="ug-col--3 ug-col--sm-6">
+        <a href={`${base}docs/components/tabs`} class="ug-card" style="text-decoration:none">
+          <div class="ug-card__body"><h4 class="ug-card__title">Tabs</h4><p class="ug-card__text">Tab navigation</p></div>
+        </a>
+      </div>
+      <div class="ug-col--3 ug-col--sm-6">
+        <a href={`${base}docs/components/tables`} class="ug-card" style="text-decoration:none">
+          <div class="ug-card__body"><h4 class="ug-card__title">Tables</h4><p class="ug-card__text">Striped, bordered, compact</p></div>
+        </a>
+      </div>
+    </div>
+    <div class="ug-mt--3" style="text-align:center">
+      <a class="ug-btn ug-btn--outline" href={`${base}docs/getting-started`}>View all components →</a>
+    </div>
+  </div>
+
+  <!-- Quick Example -->
+  <div class="ug-section ug-section--compact ug-section--brown">
+    <h2 class="ug-section__title">Quick Example</h2>
+  </div>
+
+  <div class="ug-container ug-container--narrow ug-pt--5 ug-pb--5">
+    <pre class="docs-install__code" style="border-radius:0">&lt;header class="ug-header"&gt;
+  &lt;div class="ug-header__title"&gt;
+    &lt;h1&gt;Yellowstone&lt;/h1&gt;
+    &lt;p class="ug-header__subtitle"&gt;National Park&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+
+&lt;div class="ug-container"&gt;
+  &lt;div class="ug-grid"&gt;
+    &lt;div class="ug-col--8"&gt;
+      &lt;h2&gt;Welcome&lt;/h2&gt;
+      &lt;p&gt;Content here...&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="ug-col--4"&gt;
+      &lt;div class="ug-infobox"&gt;
+        &lt;p class="ug-infobox__title"&gt;Hours&lt;/p&gt;
+        &lt;p&gt;Open year-round&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+  </div>
+
+  <!-- Footer -->
+  <footer class="ug-footer">
+    <div class="ug-footer__inner">
+      <a class="ug-footer__brand" href={`${base}`}>Unigrid.css</a>
+      <nav>
+        <ul class="ug-footer__nav">
+          <li><a class="ug-footer__link" href={`${base}docs/getting-started`}>Documentation</a></li>
+          <li><a class="ug-footer__link" href={`${base}docs/components/header`}>Components</a></li>
+          <li><a class="ug-footer__link" href="https://github.com/tdascoli/unigrid.css">GitHub</a></li>
+          <li><a class="ug-footer__link" href="https://github.com/tdascoli/unigrid.css/releases">Releases</a></li>
+        </ul>
+      </nav>
+      <hr class="ug-footer__divider">
+      <p class="ug-footer__text">Inspired by Massimo Vignelli's Unigrid system for the National Park Service.</p>
+      <p class="ug-footer__text">MIT License.</p>
+    </div>
+  </footer>
+
+  <script is:inline>
+    function switchInstall(btn, panel) {
+      btn.closest('.docs-install').querySelectorAll('.docs-install__tab').forEach(t => t.classList.remove('docs-install__tab--active'));
+      btn.closest('.docs-install').querySelectorAll('.docs-install__panel').forEach(p => p.classList.remove('docs-install__panel--active'));
+      btn.classList.add('docs-install__tab--active');
+      btn.closest('.docs-install').querySelector('[data-install="' + panel + '"]').classList.add('docs-install__panel--active');
+    }
+  </script>
+
+  <script is:inline src={`${base}dropdown.js`}></script>
+
+</body>
+</html>
+
+<style lang="scss" is:global>
+  @use "../styles/docs.scss";
+</style>

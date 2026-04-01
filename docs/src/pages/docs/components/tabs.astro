@@ -1,0 +1,121 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import CodeExample from '../../../components/CodeExample.astro';
+import PropsTable from '../../../components/PropsTable.astro';
+---
+
+<DocsLayout title="Tabs" activeNav="Tabs">
+
+<h1>Tabs</h1>
+<p class="ug-lead">Tabbed navigation with default underline, bordered, pill, and vertical variants. Uses <code>data-ug-tab</code> and <code>data-ug-panel</code> attributes for interactive switching.</p>
+
+<h2>Default Tabs</h2>
+
+<CodeExample title="Underline tabs" code={`<div class="ug-tabs">
+  <nav class="ug-tabs__nav">
+    <a class="ug-tabs__link ug-tabs__link--active" href="#" data-ug-tab="overview">Overview</a>
+    <a class="ug-tabs__link" href="#" data-ug-tab="details">Details</a>
+    <a class="ug-tabs__link" href="#" data-ug-tab="map">Map</a>
+  </nav>
+  <div class="ug-tabs__content">
+    <div class="ug-tabs__panel ug-tabs__panel--active" data-ug-panel="overview">
+      <p>Overview panel content. This is the default visible tab.</p>
+    </div>
+    <div class="ug-tabs__panel" data-ug-panel="details">
+      <p>Details panel content with more in-depth information.</p>
+    </div>
+    <div class="ug-tabs__panel" data-ug-panel="map">
+      <p>Map panel content with location details.</p>
+    </div>
+  </div>
+</div>`} />
+
+<h2>Bordered Tabs</h2>
+
+<CodeExample title="Bordered variant" code={`<div class="ug-tabs ug-tabs--bordered">
+  <nav class="ug-tabs__nav">
+    <a class="ug-tabs__link ug-tabs__link--active" href="#" data-ug-tab="tab1">Wildlife</a>
+    <a class="ug-tabs__link" href="#" data-ug-tab="tab2">Flora</a>
+    <a class="ug-tabs__link" href="#" data-ug-tab="tab3">Geology</a>
+  </nav>
+  <div class="ug-tabs__content">
+    <div class="ug-tabs__panel ug-tabs__panel--active" data-ug-panel="tab1">
+      <p>Wildlife information including bears, elk, and bison.</p>
+    </div>
+    <div class="ug-tabs__panel" data-ug-panel="tab2">
+      <p>Flora details covering wildflowers, forests, and alpine plants.</p>
+    </div>
+    <div class="ug-tabs__panel" data-ug-panel="tab3">
+      <p>Geology content about rock formations and volcanic activity.</p>
+    </div>
+  </div>
+</div>`} />
+
+<h2>Pill Tabs</h2>
+
+<CodeExample title="Pills variant" code={`<div class="ug-tabs ug-tabs--pills">
+  <nav class="ug-tabs__nav">
+    <a class="ug-tabs__link ug-tabs__link--active" href="#" data-ug-tab="all">All</a>
+    <a class="ug-tabs__link" href="#" data-ug-tab="hiking">Hiking</a>
+    <a class="ug-tabs__link" href="#" data-ug-tab="camping">Camping</a>
+    <a class="ug-tabs__link" href="#" data-ug-tab="fishing">Fishing</a>
+  </nav>
+  <div class="ug-tabs__content">
+    <div class="ug-tabs__panel ug-tabs__panel--active" data-ug-panel="all">
+      <p>Showing all activities available in the park.</p>
+    </div>
+    <div class="ug-tabs__panel" data-ug-panel="hiking">
+      <p>Hiking trails and difficulty ratings.</p>
+    </div>
+    <div class="ug-tabs__panel" data-ug-panel="camping">
+      <p>Campground availability and reservation details.</p>
+    </div>
+    <div class="ug-tabs__panel" data-ug-panel="fishing">
+      <p>Fishing regulations and permitted areas.</p>
+    </div>
+  </div>
+</div>`} />
+
+<h2>Vertical Tabs</h2>
+
+<CodeExample title="Vertical layout" code={`<div class="ug-tabs ug-tabs--vertical">
+  <nav class="ug-tabs__nav">
+    <a class="ug-tabs__link ug-tabs__link--active" href="#" data-ug-tab="general">General Info</a>
+    <a class="ug-tabs__link" href="#" data-ug-tab="hours">Hours</a>
+    <a class="ug-tabs__link" href="#" data-ug-tab="fees">Fees</a>
+    <a class="ug-tabs__link" href="#" data-ug-tab="directions">Directions</a>
+  </nav>
+  <div class="ug-tabs__content">
+    <div class="ug-tabs__panel ug-tabs__panel--active" data-ug-panel="general">
+      <p>General park information, history, and visitor guidelines.</p>
+    </div>
+    <div class="ug-tabs__panel" data-ug-panel="hours">
+      <p>Park hours vary by season. Check the official website for current hours.</p>
+    </div>
+    <div class="ug-tabs__panel" data-ug-panel="fees">
+      <p>Entry fees, annual passes, and fee-free days.</p>
+    </div>
+    <div class="ug-tabs__panel" data-ug-panel="directions">
+      <p>Driving directions, nearest airports, and shuttle services.</p>
+    </div>
+  </div>
+</div>`} />
+
+<h2>Class Reference</h2>
+
+<PropsTable items={[
+  { class: '.ug-tabs', description: 'Tabs container' },
+  { class: '.ug-tabs__nav', description: 'Tab navigation bar' },
+  { class: '.ug-tabs__link', description: 'Individual tab link' },
+  { class: '.ug-tabs__link--active', description: 'Active tab state' },
+  { class: '.ug-tabs__content', description: 'Tab panels container' },
+  { class: '.ug-tabs__panel', description: 'Individual content panel' },
+  { class: '.ug-tabs__panel--active', description: 'Visible panel state' },
+  { class: '.ug-tabs--bordered', description: 'Bordered card-style tabs' },
+  { class: '.ug-tabs--pills', description: 'Pill-shaped tab links' },
+  { class: '.ug-tabs--vertical', description: 'Vertical side-tab layout' },
+  { class: 'data-ug-tab', description: 'Attribute on tab link (matches panel)' },
+  { class: 'data-ug-panel', description: 'Attribute on panel (matches tab)' },
+]} />
+
+</DocsLayout>

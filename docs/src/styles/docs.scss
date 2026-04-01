@@ -1,0 +1,129 @@
+// Import the Unigrid framework
+@use "../../../src/scss/unigrid" as *;
+
+// ---- Docs-specific styles ----
+
+// Table of contents (right sidebar)
+.docs-toc {
+  width: calc(var(--ug-leading) * 10);
+  flex-shrink: 0;
+  padding-top: calc(var(--ug-leading) * 5);
+
+  @media (max-width: 1200px) {
+    display: none;
+  }
+}
+
+.docs-sidebar {
+  @include ug-font-size("sm");
+
+  &__section {
+    @include ug-rhythm-margin-bottom(1);
+  }
+
+  &__heading {
+    @include ug-font-size("xs");
+    @include ug-font-weight("bold");
+    @include ug-rhythm-line-height(1);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $ug-medium-gray;
+    @include ug-rhythm-margin-bottom(0.5);
+  }
+
+  &__link {
+    display: block;
+    padding: calc(var(--ug-leading) * 0.25) 0;
+    @include ug-rhythm-line-height(1);
+    color: $ug-dark-gray;
+    text-decoration: none;
+    transition: color 0.15s;
+
+    &:hover {
+      color: $ug-black;
+    }
+
+    &--active {
+      @include ug-font-weight("bold");
+      color: $ug-black;
+    }
+  }
+}
+
+.docs-example {
+  @include ug-rhythm-margin-bottom(1);
+  border: 1px solid $ug-light-gray;
+
+  &__preview {
+    padding: var(--ug-leading);
+  }
+
+  &__code {
+    border-top: 1px solid $ug-light-gray;
+    background: $ug-warm-gray;
+
+    pre {
+      margin: 0;
+      padding: var(--ug-leading);
+      overflow-x: auto;
+      @include ug-font-size("sm");
+      @include ug-rhythm-line-height(1);
+      font-family: "SF Mono", "Fira Code", Consolas, monospace;
+    }
+
+    code {
+      font-family: inherit;
+    }
+  }
+
+  &__toolbar {
+    display: flex;
+    justify-content: flex-end;
+    padding: calc(var(--ug-leading) * 0.25) calc(var(--ug-leading) * 0.5);
+    border-top: 1px solid $ug-light-gray;
+    background: $ug-warm-gray;
+  }
+}
+
+.docs-install {
+  &__tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid $ug-light-gray;
+    @include ug-rhythm-margin-bottom(1);
+  }
+
+  &__tab {
+    padding: calc(var(--ug-leading) * 0.5) var(--ug-leading);
+    @include ug-font-size("sm");
+    @include ug-font-weight("bold");
+    @include ug-rhythm-line-height(1);
+    color: $ug-medium-gray;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: inherit;
+    margin-bottom: -2px;
+    border-bottom: 2px solid transparent;
+
+    &--active {
+      color: $ug-black;
+      border-bottom-color: $ug-black;
+    }
+  }
+
+  &__panel {
+    display: none;
+    &--active { display: block; }
+  }
+
+  &__code {
+    background: $ug-black;
+    color: $ug-white;
+    padding: var(--ug-leading);
+    @include ug-font-size("sm");
+    @include ug-rhythm-line-height(1);
+    font-family: "SF Mono", "Fira Code", Consolas, monospace;
+    overflow-x: auto;
+  }
+}

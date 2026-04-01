@@ -1,0 +1,82 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import CodeExample from '../../../components/CodeExample.astro';
+import PropsTable from '../../../components/PropsTable.astro';
+---
+
+<DocsLayout title="Footer" activeNav="Footer">
+
+<h1>Footer</h1>
+<p class="ug-lead">Site footer with brand, navigation links, text, and layout variants. Automatically pushed to the bottom of the page.</p>
+
+<h2>Default Footer</h2>
+
+<CodeExample title="Default footer" code={`<footer class="ug-footer" style="position:relative">
+  <div class="ug-footer__inner">
+    <div class="ug-footer__brand">SiteName</div>
+    <nav class="ug-footer__nav">
+      <a class="ug-footer__link" href="#">About</a>
+      <a class="ug-footer__link" href="#">Privacy</a>
+      <a class="ug-footer__link" href="#">Terms</a>
+      <a class="ug-footer__link" href="#">Contact</a>
+    </nav>
+    <p class="ug-footer__text">Copyright 2026. All rights reserved.</p>
+  </div>
+</footer>`} />
+
+<h2>Compact Footer</h2>
+
+<CodeExample title="Compact variant" code={`<footer class="ug-footer ug-footer--compact" style="position:relative">
+  <div class="ug-footer__inner">
+    <div class="ug-footer__brand">SiteName</div>
+    <nav class="ug-footer__nav">
+      <a class="ug-footer__link" href="#">Privacy</a>
+      <a class="ug-footer__link" href="#">Terms</a>
+    </nav>
+  </div>
+</footer>`} />
+
+<h2>Light Footer</h2>
+
+<CodeExample title="Light variant" code={`<footer class="ug-footer ug-footer--light" style="position:relative">
+  <div class="ug-footer__inner">
+    <div class="ug-footer__brand">SiteName</div>
+    <nav class="ug-footer__nav">
+      <a class="ug-footer__link" href="#">About</a>
+      <a class="ug-footer__link" href="#">Privacy</a>
+      <a class="ug-footer__link" href="#">Terms</a>
+    </nav>
+    <p class="ug-footer__text">A lighter footer for light-themed pages.</p>
+  </div>
+</footer>`} />
+
+<h2>Footer with Divider</h2>
+
+<CodeExample title="With divider" code={`<footer class="ug-footer" style="position:relative">
+  <div class="ug-footer__inner">
+    <div class="ug-footer__brand">SiteName</div>
+    <hr class="ug-footer__divider" />
+    <nav class="ug-footer__nav">
+      <a class="ug-footer__link" href="#">About</a>
+      <a class="ug-footer__link" href="#">Privacy</a>
+      <a class="ug-footer__link" href="#">Terms</a>
+    </nav>
+    <p class="ug-footer__text">Copyright 2026.</p>
+  </div>
+</footer>`} />
+
+<h2>Class Reference</h2>
+
+<PropsTable items={[
+  { class: '.ug-footer', description: 'Footer container (dark background, white text)' },
+  { class: '.ug-footer__inner', description: 'Inner wrapper for content alignment' },
+  { class: '.ug-footer__brand', description: 'Brand/logo text or image' },
+  { class: '.ug-footer__nav', description: 'Navigation link container' },
+  { class: '.ug-footer__link', description: 'Footer navigation link' },
+  { class: '.ug-footer__text', description: 'Footer body text (e.g. copyright)' },
+  { class: '.ug-footer__divider', description: 'Horizontal rule divider' },
+  { class: '.ug-footer--compact', description: 'Reduced padding, inline layout' },
+  { class: '.ug-footer--light', description: 'Light background, dark text' },
+]} />
+
+</DocsLayout>

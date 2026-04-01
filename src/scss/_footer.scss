@@ -1,0 +1,147 @@
+// ==========================================================================
+// Unigrid CSS Framework — Footer (BEM)
+//
+// Sticky footer that always sits at the bottom of the viewport.
+// All spacing aligned to var(--ug-leading).
+//
+// Block: .ug-footer
+// Elements: __inner, __brand, __text, __nav, __link, __divider
+// Modifiers: --compact, --dark (default), --light
+// ==========================================================================
+
+@use "variables" as *;
+@use "mixins" as *;
+
+// Ensure footer stays at bottom
+html, body {
+  min-height: 100vh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+
+  > *:not(.ug-footer) {
+    flex-shrink: 0;
+  }
+
+  > .ug-footer {
+    margin-top: auto;
+  }
+}
+
+.ug-footer {
+  width: 100%;
+  background-color: $ug-black;
+  color: $ug-white;
+  padding: calc(var(--ug-leading) * 3) calc(var(--ug-leading) * 1.5);
+
+  // ---- Inner container ----
+  &__inner {
+    max-width: $ug-container-max-width;
+    margin: 0 auto;
+  }
+
+  // ---- Brand ----
+  &__brand {
+    @include ug-font-size("lg");
+    @include ug-font-weight("bold");
+    @include ug-rhythm-line-height(1);
+    @include ug-rhythm-margin-bottom(1);
+    color: $ug-white;
+    text-decoration: none;
+    display: block;
+  }
+
+  // ---- Text ----
+  &__text {
+    @include ug-font-size("sm");
+    @include ug-rhythm-line-height(1);
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+  }
+
+  // ---- Navigation ----
+  &__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ug-leading);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__link {
+    @include ug-font-size("sm");
+    @include ug-rhythm-line-height(1);
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: color 0.15s;
+
+    &:hover {
+      color: $ug-white;
+    }
+  }
+
+  // ---- Divider ----
+  // 1 leading height: padding-top + 1px border = 1 leading
+  &__divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: calc(var(--ug-leading) - 1px);
+    margin: 0;
+  }
+
+  // ==============================
+  // Modifiers
+  // ==============================
+
+  // Compact: 1 leading padding, single line
+  // Total: padding(1) + content(1 line-height) + padding(1) = 3 leading
+  &--compact {
+    padding: var(--ug-leading) calc(var(--ug-leading) * 1.5);
+
+    .ug-footer__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--ug-leading);
+    }
+
+    .ug-footer__brand {
+      margin-bottom: 0;
+      @include ug-font-size("sm");
+    }
+
+    .ug-footer__nav {
+      margin-bottom: 0;
+    }
+  }
+
+  // Light
+  &--light {
+    background-color: $ug-warm-gray;
+    color: $ug-black;
+
+    .ug-footer__brand { color: $ug-black; }
+    .ug-footer__text { color: $ug-medium-gray; }
+    .ug-footer__link {
+      color: $ug-dark-gray;
+      &:hover { color: $ug-black; }
+    }
+    .ug-footer__divider { border-top-color: $ug-light-gray; }
+  }
+
+  // ==============================
+  // Responsive
+  // ==============================
+
+  @include ug-breakpoint-down("md") {
+    padding: calc(var(--ug-leading) * 2) var(--ug-leading);
+
+    &--compact {
+      padding: var(--ug-leading);
+    }
+  }
+}

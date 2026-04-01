@@ -1,0 +1,105 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import CodeExample from '../../../components/CodeExample.astro';
+import PropsTable from '../../../components/PropsTable.astro';
+---
+
+<DocsLayout title="Navbar" activeNav="Navbar">
+
+<h1>Navbar</h1>
+<p class="ug-lead">Responsive navigation bar with brand, links, toggle, dropdown support, and color variants.</p>
+
+<h2>Default Navbar</h2>
+
+<CodeExample title="Default navbar" code={`<nav class="ug-navbar">
+  <div class="ug-navbar__inner">
+    <a class="ug-navbar__brand" href="#">SiteName</a>
+    <button class="ug-navbar__toggle" aria-label="Toggle menu">Menu</button>
+    <ul class="ug-navbar__menu">
+      <li class="ug-navbar__item"><a class="ug-navbar__link ug-navbar__link--active" href="#">Home</a></li>
+      <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">About</a></li>
+      <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Services</a></li>
+      <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Contact</a></li>
+    </ul>
+  </div>
+</nav>`} />
+
+<h2>Dark Navbar</h2>
+
+<CodeExample title="Dark variant" code={`<nav class="ug-navbar ug-navbar--dark">
+  <div class="ug-navbar__inner">
+    <a class="ug-navbar__brand" href="#">SiteName</a>
+    <ul class="ug-navbar__menu">
+      <li class="ug-navbar__item"><a class="ug-navbar__link ug-navbar__link--active" href="#">Home</a></li>
+      <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">About</a></li>
+      <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Services</a></li>
+    </ul>
+  </div>
+</nav>`} />
+
+<h2>Embedded Navbar (inside Header)</h2>
+<p class="ug-body">When placed inside a <code>.ug-header</code>, the navbar adopts embedded styling with transparent background and adjusted spacing.</p>
+
+<CodeExample title="Embedded in header" code={`<header class="ug-header" style="background:#2b2b2b;position:relative">
+  <nav class="ug-navbar">
+    <div class="ug-navbar__inner">
+      <a class="ug-navbar__brand" href="#">ParkName</a>
+      <ul class="ug-navbar__menu">
+        <li class="ug-navbar__item"><a class="ug-navbar__link ug-navbar__link--active" href="#">Visit</a></li>
+        <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Learn</a></li>
+        <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Plan</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>`} />
+
+<h2>With Divider</h2>
+
+<CodeExample title="Navbar with divider" code={`<nav class="ug-navbar">
+  <div class="ug-navbar__inner">
+    <a class="ug-navbar__brand" href="#">SiteName</a>
+    <ul class="ug-navbar__menu">
+      <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Home</a></li>
+      <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">About</a></li>
+      <li class="ug-navbar__divider"></li>
+      <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Login</a></li>
+    </ul>
+  </div>
+</nav>`} />
+
+<h2>Transparent Navbar</h2>
+
+<CodeExample title="Transparent variant" code={`<div style="background:#3a7d44;padding:1rem">
+  <nav class="ug-navbar ug-navbar--transparent">
+    <div class="ug-navbar__inner">
+      <a class="ug-navbar__brand" href="#">ParkName</a>
+      <ul class="ug-navbar__menu">
+        <li class="ug-navbar__item"><a class="ug-navbar__link ug-navbar__link--active" href="#">Home</a></li>
+        <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Explore</a></li>
+        <li class="ug-navbar__item"><a class="ug-navbar__link" href="#">Map</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>`} />
+
+<h2>Class Reference</h2>
+
+<PropsTable items={[
+  { class: '.ug-navbar', description: 'Navbar container' },
+  { class: '.ug-navbar__inner', description: 'Inner wrapper for alignment' },
+  { class: '.ug-navbar__brand', description: 'Brand/logo link' },
+  { class: '.ug-navbar__toggle', description: 'Mobile menu toggle button' },
+  { class: '.ug-navbar__toggle--active', description: 'Toggle active state (menu open)' },
+  { class: '.ug-navbar__toggle--hamburger', description: 'Animated hamburger icon toggle' },
+  { class: '.ug-navbar__menu', description: 'Navigation link list' },
+  { class: '.ug-navbar__menu--open', description: 'Open state for mobile menu' },
+  { class: '.ug-navbar__item', description: 'Navigation list item' },
+  { class: '.ug-navbar__link', description: 'Navigation link' },
+  { class: '.ug-navbar__link--active', description: 'Active link state' },
+  { class: '.ug-navbar__divider', description: 'Vertical divider between links' },
+  { class: '.ug-navbar--dark', description: 'Dark background variant' },
+  { class: '.ug-navbar--fixed', description: 'Fixed to top of viewport' },
+  { class: '.ug-navbar--transparent', description: 'Transparent background variant' },
+]} />
+
+</DocsLayout>

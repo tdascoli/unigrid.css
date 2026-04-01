@@ -1,0 +1,59 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import CodeExample from '../../../components/CodeExample.astro';
+import PropsTable from '../../../components/PropsTable.astro';
+---
+
+<DocsLayout title="Infobox" activeNav="Infobox">
+
+<h1>Infobox</h1>
+<p class="ug-lead">Highlighted callout boxes for important information, tips, or warnings, with default and dark variants.</p>
+
+<h2>Default Infobox</h2>
+
+<CodeExample title="Default infobox" code={`<div class="ug-infobox">
+  <div class="ug-infobox__title">Important Notice</div>
+  <p>Road construction on the main park loop may cause delays of up to 30 minutes. Plan your visit accordingly and check current conditions before departing.</p>
+</div>`} />
+
+<h2>Infobox without Title</h2>
+
+<CodeExample title="Simple infobox" code={`<div class="ug-infobox">
+  <p>All visitors must carry bear spray in the backcountry. Canisters are available for rent at the visitor center.</p>
+</div>`} />
+
+<h2>Dark Infobox</h2>
+
+<CodeExample title="Dark variant" code={`<div class="ug-infobox ug-infobox--dark">
+  <div class="ug-infobox__title">Fire Danger: High</div>
+  <p>Open fires are prohibited in all areas of the park until further notice. Only gas stoves permitted in designated camping areas.</p>
+</div>`} />
+
+<h2>Dark Infobox without Title</h2>
+
+<CodeExample title="Simple dark infobox" code={`<div class="ug-infobox ug-infobox--dark">
+  <p>The park entrance fee is $35 per vehicle, valid for 7 days. Annual passes are available for $70.</p>
+</div>`} />
+
+<h2>Multiple Infoboxes</h2>
+
+<CodeExample title="Infoboxes in context" code={`<div class="ug-infobox">
+  <div class="ug-infobox__title">Tip</div>
+  <p>Arrive before 9 AM to avoid crowds at popular trailheads.</p>
+</div>
+<div style="margin-top:1rem">
+  <div class="ug-infobox ug-infobox--dark">
+    <div class="ug-infobox__title">Warning</div>
+    <p>Approaching wildlife within 100 yards is prohibited. Use binoculars or a telephoto lens for safe viewing.</p>
+  </div>
+</div>`} />
+
+<h2>Class Reference</h2>
+
+<PropsTable items={[
+  { class: '.ug-infobox', description: 'Infobox container (light background, left border)' },
+  { class: '.ug-infobox--dark', description: 'Dark background variant (white text)' },
+  { class: '.ug-infobox__title', description: 'Uppercase title/label' },
+]} />
+
+</DocsLayout>

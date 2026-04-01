@@ -1,0 +1,71 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import CodeExample from '../../../components/CodeExample.astro';
+import PropsTable from '../../../components/PropsTable.astro';
+---
+
+<DocsLayout title="Buttons" activeNav="Buttons">
+
+<h1>Buttons</h1>
+<p class="ug-lead">Button styles with NPS color variants, sizes aligned to the vertical rhythm, and button groups.</p>
+
+<h2>Filled Buttons</h2>
+
+<CodeExample title="Default colors" code={`<a class="ug-btn" href="#">Default</a>
+<a class="ug-btn ug-btn--brown" href="#">Brown</a>
+<a class="ug-btn ug-btn--red" href="#">Red</a>
+<a class="ug-btn ug-btn--green" href="#">Green</a>
+<a class="ug-btn ug-btn--blue" href="#">Blue</a>
+<a class="ug-btn ug-btn--light" href="#">Light</a>`} />
+
+<h2>Outline Buttons</h2>
+
+<CodeExample code={`<a class="ug-btn ug-btn--outline" href="#">Default</a>
+<a class="ug-btn ug-btn--outline ug-btn--red" href="#">Red</a>
+<a class="ug-btn ug-btn--outline ug-btn--blue" href="#">Blue</a>`} />
+
+<h2>Ghost Button</h2>
+
+<CodeExample code={`<a class="ug-btn ug-btn--ghost" href="#">Ghost Button</a>`} />
+
+<h2>Sizes</h2>
+<p class="ug-body">Sizes are aligned to the vertical rhythm: small = 1 leading, default = 1.5 leading, large = 2 leading.</p>
+
+<CodeExample code={`<a class="ug-btn ug-btn--sm" href="#">Small (1 leading)</a>
+<a class="ug-btn" href="#">Default (1.5 leading)</a>
+<a class="ug-btn ug-btn--lg" href="#">Large (2 leading)</a>`} />
+
+<h2>Block Button</h2>
+
+<CodeExample code={`<a class="ug-btn ug-btn--block" href="#">Full Width Button</a>`} />
+
+<h2>Disabled</h2>
+
+<CodeExample code={`<a class="ug-btn ug-btn--disabled" href="#">Disabled</a>
+<a class="ug-btn ug-btn--outline ug-btn--disabled" href="#">Disabled Outline</a>`} />
+
+<h2>Button Group</h2>
+
+<CodeExample code={`<div class="ug-btn-group">
+  <a class="ug-btn" href="#">Left</a>
+  <a class="ug-btn" href="#">Center</a>
+  <a class="ug-btn" href="#">Right</a>
+</div>`} />
+
+<h2>Class Reference</h2>
+
+<PropsTable items={[
+  { class: '.ug-btn', description: 'Default button (black, filled)' },
+  { class: '.ug-btn--brown|red|green|blue', description: 'NPS color variants' },
+  { class: '.ug-btn--light', description: 'Light background, dark text' },
+  { class: '.ug-btn--outline', description: 'Transparent bg, colored border + text' },
+  { class: '.ug-btn--ghost', description: 'No border, text only with hover bg' },
+  { class: '.ug-btn--sm', description: 'Small size (1 leading height)' },
+  { class: '.ug-btn--lg', description: 'Large size (2 leading height)' },
+  { class: '.ug-btn--block', description: 'Full width' },
+  { class: '.ug-btn--disabled', description: 'Disabled state' },
+  { class: '.ug-btn__icon', description: 'Icon element inside button' },
+  { class: '.ug-btn-group', description: 'Group buttons inline' },
+]} />
+
+</DocsLayout>

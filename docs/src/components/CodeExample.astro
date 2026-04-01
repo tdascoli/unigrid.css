@@ -1,0 +1,25 @@
+---
+interface Props {
+  title?: string;
+  code: string;
+}
+
+const { title, code } = Astro.props;
+
+// The code prop contains the raw HTML string.
+// Render it as preview, and escape it for the code block.
+const escaped = code
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;');
+---
+
+<div class="docs-example">
+  {title && <p class="ug-label" style="padding: calc(var(--ug-leading) * 0.5) var(--ug-leading); margin: 0; border-bottom: 1px solid #e8e5e0;">{title}</p>}
+  <div class="docs-example__preview">
+    <Fragment set:html={code} />
+  </div>
+  <div class="docs-example__code">
+    <pre><code set:html={escaped} /></pre>
+  </div>
+</div>

@@ -1,0 +1,121 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import CodeExample from '../../../components/CodeExample.astro';
+import PropsTable from '../../../components/PropsTable.astro';
+---
+
+<DocsLayout title="Accordion" activeNav="Accordion">
+
+<h1>Accordion</h1>
+<p class="ug-lead">Expandable content sections using native <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> elements, with bordered and dark variants.</p>
+
+<h2>Default Accordion</h2>
+
+<CodeExample title="Default accordion" code={`<div class="ug-accordion">
+  <details class="ug-accordion__item" open>
+    <summary class="ug-accordion__header">
+      What are the park hours?
+      <span class="ug-accordion__caret"></span>
+    </summary>
+    <div class="ug-accordion__body">
+      <p>The park is open 24 hours a day, 7 days a week, year-round. Some roads and facilities have seasonal closures.</p>
+    </div>
+  </details>
+  <details class="ug-accordion__item">
+    <summary class="ug-accordion__header">
+      Do I need a reservation?
+      <span class="ug-accordion__caret"></span>
+    </summary>
+    <div class="ug-accordion__body">
+      <p>Reservations are required for camping. Day-use visitors do not need a reservation but may need a timed entry permit during peak season.</p>
+    </div>
+  </details>
+  <details class="ug-accordion__item">
+    <summary class="ug-accordion__header">
+      Are pets allowed?
+      <span class="ug-accordion__caret"></span>
+    </summary>
+    <div class="ug-accordion__body">
+      <p>Pets are allowed in developed areas, on roads, and in campgrounds but must be on a leash no longer than six feet. Pets are not allowed on trails or in the backcountry.</p>
+    </div>
+  </details>
+</div>`} />
+
+<h2>Bordered Accordion</h2>
+
+<CodeExample title="Bordered variant" code={`<div class="ug-accordion ug-accordion--bordered">
+  <details class="ug-accordion__item" open>
+    <summary class="ug-accordion__header">
+      Hiking Information
+      <span class="ug-accordion__caret"></span>
+    </summary>
+    <div class="ug-accordion__body">
+      <p>Over 300 miles of maintained trails ranging from easy walks to strenuous backcountry routes.</p>
+    </div>
+  </details>
+  <details class="ug-accordion__item">
+    <summary class="ug-accordion__header">
+      Camping Details
+      <span class="ug-accordion__caret"></span>
+    </summary>
+    <div class="ug-accordion__body">
+      <p>Twelve campgrounds offer a variety of settings from riverside to alpine meadows. Reservations recommended.</p>
+    </div>
+  </details>
+  <details class="ug-accordion__item">
+    <summary class="ug-accordion__header">
+      Fishing Regulations
+      <span class="ug-accordion__caret"></span>
+    </summary>
+    <div class="ug-accordion__body">
+      <p>A park fishing permit is required. Catch and release only in designated streams. No live bait permitted.</p>
+    </div>
+  </details>
+</div>`} />
+
+<h2>Dark Accordion</h2>
+
+<CodeExample title="Dark variant" code={`<div class="ug-accordion ug-accordion--dark">
+  <details class="ug-accordion__item" open>
+    <summary class="ug-accordion__header">
+      Winter Conditions
+      <span class="ug-accordion__caret"></span>
+    </summary>
+    <div class="ug-accordion__body">
+      <p>Heavy snowfall closes most roads from November through April. Only the north entrance remains open year-round.</p>
+    </div>
+  </details>
+  <details class="ug-accordion__item">
+    <summary class="ug-accordion__header">
+      Road Closures
+      <span class="ug-accordion__caret"></span>
+    </summary>
+    <div class="ug-accordion__body">
+      <p>Check the current road status before visiting. Construction and weather may cause temporary closures at any time of year.</p>
+    </div>
+  </details>
+  <details class="ug-accordion__item">
+    <summary class="ug-accordion__header">
+      Emergency Services
+      <span class="ug-accordion__caret"></span>
+    </summary>
+    <div class="ug-accordion__body">
+      <p>Call 911 for emergencies. Ranger stations are located at major trailheads and visitor centers.</p>
+    </div>
+  </details>
+</div>`} />
+
+<h2>Class Reference</h2>
+
+<PropsTable items={[
+  { class: '.ug-accordion', description: 'Accordion container' },
+  { class: '.ug-accordion__item', description: 'Individual accordion item (use <details>)' },
+  { class: '.ug-accordion__header', description: 'Clickable header (use <summary>)' },
+  { class: '.ug-accordion__caret', description: 'Rotating arrow indicator' },
+  { class: '.ug-accordion__body', description: 'Expandable content area' },
+  { class: '.ug-accordion--bordered', description: 'Bordered card-style variant' },
+  { class: '.ug-accordion--flush', description: 'No outer borders (flush edges)' },
+  { class: '.ug-accordion--dark', description: 'Dark background variant' },
+]} />
+
+</DocsLayout>
