@@ -588,6 +588,109 @@
       </nav>
     </section>
 
+    <!-- Modal -->
+    <section class="dev-section">
+      <p class="dev-section-title">Modal — .ug-modal</p>
+
+      <p class="ug-label ug-mb--2">Default</p>
+      <div class="ug-mb--3" style="display:flex;flex-wrap:wrap;gap:0.5rem">
+        <button class="ug-btn" data-ug-modal-open="modal-default">Open Modal</button>
+        <button class="ug-btn ug-btn--outline" data-ug-modal-open="modal-sm">Small Modal</button>
+        <button class="ug-btn ug-btn--outline" data-ug-modal-open="modal-lg">Large Modal</button>
+        <button class="ug-btn ug-btn--outline" data-ug-modal-open="modal-centered">Centered</button>
+        <button class="ug-btn ug-btn--red" data-ug-modal-open="modal-confirm">Confirm Dialog</button>
+      </div>
+    </section>
+
+    <!-- Modals (hidden, activated by buttons above) -->
+    <div class="ug-modal" id="modal-default">
+      <div class="ug-modal__backdrop" data-ug-modal-close></div>
+      <div class="ug-modal__dialog">
+        <div class="ug-modal__header">
+          <h3 class="ug-modal__title">Default Modal</h3>
+          <button class="ug-modal__close" data-ug-modal-close>&times;</button>
+        </div>
+        <div class="ug-modal__body">
+          <p class="ug-body">This is a default modal dialog. Click the backdrop, the close button, or press Escape to close.</p>
+          <p class="ug-body--sm ug-mt--3">Modal content can contain any HTML — forms, tables, images, etc.</p>
+        </div>
+        <div class="ug-modal__footer">
+          <button class="ug-btn ug-btn--ghost" data-ug-modal-close>Cancel</button>
+          <button class="ug-btn">Save Changes</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="ug-modal ug-modal--sm" id="modal-sm">
+      <div class="ug-modal__backdrop" data-ug-modal-close></div>
+      <div class="ug-modal__dialog">
+        <div class="ug-modal__header">
+          <h3 class="ug-modal__title">Small Modal</h3>
+          <button class="ug-modal__close" data-ug-modal-close>&times;</button>
+        </div>
+        <div class="ug-modal__body">
+          <p class="ug-body--sm">A compact dialog for simple messages or quick actions.</p>
+        </div>
+        <div class="ug-modal__footer">
+          <button class="ug-btn ug-btn--sm" data-ug-modal-close>OK</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="ug-modal ug-modal--lg" id="modal-lg">
+      <div class="ug-modal__backdrop" data-ug-modal-close></div>
+      <div class="ug-modal__dialog">
+        <div class="ug-modal__header">
+          <h3 class="ug-modal__title">Large Modal</h3>
+          <button class="ug-modal__close" data-ug-modal-close>&times;</button>
+        </div>
+        <div class="ug-modal__body">
+          <p class="ug-body">A wider dialog for complex content like forms, tables, or detailed information.</p>
+          <div class="ug-grid ug-mt--3">
+            <div class="ug-col--6"><div class="ug-infobox"><p class="ug-infobox__title">Left</p><p class="ug-body--sm">Content in a grid layout.</p></div></div>
+            <div class="ug-col--6"><div class="ug-infobox"><p class="ug-infobox__title">Right</p><p class="ug-body--sm">Side-by-side content.</p></div></div>
+          </div>
+        </div>
+        <div class="ug-modal__footer">
+          <button class="ug-btn ug-btn--ghost" data-ug-modal-close>Cancel</button>
+          <button class="ug-btn">Submit</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="ug-modal ug-modal--centered" id="modal-centered">
+      <div class="ug-modal__backdrop" data-ug-modal-close></div>
+      <div class="ug-modal__dialog">
+        <div class="ug-modal__header">
+          <h3 class="ug-modal__title">Centered Modal</h3>
+          <button class="ug-modal__close" data-ug-modal-close>&times;</button>
+        </div>
+        <div class="ug-modal__body">
+          <p class="ug-body">This modal is vertically centered in the viewport.</p>
+        </div>
+        <div class="ug-modal__footer">
+          <button class="ug-btn" data-ug-modal-close>Close</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="ug-modal ug-modal--sm ug-modal--centered" id="modal-confirm">
+      <div class="ug-modal__backdrop" data-ug-modal-close></div>
+      <div class="ug-modal__dialog">
+        <div class="ug-modal__header">
+          <h3 class="ug-modal__title">Delete Item?</h3>
+          <button class="ug-modal__close" data-ug-modal-close>&times;</button>
+        </div>
+        <div class="ug-modal__body">
+          <p class="ug-body--sm">This action cannot be undone. Are you sure you want to continue?</p>
+        </div>
+        <div class="ug-modal__footer">
+          <button class="ug-btn ug-btn--ghost" data-ug-modal-close>Cancel</button>
+          <button class="ug-btn ug-btn--red" data-ug-modal-close>Delete</button>
+        </div>
+      </div>
+    </div>
+
     <!-- Accordion -->
     <section class="dev-section">
       <p class="dev-section-title">Accordion — .ug-accordion</p>
@@ -1229,5 +1332,6 @@
   <script src="./dropdown.js"></script>
   <script src="./tabs.js"></script>
   <script src="./scrollspy.js"></script>
+  <script src="./modal.js"></script>
 </body>
 </html>

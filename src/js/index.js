@@ -17,3 +17,4 @@
 import './dropdown.js';
 import './tabs.js';
 import './scrollspy.js';
+import './modal.js';
