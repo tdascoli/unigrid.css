@@ -2639,7 +2639,19 @@ h6,
   align-items: center;
   justify-content: space-between;
   padding: calc(var(--ug-leading) * 0.5);
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+.ug-modal__header--light {
+  background-color: #ffffff;
+  color: #1a1a1a;
   border-bottom: 1px solid #e8e5e0;
+}
+.ug-modal__header--light .ug-modal__close {
+  color: #666666;
+}
+.ug-modal__header--light .ug-modal__close:hover {
+  color: #1a1a1a;
 }
 .ug-modal__title {
   font-size: 1.25rem;
@@ -2656,7 +2668,7 @@ h6,
   background: none;
   border: none;
   cursor: pointer;
-  color: #666666;
+  color: rgba(255, 255, 255, 0.7);
   font-size: 1.5rem;
   line-height: calc(var(--ug-leading) * 1);
   transition: color 0.15s;
@@ -2666,7 +2678,7 @@ h6,
   flex-shrink: 0;
 }
 .ug-modal__close:hover {
-  color: #1a1a1a;
+  color: #ffffff;
 }
 .ug-modal__body {
   padding: calc(var(--ug-leading) * 0.5);
