@@ -3325,8 +3325,8 @@ body.ug-modal-open {
 }
 
 .ug-modules {
-  padding: 2.381vw 0 0 4.7619vw;
-  gap: 2.381vw;
+  padding: var(--ug-leading) 0 0 calc(var(--ug-leading) * 1.5);
+  gap: var(--ug-leading);
 }
 
 .ug-module {
@@ -3442,8 +3442,8 @@ body.ug-modal-open {
 
 @media screen and (min-width: 640px) {
   .ug-modules {
-    padding: 2.1277vw 0 0 4.2553vw;
-    gap: 2.1277vw;
+    padding: var(--ug-leading) 0 0 calc(var(--ug-leading) * 1.5);
+    gap: var(--ug-leading);
   }
   .ug-module {
     margin: 0;
@@ -3577,8 +3577,8 @@ body.ug-modal-open {
 }
 @media screen and (min-width: 1024px) {
   .ug-modules {
-    padding: 1.7544vw 0 0 3.5088vw;
-    gap: 1.7544vw;
+    padding: var(--ug-leading) 0 0 calc(var(--ug-leading) * 1.5);
+    gap: var(--ug-leading);
   }
   .ug-module {
     margin: 0;
@@ -3742,8 +3742,8 @@ body.ug-modal-open {
 }
 @media screen and (min-width: 1300px) {
   .ug-modules {
-    padding: 1.4925vw 0 0 2.9851vw;
-    gap: 1.4925vw;
+    padding: var(--ug-leading) 0 0 calc(var(--ug-leading) * 1.5);
+    gap: var(--ug-leading);
   }
   .ug-module {
     margin: 0;
@@ -3937,8 +3937,8 @@ body.ug-modal-open {
 }
 @media screen and (min-width: 1600px) {
   .ug-modules {
-    padding: 1.1494vw 0 0 2.2989vw;
-    gap: 1.1494vw;
+    padding: var(--ug-leading) 0 0 calc(var(--ug-leading) * 1.5);
+    gap: var(--ug-leading);
   }
   .ug-module {
     margin: 0;
