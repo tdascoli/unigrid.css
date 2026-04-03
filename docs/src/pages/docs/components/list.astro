@@ -1,0 +1,83 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import CodeExample from '../../../components/CodeExample.astro';
+import PropsTable from '../../../components/PropsTable.astro';
+---
+
+<DocsLayout title="List" activeNav="List">
+
+<h1>List</h1>
+<p class="ug-lead">Styled lists with rhythm-aligned spacing. Works with both unordered and ordered lists.</p>
+
+<h2>Unordered List</h2>
+
+<CodeExample code={`<ul class="ug-list">
+  <li>Yellowstone National Park</li>
+  <li>Yosemite National Park</li>
+  <li>Grand Canyon National Park
+    <ul>
+      <li>South Rim</li>
+      <li>North Rim</li>
+    </ul>
+  </li>
+  <li>Zion National Park</li>
+</ul>`} />
+
+<h2>Ordered List</h2>
+
+<CodeExample code={`<ol class="ug-list">
+  <li>Apply for a permit</li>
+  <li>Choose your campsite</li>
+  <li>Pack bear-proof containers</li>
+  <li>Check weather conditions</li>
+</ol>`} />
+
+<h2>Unstyled</h2>
+<p class="ug-body">No bullets, no left padding.</p>
+
+<CodeExample code={`<ul class="ug-list ug-list--unstyled">
+  <li>No bullets</li>
+  <li>No left padding</li>
+  <li>Clean list of items</li>
+</ul>`} />
+
+<h2>Inline</h2>
+<p class="ug-body">Horizontal list with flex layout.</p>
+
+<CodeExample code={`<ul class="ug-list ug-list--inline">
+  <li>Hiking</li>
+  <li>Camping</li>
+  <li>Fishing</li>
+  <li>Wildlife</li>
+  <li>Photography</li>
+</ul>`} />
+
+<h2>Bordered</h2>
+<p class="ug-body">Items separated by horizontal borders.</p>
+
+<CodeExample code={`<ul class="ug-list ug-list--bordered">
+  <li>Old Faithful Visitor Center</li>
+  <li>Canyon Village</li>
+  <li>Mammoth Hot Springs</li>
+  <li>Grant Village</li>
+</ul>`} />
+
+<h2>Compact</h2>
+<p class="ug-body">No spacing between items.</p>
+
+<CodeExample code={`<ul class="ug-list ug-list--compact">
+  <li>Dense list item</li>
+  <li>No extra spacing</li>
+  <li>Tight layout</li>
+</ul>`} />
+
+<h2>Class Reference</h2>
+<PropsTable items={[
+  { class: '.ug-list', description: 'Styled list with rhythm spacing' },
+  { class: '.ug-list--unstyled', description: 'No bullets, no padding' },
+  { class: '.ug-list--inline', description: 'Horizontal flex list' },
+  { class: '.ug-list--bordered', description: 'Items separated by borders' },
+  { class: '.ug-list--compact', description: 'No spacing between items' },
+]} />
+
+</DocsLayout>

@@ -1,0 +1,73 @@
+// ==========================================================================
+// Unigrid CSS Framework — List (BEM)
+//
+// Styled lists with rhythm-aligned spacing.
+//
+// Block: .ug-list
+// Modifiers: --unstyled, --inline, --bordered, --compact
+// ==========================================================================
+
+@use "variables" as *;
+@use "mixins" as *;
+
+.ug-list {
+  @include ug-rhythm-line-height(1);
+  @include ug-rhythm-margin-bottom(1);
+  padding-left: var(--ug-leading);
+
+  li {
+    @include ug-rhythm-margin-bottom(0.5);
+  }
+
+  // Nested lists
+  ul, ol {
+    @include ug-rhythm-margin-top(0.5);
+    margin-bottom: 0;
+  }
+
+  // ==============================
+  // Modifiers
+  // ==============================
+
+  // No bullets, no padding
+  &--unstyled {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  // Horizontal list
+  &--inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ug-leading);
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      margin-bottom: 0;
+    }
+  }
+
+  // Bordered items (vertical)
+  &--bordered {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      padding: calc(var(--ug-leading) * 0.5) 0;
+      border-bottom: 1px solid $ug-light-gray;
+      margin-bottom: 0;
+
+      &:first-child {
+        border-top: 1px solid $ug-light-gray;
+      }
+    }
+  }
+
+  // Less spacing
+  &--compact {
+    li {
+      margin-bottom: 0;
+    }
+  }
+}
