@@ -88,14 +88,15 @@ const nav = [
   </header>
 
   <div class="ug-sidebar-layout ug-sidebar-layout--bordered ug-sidebar-layout--sticky">
-    <aside class="ug-sidebar-layout__sidebar">
+    <aside class="ug-sidebar-layout__sidebar" id="docs-sidebar">
       <nav style="padding-top: var(--ug-leading)">
         {nav.map(section => (
           <div class="docs-sidebar__section">
             <p class="docs-sidebar__heading">{section.heading}</p>
             {section.items.map(item => (
               <a class={`docs-sidebar__link ${activeNav === item.label ? 'docs-sidebar__link--active' : ''}`}
-                 href={item.href}>{item.label}</a>
+                 href={item.href}
+                 id={activeNav === item.label ? 'docs-sidebar-active' : undefined}>{item.label}</a>
             ))}
           </div>
         ))}
@@ -115,6 +116,15 @@ const nav = [
   </div>
 
   <script is:inline>
+    // Scroll sidebar to active item
+    (function() {
+      var active = document.getElementById('docs-sidebar-active');
+      var sidebar = document.getElementById('docs-sidebar');
+      if (active && sidebar) {
+        sidebar.scrollTop = active.offsetTop - sidebar.offsetTop;
+      }
+    })();
+
     // Auto-generate table of contents from h2 headings
     (function() {
       function buildToc() {
