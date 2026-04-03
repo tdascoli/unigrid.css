@@ -1,0 +1,247 @@
+/* Configurator-specific styles */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cfg-bg: #f8f8f8;
+  --cfg-panel: #fff;
+  --cfg-border: #e0e0e0;
+  --cfg-text: #1a1a1a;
+  --cfg-muted: #666;
+  --cfg-accent: #1a1a1a;
+}
+
+body {
+  font-family: Inter, -apple-system, sans-serif;
+  color: var(--cfg-text);
+  background: var(--cfg-bg);
+  line-height: 1.5;
+}
+
+.cfg-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar Panel */
+.cfg-sidebar {
+  width: 360px;
+  flex-shrink: 0;
+  background: var(--cfg-panel);
+  border-right: 1px solid var(--cfg-border);
+  overflow-y: auto;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+.cfg-sidebar__header {
+  padding: 1.5rem;
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.cfg-sidebar__header h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.cfg-sidebar__header p {
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+.cfg-sidebar__body {
+  padding: 1rem 1.5rem;
+}
+
+/* Section */
+.cfg-section {
+  margin-bottom: 1.5rem;
+}
+
+.cfg-section__title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--cfg-muted);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--cfg-border);
+}
+
+/* Field */
+.cfg-field {
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.cfg-field--stack {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.cfg-field label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.cfg-field input[type="color"] {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--cfg-border);
+  padding: 0;
+  cursor: pointer;
+  background: none;
+}
+
+.cfg-field input[type="range"] {
+  flex: 1;
+  max-width: 120px;
+}
+
+.cfg-field input[type="text"],
+.cfg-field select {
+  flex: 1;
+  max-width: 200px;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.8rem;
+  border: 1px solid var(--cfg-border);
+  font-family: inherit;
+}
+
+.cfg-field .cfg-value {
+  font-size: 0.7rem;
+  color: var(--cfg-muted);
+  min-width: 3rem;
+  text-align: right;
+  font-family: 'SF Mono', monospace;
+}
+
+/* Checkbox grid */
+.cfg-checks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.25rem;
+}
+
+.cfg-check {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.cfg-check input {
+  accent-color: var(--cfg-accent);
+}
+
+/* Actions */
+.cfg-actions {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--cfg-border);
+  position: sticky;
+  bottom: 0;
+  background: var(--cfg-panel);
+}
+
+.cfg-btn {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-family: inherit;
+  border: 2px solid #1a1a1a;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s;
+}
+
+.cfg-btn--primary {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.cfg-btn--primary:hover {
+  background: #333;
+}
+
+.cfg-btn--secondary {
+  background: #fff;
+  color: #1a1a1a;
+}
+
+.cfg-btn--secondary:hover {
+  background: #f5f2ed;
+}
+
+/* Preview area */
+.cfg-preview {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.cfg-preview__frame {
+  background: #fff;
+  border: 1px solid var(--cfg-border);
+  min-height: 600px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.cfg-preview__label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--cfg-muted);
+  margin-bottom: 0.5rem;
+}
+
+/* Output panel */
+.cfg-output {
+  margin-top: 2rem;
+}
+
+.cfg-output__code {
+  background: #1a1a1a;
+  color: #e8e5e0;
+  padding: 1rem;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  overflow-x: auto;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Status */
+.cfg-status {
+  font-size: 0.75rem;
+  padding: 0.5rem 1.5rem;
+  color: var(--cfg-muted);
+}
+
+.cfg-status--error {
+  color: #c1272d;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cfg-layout {
+    flex-direction: column;
+  }
+  .cfg-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+  }
+}

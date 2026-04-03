@@ -19,13 +19,15 @@
   .ug-#{$heading} {
     @include ug-rhythm-font-size(list.nth($props, 1));
     @include ug-rhythm-line-height(list.nth($props, 2));
-    @include ug-font-weight("bold");
     @include ug-rhythm-margin-bottom(0.5);
     margin-top: 0;
 
     @if $heading == "h1" {
       @include ug-font-weight("extra-bold");
       letter-spacing: -0.02em;
+    }
+    @else {
+      @include ug-font-weight("bold");
     }
   }
 }

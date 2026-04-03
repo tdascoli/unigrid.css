@@ -8,6 +8,11 @@
 @use "variables" as *;
 @use "mixins" as *;
 
+// Inter font (loaded via CSS @import when $ug-font-import is true)
+@if $ug-font-import {
+  @import url("https://rsms.me/inter/inter.css");
+}
+
 *,
 *::before,
 *::after {
@@ -18,7 +23,7 @@
 
 :root {
   font-family: $ug-font-family;
-  font-feature-settings: 'liga' 1, 'calt' 1, 'ss07' 1; /* fix for Chrome */
+  font-feature-settings: $ug-font-feature-settings;
 }
 @supports (font-variation-settings: normal) {
   :root { font-family: $ug-font-family-variable; }
@@ -40,7 +45,7 @@ html {
 
 body {
   font-family: $ug-font-family;
-  font-feature-settings: 'liga' 1, 'calt' 1, 'ss07' 1;
+  font-feature-settings: $ug-font-feature-settings;
   @include ug-font-size("base");
   @include ug-font-weight("regular");
   color: $ug-black;

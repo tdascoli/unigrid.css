@@ -3,6 +3,8 @@ dev/dist/
 docs/dist/
 docs/node_modules/
 docs/.astro/
+configurator/dist/
+configurator/node_modules/
 .DS_Store
 *.map
 /.idea/
