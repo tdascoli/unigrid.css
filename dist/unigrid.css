@@ -2798,6 +2798,7 @@ body.ug-modal-open {
 .ug-list ul, .ug-list ol {
   margin-top: calc(var(--ug-leading) * 0.5);
   margin-bottom: 0;
+  padding-left: var(--ug-leading);
 }
 .ug-list--unstyled {
   list-style: none;

@@ -23,6 +23,7 @@
   ul, ol {
     @include ug-rhythm-margin-top(0.5);
     margin-bottom: 0;
+    padding-left: var(--ug-leading);
   }
 
   // ==============================
