@@ -8,7 +8,7 @@
 
 :root {
   font-family: Inter, sans-serif;
-  font-feature-settings: "liga" 1, "calt" 1, "ss07" 1; /* fix for Chrome */
+  font-feature-settings: "liga" 1, "calt" 1, "ss07" 1;
 }
 
 @supports (font-variation-settings: normal) {
@@ -2719,7 +2719,7 @@ body.ug-modal-open {
   border-collapse: collapse;
   border-spacing: 0;
   margin-bottom: calc(var(--ug-leading) * 1);
-  font-feature-settings: "tnum" 1;
+  font-feature-settings: "liga" 1, "calt" 1, "ss07" 1, "case" 1, "tnum" 1, "lnum" 1;
 }
 .ug-table th {
   font-size: 0.875rem;

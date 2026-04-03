@@ -15,7 +15,7 @@
   border-spacing: 0;
   @include ug-rhythm-margin-bottom(1);
 
-  font-feature-settings: 'tnum' 1;
+  font-feature-settings: $ug-font-feature-settings-table;
 
   // ---- Header ----
   th {
