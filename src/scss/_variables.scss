@@ -71,6 +71,7 @@ $ug-colors: (
 // Current NPS standard uses Frutiger and NPS Rawlinson.
 $ug-font-family: Inter, sans-serif !default;
 $ug-font-family-variable: InterVariable, sans-serif !default;
+$ug-font-import: true !default; // Set to false if you load Inter yourself
 $ug-font-feature-settings: 'liga' 1, 'calt' 1, 'ss07' 1 !default;
 $ug-font-feature-settings-table: 'liga' 1, 'calt' 1, 'ss07' 1, 'case' 1, 'tnum' 1, 'lnum' 1 !default;
 
