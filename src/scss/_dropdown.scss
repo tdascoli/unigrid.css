@@ -68,6 +68,7 @@
     padding: calc(var(--ug-leading) * 0.25) 0;
     background-color: $ug-white;
     border: 1px solid $ug-light-gray;
+    border-radius: $ug-border-radius;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     list-style: none;
     margin: 0;

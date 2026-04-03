@@ -51,6 +51,7 @@
   background-color: $ug-warm-gray;
   @include ug-rhythm-padding(1, 1);
   border-left: 3px solid $ug-black;
+  border-radius: $ug-border-radius;
 
   &--dark {
     background-color: $ug-black;

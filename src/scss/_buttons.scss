@@ -26,6 +26,7 @@
   white-space: nowrap;
   cursor: pointer;
   border: 2px solid $ug-black;
+  border-radius: $ug-border-radius;
   background-color: $ug-black;
   color: $ug-white;
   transition: background-color 0.15s, border-color 0.15s, color 0.15s;

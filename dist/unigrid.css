@@ -1825,7 +1825,7 @@ h6,
 .ug-prose :not(pre) > code {
   background-color: #f5f2ed;
   padding: 0.15em 0.4em;
-  border-radius: 2px;
+  border-radius: 0;
 }
 .ug-prose table {
   border-collapse: collapse;
@@ -1973,6 +1973,7 @@ h6,
   white-space: nowrap;
   cursor: pointer;
   border: 2px solid #1a1a1a;
+  border-radius: 0;
   background-color: #1a1a1a;
   color: #ffffff;
   transition: background-color 0.15s, border-color 0.15s, color 0.15s;
@@ -2175,6 +2176,7 @@ h6,
   padding: calc(var(--ug-leading) * 0.25) 0;
   background-color: #ffffff;
   border: 1px solid #e8e5e0;
+  border-radius: 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   list-style: none;
   margin: 0;
@@ -2316,7 +2318,7 @@ h6,
 .ug-tabs--pills .ug-tabs__link {
   border-bottom: none;
   margin-bottom: 0;
-  border-radius: 2px;
+  border-radius: 0;
 }
 .ug-tabs--pills .ug-tabs__link:hover {
   background-color: #f5f2ed;
@@ -2632,6 +2634,7 @@ h6,
   max-width: 40rem;
   background-color: #ffffff;
   border: none;
+  border-radius: 0;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
 }
 .ug-modal__header {
@@ -2835,6 +2838,7 @@ body.ug-modal-open {
   flex-direction: column;
   background-color: #ffffff;
   border: 1px solid #e8e5e0;
+  border-radius: 0;
   overflow: hidden;
 }
 .ug-card__image {
@@ -3088,6 +3092,7 @@ body.ug-modal-open {
   color: #1a1a1a;
   background-color: #ffffff;
   border: 1px solid #e8e5e0;
+  border-radius: 0;
   transition: border-color 0.15s;
 }
 .ug-form__input::placeholder {
@@ -3115,6 +3120,7 @@ body.ug-modal-open {
   color: #1a1a1a;
   background-color: #ffffff;
   border: 1px solid #e8e5e0;
+  border-radius: 0;
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='2' fill='none'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
@@ -3137,6 +3143,7 @@ body.ug-modal-open {
   color: #1a1a1a;
   background-color: #ffffff;
   border: 1px solid #e8e5e0;
+  border-radius: 0;
   resize: vertical;
   transition: border-color 0.15s;
 }
@@ -3232,6 +3239,7 @@ body.ug-modal-open {
   background-color: #f5f2ed;
   padding: calc(var(--ug-leading) * 1) calc(var(--ug-leading) * 1);
   border-left: 3px solid #1a1a1a;
+  border-radius: 0;
 }
 .ug-infobox--dark {
   background-color: #1a1a1a;

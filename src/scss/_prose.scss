@@ -227,7 +227,7 @@
   :not(pre) > code {
     background-color: $ug-warm-gray;
     padding: 0.15em 0.4em;
-    border-radius: 2px;
+    border-radius: $ug-border-radius;
   }
 
   // ---- Table ----
