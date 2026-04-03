@@ -1,0 +1,182 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import CodeExample from '../../../components/CodeExample.astro';
+import PropsTable from '../../../components/PropsTable.astro';
+---
+
+<DocsLayout title="Modal" activeNav="Modal">
+
+<h1>Modal</h1>
+<p class="ug-lead">Dialog overlays with backdrop, close button, and body scroll lock. Sizes from small confirmation dialogs to fullscreen panels.</p>
+
+<h2>Default Modal</h2>
+
+<div class="ug-mb--3">
+  <button class="ug-btn" data-ug-modal-open="docs-modal-default">Open Modal</button>
+</div>
+
+<div class="ug-modal" id="docs-modal-default">
+  <div class="ug-modal__backdrop" data-ug-modal-close></div>
+  <div class="ug-modal__dialog">
+    <div class="ug-modal__header">
+      <h3 class="ug-modal__title">Default Modal</h3>
+      <button class="ug-modal__close" data-ug-modal-close>&times;</button>
+    </div>
+    <div class="ug-modal__body">
+      <p class="ug-body">This is a default modal dialog. Click the backdrop, the &times; button, or press Escape to close.</p>
+    </div>
+    <div class="ug-modal__footer">
+      <button class="ug-btn ug-btn--ghost" data-ug-modal-close>Cancel</button>
+      <button class="ug-btn" data-ug-modal-close>Save</button>
+    </div>
+  </div>
+</div>
+
+<CodeExample title="HTML structure" code={`<button data-ug-modal-open="my-modal">Open Modal</button>
+
+<div class="ug-modal" id="my-modal">
+  <div class="ug-modal__backdrop" data-ug-modal-close></div>
+  <div class="ug-modal__dialog">
+    <div class="ug-modal__header">
+      <h3 class="ug-modal__title">Title</h3>
+      <button class="ug-modal__close" data-ug-modal-close>&times;</button>
+    </div>
+    <div class="ug-modal__body">
+      <p>Content here...</p>
+    </div>
+    <div class="ug-modal__footer">
+      <button class="ug-btn ug-btn--ghost" data-ug-modal-close>Cancel</button>
+      <button class="ug-btn">Save</button>
+    </div>
+  </div>
+</div>`} />
+
+<h2>Sizes</h2>
+
+<div class="ug-mb--3" style="display:flex;flex-wrap:wrap;gap:0.5rem">
+  <button class="ug-btn ug-btn--outline" data-ug-modal-open="docs-modal-sm">Small (--sm)</button>
+  <button class="ug-btn ug-btn--outline" data-ug-modal-open="docs-modal-lg">Large (--lg)</button>
+</div>
+
+<div class="ug-modal ug-modal--sm ug-modal--centered" id="docs-modal-sm">
+  <div class="ug-modal__backdrop" data-ug-modal-close></div>
+  <div class="ug-modal__dialog">
+    <div class="ug-modal__header">
+      <h3 class="ug-modal__title">Small Modal</h3>
+      <button class="ug-modal__close" data-ug-modal-close>&times;</button>
+    </div>
+    <div class="ug-modal__body">
+      <p class="ug-body--sm">Compact dialog for quick actions (max-width: 24rem).</p>
+    </div>
+    <div class="ug-modal__footer">
+      <button class="ug-btn ug-btn--sm" data-ug-modal-close>OK</button>
+    </div>
+  </div>
+</div>
+
+<div class="ug-modal ug-modal--lg" id="docs-modal-lg">
+  <div class="ug-modal__backdrop" data-ug-modal-close></div>
+  <div class="ug-modal__dialog">
+    <div class="ug-modal__header">
+      <h3 class="ug-modal__title">Large Modal</h3>
+      <button class="ug-modal__close" data-ug-modal-close>&times;</button>
+    </div>
+    <div class="ug-modal__body">
+      <p class="ug-body">Wider dialog for complex content (max-width: 56rem).</p>
+      <div class="ug-grid ug-mt--3">
+        <div class="ug-col--6"><div class="ug-infobox"><p class="ug-infobox__title">Left Column</p><p class="ug-body--sm">Grid layout inside a modal.</p></div></div>
+        <div class="ug-col--6"><div class="ug-infobox"><p class="ug-infobox__title">Right Column</p><p class="ug-body--sm">Side-by-side content.</p></div></div>
+      </div>
+    </div>
+    <div class="ug-modal__footer">
+      <button class="ug-btn ug-btn--ghost" data-ug-modal-close>Cancel</button>
+      <button class="ug-btn">Submit</button>
+    </div>
+  </div>
+</div>
+
+<table class="ug-table ug-table--striped ug-mt--3">
+  <thead><tr><th>Modifier</th><th>Max Width</th></tr></thead>
+  <tbody>
+    <tr><td><code>--sm</code></td><td>24rem</td></tr>
+    <tr><td>(default)</td><td>40rem</td></tr>
+    <tr><td><code>--lg</code></td><td>56rem</td></tr>
+    <tr><td><code>--full</code></td><td>Fullscreen</td></tr>
+  </tbody>
+</table>
+
+<h2>Centered</h2>
+<p class="ug-body">Add <code>--centered</code> to vertically center the dialog.</p>
+
+<div class="ug-mb--3">
+  <button class="ug-btn ug-btn--outline" data-ug-modal-open="docs-modal-centered">Centered Modal</button>
+</div>
+
+<div class="ug-modal ug-modal--centered" id="docs-modal-centered">
+  <div class="ug-modal__backdrop" data-ug-modal-close></div>
+  <div class="ug-modal__dialog">
+    <div class="ug-modal__header">
+      <h3 class="ug-modal__title">Centered</h3>
+      <button class="ug-modal__close" data-ug-modal-close>&times;</button>
+    </div>
+    <div class="ug-modal__body">
+      <p class="ug-body">Vertically centered in the viewport.</p>
+    </div>
+    <div class="ug-modal__footer">
+      <button class="ug-btn" data-ug-modal-close>Close</button>
+    </div>
+  </div>
+</div>
+
+<h2>Confirm Dialog</h2>
+
+<div class="ug-mb--3">
+  <button class="ug-btn ug-btn--red" data-ug-modal-open="docs-modal-confirm">Delete Item</button>
+</div>
+
+<div class="ug-modal ug-modal--sm ug-modal--centered" id="docs-modal-confirm">
+  <div class="ug-modal__backdrop" data-ug-modal-close></div>
+  <div class="ug-modal__dialog">
+    <div class="ug-modal__header">
+      <h3 class="ug-modal__title">Delete Item?</h3>
+      <button class="ug-modal__close" data-ug-modal-close>&times;</button>
+    </div>
+    <div class="ug-modal__body">
+      <p class="ug-body--sm">This action cannot be undone. Are you sure?</p>
+    </div>
+    <div class="ug-modal__footer">
+      <button class="ug-btn ug-btn--ghost" data-ug-modal-close>Cancel</button>
+      <button class="ug-btn ug-btn--red" data-ug-modal-close>Delete</button>
+    </div>
+  </div>
+</div>
+
+<h2>JavaScript</h2>
+<p class="ug-body">Include <code>unigrid.min.js</code> (or <code>modal.js</code> individually). Interactions:</p>
+<ul>
+  <li><code>data-ug-modal-open="id"</code> — opens the modal with matching ID</li>
+  <li><code>data-ug-modal-close</code> — closes the closest modal (on backdrop, close button, or any button)</li>
+  <li><strong>Escape</strong> key closes all modals</li>
+  <li><strong>Body scroll</strong> is locked while a modal is open</li>
+</ul>
+
+<h2>Class Reference</h2>
+<PropsTable items={[
+  { class: '.ug-modal', description: 'Modal wrapper (hidden by default)' },
+  { class: '.ug-modal--open', description: 'Show modal (toggled by JS)' },
+  { class: '.ug-modal__backdrop', description: 'Semi-transparent overlay' },
+  { class: '.ug-modal__dialog', description: 'Dialog container' },
+  { class: '.ug-modal__header', description: 'Header with title + close' },
+  { class: '.ug-modal__title', description: 'Dialog title' },
+  { class: '.ug-modal__close', description: 'Close button' },
+  { class: '.ug-modal__body', description: 'Content area' },
+  { class: '.ug-modal__footer', description: 'Footer with action buttons' },
+  { class: '.ug-modal--sm', description: 'Small (24rem)' },
+  { class: '.ug-modal--lg', description: 'Large (56rem)' },
+  { class: '.ug-modal--full', description: 'Fullscreen' },
+  { class: '.ug-modal--centered', description: 'Vertically centered' },
+  { class: 'data-ug-modal-open="id"', description: 'Open trigger' },
+  { class: 'data-ug-modal-close', description: 'Close trigger' },
+]} />
+
+</DocsLayout>

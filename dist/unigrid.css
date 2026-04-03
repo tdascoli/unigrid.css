@@ -2607,6 +2607,113 @@ h6,
   font-size: 0.75rem;
 }
 
+.ug-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  align-items: flex-start;
+  justify-content: center;
+  padding: calc(var(--ug-leading) * 3) var(--ug-leading);
+  overflow-y: auto;
+}
+.ug-modal--open {
+  display: flex;
+}
+.ug-modal__backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+.ug-modal__dialog {
+  position: relative;
+  width: 100%;
+  max-width: 40rem;
+  background-color: #ffffff;
+  border: none;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+.ug-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(var(--ug-leading) * 0.5);
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+.ug-modal__header--light {
+  background-color: #ffffff;
+  color: #1a1a1a;
+  border-bottom: 1px solid #e8e5e0;
+}
+.ug-modal__header--light .ug-modal__close {
+  color: #666666;
+}
+.ug-modal__header--light .ug-modal__close:hover {
+  color: #1a1a1a;
+}
+.ug-modal__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: calc(var(--ug-leading) * 1);
+  margin: 0;
+}
+.ug-modal__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ug-leading);
+  height: var(--ug-leading);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.5rem;
+  line-height: calc(var(--ug-leading) * 1);
+  transition: color 0.15s;
+  padding: 0;
+  font-family: inherit;
+  margin-left: calc(var(--ug-leading) * 0.5);
+  flex-shrink: 0;
+}
+.ug-modal__close:hover {
+  color: #ffffff;
+}
+.ug-modal__body {
+  padding: calc(var(--ug-leading) * 0.5);
+  line-height: calc(var(--ug-leading) * 1);
+}
+.ug-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: calc(var(--ug-leading) * 0.5);
+  padding: calc(var(--ug-leading) * 0.5);
+  border-top: 1px solid #e8e5e0;
+}
+.ug-modal--sm .ug-modal__dialog {
+  max-width: 24rem;
+}
+.ug-modal--lg .ug-modal__dialog {
+  max-width: 56rem;
+}
+.ug-modal--full .ug-modal__dialog {
+  max-width: none;
+  margin: 0;
+  min-height: 100vh;
+}
+.ug-modal--full {
+  padding: 0;
+}
+.ug-modal--centered {
+  align-items: center;
+}
+
+body.ug-modal-open {
+  overflow: hidden;
+}
+
 .ug-table {
   width: 100%;
   border-collapse: collapse;

@@ -1,4 +1,6 @@
 ---
+import Footer from '../components/Footer.astro';
+
 interface Props {
   title: string;
   description?: string;
@@ -37,6 +39,7 @@ const nav = [
     { label: 'Accordion', href: `${base}docs/components/accordion` },
     { label: 'Pagination', href: `${base}docs/components/pagination` },
     { label: 'Sidebar', href: `${base}docs/components/sidebar` },
+    { label: 'Modal', href: `${base}docs/components/modal` },
     { label: 'Scrollspy', href: `${base}docs/components/scrollspy` },
     { label: 'Divider', href: `${base}docs/components/divider` },
     { label: 'Infobox', href: `${base}docs/components/infobox` },
@@ -174,17 +177,7 @@ const nav = [
     })();
   </script>
 
-  <footer class="ug-footer ug-footer--compact">
-    <div class="ug-footer__inner">
-      <p class="ug-footer__text">Inspired by Massimo Vignelli's Unigrid system for the National Park Service</p>
-      <nav>
-        <ul class="ug-footer__nav">
-          <li><a class="ug-footer__link" href="https://github.com/tdascoli/unigrid.css">GitHub</a></li>
-          <li><a class="ug-footer__link" href={`${base}docs/getting-started`}>Docs</a></li>
-        </ul>
-      </nav>
-    </div>
-  </footer>
+  <Footer />
 
   <script is:inline src={`${base}unigrid.min.js`}></script>
 

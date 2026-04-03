@@ -1,0 +1,158 @@
+// ==========================================================================
+// Unigrid CSS Framework — Modal (BEM)
+//
+// Dialog overlay toggled via .ug-modal--open class (set by modal.js).
+// Supports sizes, scrollable content, and close button.
+//
+// Block: .ug-modal
+// Elements: __backdrop, __dialog, __header, __title, __close, __body, __footer
+// Modifiers: --open, --sm, --lg, --full, --centered
+// ==========================================================================
+
+@use "variables" as *;
+@use "mixins" as *;
+
+.ug-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  align-items: flex-start;
+  justify-content: center;
+  padding: calc(var(--ug-leading) * 3) var(--ug-leading);
+  overflow-y: auto;
+
+  // ---- Open State ----
+  &--open {
+    display: flex;
+  }
+
+  // ---- Backdrop ----
+  &__backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+
+  // ---- Dialog ----
+  &__dialog {
+    position: relative;
+    width: 100%;
+    max-width: 40rem;
+    background-color: $ug-white;
+    border: none;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  }
+
+  // ---- Header ----
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: calc(var(--ug-leading) * 0.5);
+    background-color: $ug-black;
+    color: $ug-white;
+
+    &--light {
+      background-color: $ug-white;
+      color: $ug-black;
+      border-bottom: 1px solid $ug-light-gray;
+
+      .ug-modal__close {
+        color: $ug-medium-gray;
+
+        &:hover {
+          color: $ug-black;
+        }
+      }
+    }
+  }
+
+  // ---- Title ----
+  &__title {
+    @include ug-font-size("lg");
+    @include ug-font-weight("bold");
+    @include ug-rhythm-line-height(1);
+    margin: 0;
+  }
+
+  // ---- Close Button ----
+  &__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--ug-leading);
+    height: var(--ug-leading);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.7);
+    @include ug-font-size("xl");
+    @include ug-rhythm-line-height(1);
+    transition: color 0.15s;
+    padding: 0;
+    font-family: inherit;
+    margin-left: calc(var(--ug-leading) * 0.5);
+    flex-shrink: 0;
+
+    &:hover {
+      color: $ug-white;
+    }
+  }
+
+  // ---- Body ----
+  &__body {
+    padding: calc(var(--ug-leading) * 0.5);
+    @include ug-rhythm-line-height(1);
+  }
+
+  // ---- Footer ----
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: calc(var(--ug-leading) * 0.5);
+    padding: calc(var(--ug-leading) * 0.5);
+    border-top: 1px solid $ug-light-gray;
+  }
+
+  // ==============================
+  // Size Modifiers
+  // ==============================
+
+  &--sm &__dialog {
+    max-width: 24rem;
+  }
+
+  &--lg &__dialog {
+    max-width: 56rem;
+  }
+
+  &--full &__dialog {
+    max-width: none;
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  &--full {
+    padding: 0;
+  }
+
+  // ==============================
+  // Centered
+  // ==============================
+
+  &--centered {
+    align-items: center;
+  }
+
+  // ==============================
+  // Body scroll lock
+  // ==============================
+}
+
+// When modal is open, prevent body scroll
+body.ug-modal-open {
+  overflow: hidden;
+}
