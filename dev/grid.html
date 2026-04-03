@@ -166,8 +166,16 @@
       }
     ">H-Grid: Off</button>
     <button class="dev-toolbar__btn" onclick="
-      document.body.classList.toggle('dev-grid-v');
-      this.textContent = document.body.classList.contains('dev-grid-v') ? 'V-Grid: On' : 'V-Grid: Off';
+      var ov = document.getElementById('dev-vgrid');
+      if (ov) { ov.remove(); this.textContent = 'V-Grid: Off'; }
+      else {
+        var d = document.createElement('div');
+        d.id = 'dev-vgrid';
+        d.className = 'dev-grid-v-overlay';
+        for (var i = 0; i < 12; i++) d.appendChild(document.createElement('div'));
+        document.body.appendChild(d);
+        this.textContent = 'V-Grid: On';
+      }
     ">V-Grid: Off</button>
   </div>
 

@@ -63,23 +63,48 @@ body.dev-grid-double {
   background-size: 100% var(--ug-leading);
 }
 
-// Vertical: 12-column overlay (independent, combinable with horizontal)
+// Vertical: 12-column overlay using CSS grid (matches .ug-grid)
 body.dev-grid-v::after {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 9999;
-  background-image: repeating-linear-gradient(
-    to right,
-    hsla(350, 100%, 50%, 0.06) 0,
-    hsla(350, 100%, 50%, 0.06) calc((100% - var(--ug-leading) * 3) / 12),
-    transparent calc((100% - var(--ug-leading) * 3) / 12),
-    transparent calc((100% - var(--ug-leading) * 3) / 12 + var(--ug-leading))
-  );
-  background-position: left calc(var(--ug-leading) * 1.5) top;
-  background-size: calc(100% - var(--ug-leading) * 3) 100%;
-  background-repeat: no-repeat;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--ug-leading);
+  padding: 0 calc(var(--ug-leading) * 1.5);
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      hsla(350, 80%, 50%, 0.07) 0,
+      hsla(350, 80%, 50%, 0.07) 100%
+    );
+  background-size: calc((100% - var(--ug-leading) * 3 - var(--ug-leading) * 11) / 12) 100%;
+  background-origin: content-box;
+  background-clip: content-box;
+}
+
+// Simpler approach: use child spans via JS
+body.dev-grid-v {
+  &::after {
+    display: none;
+  }
+}
+
+.dev-grid-v-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--ug-leading);
+  padding: 0 calc(var(--ug-leading) * 1.5);
+
+  > div {
+    background: hsla(350, 80%, 50%, 0.06);
+  }
 }
 
 // Global margin/padding debug (applied to body)
