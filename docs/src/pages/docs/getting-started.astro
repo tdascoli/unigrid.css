@@ -51,6 +51,7 @@ import CodeExample from '../../components/CodeExample.astro';
 $ug-black: #222;
 $ug-font-family: "Frutiger", sans-serif;
 $ug-base-leading: 1.5;
+$ug-border-radius: 0.25rem;
 
 @use "unigrid.css/src/scss/unigrid" as *;</pre>
 
@@ -67,8 +68,28 @@ $ug-base-leading: 1.5;
     <tr><td><code>$ug-base-leading-desktop</code></td><td>1.7</td><td>Desktop line-height multiplier</td></tr>
     <tr><td><code>$ug-prose-max-width</code></td><td>35rem</td><td>Optimal reading measure</td></tr>
     <tr><td><code>$ug-container-max-width</code></td><td>1280px</td><td>Container max-width</td></tr>
+    <tr><td><code>$ug-border-radius</code></td><td>0</td><td>Border radius for buttons, inputs, cards, modals, dropdowns</td></tr>
+    <tr><td><code>$ug-border-radius-sm</code></td><td>inherits</td><td>Smaller border radius</td></tr>
+    <tr><td><code>$ug-border-radius-lg</code></td><td>inherits</td><td>Larger border radius</td></tr>
+    <tr><td><code>$ug-border-radius-pill</code></td><td>9999px</td><td>Fully rounded (pill shape)</td></tr>
   </tbody>
 </table>
+
+<h3 class="ug-mt--5">Border Radius</h3>
+<p class="ug-body">By default, all components have sharp corners (0 border-radius), true to the Unigrid style. Override <code>$ug-border-radius</code> for rounded UI:</p>
+
+<pre class="docs-install__code">// Sharp corners (default)
+$ug-border-radius: 0;
+
+// Subtle rounding
+$ug-border-radius: 0.25rem;
+
+// More rounded
+$ug-border-radius: 0.5rem;
+
+@use "unigrid.css/src/scss/unigrid" as *;</pre>
+
+<p class="ug-body ug-mt--3">Applied to: buttons, inputs, select, textarea, cards, modal dialog, dropdown menu, tabs pills, infobox, prose inline code.</p>
 
 <hr class="ug-divider">
 
