@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unigrid.css — Configurator</title>
+  <link rel="preconnect" href="https://rsms.me/">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+
+<div class="cfg-layout">
+
+  <!-- Sidebar: Configuration Panel -->
+  <aside class="cfg-sidebar">
+    <div class="cfg-sidebar__header">
+      <h1>Unigrid Configurator</h1>
+      <p>Customize and download your build</p>
+    </div>
+
+    <div class="cfg-sidebar__body">
+
+      <!-- Colors -->
+      <div class="cfg-section">
+        <p class="cfg-section__title">Colors</p>
+        <div class="cfg-field"><label>Black</label><input type="color" data-cfg="colors.black" value="#1a1a1a"></div>
+        <div class="cfg-field"><label>Red</label><input type="color" data-cfg="colors.red" value="#c1272d"></div>
+        <div class="cfg-field"><label>Brown</label><input type="color" data-cfg="colors.brown" value="#4a3728"></div>
+        <div class="cfg-field"><label>Green</label><input type="color" data-cfg="colors.green" value="#2d5a27"></div>
+        <div class="cfg-field"><label>Blue</label><input type="color" data-cfg="colors.blue" value="#274a5a"></div>
+        <div class="cfg-field"><label>Warm Gray</label><input type="color" data-cfg="colors.warmGray" value="#f5f2ed"></div>
+        <div class="cfg-field"><label>Light Gray</label><input type="color" data-cfg="colors.lightGray" value="#e8e5e0"></div>
+      </div>
+
+      <!-- Typography -->
+      <div class="cfg-section">
+        <p class="cfg-section__title">Typography</p>
+        <div class="cfg-field">
+          <label>Font Family</label>
+          <select data-cfg="fontFamily">
+            <option value="Inter, sans-serif" selected>Inter</option>
+            <option value="'Helvetica Neue', Helvetica, Arial, sans-serif">Helvetica</option>
+            <option value="Georgia, 'Times New Roman', serif">Georgia</option>
+            <option value="system-ui, sans-serif">System UI</option>
+            <option value="'Frutiger', sans-serif">Frutiger</option>
+          </select>
+        </div>
+        <div class="cfg-field">
+          <label>Base Size</label>
+          <input type="range" data-cfg="baseFontSize" min="87.5" max="125" step="6.25" value="100">
+          <span class="cfg-value" data-cfg-display="baseFontSize">100%</span>
+        </div>
+        <div class="cfg-field">
+          <label>Desktop Size</label>
+          <input type="range" data-cfg="baseFontSizeDesktop" min="100" max="137.5" step="6.25" value="112.5">
+          <span class="cfg-value" data-cfg-display="baseFontSizeDesktop">112.5%</span>
+        </div>
+      </div>
+
+      <!-- Border Radius -->
+      <div class="cfg-section">
+        <p class="cfg-section__title">Border Radius</p>
+        <div class="cfg-field">
+          <label>Radius</label>
+          <input type="range" data-cfg="borderRadius" min="0" max="1" step="0.0625" value="0">
+          <span class="cfg-value" data-cfg-display="borderRadius">0</span>
+        </div>
+      </div>
+
+      <!-- CSS Components -->
+      <div class="cfg-section">
+        <p class="cfg-section__title">CSS Components</p>
+        <div class="cfg-checks">
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="reset" checked>Reset</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="container" checked>Container</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="grid" checked>Grid</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="formats" checked>Formats</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="broadside" checked>Broadside</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="header" checked>Header</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="navbar" checked>Navbar</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="footer" checked>Footer</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="hero" checked>Hero</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="section" checked>Section</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="typography" checked>Typography</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="prose" checked>Prose</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="buttons" checked>Buttons</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="dropdown" checked>Dropdown</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="tabs" checked>Tabs</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="accordion" checked>Accordion</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="table" checked>Table</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="list" checked>List</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="card" checked>Card</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="sidebar" checked>Sidebar</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="forms" checked>Forms</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="modal" checked>Modal</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="pagination" checked>Pagination</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="scrollspy" checked>Scrollspy</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="modules" checked>Modules</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-comp="utilities" checked>Utilities</label>
+        </div>
+      </div>
+
+      <!-- JS Components -->
+      <div class="cfg-section">
+        <p class="cfg-section__title">JavaScript</p>
+        <div class="cfg-checks">
+          <label class="cfg-check"><input type="checkbox" data-cfg-js="dropdown" checked>Dropdown</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-js="tabs" checked>Tabs</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-js="scrollspy" checked>Scrollspy</label>
+          <label class="cfg-check"><input type="checkbox" data-cfg-js="modal" checked>Modal</label>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="cfg-actions">
+      <button class="cfg-btn cfg-btn--primary" id="btn-download-css">Download CSS</button>
+      <button class="cfg-btn cfg-btn--secondary" id="btn-download-js">Download JS</button>
+    </div>
+    <div class="cfg-status" id="status"></div>
+  </aside>
+
+  <!-- Preview Area -->
+  <main class="cfg-preview">
+    <p class="cfg-preview__label">Live Preview</p>
+    <div class="cfg-preview__frame" id="preview">
+      <div id="preview-styles"></div>
+      <div style="padding:0">
+
+        <!-- Header -->
+        <div id="p-header" style="background:var(--p-black,#1a1a1a);color:#fff;padding:1rem 1.5rem;display:flex;align-items:flex-start;gap:1rem">
+          <div><span style="font-size:1.5rem;font-weight:900;font-family:var(--p-font,Inter,sans-serif)">Yellowstone</span><br><span style="font-size:0.875rem;opacity:0.7">National Park</span></div>
+        </div>
+
+        <div style="padding:1.5rem">
+
+        <!-- Buttons -->
+        <p style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:#666;margin-bottom:0.5rem">Buttons</p>
+        <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem">
+          <button id="p-btn" style="background:var(--p-black,#1a1a1a);color:#fff;border:2px solid var(--p-black,#1a1a1a);padding:0.4rem 1rem;font-weight:700;font-size:0.875rem;font-family:var(--p-font,Inter,sans-serif);cursor:pointer;border-radius:var(--p-radius,0)">Default</button>
+          <button style="background:var(--p-red,#c1272d);color:#fff;border:2px solid var(--p-red,#c1272d);padding:0.4rem 1rem;font-weight:700;font-size:0.875rem;font-family:var(--p-font,Inter,sans-serif);cursor:pointer;border-radius:var(--p-radius,0)">Red</button>
+          <button style="background:var(--p-blue,#274a5a);color:#fff;border:2px solid var(--p-blue,#274a5a);padding:0.4rem 1rem;font-weight:700;font-size:0.875rem;font-family:var(--p-font,Inter,sans-serif);cursor:pointer;border-radius:var(--p-radius,0)">Blue</button>
+          <button style="background:transparent;color:var(--p-black,#1a1a1a);border:2px solid var(--p-black,#1a1a1a);padding:0.4rem 1rem;font-weight:700;font-size:0.875rem;font-family:var(--p-font,Inter,sans-serif);cursor:pointer;border-radius:var(--p-radius,0)">Outline</button>
+        </div>
+
+        <!-- Card -->
+        <p style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:#666;margin-bottom:0.5rem">Card</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem">
+          <div id="p-card" style="border:1px solid var(--p-lightGray,#e8e5e0);border-radius:var(--p-radius,0);overflow:hidden">
+            <div style="background:var(--p-blue,#274a5a);height:80px"></div>
+            <div style="padding:1rem;font-family:var(--p-font,Inter,sans-serif)">
+              <p style="font-weight:700;margin-bottom:0.25rem">Grand Canyon</p>
+              <p style="font-size:0.8rem;color:#666">Arizona • Est. 1919</p>
+            </div>
+          </div>
+          <div style="border:1px solid var(--p-lightGray,#e8e5e0);border-radius:var(--p-radius,0);overflow:hidden">
+            <div style="background:var(--p-green,#2d5a27);height:80px"></div>
+            <div style="padding:1rem;font-family:var(--p-font,Inter,sans-serif)">
+              <p style="font-weight:700;margin-bottom:0.25rem">Yosemite</p>
+              <p style="font-size:0.8rem;color:#666">California • Est. 1890</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <p style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:#666;margin-bottom:0.5rem">Form</p>
+        <div style="margin-bottom:1.5rem;font-family:var(--p-font,Inter,sans-serif)">
+          <label style="display:block;font-size:0.8rem;font-weight:700;margin-bottom:0.25rem">Park Name</label>
+          <input id="p-input" type="text" placeholder="Search parks..." style="width:100%;padding:0.5rem;border:1px solid var(--p-lightGray,#e8e5e0);font-family:inherit;font-size:0.875rem;border-radius:var(--p-radius,0)">
+        </div>
+
+        <!-- Infobox -->
+        <p style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:#666;margin-bottom:0.5rem">Infobox</p>
+        <div id="p-infobox" style="background:var(--p-warmGray,#f5f2ed);padding:1rem;border-left:3px solid var(--p-black,#1a1a1a);border-radius:var(--p-radius,0);font-family:var(--p-font,Inter,sans-serif);margin-bottom:1.5rem">
+          <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.25rem">Entrance Fees</p>
+          <p style="font-size:0.8rem">Vehicle: $35 (7 days) • Individual: $20</p>
+        </div>
+
+        <!-- Typography -->
+        <p style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:#666;margin-bottom:0.5rem">Typography</p>
+        <div style="font-family:var(--p-font,Inter,sans-serif)">
+          <h2 style="font-size:1.5rem;font-weight:900;margin-bottom:0.25rem">Heading 2</h2>
+          <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.25rem">Heading 3</h3>
+          <p style="font-size:0.875rem;line-height:1.6;color:#333">Body text with the selected font family. The Unigrid system uses consistent typography across all park brochures.</p>
+        </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- SCSS Output -->
+    <div class="cfg-output">
+      <p class="cfg-preview__label">Generated SCSS Variables</p>
+      <pre class="cfg-output__code" id="output-scss"></pre>
+    </div>
+  </main>
+
+</div>
+
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
