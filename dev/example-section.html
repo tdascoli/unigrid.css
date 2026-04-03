@@ -209,21 +209,22 @@
       document.body.classList.toggle('dev-debug');
       this.textContent = document.body.classList.contains('dev-debug') ? 'Margins: On' : 'Margins: Off';
     ">Margins: Off</button>
-    <button class="dev-toolbar__btn" onclick="
-      var b = document.body;
-      if (b.classList.contains('dev-grid-double')) {
-        b.classList.remove('dev-grid-double');
-        this.textContent = 'Grid: Off';
-      } else if (b.classList.contains('dev-grid')) {
-        b.classList.remove('dev-grid');
-        b.classList.add('dev-grid-double');
-        this.textContent = 'Grid: Double';
-      } else {
-        b.classList.add('dev-grid');
-        this.textContent = 'Grid: Single';
-      }
-    ">Grid: Off</button>
+    <div class="ug-btn-group">
+      <button class="dev-toolbar__btn dev-toolbar__btn--active" onclick="devGridToggle(this,'off')">Off</button>
+      <button class="dev-toolbar__btn" onclick="devGridToggle(this,'h')">H</button>
+      <button class="dev-toolbar__btn" onclick="devGridToggle(this,'v')">V</button>
+      <button class="dev-toolbar__btn" onclick="devGridToggle(this,'both')">Both</button>
+    </div>
   </div>
+  <script>
+    function devGridToggle(btn, mode) {
+      var b = document.body;
+      b.classList.remove('dev-grid-h','dev-grid-v','dev-grid-both');
+      if (mode !== 'off') b.classList.add('dev-grid-' + mode);
+      btn.closest('.ug-btn-group').querySelectorAll('.dev-toolbar__btn').forEach(function(b){b.classList.remove('dev-toolbar__btn--active')});
+      btn.classList.add('dev-toolbar__btn--active');
+    }
+  </script>
 
   <script src="./dropdown.js"></script>
   <script src="./tabs.js"></script>
