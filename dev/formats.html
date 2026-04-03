@@ -211,17 +211,20 @@
       this.textContent = document.body.classList.contains('dev-debug') ? 'Margins: On' : 'Margins: Off';
     ">Margins: Off</button>
     <button class="dev-toolbar__btn" onclick="
-      var b = document.body;
-      if (b.classList.contains('dev-grid-double')) {
-        b.classList.remove('dev-grid-double');
-        this.textContent = 'H-Grid: Off';
-      } else if (b.classList.contains('dev-grid')) {
-        b.classList.remove('dev-grid');
-        b.classList.add('dev-grid-double');
+      var ov = document.getElementById('dev-hgrid');
+      if (!ov) {
+        var d = document.createElement('div');
+        d.id = 'dev-hgrid';
+        d.className = 'dev-grid-h-overlay dev-grid-h-overlay--single';
+        document.body.appendChild(d);
+        this.textContent = 'H-Grid: Single';
+      } else if (ov.classList.contains('dev-grid-h-overlay--single')) {
+        ov.classList.remove('dev-grid-h-overlay--single');
+        ov.classList.add('dev-grid-h-overlay--double');
         this.textContent = 'H-Grid: Double';
       } else {
-        b.classList.add('dev-grid');
-        this.textContent = 'H-Grid: Single';
+        ov.remove();
+        this.textContent = 'H-Grid: Off';
       }
     ">H-Grid: Off</button>
     <button class="dev-toolbar__btn" onclick="
