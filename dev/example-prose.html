@@ -170,8 +170,17 @@
         var d = document.createElement('div');
         d.id = 'dev-hgrid';
         d.className = 'dev-grid-h-overlay dev-grid-h-overlay--single';
+        d.style.height = document.documentElement.scrollHeight + 'px';
         document.body.appendChild(d);
         this.textContent = 'H-Grid: Single';
+        if (!window._hgridResize) {
+          window._hgridResize = true;
+          var ro = new ResizeObserver(function() {
+            var el = document.getElementById('dev-hgrid');
+            if (el) el.style.height = document.documentElement.scrollHeight + 'px';
+          });
+          ro.observe(document.documentElement);
+        }
       } else if (ov.classList.contains('dev-grid-h-overlay--single')) {
         ov.classList.remove('dev-grid-h-overlay--single');
         ov.classList.add('dev-grid-h-overlay--double');
