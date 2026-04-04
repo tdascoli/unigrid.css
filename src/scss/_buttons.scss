@@ -239,4 +239,13 @@
       border-left-width: 1px;
     }
   }
+
+  @include ug-breakpoint-down("sm") {
+    flex-direction: column;
+    width: 100%;
+
+    .ug-btn {
+      width: 100%;
+    }
+  }
 }

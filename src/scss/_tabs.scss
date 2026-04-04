@@ -175,4 +175,20 @@
       }
     }
   }
+
+  // ==============================
+  // Responsive — Extra Small
+  // ==============================
+
+  @include ug-breakpoint-down("sm") {
+    &__nav {
+      overflow-x: auto;
+      flex-wrap: nowrap;
+    }
+
+    &__link {
+      padding: calc(var(--ug-leading) * 0.25) calc(var(--ug-leading) * 0.5);
+      @include ug-font-size("xs");
+    }
+  }
 }

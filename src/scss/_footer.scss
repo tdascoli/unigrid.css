@@ -143,5 +143,11 @@ body {
     &--compact {
       padding: var(--ug-leading);
     }
+
+    @include ug-breakpoint-down("sm") {
+      .ug-footer__nav {
+        gap: calc(var(--ug-leading) * 0.5);
+      }
+    }
   }
 }

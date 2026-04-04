@@ -192,4 +192,19 @@
     cursor: not-allowed;
     pointer-events: none;
   }
+
+  // ==============================
+  // Responsive — Extra Small
+  // ==============================
+
+  @include ug-breakpoint-down("sm") {
+    &--inline {
+      flex-direction: column;
+    }
+
+    &--inline .ug-form__input,
+    &--inline .ug-form__select {
+      width: 100%;
+    }
+  }
 }
