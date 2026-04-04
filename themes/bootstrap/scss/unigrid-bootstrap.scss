@@ -1,0 +1,29 @@
+// ==========================================================================
+// Unigrid Theme for Bootstrap 5
+//
+// Applies the Unigrid design language (Massimo Vignelli / NPS) to Bootstrap:
+// - NPS color palette
+// - Inter font with vertical rhythm
+// - Sharp corners (no border-radius)
+// - Black header band
+// - Signature section dividers
+//
+// Usage:
+//   Replace bootstrap.css with this compiled theme.
+//   <link rel="stylesheet" href="unigrid-bootstrap.css">
+// ==========================================================================
+
+// ---- Import Inter font ----
+@import url("https://rsms.me/inter/inter.css");
+
+// ---- Unigrid Variables ----
+@import "variables";
+
+// ---- Bootstrap overrides (must come before Bootstrap import) ----
+@import "bootstrap-overrides";
+
+// ---- Bootstrap core ----
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// ---- Unigrid custom components (layered on top of Bootstrap) ----
+@import "components";

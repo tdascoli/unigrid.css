@@ -1,0 +1,16 @@
+{
+  "name": "unigrid-bootstrap-theme",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Unigrid-inspired theme for Bootstrap 5",
+  "scripts": {
+    "build": "sass scss/unigrid-bootstrap.scss dist/unigrid-bootstrap.css --style=expanded && sass scss/unigrid-bootstrap.scss dist/unigrid-bootstrap.min.css --style=compressed",
+    "watch": "sass scss/unigrid-bootstrap.scss dist/unigrid-bootstrap.css --style=expanded --watch",
+    "dev": "npx serve ."
+  },
+  "devDependencies": {
+    "bootstrap": "^5.3.0",
+    "sass": "^1.80.0",
+    "serve": "^14.0.0"
+  }
+}

@@ -1,0 +1,248 @@
+// ==========================================================================
+// Unigrid Custom Components for Bootstrap
+//
+// Additions not covered by Bootstrap's variable system.
+// ==========================================================================
+
+// ---- Variable font support ----
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: $ug-font-family-variable;
+  }
+}
+
+:root {
+  font-feature-settings: 'liga' 1, 'calt' 1, 'ss07' 1;
+}
+
+// ---- Unigrid Header Band ----
+// Use: <header class="ug-header">...</header>
+.ug-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  background-color: $ug-black;
+  color: $ug-white;
+  padding: 1rem 1.5rem;
+  width: 100%;
+  flex-wrap: wrap;
+
+  &__logo {
+    height: 3rem;
+    flex-shrink: 0;
+
+    img, svg {
+      height: 100%;
+      width: auto;
+    }
+  }
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+
+    h1, a {
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin: 0;
+      color: $ug-white;
+      text-decoration: none;
+    }
+  }
+
+  &__subtitle {
+    font-size: 1rem;
+    font-weight: 300;
+    opacity: 0.85;
+    margin: 0;
+  }
+
+  // Embed Bootstrap navbar inside header
+  .navbar {
+    flex: 1;
+    padding: 0;
+
+    .navbar-nav .nav-link {
+      color: rgba(255, 255, 255, 0.7);
+      &:hover { color: $ug-white; }
+      &.active { color: $ug-white; }
+    }
+
+    .navbar-toggler {
+      color: $ug-white;
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+  }
+}
+
+// ---- Unigrid Section Title ----
+// Use: <div class="ug-section"><h2 class="ug-section__title">Title</h2></div>
+.ug-section {
+  width: 100%;
+  background-color: $ug-black;
+  color: $ug-white;
+  padding: 1rem 1.5rem;
+
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 900;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  &__subtitle {
+    font-size: 0.875rem;
+    font-weight: 300;
+    opacity: 0.7;
+    margin: 0;
+  }
+
+  &--compact {
+    padding: 0.5rem 1.5rem;
+    .ug-section__title { font-size: 1.1rem; }
+  }
+
+  &--large {
+    padding: 2rem 1.5rem;
+    .ug-section__title { font-size: 2.5rem; }
+  }
+
+  &--brown { background-color: $ug-brown; }
+  &--red   { background-color: $ug-red; }
+  &--green { background-color: $ug-green; }
+  &--blue  { background-color: $ug-blue; }
+
+  &--light {
+    background-color: $ug-warm-gray;
+    color: $ug-black;
+  }
+}
+
+// ---- Unigrid Label Divider ----
+.ug-label-divider {
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $ug-medium-gray;
+  border-bottom: 2px solid $ug-black;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+// ---- Unigrid Infobox ----
+.ug-infobox {
+  background-color: $ug-warm-gray;
+  padding: 1rem;
+  border-left: 3px solid $ug-black;
+
+  &--dark {
+    background-color: $ug-black;
+    color: $ug-white;
+    border-left-color: $ug-white;
+  }
+
+  &__title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+}
+
+// ---- Bootstrap Navbar on dark bg: adjust for Unigrid style ----
+.navbar-dark, .navbar[data-bs-theme="dark"] {
+  .navbar-brand {
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
+}
+
+// ---- Bootstrap Card adjustments ----
+.card {
+  border-color: $ug-light-gray;
+
+  .card-header {
+    background-color: $ug-black;
+    color: $ug-white;
+    font-weight: 700;
+    border-bottom: none;
+  }
+}
+
+// ---- Modal header: black by default ----
+.modal-header {
+  background-color: $ug-black;
+  color: $ug-white;
+
+  .btn-close {
+    filter: invert(1);
+  }
+}
+
+// ---- Alert: left border accent ----
+.alert {
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  // border-left stays (3px from $alert-border-width)
+}
+
+// ---- Table: uppercase small headers ----
+.table {
+  th {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: $ug-medium-gray;
+  }
+}
+
+// ---- Typography tweaks ----
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  font-weight: 300;
+}
+
+// ---- NPS Color Utilities ----
+.bg-brown { background-color: $ug-brown !important; color: $ug-white !important; }
+.bg-nps-green { background-color: $ug-green !important; color: $ug-white !important; }
+.bg-nps-blue { background-color: $ug-blue !important; color: $ug-white !important; }
+.bg-warm-gray { background-color: $ug-warm-gray !important; }
+.text-brown { color: $ug-brown !important; }
+.text-nps-green { color: $ug-green !important; }
+.text-nps-blue { color: $ug-blue !important; }
+
+// ---- Responsive adjustments ----
+@media (max-width: 767.98px) {
+  .ug-header {
+    padding: 0.75rem 1rem;
+
+    &__title h1,
+    &__title a {
+      font-size: 1.5rem;
+    }
+
+    &__subtitle {
+      font-size: 0.875rem;
+    }
+  }
+
+  .ug-section {
+    padding: 0.75rem 1rem;
+  }
+}

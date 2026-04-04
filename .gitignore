@@ -9,3 +9,5 @@ configurator/node_modules/
 *.map
 /.idea/
 .astro/
+themes/bootstrap/node_modules/
+themes/bootstrap/dist/
