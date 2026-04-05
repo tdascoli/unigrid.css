@@ -559,6 +559,7 @@
   .navbar-toggler {
     height: calc(var(--ug-leading) * 1.5);
     padding: 0 calc(var(--ug-leading) * 0.75);
+    margin-left: auto;
     @include ug-font-size("sm");
     @include ug-font-weight("bold");
     font-family: inherit;
