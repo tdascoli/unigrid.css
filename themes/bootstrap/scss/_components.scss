@@ -157,6 +157,124 @@
   }
 }
 
+// ---- Forms: Unigrid flat style (matches .ug-form) ----
+// Builds on the Bootstrap variables already configured (sharp corners,
+// light-gray borders, black focus, no focus shadow). These rules add the
+// remaining Unigrid-specific details: bold small labels, rhythm-based
+// transitions, black checkbox accent, custom select chevron, and the
+// invalid red border.
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.625rem;
+  color: $ug-black;
+  margin-bottom: 0;
+}
+
+.col-form-label {
+  font-weight: 700;
+  color: $ug-black;
+}
+
+.form-control,
+.form-select,
+.form-control-plaintext {
+  transition: border-color 0.15s;
+  box-shadow: none;
+
+  &::placeholder {
+    color: $ug-medium-gray;
+  }
+
+  &:focus {
+    box-shadow: none;
+    border-color: $ug-black;
+  }
+}
+
+// Custom chevron matching src/scss/_forms.scss
+.form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right calc(var(--ug-leading) * 0.5) center;
+  background-size: 12px;
+}
+
+.form-text {
+  font-size: 0.75rem;
+  line-height: 1.625rem;
+  color: $ug-medium-gray;
+}
+
+// Checkboxes: sharp corners, black accent. Radios stay circular.
+.form-check-input {
+  border-color: $ug-light-gray;
+  box-shadow: none;
+  accent-color: $ug-black;
+  transition: border-color 0.15s, background-color 0.15s;
+
+  &[type="checkbox"] {
+    border-radius: 0;
+  }
+
+  &:focus {
+    border-color: $ug-black;
+    box-shadow: none;
+  }
+
+  &:checked {
+    background-color: $ug-black;
+    border-color: $ug-black;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+  }
+}
+
+.form-check-label {
+  color: $ug-black;
+}
+
+// Disabled state
+.form-control:disabled,
+.form-select:disabled,
+.form-control[readonly] {
+  background-color: $ug-warm-gray;
+  opacity: 0.7;
+}
+
+// Invalid state: red border, no icon shift (Bootstrap adds a background icon)
+.form-control.is-invalid,
+.was-validated .form-control:invalid,
+.form-select.is-invalid,
+.was-validated .form-select:invalid {
+  border-color: $ug-red;
+  background-image: none;
+  padding-right: 0.75rem;
+
+  &:focus {
+    border-color: $ug-red;
+    box-shadow: none;
+  }
+}
+
+.invalid-feedback {
+  font-size: 0.75rem;
+  line-height: 1.625rem;
+  color: $ug-red;
+}
+
+// Input group: match border colour on the addon
+.input-group-text {
+  background-color: $ug-warm-gray;
+  border-color: $ug-light-gray;
+  color: $ug-black;
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
 // ---- Nav tabs: Unigrid underline style (matches .ug-tabs) ----
 .nav-tabs {
   --bs-nav-tabs-border-width: 2px;
