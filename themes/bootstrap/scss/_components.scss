@@ -1,10 +1,27 @@
 // ==========================================================================
 // Unigrid Custom Components for Bootstrap
 //
-// Additions not covered by Bootstrap's variable system.
+// Additions and overrides not covered by Bootstrap's variable system.
+// Every design token — colors, type scale, spacing, rhythm, breakpoints —
+// comes from helpers.scss, which re-exports src/scss/_variables.scss and
+// src/scss/_mixins.scss so the theme shares the single source of truth
+// with the Unigrid framework itself.
 // ==========================================================================
 
-@use "variables" as *;
+@use "helpers" as *;
+
+// ---- Vertical rhythm token ----
+// Mirrors src/scss/_reset.scss: $ug-leading px on mobile, $ug-leading-desktop
+// px on desktop (≥ $ug-prose-max-width). Every .ug-* / .ug-rhythm-* rule in
+// this file relies on var(--ug-leading) so the rhythm adapts at runtime.
+:root {
+  --ug-leading: #{$ug-leading}px;
+}
+@media screen and (min-width: $ug-prose-max-width) {
+  :root {
+    --ug-leading: #{$ug-leading-desktop}px;
+  }
+}
 
 // ---- Variable font support ----
 @supports (font-variation-settings: normal) {
@@ -14,29 +31,27 @@
 }
 
 :root {
-  font-feature-settings: 'liga' 1, 'calt' 1, 'ss07' 1;
+  font-feature-settings: $ug-font-feature-settings;
 }
 
-// ---- Unigrid Header Band ----
-// Use: <header class="ug-header">...</header>
+// ==========================================================================
+// Unigrid Header Band  —  <header class="ug-header">
+// ==========================================================================
 .ug-header {
   display: flex;
   align-items: flex-start;
-  gap: 1.5rem;
+  gap: calc(var(--ug-leading) * 1);
   background-color: $ug-black;
   color: $ug-white;
-  padding: 1rem 1.5rem;
+  padding: var(--ug-leading) calc(var(--ug-leading) * 1.5);
   width: 100%;
   flex-wrap: wrap;
 
   &__logo {
-    height: 3rem;
+    height: calc(var(--ug-leading) * 2);
     flex-shrink: 0;
 
-    img, svg {
-      height: 100%;
-      width: auto;
-    }
+    img, svg { height: 100%; width: auto; }
   }
 
   &__title {
@@ -46,8 +61,8 @@
 
     h1, a {
       font-size: 2rem;
-      font-weight: 900;
-      line-height: 1.2;
+      font-weight: fw("black");
+      line-height: $ug-line-height-tight;
       letter-spacing: -0.02em;
       margin: 0;
       color: $ug-white;
@@ -56,8 +71,8 @@
   }
 
   &__subtitle {
-    font-size: 1rem;
-    font-weight: 300;
+    @include ug-font-size("base");
+    @include ug-font-weight("light");
     opacity: 0.85;
     margin: 0;
   }
@@ -69,7 +84,7 @@
 
     .navbar-nav .nav-link {
       color: rgba(255, 255, 255, 0.7);
-      &:hover { color: $ug-white; }
+      &:hover  { color: $ug-white; }
       &.active { color: $ug-white; }
     }
 
@@ -80,35 +95,37 @@
   }
 }
 
-// ---- Unigrid Section Title ----
-// Use: <div class="ug-section"><h2 class="ug-section__title">Title</h2></div>
+// ==========================================================================
+// Unigrid Section Title  —  .ug-section
+// ==========================================================================
 .ug-section {
   width: 100%;
   background-color: $ug-black;
   color: $ug-white;
-  padding: 1rem 1.5rem;
+  padding: var(--ug-leading) calc(var(--ug-leading) * 1.5);
 
   &__title {
-    font-size: 1.5rem;
-    font-weight: 900;
-    line-height: 1.2;
+    font-size: fs("xl");
+    font-weight: fw("extra-bold");
+    line-height: $ug-line-height-tight;
+    letter-spacing: -0.01em;
     margin: 0;
   }
 
   &__subtitle {
-    font-size: 0.875rem;
-    font-weight: 300;
+    @include ug-font-size("sm");
+    @include ug-font-weight("light");
     opacity: 0.7;
     margin: 0;
   }
 
   &--compact {
-    padding: 0.5rem 1.5rem;
+    padding: calc(var(--ug-leading) * 0.5) calc(var(--ug-leading) * 1.5);
     .ug-section__title { font-size: 1.1rem; }
   }
 
   &--large {
-    padding: 2rem 1.5rem;
+    padding: calc(var(--ug-leading) * 2) calc(var(--ug-leading) * 1.5);
     .ug-section__title { font-size: 2.5rem; }
   }
 
@@ -123,23 +140,27 @@
   }
 }
 
-// ---- Unigrid Label Divider ----
+// ==========================================================================
+// Unigrid Label Divider
+// ==========================================================================
 .ug-label-divider {
-  font-size: 0.875rem;
-  font-weight: 700;
+  @include ug-font-size("sm");
+  @include ug-font-weight("bold");
   line-height: 1.5;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: $ug-medium-gray;
   border-bottom: 2px solid $ug-black;
-  padding-bottom: 0.5rem;
-  margin-bottom: 1rem;
+  padding-bottom: calc(var(--ug-leading) * 0.25);
+  margin-bottom: calc(var(--ug-leading) * 0.5);
 }
 
-// ---- Unigrid Infobox ----
+// ==========================================================================
+// Unigrid Infobox
+// ==========================================================================
 .ug-infobox {
   background-color: $ug-warm-gray;
-  padding: 1rem;
+  padding: calc(var(--ug-leading) * 0.5);
   border-left: 3px solid $ug-black;
 
   &--dark {
@@ -149,31 +170,30 @@
   }
 
   &__title {
-    font-size: 0.875rem;
-    font-weight: 700;
+    @include ug-font-size("sm");
+    @include ug-font-weight("bold");
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    margin-bottom: 0.5rem;
+    margin-bottom: calc(var(--ug-leading) * 0.25);
   }
 }
 
-// ---- Forms: Unigrid flat style (matches .ug-form) ----
-// Builds on the Bootstrap variables already configured (sharp corners,
-// light-gray borders, black focus, no focus shadow). These rules add the
-// remaining Unigrid-specific details: bold small labels, rhythm-based
-// transitions, black checkbox accent, custom select chevron, and the
-// invalid red border.
+// ==========================================================================
+// Forms: Unigrid flat style (matches .ug-form)
+// Bootstrap variables already handle sharp corners, light-gray borders,
+// black focus, and no focus shadow via the `with (...)` block.
+// ==========================================================================
 .form-label {
   display: block;
-  font-size: 0.875rem;
-  font-weight: 700;
-  line-height: 1.625rem;
+  @include ug-font-size("sm");
+  @include ug-font-weight("bold");
+  @include ug-rhythm-line-height(1);
   color: $ug-black;
   margin-bottom: 0;
 }
 
 .col-form-label {
-  font-weight: 700;
+  @include ug-font-weight("bold");
   color: $ug-black;
 }
 
@@ -183,9 +203,7 @@
   transition: border-color 0.15s;
   box-shadow: none;
 
-  &::placeholder {
-    color: $ug-medium-gray;
-  }
+  &::placeholder { color: $ug-medium-gray; }
 
   &:focus {
     box-shadow: none;
@@ -193,7 +211,7 @@
   }
 }
 
-// Custom chevron matching src/scss/_labels.scss
+// Custom chevron matching src/scss/_forms.scss
 .form-select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='2' fill='none'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
@@ -202,8 +220,8 @@
 }
 
 .form-text {
-  font-size: 0.75rem;
-  line-height: 1.625rem;
+  @include ug-font-size("xs");
+  @include ug-rhythm-line-height(1);
   color: $ug-medium-gray;
 }
 
@@ -214,9 +232,7 @@
   accent-color: $ug-black;
   transition: border-color 0.15s, background-color 0.15s;
 
-  &[type="checkbox"] {
-    border-radius: 0;
-  }
+  &[type="checkbox"] { border-radius: 0; }
 
   &:focus {
     border-color: $ug-black;
@@ -228,14 +244,10 @@
     border-color: $ug-black;
   }
 
-  &:disabled {
-    opacity: 0.5;
-  }
+  &:disabled { opacity: 0.5; }
 }
 
-.form-check-label {
-  color: $ug-black;
-}
+.form-check-label { color: $ug-black; }
 
 // Disabled state
 .form-control:disabled,
@@ -245,14 +257,14 @@
   opacity: 0.7;
 }
 
-// Invalid state: red border, no icon shift (Bootstrap adds a background icon)
+// Invalid state: red border, no Bootstrap overlay icon
 .form-control.is-invalid,
 .was-validated .form-control:invalid,
 .form-select.is-invalid,
 .was-validated .form-select:invalid {
   border-color: $ug-red;
   background-image: none;
-  padding-right: 0.75rem;
+  padding-right: leading(0.5);
 
   &:focus {
     border-color: $ug-red;
@@ -261,21 +273,23 @@
 }
 
 .invalid-feedback {
-  font-size: 0.75rem;
-  line-height: 1.625rem;
+  @include ug-font-size("xs");
+  @include ug-rhythm-line-height(1);
   color: $ug-red;
 }
 
-// Input group: match border colour on the addon
+// Input group addon
 .input-group-text {
   background-color: $ug-warm-gray;
   border-color: $ug-light-gray;
   color: $ug-black;
-  font-weight: 700;
-  font-size: 0.875rem;
+  @include ug-font-weight("bold");
+  @include ug-font-size("sm");
 }
 
-// ---- Nav tabs: Unigrid underline style (matches .ug-tabs) ----
+// ==========================================================================
+// Nav tabs: Unigrid underline style (matches .ug-tabs)
+// ==========================================================================
 .nav-tabs {
   --bs-nav-tabs-border-width: 2px;
   --bs-nav-tabs-border-color: #{$ug-light-gray};
@@ -283,9 +297,9 @@
 
   .nav-link {
     color: $ug-medium-gray;
-    font-size: 0.875rem;
-    font-weight: 700;
-    line-height: 1.625rem;
+    @include ug-font-size("sm");
+    @include ug-font-weight("bold");
+    @include ug-rhythm-line-height(1);
     padding: calc(var(--ug-leading) * 0.5) var(--ug-leading);
     border: none;
     border-bottom: 2px solid transparent;
@@ -310,9 +324,7 @@
       border-bottom-color: $ug-black;
     }
 
-    &.disabled {
-      color: $ug-light-gray;
-    }
+    &.disabled { color: $ug-light-gray; }
   }
 
   .nav-item.show .nav-link {
@@ -322,16 +334,18 @@
   }
 }
 
-// ---- Nav pills: Unigrid flat (sharp corners, black active) ----
+// ==========================================================================
+// Nav pills: Unigrid flat (sharp corners, black active)
+// ==========================================================================
 .nav-pills {
   --bs-nav-pills-border-radius: 0;
   gap: calc(var(--ug-leading) * 0.25);
 
   .nav-link {
     color: $ug-medium-gray;
-    font-size: 0.875rem;
-    font-weight: 700;
-    line-height: 1.625rem;
+    @include ug-font-size("sm");
+    @include ug-font-weight("bold");
+    @include ug-rhythm-line-height(1);
     padding: calc(var(--ug-leading) * 0.5) var(--ug-leading);
     border-radius: 0;
     background: none;
@@ -347,56 +361,49 @@
       color: $ug-white;
       background-color: $ug-black;
 
-      &:hover {
-        background-color: $ug-dark-gray;
-      }
+      &:hover { background-color: $ug-dark-gray; }
     }
   }
 }
 
-// ---- Pagination: flat Unigrid style (matches .ug-pagination) ----
-// Borders are removed via theme variables; we add the signature 2px
-// bottom-border underline for hover and the active page, plus bold weight
-// for the current page — mirroring src/scss/_pagination.scss.
-.pagination {
-  gap: 0;
-}
+// ==========================================================================
+// Pagination: flat Unigrid style (matches .ug-pagination)
+// ==========================================================================
+.pagination { gap: 0; }
 
 .page-link {
-  min-width: calc(1.625rem * 1.5);
+  min-width: calc(var(--ug-leading) * 1.5);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-bottom: 2px solid transparent;
   transition: border-color 0.15s ease-in-out, color 0.15s ease-in-out;
 
-  &:hover {
-    border-bottom-color: $ug-black;
-  }
+  &:hover { border-bottom-color: $ug-black; }
 }
 
 .page-item.active .page-link,
 .page-item .page-link.active {
-  font-weight: 700;
+  @include ug-font-weight("bold");
   border-bottom-color: $ug-black;
 }
 
-.page-item.disabled .page-link {
-  color: $ug-light-gray;
-}
+.page-item.disabled .page-link { color: $ug-light-gray; }
 
-// ---- Navbar: match .ug-navbar typography and hover ----
+// ==========================================================================
+// Navbar: match .ug-navbar typography and hover
+// ==========================================================================
 .navbar {
   .navbar-brand {
-    font-size: 0.875rem;
-    font-weight: 700;
+    @include ug-font-size("sm");
+    @include ug-font-weight("bold");
     letter-spacing: normal;
   }
 
   .navbar-nav {
     .nav-link {
-      font-size: 1rem;
-      font-weight: 300;
+      @include ug-font-size("base");
+      @include ug-font-weight("light");
       color: $ug-dark-gray;
       padding: 0 calc(var(--ug-leading) * 0.5);
       transition: color 0.15s, background-color 0.15s;
@@ -411,28 +418,23 @@
       &.show {
         color: $ug-black;
         background-color: transparent;
-        font-weight: 300;
+        @include ug-font-weight("light");
       }
     }
   }
 
   // ---- Toggler: match .ug-navbar__toggle (text "Menu" / "Close") ----
-  // Hides Bootstrap's hamburger icon and replaces it with the Unigrid
-  // outlined text-button. Works with the default Bootstrap markup:
-  //   <button class="navbar-toggler" data-bs-toggle="collapse" ...>
-  //     <span class="navbar-toggler-icon"></span>
-  //   </button>
+  // Intentionally does NOT set `display` so Bootstrap's responsive
+  // `.navbar-expand-* .navbar-toggler { display: none }` stays in charge.
   .navbar-toggler {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
     height: calc(var(--ug-leading) * 1.5);
     padding: 0 calc(var(--ug-leading) * 0.75);
-    font-size: 0.875rem;
-    font-weight: 700;
+    margin-left: auto;
+    @include ug-font-size("sm");
+    @include ug-font-weight("bold");
     font-family: inherit;
     letter-spacing: 0.05em;
-    line-height: 1;
+    line-height: calc(var(--ug-leading) * 1.5);
     color: inherit;
     background: none;
     border: 1px solid currentColor;
@@ -440,6 +442,7 @@
     box-shadow: none;
     cursor: pointer;
     transition: background-color 0.15s, color 0.15s;
+    vertical-align: middle;
 
     &:focus,
     &:focus-visible {
@@ -447,39 +450,27 @@
       outline: none;
     }
 
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.05);
-    }
+    &:hover { background-color: rgba(0, 0, 0, 0.05); }
 
-    // Hide Bootstrap's hamburger SVG
-    .navbar-toggler-icon {
-      display: none;
-    }
+    .navbar-toggler-icon { display: none; }
 
-    // Inject "Menu" / "Close" text via pseudo-element so existing
-    // Bootstrap markup doesn't need to change.
-    &::before {
-      content: "Menu";
-    }
-
-    &[aria-expanded="true"]::before {
-      content: "Close";
-    }
+    &::before { content: "Menu"; }
+    &[aria-expanded="true"]::before { content: "Close"; }
   }
 }
 
-// ---- Bootstrap Navbar on dark bg: adjust for Unigrid style ----
+// Dark-variant navbar
 .navbar-dark,
 .navbar[data-bs-theme="dark"] {
   .navbar-brand {
-    font-size: 0.875rem;
-    font-weight: 700;
+    @include ug-font-size("sm");
+    @include ug-font-weight("bold");
     letter-spacing: normal;
   }
 
   .navbar-nav .nav-link {
-    font-size: 1rem;
-    font-weight: 300;
+    @include ug-font-size("base");
+    @include ug-font-weight("light");
     color: rgba(255, 255, 255, 0.7);
 
     &:hover,
@@ -499,35 +490,31 @@
     color: $ug-white;
     border-color: rgba(255, 255, 255, 0.5);
 
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
+    &:hover { background-color: rgba(255, 255, 255, 0.1); }
   }
 }
 
-// ---- Bootstrap Card adjustments ----
+// ==========================================================================
+// Bootstrap component adjustments
+// ==========================================================================
 .card {
   border-color: $ug-light-gray;
 
   .card-header {
     background-color: $ug-black;
     color: $ug-white;
-    font-weight: 700;
+    @include ug-font-weight("bold");
     border-bottom: none;
   }
 }
 
-// ---- Modal header: black by default ----
 .modal-header {
   background-color: $ug-black;
   color: $ug-white;
 
-  .btn-close {
-    filter: invert(1);
-  }
+  .btn-close { filter: invert(1); }
 }
 
-// ---- Alert: left border accent ----
 .alert {
   border-top: none;
   border-right: none;
@@ -535,55 +522,45 @@
   // border-left stays (3px from $alert-border-width)
 }
 
-// ---- Table: uppercase small headers ----
 .table {
   th {
-    font-size: 0.75rem;
-    font-weight: 700;
+    @include ug-font-size("xs");
+    @include ug-font-weight("bold");
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: $ug-medium-gray;
   }
 }
 
-// ---- Typography tweaks ----
+// ==========================================================================
+// Typography tweaks
+// ==========================================================================
 h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.01em;
 }
 
 h1 {
-  font-weight: 900;
+  @include ug-font-weight("black");
   letter-spacing: -0.02em;
 }
 
 .lead {
-  font-weight: 300;
-}
-
-// ---- NPS Color Utilities ----
-.bg-brown { background-color: $ug-brown !important; color: $ug-white !important; }
-.bg-nps-green { background-color: $ug-green !important; color: $ug-white !important; }
-.bg-nps-blue { background-color: $ug-blue !important; color: $ug-white !important; }
-.bg-warm-gray { background-color: $ug-warm-gray !important; }
-.text-brown { color: $ug-brown !important; }
-.text-nps-green { color: $ug-green !important; }
-.text-nps-blue { color: $ug-blue !important; }
-
-// ---- Vertical rhythm token ----
-// Matches Bootstrap's $line-height-base (1.625) * 1rem from the theme config.
-:root {
-  --ug-leading: 1.625rem;
+  @include ug-font-weight("light");
 }
 
 // ==========================================================================
-// Sidebar Layout (.ug-sidebar-layout)
-// Ported from src/scss/_sidebar.scss
-//
-// Usage:
-//   <div class="ug-sidebar-layout" style="--ug-sidebar-width: 20rem">
-//     <aside class="ug-sidebar-layout__sidebar">...</aside>
-//     <main class="ug-sidebar-layout__main">...</main>
-//   </div>
+// NPS color utilities
+// ==========================================================================
+.bg-brown     { background-color: $ug-brown     !important; color: $ug-white !important; }
+.bg-nps-green { background-color: $ug-green     !important; color: $ug-white !important; }
+.bg-nps-blue  { background-color: $ug-blue      !important; color: $ug-white !important; }
+.bg-warm-gray { background-color: $ug-warm-gray !important; }
+.text-brown     { color: $ug-brown !important; }
+.text-nps-green { color: $ug-green !important; }
+.text-nps-blue  { color: $ug-blue  !important; }
+
+// ==========================================================================
+// Sidebar Layout (.ug-sidebar-layout) — ported from src/scss/_sidebar.scss
 // ==========================================================================
 .ug-sidebar-layout {
   --ug-sidebar-width: calc(var(--ug-leading) * 12);
@@ -596,7 +573,7 @@ h1 {
     flex-shrink: 0;
     padding: var(--ug-leading) calc(var(--ug-leading) * 1.5);
 
-    @media (max-width: 767.98px) {
+    @include ug-breakpoint-down("md") {
       display: none;
     }
   }
@@ -607,12 +584,8 @@ h1 {
     padding: var(--ug-leading) calc(var(--ug-leading) * 1.5);
   }
 
-  // Sidebar on the right
-  &--right {
-    flex-direction: row-reverse;
-  }
+  &--right { flex-direction: row-reverse; }
 
-  // Sticky sidebar
   &--sticky {
     .ug-sidebar-layout__sidebar {
       position: sticky;
@@ -623,7 +596,6 @@ h1 {
     }
   }
 
-  // Bordered separator
   &--bordered {
     .ug-sidebar-layout__sidebar {
       border-right: 1px solid $ug-light-gray;
@@ -635,9 +607,8 @@ h1 {
     }
   }
 
-  // Show sidebar on mobile (override default collapse)
   &__sidebar--visible {
-    @media (max-width: 767.98px) {
+    @include ug-breakpoint-down("md") {
       display: block;
     }
   }
@@ -649,41 +620,35 @@ h1 {
     padding: 0;
   }
 
-  &__nav-item {
-    display: block;
-  }
+  &__nav-item { display: block; }
 
   &__nav-link {
     display: flex;
     align-items: center;
     padding: calc(var(--ug-leading) * 0.5) 0;
-    font-size: 0.875rem;
-    line-height: 1.625rem;
+    @include ug-font-size("sm");
+    @include ug-rhythm-line-height(1);
     color: $ug-dark-gray;
     text-decoration: none;
     border-bottom: 1px solid $ug-light-gray;
     transition: color 0.15s;
 
-    &:hover {
-      color: $ug-black;
-    }
+    &:hover { color: $ug-black; }
 
     &--active {
-      font-weight: 700;
+      @include ug-font-weight("bold");
       color: $ug-black;
     }
   }
 
-  @media (max-width: 767.98px) {
+  @include ug-breakpoint-down("md") {
     flex-direction: column;
 
     &__main {
       padding: var(--ug-leading);
     }
 
-    &--right {
-      flex-direction: column;
-    }
+    &--right { flex-direction: column; }
 
     &--bordered .ug-sidebar-layout__sidebar {
       border-right: none;
@@ -694,24 +659,16 @@ h1 {
 }
 
 // ==========================================================================
-// Footer (.ug-footer) — sticky footer at bottom of viewport
-// Ported from src/scss/_footer.scss
+// Footer (.ug-footer) — ported from src/scss/_footer.scss
 // ==========================================================================
-html, body {
-  min-height: 100vh;
-}
+html, body { min-height: 100vh; }
 
 body {
   display: flex;
   flex-direction: column;
 
-  > *:not(.ug-footer) {
-    flex-shrink: 0;
-  }
-
-  > .ug-footer {
-    margin-top: auto;
-  }
+  > *:not(.ug-footer) { flex-shrink: 0; }
+  > .ug-footer       { margin-top: auto; }
 }
 
 .ug-footer {
@@ -721,23 +678,23 @@ body {
   padding: calc(var(--ug-leading) * 3) calc(var(--ug-leading) * 1.5);
 
   &__inner {
-    max-width: 1320px;
+    max-width: $ug-container-max-width;
     margin: 0 auto;
   }
 
   &__brand {
-    font-size: 1.25rem;
-    font-weight: 700;
-    line-height: 1.625rem;
-    margin-bottom: 1.625rem;
+    @include ug-font-size("lg");
+    @include ug-font-weight("bold");
+    @include ug-rhythm-line-height(1);
+    @include ug-rhythm-margin-bottom(1);
     color: $ug-white;
     text-decoration: none;
     display: block;
   }
 
   &__text {
-    font-size: 0.875rem;
-    line-height: 1.625rem;
+    @include ug-font-size("sm");
+    @include ug-rhythm-line-height(1);
     color: rgba(255, 255, 255, 0.5);
     margin: 0;
   }
@@ -752,15 +709,13 @@ body {
   }
 
   &__link {
-    font-size: 0.875rem;
-    line-height: 1.625rem;
+    @include ug-font-size("sm");
+    @include ug-rhythm-line-height(1);
     color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
     transition: color 0.15s;
 
-    &:hover {
-      color: $ug-white;
-    }
+    &:hover { color: $ug-white; }
   }
 
   &__divider {
@@ -784,12 +739,10 @@ body {
 
     .ug-footer__brand {
       margin-bottom: 0;
-      font-size: 0.875rem;
+      @include ug-font-size("sm");
     }
 
-    .ug-footer__nav {
-      margin-bottom: 0;
-    }
+    .ug-footer__nav { margin-bottom: 0; }
   }
 
   // Light variant
@@ -806,7 +759,7 @@ body {
     .ug-footer__divider { border-top-color: $ug-light-gray; }
   }
 
-  @media (max-width: 767.98px) {
+  @include ug-breakpoint-down("md") {
     padding: calc(var(--ug-leading) * 2) var(--ug-leading);
 
     &--compact {
@@ -814,29 +767,31 @@ body {
     }
   }
 
-  @media (max-width: 575.98px) {
+  @include ug-breakpoint-down("sm") {
     &__nav {
       gap: calc(var(--ug-leading) * 0.5);
     }
   }
 }
 
-// ---- Responsive adjustments ----
-@media (max-width: 767.98px) {
+// ==========================================================================
+// Responsive header / section tweaks
+// ==========================================================================
+@include ug-breakpoint-down("md") {
   .ug-header {
-    padding: 0.75rem 1rem;
+    padding: calc(var(--ug-leading) * 0.5) calc(var(--ug-leading) * 0.75);
 
     &__title h1,
     &__title a {
-      font-size: 1.5rem;
+      font-size: fs("xl");
     }
 
     &__subtitle {
-      font-size: 0.875rem;
+      @include ug-font-size("sm");
     }
   }
 
   .ug-section {
-    padding: 0.75rem 1rem;
+    padding: calc(var(--ug-leading) * 0.5) calc(var(--ug-leading) * 0.75);
   }
 }

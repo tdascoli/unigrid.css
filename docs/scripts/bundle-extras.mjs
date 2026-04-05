@@ -42,6 +42,16 @@ const themeDest = resolve(docsDist, 'themes', 'bootstrap');
 mkdirSync(themeDest, { recursive: true });
 cpSync(resolve(themeDir, 'index.html'), resolve(themeDest, 'index.html'));
 copy(resolve(themeDir, 'dist'), resolve(themeDest, 'dist'));
+
+// Ship the grid-debug overlay alongside the theme CSS so the trigger
+// element in index.html can load it. Built by `npm run build` at repo root.
+const gridDebugSrc = resolve(repoRoot, 'dist', 'grid-debug.js');
+if (existsSync(gridDebugSrc)) {
+  cpSync(gridDebugSrc, resolve(themeDest, 'dist', 'grid-debug.js'));
+  console.log('✓ Copied grid-debug.js → docs/dist/themes/bootstrap/dist/');
+} else {
+  console.warn('⚠ dist/grid-debug.js missing — run `npm run build` at repo root first');
+}
 console.log('✓ Copied Bootstrap theme → docs/dist/themes/bootstrap/');
 
 console.log('\n✓ docs/dist is ready for Pages deploy.');

@@ -1,0 +1,36 @@
+// ==========================================================================
+// Unigrid Theme — Helpers
+//
+// Single source of truth for the theme: re-export everything from
+// src/scss/_variables.scss and src/scss/_mixins.scss so the Bootstrap
+// theme reuses the same colors, typography scale, spacing maps, and
+// rhythm mixins as the Unigrid framework itself.
+//
+// Adds a small `leading()` function that returns Sass rem values
+// (usable inside `@use "bootstrap" with (...)` where Bootstrap does
+// compile-time arithmetic on the overridden variables).
+// ==========================================================================
+
+@forward "../../../src/scss/variables";
+@forward "../../../src/scss/mixins";
+
+@use "sass:map";
+@use "../../../src/scss/variables" as *;
+
+/// Convert leading multiples to a rem dimension.
+/// leading(1)    -> 1.625rem (one leading unit)
+/// leading(0.25) -> 0.40625rem
+/// leading(1.5)  -> 2.4375rem
+@function leading($n) {
+  @return $n * $ug-leading-rem * 1rem;
+}
+
+/// Shortcut for map.get($ug-font-sizes, $key)
+@function fs($key) {
+  @return map.get($ug-font-sizes, $key);
+}
+
+/// Shortcut for map.get($ug-font-weights, $key)
+@function fw($key) {
+  @return map.get($ug-font-weights, $key);
+}

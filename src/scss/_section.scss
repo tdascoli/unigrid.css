@@ -23,7 +23,7 @@
   &__title {
     @include ug-rhythm-font-size(1.6875);
     @include ug-rhythm-line-height(1.5);
-    @include ug-font-weight("black");
+    @include ug-font-weight("extra-bold");
     letter-spacing: -0.01em;
     margin: 0;
   }
