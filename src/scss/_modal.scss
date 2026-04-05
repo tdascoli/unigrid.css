@@ -151,6 +151,18 @@
   // ==============================
   // Body scroll lock
   // ==============================
+
+  // ==============================
+  // Responsive
+  // ==============================
+
+  @include ug-breakpoint-down("md") {
+    padding: var(--ug-leading) calc(var(--ug-leading) * 0.5);
+
+    &__dialog {
+      max-width: 100%;
+    }
+  }
 }
 
 // When modal is open, prevent body scroll

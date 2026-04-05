@@ -64,7 +64,7 @@
     left: 0;
     z-index: 100;
     display: none;
-    min-width: 12rem;
+    min-width: min(12rem, 80vw);
     padding: calc(var(--ug-leading) * 0.25) 0;
     background-color: $ug-white;
     border: 1px solid $ug-light-gray;

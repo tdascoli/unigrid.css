@@ -159,6 +159,10 @@
       background-color: $ug-black;
       color: $ug-white;
       padding: calc(var(--ug-leading) * 4) 0 var(--ug-leading) 0;
+
+      @include ug-breakpoint-down("sm") {
+        padding-top: calc(var(--ug-leading) * 3);
+      }
       overflow-y: auto;
       z-index: 99;
 
@@ -212,6 +216,10 @@
       &--active {
         color: $ug-white;
       }
+
+      @include ug-breakpoint-down("sm") {
+        @include ug-font-size("base");
+      }
     }
   }
 
@@ -254,7 +262,7 @@
       display: flex;
       align-items: center;
       height: calc(var(--ug-leading) * 2);
-      padding: 0 calc(var(--ug-leading) * 2.5);
+      padding: 0 calc(var(--ug-leading) * 2);
       @include ug-font-size("base");
       color: rgba(255, 255, 255, 0.5);
       text-decoration: none;

@@ -165,5 +165,17 @@
     &__logo {
       width: 2.5rem;
     }
+
+    @include ug-breakpoint-down("sm") {
+      &__title h1,
+      &__title a,
+      &__name {
+        @include ug-font-size("lg");
+      }
+
+      &__subtitle {
+        @include ug-font-size("xs");
+      }
+    }
   }
 }

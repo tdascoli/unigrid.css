@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unigrid CSS — Modules</title>
     <link rel="icon" href="unigrid.svg" sizes="any" type="image/svg+xml">
-        <link rel="stylesheet" href="./styles.scss">
+    <link rel="stylesheet" href="./styles.scss">
     <style>
         .demo-mod {
             background: var(--c, #e8e5e0);
@@ -73,6 +73,9 @@
         <p class="ug-caption ug-mb--3">Each 1×1 module is a perfect square. Resize the browser to see them scale
             proportionally.</p>
     </div>
+</section>
+
+<div class="ug-modules-container">
     <div class="ug-modules">
         <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
         <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
@@ -87,12 +90,13 @@
         <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
         <div class="ug-module ug-module--1x1 demo-mod">1×1</div>
     </div>
-</section>
+</div>
 
 <section class="dev-section">
     <div class="ug-container">
-    <p class="dev-section-title">Various Sizes</p>
-    <p class="ug-caption ug-mb--3">.ug-module--{height}x{width} — 2×2 is always a square (2 modules tall, 2 wide).</p>
+        <p class="dev-section-title">Various Sizes</p>
+        <p class="ug-caption ug-mb--3">.ug-module--{height}x{width} — 2×2 is always a square (2 modules tall, 2
+            wide).</p>
     </div>
     <div class="ug-modules">
         <div class="ug-module ug-module--2x2 demo-mod" style="--c:#c1272d;color:#fff">2×2</div>
@@ -107,7 +111,7 @@
 
 <section class="dev-section">
     <div class="ug-container">
-    <p class="dev-section-title">Tall Modules</p>
+        <p class="dev-section-title">Tall Modules</p>
     </div>
     <div class="ug-modules">
         <div class="ug-module ug-module--3x1 demo-mod" style="--c:#c1272d;color:#fff">3×1</div>
@@ -119,7 +123,7 @@
 
 <section class="dev-section">
     <div class="ug-container">
-    <p class="dev-section-title">Full-Width Row</p>
+        <p class="dev-section-title">Full-Width Row</p>
     </div>
     <div class="ug-modules">
         <div class="ug-module ug-module--1x12 demo-mod" style="--c:#1a1a1a;color:#fff">1×12 — full width</div>
@@ -128,8 +132,8 @@
 
 <section class="dev-section">
     <div class="ug-container">
-    <p class="dev-section-title">Auto Height</p>
-    <p class="ug-caption ug-mb--3">Use .ug-module--auto-height for content-driven height.</p>
+        <p class="dev-section-title">Auto Height</p>
+        <p class="ug-caption ug-mb--3">Use .ug-module--auto-height for content-driven height.</p>
     </div>
     <div class="ug-modules">
         <div class="ug-module ug-module--1x4 ug-module--auto-height demo-mod" style="padding:1rem">
@@ -213,25 +217,50 @@
     ">Margins: Off
     </button>
     <button class="dev-toolbar__btn" onclick="
-      var b = document.body;
-      if (b.classList.contains('dev-grid-double')) {
-        b.classList.remove('dev-grid-double');
-        this.textContent = 'Grid: Off';
-      } else if (b.classList.contains('dev-grid')) {
-        b.classList.remove('dev-grid');
-        b.classList.add('dev-grid-double');
-        this.textContent = 'Grid: Double';
+      var ov = document.getElementById('dev-hgrid');
+      if (!ov) {
+        var d = document.createElement('div');
+        d.id = 'dev-hgrid';
+        d.className = 'dev-grid-h-overlay dev-grid-h-overlay--single';
+        d.style.height = document.documentElement.scrollHeight + 'px';
+        document.body.appendChild(d);
+        this.textContent = 'H-Grid: Single';
+        if (!window._hgridResize) {
+          window._hgridResize = true;
+          var ro = new ResizeObserver(function() {
+            var el = document.getElementById('dev-hgrid');
+            if (el) el.style.height = document.documentElement.scrollHeight + 'px';
+          });
+          ro.observe(document.documentElement);
+        }
+      } else if (ov.classList.contains('dev-grid-h-overlay--single')) {
+        ov.classList.remove('dev-grid-h-overlay--single');
+        ov.classList.add('dev-grid-h-overlay--double');
+        this.textContent = 'H-Grid: Double';
       } else {
-        b.classList.add('dev-grid');
-        this.textContent = 'Grid: Single';
+        ov.remove();
+        this.textContent = 'H-Grid: Off';
       }
-    ">Grid: Off
+    ">H-Grid: Off
+    </button>
+    <button class="dev-toolbar__btn" onclick="
+      var ov = document.getElementById('dev-vgrid');
+      if (ov) { ov.remove(); this.textContent = 'V-Grid: Off'; }
+      else {
+        var d = document.createElement('div');
+        d.id = 'dev-vgrid';
+        d.className = 'dev-grid-v-overlay';
+        for (var i = 0; i < 12; i++) d.appendChild(document.createElement('div'));
+        document.body.appendChild(d);
+        this.textContent = 'V-Grid: On';
+      }
+    ">V-Grid: Off
     </button>
 </div>
 
 <script src="./dropdown.js"></script>
 <script src="./tabs.js"></script>
-  <script src="./scrollspy.js"></script>
-  <script src="./modal.js"></script>
+<script src="./scrollspy.js"></script>
+<script src="./modal.js"></script>
 </body>
 </html>

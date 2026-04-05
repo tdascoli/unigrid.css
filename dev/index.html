@@ -132,29 +132,51 @@
     </div>
 </footer>
 
-<!-- Dev Toolbar -->
-<div class="dev-toolbar">
+  <!-- Dev Toolbar -->
+  <div class="dev-toolbar">
     <button class="dev-toolbar__btn" onclick="
       document.body.classList.toggle('dev-debug');
       this.textContent = document.body.classList.contains('dev-debug') ? 'Margins: On' : 'Margins: Off';
-    ">Margins: Off
-    </button>
+    ">Margins: Off</button>
     <button class="dev-toolbar__btn" onclick="
-      var b = document.body;
-      if (b.classList.contains('dev-grid-double')) {
-        b.classList.remove('dev-grid-double');
-        this.textContent = 'Grid: Off';
-      } else if (b.classList.contains('dev-grid')) {
-        b.classList.remove('dev-grid');
-        b.classList.add('dev-grid-double');
-        this.textContent = 'Grid: Double';
+      var ov = document.getElementById('dev-hgrid');
+      if (!ov) {
+        var d = document.createElement('div');
+        d.id = 'dev-hgrid';
+        d.className = 'dev-grid-h-overlay dev-grid-h-overlay--single';
+        d.style.height = document.documentElement.scrollHeight + 'px';
+        document.body.appendChild(d);
+        this.textContent = 'H-Grid: Single';
+        if (!window._hgridResize) {
+          window._hgridResize = true;
+          var ro = new ResizeObserver(function() {
+            var el = document.getElementById('dev-hgrid');
+            if (el) el.style.height = document.documentElement.scrollHeight + 'px';
+          });
+          ro.observe(document.documentElement);
+        }
+      } else if (ov.classList.contains('dev-grid-h-overlay--single')) {
+        ov.classList.remove('dev-grid-h-overlay--single');
+        ov.classList.add('dev-grid-h-overlay--double');
+        this.textContent = 'H-Grid: Double';
       } else {
-        b.classList.add('dev-grid');
-        this.textContent = 'Grid: Single';
+        ov.remove();
+        this.textContent = 'H-Grid: Off';
       }
-    ">Grid: Off
-    </button>
-</div>
+    ">H-Grid: Off</button>
+    <button class="dev-toolbar__btn" onclick="
+      var ov = document.getElementById('dev-vgrid');
+      if (ov) { ov.remove(); this.textContent = 'V-Grid: Off'; }
+      else {
+        var d = document.createElement('div');
+        d.id = 'dev-vgrid';
+        d.className = 'dev-grid-v-overlay';
+        for (var i = 0; i < 12; i++) d.appendChild(document.createElement('div'));
+        document.body.appendChild(d);
+        this.textContent = 'V-Grid: On';
+      }
+    ">V-Grid: Off</button>
+  </div>
 
   <script src="./dropdown.js"></script>
   <script src="./tabs.js"></script>

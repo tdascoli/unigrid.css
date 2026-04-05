@@ -143,6 +143,16 @@
   &--accent-brown  { border-top: 3px solid $ug-brown; }
   &--accent-green  { border-top: 3px solid $ug-green; }
   &--accent-blue   { border-top: 3px solid $ug-blue; }
+
+  // ==============================
+  // Responsive — Extra Small
+  // ==============================
+
+  @include ug-breakpoint-down("sm") {
+    &__body {
+      padding: calc(var(--ug-leading) * 0.5) var(--ug-leading);
+    }
+  }
 }
 
 // ---- Card Grid Helper ----

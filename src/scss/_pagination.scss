@@ -157,4 +157,15 @@
     @include ug-rhythm-line-height(1);
     @include ug-font-weight("bold");
   }
+
+  // ==============================
+  // Responsive — Extra Small
+  // ==============================
+
+  @include ug-breakpoint-down("sm") {
+    &__link {
+      min-width: calc(var(--ug-leading) * 1);
+      @include ug-font-size("sm");
+    }
+  }
 }
