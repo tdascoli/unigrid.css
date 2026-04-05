@@ -23,6 +23,7 @@
 @use "../node_modules/bootstrap/scss/bootstrap" with (
   // Opt in to Bootstrap's native CSS Grid layout (.grid / g-col-*)
   $enable-cssgrid: true,
+  $enable-grid-classes: false,
 
   // Colors
   $primary:   $ug-black,
@@ -159,6 +160,10 @@
   // Alert
   $alert-border-width: 3px,
 
+  // Forms
+  $form-label-margin-bottom: 0,
+  $form-label-font-weight: 700,
+
   // Spacing
   $spacer: 1rem,
 
@@ -175,4 +180,5 @@
 );
 
 // ---- Unigrid custom components (layered on top of Bootstrap) ----
+@use "labels";
 @use "components";
