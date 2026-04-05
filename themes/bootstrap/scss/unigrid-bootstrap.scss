@@ -1,31 +1,33 @@
 // ==========================================================================
 // Unigrid Theme for Bootstrap 5
 //
-// Applies the Unigrid design language (Massimo Vignelli / NPS) to Bootstrap:
-// - NPS color palette
-// - Inter font with vertical rhythm
-// - Sharp corners (no border-radius)
-// - Black header band
-// - Signature section dividers
+// Applies the Unigrid design language (Massimo Vignelli / NPS) to Bootstrap.
+// All design tokens — colors, typography scale, spacing, rhythm, breakpoints —
+// come from the single source of truth in src/scss (Unigrid framework).
+// This file's job is purely to map those tokens onto Bootstrap's Sass
+// variables so the two systems share identical values.
 //
 // Usage:
-//   Replace bootstrap.css with this compiled theme.
 //   <link rel="stylesheet" href="unigrid-bootstrap.css">
 // ==========================================================================
 
-// ---- External fonts (plain CSS @import, must be emitted before any rules) ----
+// ---- External fonts (plain CSS @import, must be emitted first) ----
 @use "fonts";
 
-// ---- Unigrid Variables ----
-@use "variables" as *;
+// ---- Unigrid design tokens + rhythm helpers ----
+@use "sass:map";
+@use "helpers" as *;
 
-// ---- Bootstrap core, configured with Unigrid design tokens ----
+// ---- Bootstrap core, configured from the Unigrid tokens ----
+// leading($n) -> $n × one-leading-unit in rem  (0.25, 0.5, 1, 1.5, …)
+// fs($k)      -> map.get($ug-font-sizes, $k)    (xs, sm, base, lg, xl, …)
+// fw($k)      -> map.get($ug-font-weights, $k)  (light, regular, bold, …)
 @use "../node_modules/bootstrap/scss/bootstrap" with (
   // Opt in to Bootstrap's native CSS Grid layout (.grid / g-col-*)
   $enable-cssgrid: true,
   $enable-grid-classes: false,
 
-  // Colors
+  // ---- Colors (from $ug-* palette) ----
   $primary:   $ug-black,
   $secondary: $ug-medium-gray,
   $success:   $ug-green,
@@ -38,213 +40,213 @@
   $body-bg:    $ug-white,
   $body-color: $ug-black,
 
-  // Typography
+  // ---- Typography (from $ug-font-* maps) ----
   $font-family-sans-serif: $ug-font-family,
   $font-family-base:       $ug-font-family,
 
-  $font-size-base: 1rem,
-  $font-size-sm:   0.875rem,
-  $font-size-lg:   1.25rem,
+  $font-size-base:  fs("base"),  // 1rem
+  $font-size-sm:    fs("sm"),    // 0.875rem
+  $font-size-lg:    fs("lg"),    // 1.25rem
+  $small-font-size: fs("xs"),    // 0.75rem
 
-  $font-weight-light:  300,
-  $font-weight-normal: 400,
-  $font-weight-bold:   700,
-  $font-weight-bolder: 900,
+  $font-weight-light:  fw("light"),   // 300
+  $font-weight-normal: fw("regular"), // 400
+  $font-weight-bold:   fw("bold"),    // 700
+  $font-weight-bolder: fw("black"),   // 900
 
-  $line-height-base: 1.625,
-  $line-height-sm:   1.4,
-  $line-height-lg:   1.7,
+  $line-height-base: $ug-base-leading,         // 1.625
+  $line-height-sm:   $ug-line-height-tight,    // 1.2
+  $line-height-lg:   $ug-base-leading-desktop, // 1.7
 
-  $headings-font-weight:   700,
-  $headings-line-height:   1.2,
+  $headings-font-weight:   fw("bold"),
+  $headings-line-height:   $ug-line-height-tight,
   $headings-margin-bottom: 0.5em,
 
+  // Heading font sizes come from the $ug-headings Gutenberg table
+  // (first tuple value = rem).
   $h1-font-size: 2.5rem,
   $h2-font-size: 1.6875rem,
   $h3-font-size: 1.375rem,
   $h4-font-size: 1.2rem,
-  $h5-font-size: 1rem,
-  $h6-font-size: 1rem,
+  $h5-font-size: fs("base"),
+  $h6-font-size: fs("base"),
 
   $lead-font-size:   1.2rem,
-  $lead-font-weight: 300,
+  $lead-font-weight: fw("light"),
 
-  $small-font-size: 0.75rem,
-
-  // Links
+  // ---- Links ----
   $link-color:      $ug-black,
   $link-decoration: underline,
 
-  // Border Radius: 0 (Unigrid = sharp corners)
-  $border-radius:      0,
-  $border-radius-sm:   0,
-  $border-radius-lg:   0,
-  $border-radius-xl:   0,
-  $border-radius-xxl:  0,
-  $border-radius-pill: 9999px,
+  // ---- Border radius: sharp corners from $ug-border-radius ----
+  $border-radius:      $ug-border-radius,
+  $border-radius-sm:   $ug-border-radius-sm,
+  $border-radius-lg:   $ug-border-radius-lg,
+  $border-radius-xl:   $ug-border-radius,
+  $border-radius-xxl:  $ug-border-radius,
+  $border-radius-pill: $ug-border-radius-pill,
 
-  // Buttons
-  $btn-font-weight:  700,
-  $btn-padding-y:    0.40625rem,   // 0.25 leading
-  $btn-padding-x:    1.625rem,     // 1   leading
-  $btn-padding-y-sm: 0.203125rem,  // 0.125 leading
-  $btn-padding-x-sm: 0.8125rem,    // 0.5 leading
-  $btn-padding-y-lg: 0.8125rem,    // 0.5 leading
-  $btn-padding-x-lg: 2.4375rem,    // 1.5 leading
+  // ---- Spacing ----
+  // $spacer = one leading unit. Bootstrap's default $spacers map derives
+  // 0.25, 0.5, 1, 1.5, 3 × $spacer → all snapped to Unigrid rhythm.
+  $spacer: leading(1),
+
+  $paragraph-margin-bottom: leading(1),
+
+  // ---- Buttons ----
+  $btn-font-weight:  fw("bold"),
+  $btn-padding-y:    leading(0.25),
+  $btn-padding-x:    leading(1),
+  $btn-padding-y-sm: leading(0.125),
+  $btn-padding-x-sm: leading(0.5),
+  $btn-padding-y-lg: leading(0.5),
+  $btn-padding-x-lg: leading(1.5),
   $btn-border-width: 2px,
 
-  // Cards
-  $card-border-color: $ug-light-gray,
-  $card-border-width: 1px,
-  $card-cap-bg:       $ug-warm-gray,
-  $card-spacer-y:     1.625rem,    // 1   leading
-  $card-spacer-x:     1.625rem,    // 1   leading
-  $card-cap-padding-y: 0.8125rem,  // 0.5 leading
-  $card-cap-padding-x: 1.625rem,   // 1   leading
+  // ---- Cards ----
+  $card-border-color:  $ug-light-gray,
+  $card-border-width:  1px,
+  $card-cap-bg:        $ug-warm-gray,
+  $card-spacer-y:      leading(1),
+  $card-spacer-x:      leading(1),
+  $card-cap-padding-y: leading(0.5),
+  $card-cap-padding-x: leading(1),
 
-  // Inputs — rhythm-aligned padding
-  $input-padding-y:      0.40625rem,   // 0.25 leading
-  $input-padding-x:      0.8125rem,    // 0.5  leading
-  $input-padding-y-sm:   0.203125rem,  // 0.125 leading
-  $input-padding-x-sm:   0.40625rem,   // 0.25 leading
-  $input-padding-y-lg:   0.8125rem,    // 0.5  leading
-  $input-padding-x-lg:   1.21875rem,   // 0.75 leading
+  // ---- Inputs ----
+  $input-padding-y:    leading(0.25),
+  $input-padding-x:    leading(0.5),
+  $input-padding-y-sm: leading(0.125),
+  $input-padding-x-sm: leading(0.25),
+  $input-padding-y-lg: leading(0.5),
+  $input-padding-x-lg: leading(0.75),
   $input-border-color:         $ug-light-gray,
   $input-focus-border-color:   $ug-black,
   $input-focus-box-shadow:     none,
   $input-btn-focus-box-shadow: none,
 
-  // Navbar
-  $navbar-padding-y:            0.8125rem,  // 0.5 leading
-  $navbar-nav-link-padding-x:   0.8125rem,  // 0.5 leading
-  $navbar-brand-padding-y:      0.40625rem, // 0.25 leading
+  // ---- Navbar ----
+  $navbar-padding-y:            leading(0.5),
+  $navbar-nav-link-padding-x:   leading(0.5),
+  $navbar-brand-padding-y:      leading(0.25),
   $navbar-dark-color:                rgba(255, 255, 255, 0.7),
   $navbar-dark-hover-color:          $ug-white,
   $navbar-dark-active-color:         $ug-white,
   $navbar-dark-toggler-border-color: rgba(255, 255, 255, 0.5),
 
-  // Nav (tabs/pills) — rhythm-aligned
-  $nav-link-padding-y: 0.40625rem,   // 0.25 leading
-  $nav-link-padding-x: 0.8125rem,    // 0.5  leading
+  // ---- Nav (tabs / pills) ----
+  $nav-link-padding-y: leading(0.25),
+  $nav-link-padding-x: leading(0.5),
 
-  // Tables
-  $table-cell-padding-y:    0.40625rem,  // 0.25 leading
-  $table-cell-padding-x:    0.40625rem,  // 0.25 leading
-  $table-cell-padding-y-sm: 0.203125rem, // 0.125 leading
-  $table-cell-padding-x-sm: 0.203125rem, // 0.125 leading
-  $table-border-color: $ug-light-gray,
-  $table-striped-bg:   $ug-warm-gray,
+  // ---- Tables ----
+  $table-cell-padding-y:    leading(0.25),
+  $table-cell-padding-x:    leading(0.25),
+  $table-cell-padding-y-sm: leading(0.125),
+  $table-cell-padding-x-sm: leading(0.125),
+  $table-border-color:      $ug-light-gray,
+  $table-striped-bg:        $ug-warm-gray,
 
-  // Modals (padding derives from $modal-inner-padding / $spacer → 1 leading)
-  $modal-inner-padding:        1.625rem,   // 1 leading
-  $modal-header-padding-y:     1.625rem,   // 1 leading
-  $modal-header-padding-x:     1.625rem,   // 1 leading
+  // ---- Modals ----
+  $modal-inner-padding:        leading(1),
+  $modal-header-padding-y:     leading(1),
+  $modal-header-padding-x:     leading(1),
   $modal-content-border-width: 0,
   $modal-header-border-width:  0,
   $modal-footer-border-width:  1px,
   $modal-footer-border-color:  $ug-light-gray,
 
-  // Dropdowns — rhythm-aligned
-  $dropdown-padding-y:        0.40625rem,  // 0.25 leading
+  // ---- Dropdowns ----
+  $dropdown-padding-y:        leading(0.25),
   $dropdown-padding-x:        0,
-  $dropdown-item-padding-y:   0.40625rem,  // 0.25 leading
-  $dropdown-item-padding-x:   1.625rem,    // 1    leading
+  $dropdown-item-padding-y:   leading(0.25),
+  $dropdown-item-padding-x:   leading(1),
   $dropdown-border-color:     $ug-light-gray,
   $dropdown-link-color:       $ug-dark-gray,
   $dropdown-link-hover-bg:    $ug-warm-gray,
   $dropdown-link-hover-color: $ug-black,
 
-  // Accordions — rhythm-aligned padding
-  $accordion-padding-y:           0.8125rem,  // 0.5  leading
-  $accordion-padding-x:           1.21875rem, // 0.75 leading
+  // ---- Accordions ----
+  $accordion-padding-y:           leading(0.5),
+  $accordion-padding-x:           leading(0.75),
   $accordion-border-color:        $ug-light-gray,
   $accordion-button-active-bg:    transparent,
   $accordion-button-active-color: $ug-black,
 
-  // Pagination — flat Unigrid style (no buttons, underline for active/hover)
-  $pagination-padding-y:     0.40625rem,   // 0.25 leading
-  $pagination-padding-x:     0.8125rem,    // 0.5  leading
-  $pagination-padding-y-sm:  0.203125rem,  // 0.125 leading
-  $pagination-padding-x-sm:  0.40625rem,   // 0.25 leading
-  $pagination-padding-y-lg:  0.8125rem,    // 0.5  leading
-  $pagination-padding-x-lg:  1.625rem,     // 1    leading
-  $pagination-color:               $ug-black,
-  $pagination-bg:                  transparent,
-  $pagination-border-width:        0,
-  $pagination-border-color:        transparent,
-  $pagination-hover-color:         $ug-black,
-  $pagination-hover-bg:            transparent,
-  $pagination-hover-border-color:  transparent,
-  $pagination-focus-color:         $ug-black,
-  $pagination-focus-bg:            transparent,
-  $pagination-focus-box-shadow:    none,
-  $pagination-active-color:        $ug-black,
-  $pagination-active-bg:           transparent,
-  $pagination-active-border-color: transparent,
-  $pagination-disabled-color:      $ug-light-gray,
-  $pagination-disabled-bg:         transparent,
+  // ---- Pagination (flat Unigrid style) ----
+  $pagination-padding-y:    leading(0.25),
+  $pagination-padding-x:    leading(0.5),
+  $pagination-padding-y-sm: leading(0.125),
+  $pagination-padding-x-sm: leading(0.25),
+  $pagination-padding-y-lg: leading(0.5),
+  $pagination-padding-x-lg: leading(1),
+  $pagination-color:                 $ug-black,
+  $pagination-bg:                    transparent,
+  $pagination-border-width:          0,
+  $pagination-border-color:          transparent,
+  $pagination-hover-color:           $ug-black,
+  $pagination-hover-bg:              transparent,
+  $pagination-hover-border-color:    transparent,
+  $pagination-focus-color:           $ug-black,
+  $pagination-focus-bg:              transparent,
+  $pagination-focus-box-shadow:      none,
+  $pagination-active-color:          $ug-black,
+  $pagination-active-bg:             transparent,
+  $pagination-active-border-color:   transparent,
+  $pagination-disabled-color:        $ug-light-gray,
+  $pagination-disabled-bg:           transparent,
   $pagination-disabled-border-color: transparent,
 
-  // Breadcrumb
+  // ---- Breadcrumb ----
   $breadcrumb-divider-color: $ug-medium-gray,
   $breadcrumb-active-color:  $ug-medium-gray,
-  $breadcrumb-margin-bottom: 1.625rem,  // 1 leading
+  $breadcrumb-margin-bottom: leading(1),
   $breadcrumb-padding-y:     0,
   $breadcrumb-padding-x:     0,
 
-  // Badge
-  $badge-font-weight: 700,
+  // ---- Badge ----
+  $badge-font-weight: fw("bold"),
   $badge-font-size:   0.7rem,
-  $badge-padding-y:   0.203125rem, // 0.125 leading
-  $badge-padding-x:   0.40625rem,  // 0.25  leading
+  $badge-padding-y:   leading(0.125),
+  $badge-padding-x:   leading(0.25),
 
-  // Alert
+  // ---- Alert ----
   $alert-border-width:  3px,
-  $alert-padding-y:     1.625rem,   // 1 leading
-  $alert-padding-x:     1.625rem,   // 1 leading
-  $alert-margin-bottom: 1.625rem,   // 1 leading
+  $alert-padding-y:     leading(1),
+  $alert-padding-x:     leading(1),
+  $alert-margin-bottom: leading(1),
 
-  // List group
-  $list-group-item-padding-y: 0.8125rem,  // 0.5 leading
-  $list-group-item-padding-x: 1.625rem,   // 1   leading
+  // ---- List group ----
+  $list-group-item-padding-y: leading(0.5),
+  $list-group-item-padding-x: leading(1),
 
-  // Toast / popover / tooltip — rhythm-aligned
-  $toast-padding-x:          0.8125rem,   // 0.5  leading
-  $toast-padding-y:          0.40625rem,  // 0.25 leading
-  $popover-body-padding-y:   0.8125rem,   // 0.5  leading
-  $popover-body-padding-x:   0.8125rem,   // 0.5  leading
-  $tooltip-padding-y:        0.203125rem, // 0.125 leading
-  $tooltip-padding-x:        0.40625rem,  // 0.25  leading
+  // ---- Toast / popover / tooltip ----
+  $toast-padding-x:        leading(0.5),
+  $toast-padding-y:        leading(0.25),
+  $popover-body-padding-y: leading(0.5),
+  $popover-body-padding-x: leading(0.5),
+  $tooltip-padding-y:      leading(0.125),
+  $tooltip-padding-x:      leading(0.25),
 
-  // Progress bars
-  $progress-height: 0.8125rem,  // 0.5 leading
+  // ---- Progress bars ----
+  $progress-height: leading(0.5),
 
-  // Offcanvas
-  $offcanvas-padding-y: 1.625rem,  // 1 leading
-  $offcanvas-padding-x: 1.625rem,  // 1 leading
+  // ---- Offcanvas ----
+  $offcanvas-padding-y: leading(1),
+  $offcanvas-padding-x: leading(1),
 
-  // Forms
+  // ---- Forms ----
   $form-label-margin-bottom: 0,
-  $form-label-font-weight: 700,
-  $form-text-margin-top:   0.40625rem,  // 0.25 leading
+  $form-label-font-weight:   fw("bold"),
+  $form-text-margin-top:     leading(0.25),
 
-  // Spacing — $spacer = one leading unit, so the entire Bootstrap
-  // spacer scale (p-1..p-5, m-1..m-5, gap-*, etc.) snaps to rhythm.
-  // Default derivation: 1=0.25, 2=0.5, 3=1, 4=1.5, 5=3 × $spacer.
-  $spacer: 1.625rem,
+  // ---- Grid ----
+  $grid-gutter-width: leading(1),
 
-  // Paragraph / headings (derive from $spacer → already rhythm-aligned)
-  $paragraph-margin-bottom: 1.625rem,  // 1 leading
-
-  // Grid
-  $grid-gutter-width: 1.625rem,  // 1 leading
-
-  // Shadows: none (flat design)
+  // ---- Shadows: none (flat design) ----
   $box-shadow:    none,
   $box-shadow-sm: none,
   $box-shadow-lg: none,
 
-  // Transitions
+  // ---- Transitions ----
   $transition-base: all 0.15s ease-in-out
 );
 
