@@ -21,6 +21,9 @@
 
 // ---- Bootstrap core, configured with Unigrid design tokens ----
 @use "../node_modules/bootstrap/scss/bootstrap" with (
+  // Opt in to Bootstrap's native CSS Grid layout (.grid / g-col-*)
+  $enable-cssgrid: true,
+
   // Colors
   $primary:   $ug-black,
   $secondary: $ug-medium-gray,
