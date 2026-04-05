@@ -422,17 +422,18 @@
   //   <button class="navbar-toggler" data-bs-toggle="collapse" ...>
   //     <span class="navbar-toggler-icon"></span>
   //   </button>
+  //
+  // Intentionally does NOT set `display` — Bootstrap's responsive
+  // `.navbar-expand-* .navbar-toggler { display: none }` must stay in
+  // charge so the button only shows below the expand breakpoint.
   .navbar-toggler {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
     height: calc(var(--ug-leading) * 1.5);
     padding: 0 calc(var(--ug-leading) * 0.75);
     font-size: 0.875rem;
     font-weight: 700;
     font-family: inherit;
     letter-spacing: 0.05em;
-    line-height: 1;
+    line-height: calc(var(--ug-leading) * 1.5); // vertical center for ::before text
     color: inherit;
     background: none;
     border: 1px solid currentColor;
@@ -440,6 +441,7 @@
     box-shadow: none;
     cursor: pointer;
     transition: background-color 0.15s, color 0.15s;
+    vertical-align: middle;
 
     &:focus,
     &:focus-visible {
