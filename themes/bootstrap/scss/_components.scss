@@ -4,6 +4,8 @@
 // Additions not covered by Bootstrap's variable system.
 // ==========================================================================
 
+@use "variables" as *;
+
 // ---- Variable font support ----
 @supports (font-variation-settings: normal) {
   :root {
