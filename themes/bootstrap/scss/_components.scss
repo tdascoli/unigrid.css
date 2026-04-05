@@ -157,6 +157,85 @@
   }
 }
 
+// ---- Nav tabs: Unigrid underline style (matches .ug-tabs) ----
+.nav-tabs {
+  --bs-nav-tabs-border-width: 2px;
+  --bs-nav-tabs-border-color: #{$ug-light-gray};
+  border-bottom-width: 2px;
+
+  .nav-link {
+    color: $ug-medium-gray;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.625rem;
+    padding: calc(var(--ug-leading) * 0.5) var(--ug-leading);
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    margin-bottom: -2px;
+    background: none;
+    transition: color 0.15s, border-color 0.15s;
+
+    &:hover,
+    &:focus {
+      color: $ug-black;
+      border-color: transparent;
+      border-bottom-color: transparent;
+      isolation: auto;
+      background: none;
+    }
+
+    &.active {
+      color: $ug-black;
+      background-color: transparent;
+      border-color: transparent;
+      border-bottom-color: $ug-black;
+    }
+
+    &.disabled {
+      color: $ug-light-gray;
+    }
+  }
+
+  .nav-item.show .nav-link {
+    color: $ug-black;
+    background-color: transparent;
+    border-color: transparent transparent $ug-black;
+  }
+}
+
+// ---- Nav pills: Unigrid flat (sharp corners, black active) ----
+.nav-pills {
+  --bs-nav-pills-border-radius: 0;
+  gap: calc(var(--ug-leading) * 0.25);
+
+  .nav-link {
+    color: $ug-medium-gray;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.625rem;
+    padding: calc(var(--ug-leading) * 0.5) var(--ug-leading);
+    border-radius: 0;
+    background: none;
+    transition: color 0.15s, background-color 0.15s;
+
+    &:hover {
+      color: $ug-black;
+      background-color: $ug-warm-gray;
+    }
+
+    &.active,
+    &.show {
+      color: $ug-white;
+      background-color: $ug-black;
+
+      &:hover {
+        background-color: $ug-dark-gray;
+      }
+    }
+  }
+}
+
 // ---- Pagination: flat Unigrid style (matches .ug-pagination) ----
 // Borders are removed via theme variables; we add the signature 2px
 // bottom-border underline for hover and the active page, plus bold weight
