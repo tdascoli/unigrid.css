@@ -81,8 +81,8 @@ jobs:
       - name: Install docs dependencies
         run: cd docs && npm ci
 
-      - name: Build Astro docs site
-        run: cd docs && npx astro build
+      - name: Build docs (Astro + configurator + Bootstrap theme)
+        run: cd docs && npm run build
 
       - uses: actions/upload-pages-artifact@v3
         with:
