@@ -36,19 +36,20 @@
 
 // ==========================================================================
 // Unigrid Header Band  —  <header class="ug-header">
+// 1:1 port of src/scss/_header.scss
 // ==========================================================================
 .ug-header {
   display: flex;
   align-items: flex-start;
-  gap: calc(var(--ug-leading) * 1);
+  gap: var(--ug-leading);
   background-color: $ug-black;
   color: $ug-white;
-  padding: calc(var(--ug-leading) * 0.5) calc(var(--ug-leading) * 1);
+  padding: var(--ug-leading) calc(var(--ug-leading) * 1.5);
   width: 100%;
   flex-wrap: wrap;
 
   &__logo {
-    height: calc(var(--ug-leading) * 2);
+    height: calc(var(--ug-leading) * 3);
     flex-shrink: 0;
 
     img, svg { height: 100%; width: auto; }
@@ -57,22 +58,35 @@
   &__title {
     display: flex;
     flex-direction: column;
+    gap: 0;
     flex-shrink: 0;
 
     h1, a {
-      font-size: 2rem;
-      font-weight: fw("black");
-      line-height: $ug-line-height-tight;
+      @include ug-font-size("3xl");
+      @include ug-font-weight("bold");
+      @include ug-rhythm-line-height(2);
       letter-spacing: -0.02em;
+      text-transform: none;
       margin: 0;
       color: $ug-white;
-      text-decoration: none;
     }
+
+    a { text-decoration: none; }
+  }
+
+  &__name {
+    @include ug-font-size("3xl");
+    @include ug-font-weight("bold");
+    @include ug-rhythm-line-height(2);
+    letter-spacing: -0.02em;
+    margin: 0;
+    flex-shrink: 0;
   }
 
   &__subtitle {
-    @include ug-font-size("base");
+    @include ug-font-size("lg");
     @include ug-font-weight("light");
+    @include ug-rhythm-line-height(1);
     opacity: 0.85;
     margin: 0;
   }
@@ -84,7 +98,7 @@
 
     .navbar-nav .nav-link {
       color: rgba(255, 255, 255, 0.7);
-      &:hover  { color: $ug-white; }
+      &:hover  { color: $ug-white; background-color: rgba(255, 255, 255, 0.1); }
       &.active { color: $ug-white; }
     }
 
@@ -93,41 +107,109 @@
       border-color: rgba(255, 255, 255, 0.5);
     }
   }
+
+  // ---- Modifiers ----
+  &--compact {
+    padding: calc(var(--ug-leading) * 0.5) calc(var(--ug-leading) * 1.5);
+
+    .ug-header__logo {
+      width: auto;
+      height: calc(var(--ug-leading) * 2);
+    }
+
+    .ug-header__title h1,
+    .ug-header__title a,
+    .ug-header__name {
+      @include ug-font-size("2xl");
+      @include ug-rhythm-line-height(1);
+    }
+
+    .ug-header__subtitle {
+      @include ug-font-size("sm");
+      @include ug-rhythm-line-height(1);
+    }
+  }
+
+  &--brown { background-color: $ug-brown; }
+
+  &--full { grid-column: 1 / -1; }
+
+  // ---- Responsive ----
+  @include ug-breakpoint-down("md") {
+    &__title h1,
+    &__title a,
+    &__name {
+      @include ug-font-size("2xl");
+    }
+
+    &__subtitle {
+      @include ug-font-size("base");
+    }
+
+    &__logo {
+      width: 2.5rem;
+    }
+  }
+
+  @include ug-breakpoint-down("sm") {
+    &__title h1,
+    &__title a,
+    &__name {
+      @include ug-font-size("lg");
+    }
+
+    &__subtitle {
+      @include ug-font-size("xs");
+    }
+  }
 }
 
 // ==========================================================================
 // Unigrid Section Title  —  .ug-section
+// 1:1 port of src/scss/_section.scss
 // ==========================================================================
 .ug-section {
   width: 100%;
   background-color: $ug-black;
   color: $ug-white;
-  padding: calc(var(--ug-leading) * 0.5) calc(var(--ug-leading) * 1);
+  padding: var(--ug-leading) calc(var(--ug-leading) * 1.5);
 
   &__title {
-    font-size: fs("xl");
-    font-weight: fw("black");
-    line-height: $ug-line-height-tight;
+    @include ug-rhythm-font-size(1.6875);
+    @include ug-rhythm-line-height(1.5);
+    @include ug-font-weight("black");
+    letter-spacing: -0.01em;
     margin: 0;
   }
 
   &__subtitle {
     @include ug-font-size("sm");
     @include ug-font-weight("light");
+    @include ug-rhythm-line-height(1);
     opacity: 0.7;
     margin: 0;
   }
 
+  // ---- Size modifiers ----
   &--compact {
-    padding: calc(var(--ug-leading) * 0.25) calc(var(--ug-leading) * 1);
-    .ug-section__title { font-size: 1.1rem; }
+    padding: calc(var(--ug-leading) * 0.5) calc(var(--ug-leading) * 1.5);
+
+    .ug-section__title {
+      @include ug-rhythm-font-size(1.2);
+      @include ug-rhythm-line-height(1);
+    }
   }
 
   &--large {
-    padding: calc(var(--ug-leading) * 1.5) calc(var(--ug-leading) * 1);
-    .ug-section__title { font-size: 2.5rem; }
+    padding: calc(var(--ug-leading) * 2) calc(var(--ug-leading) * 1.5);
+
+    .ug-section__title {
+      @include ug-rhythm-font-size(2.5);
+      @include ug-rhythm-line-height(2);
+    }
   }
 
+  // ---- Color modifiers ----
   &--brown { background-color: $ug-brown; }
   &--red   { background-color: $ug-red; }
   &--green { background-color: $ug-green; }
@@ -137,30 +219,62 @@
     background-color: $ug-warm-gray;
     color: $ug-black;
   }
+
+  // ---- Responsive ----
+  @include ug-breakpoint-down("md") {
+    padding: var(--ug-leading) var(--ug-leading);
+
+    &--large {
+      padding: calc(var(--ug-leading) * 1.5) var(--ug-leading);
+    }
+
+    &--compact {
+      padding: calc(var(--ug-leading) * 0.5) var(--ug-leading);
+    }
+  }
+
+  @include ug-breakpoint-down("sm") {
+    .ug-section__title {
+      @include ug-rhythm-font-size(1.2);
+    }
+  }
 }
 
 // ==========================================================================
 // Unigrid Label Divider
+// 1:1 port of src/scss/_components.scss .ug-label-divider
 // ==========================================================================
 .ug-label-divider {
   @include ug-font-size("sm");
   @include ug-font-weight("bold");
-  line-height: 1.5;
+  line-height: calc(var(--ug-leading) - 2px);
+  margin-bottom: calc(var(--ug-leading) * 0.5 - 2px);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: $ug-medium-gray;
   border-bottom: 2px solid $ug-black;
-  padding-bottom: calc(var(--ug-leading) * 0.25);
-  margin-bottom: calc(var(--ug-leading) * 0.5);
+  @include ug-rhythm-margin-top(0.5);
+
+  &--bold {
+    line-height: calc(var(--ug-leading) - 3px);
+    border-bottom-width: 3px;
+    margin-bottom: calc(var(--ug-leading) * 0.5 - 3px);
+  }
+
+  &--light {
+    border-bottom-color: $ug-light-gray;
+  }
 }
 
 // ==========================================================================
 // Unigrid Infobox
+// 1:1 port of src/scss/_components.scss .ug-infobox
 // ==========================================================================
 .ug-infobox {
   background-color: $ug-warm-gray;
-  padding: calc(var(--ug-leading) * 0.5);
+  @include ug-rhythm-padding(1, 1);
   border-left: 3px solid $ug-black;
+  border-radius: $ug-border-radius;
 
   &--dark {
     background-color: $ug-black;
@@ -171,9 +285,25 @@
   &__title {
     @include ug-font-size("sm");
     @include ug-font-weight("bold");
+    @include ug-rhythm-line-height(1);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    margin-bottom: calc(var(--ug-leading) * 0.25);
+    margin-bottom: 0;
+  }
+}
+
+// ==========================================================================
+// Unigrid Divider  —  1:1 port of src/scss/_components.scss .ug-divider
+// ==========================================================================
+.ug-divider {
+  border: none;
+  border-top: 1px solid $ug-light-gray;
+  padding-top: calc(var(--ug-leading) * 0.5 - 1px);
+  padding-bottom: calc(var(--ug-leading) * 0.5);
+
+  &--bold {
+    border-top: 3px solid $ug-black;
+    padding-top: calc(var(--ug-leading) * 0.5 - 3px);
   }
 }
 
@@ -187,6 +317,7 @@
   @include ug-font-size("sm");
   @include ug-font-weight("bold");
   @include ug-rhythm-line-height(1);
+  @include ug-rhythm-margin-top(0.5);
   color: $ug-black;
   margin-bottom: 0;
 }
@@ -769,27 +900,5 @@ body {
     &__nav {
       gap: calc(var(--ug-leading) * 0.5);
     }
-  }
-}
-
-// ==========================================================================
-// Responsive header / section tweaks
-// ==========================================================================
-@include ug-breakpoint-down("md") {
-  .ug-header {
-    padding: calc(var(--ug-leading) * 0.5) calc(var(--ug-leading) * 0.75);
-
-    &__title h1,
-    &__title a {
-      font-size: fs("xl");
-    }
-
-    &__subtitle {
-      @include ug-font-size("sm");
-    }
-  }
-
-  .ug-section {
-    padding: calc(var(--ug-leading) * 0.5) calc(var(--ug-leading) * 0.75);
   }
 }
