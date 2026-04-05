@@ -43,7 +43,7 @@
   gap: calc(var(--ug-leading) * 1);
   background-color: $ug-black;
   color: $ug-white;
-  padding: calc(var(--ug-leading) * 0.5) calc(var(--ug-leading) * 1);
+  padding: var(--ug-leading) calc(var(--ug-leading) * 1.5);
   width: 100%;
   flex-wrap: wrap;
 
@@ -102,12 +102,13 @@
   width: 100%;
   background-color: $ug-black;
   color: $ug-white;
-  padding: calc(var(--ug-leading) * 0.5) calc(var(--ug-leading) * 1);
+  padding: var(--ug-leading) calc(var(--ug-leading) * 1.5);
 
   &__title {
     font-size: fs("xl");
-    font-weight: fw("black");
+    font-weight: fw("extra-bold");
     line-height: $ug-line-height-tight;
+    letter-spacing: -0.01em;
     margin: 0;
   }
 
@@ -119,12 +120,12 @@
   }
 
   &--compact {
-    padding: calc(var(--ug-leading) * 0.25) calc(var(--ug-leading) * 1);
+    padding: calc(var(--ug-leading) * 0.5) calc(var(--ug-leading) * 1.5);
     .ug-section__title { font-size: 1.1rem; }
   }
 
   &--large {
-    padding: calc(var(--ug-leading) * 1.5) calc(var(--ug-leading) * 1);
+    padding: calc(var(--ug-leading) * 2) calc(var(--ug-leading) * 1.5);
     .ug-section__title { font-size: 2.5rem; }
   }
 
@@ -428,6 +429,7 @@
   .navbar-toggler {
     height: calc(var(--ug-leading) * 1.5);
     padding: 0 calc(var(--ug-leading) * 0.75);
+    margin-left: auto;
     @include ug-font-size("sm");
     @include ug-font-weight("bold");
     font-family: inherit;
