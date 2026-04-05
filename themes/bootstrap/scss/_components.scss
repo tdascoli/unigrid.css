@@ -415,6 +415,57 @@
       }
     }
   }
+
+  // ---- Toggler: match .ug-navbar__toggle (text "Menu" / "Close") ----
+  // Hides Bootstrap's hamburger icon and replaces it with the Unigrid
+  // outlined text-button. Works with the default Bootstrap markup:
+  //   <button class="navbar-toggler" data-bs-toggle="collapse" ...>
+  //     <span class="navbar-toggler-icon"></span>
+  //   </button>
+  .navbar-toggler {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(var(--ug-leading) * 1.5);
+    padding: 0 calc(var(--ug-leading) * 0.75);
+    font-size: 0.875rem;
+    font-weight: 700;
+    font-family: inherit;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    color: inherit;
+    background: none;
+    border: 1px solid currentColor;
+    border-radius: 0;
+    box-shadow: none;
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s;
+
+    &:focus,
+    &:focus-visible {
+      box-shadow: none;
+      outline: none;
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    // Hide Bootstrap's hamburger SVG
+    .navbar-toggler-icon {
+      display: none;
+    }
+
+    // Inject "Menu" / "Close" text via pseudo-element so existing
+    // Bootstrap markup doesn't need to change.
+    &::before {
+      content: "Menu";
+    }
+
+    &[aria-expanded="true"]::before {
+      content: "Close";
+    }
+  }
 }
 
 // ---- Bootstrap Navbar on dark bg: adjust for Unigrid style ----
@@ -441,6 +492,15 @@
     &.show {
       color: $ug-white;
       background-color: transparent;
+    }
+  }
+
+  .navbar-toggler {
+    color: $ug-white;
+    border-color: rgba(255, 255, 255, 0.5);
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
     }
   }
 }
