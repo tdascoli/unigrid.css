@@ -84,6 +84,29 @@ jobs:
       - name: Build Astro docs site
         run: cd docs && npx astro build
 
+      - name: Install configurator dependencies
+        run: cd configurator && npm ci
+
+      - name: Build configurator
+        run: cd configurator && npm run build
+
+      - name: Copy configurator into docs/dist
+        run: |
+          mkdir -p docs/dist/configurator
+          cp -R configurator/dist/. docs/dist/configurator/
+
+      - name: Install Bootstrap theme dependencies
+        run: cd themes/bootstrap && npm ci
+
+      - name: Build Bootstrap theme
+        run: cd themes/bootstrap && npm run build
+
+      - name: Copy Bootstrap theme demo into docs/dist
+        run: |
+          mkdir -p docs/dist/themes/bootstrap
+          cp themes/bootstrap/index.html docs/dist/themes/bootstrap/
+          cp -R themes/bootstrap/dist docs/dist/themes/bootstrap/dist
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs/dist
