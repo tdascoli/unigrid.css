@@ -157,6 +157,37 @@
   }
 }
 
+// ---- Pagination: flat Unigrid style (matches .ug-pagination) ----
+// Borders are removed via theme variables; we add the signature 2px
+// bottom-border underline for hover and the active page, plus bold weight
+// for the current page — mirroring src/scss/_pagination.scss.
+.pagination {
+  gap: 0;
+}
+
+.page-link {
+  min-width: calc(1.625rem * 1.5);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.15s ease-in-out, color 0.15s ease-in-out;
+
+  &:hover {
+    border-bottom-color: $ug-black;
+  }
+}
+
+.page-item.active .page-link,
+.page-item .page-link.active {
+  font-weight: 700;
+  border-bottom-color: $ug-black;
+}
+
+.page-item.disabled .page-link {
+  color: $ug-light-gray;
+}
+
 // ---- Bootstrap Navbar on dark bg: adjust for Unigrid style ----
 .navbar-dark, .navbar[data-bs-theme="dark"] {
   .navbar-brand {
@@ -228,6 +259,258 @@ h1 {
 .text-brown { color: $ug-brown !important; }
 .text-nps-green { color: $ug-green !important; }
 .text-nps-blue { color: $ug-blue !important; }
+
+// ---- Vertical rhythm token ----
+// Matches Bootstrap's $line-height-base (1.625) * 1rem from the theme config.
+:root {
+  --ug-leading: 1.625rem;
+}
+
+// ==========================================================================
+// Sidebar Layout (.ug-sidebar-layout)
+// Ported from src/scss/_sidebar.scss
+//
+// Usage:
+//   <div class="ug-sidebar-layout" style="--ug-sidebar-width: 20rem">
+//     <aside class="ug-sidebar-layout__sidebar">...</aside>
+//     <main class="ug-sidebar-layout__main">...</main>
+//   </div>
+// ==========================================================================
+.ug-sidebar-layout {
+  --ug-sidebar-width: calc(var(--ug-leading) * 12);
+  display: flex;
+  width: 100%;
+  min-height: 0;
+
+  &__sidebar {
+    width: var(--ug-sidebar-width);
+    flex-shrink: 0;
+    padding: var(--ug-leading) calc(var(--ug-leading) * 1.5);
+
+    @media (max-width: 767.98px) {
+      display: none;
+    }
+  }
+
+  &__main {
+    flex: 1;
+    min-width: 0;
+    padding: var(--ug-leading) calc(var(--ug-leading) * 1.5);
+  }
+
+  // Sidebar on the right
+  &--right {
+    flex-direction: row-reverse;
+  }
+
+  // Sticky sidebar
+  &--sticky {
+    .ug-sidebar-layout__sidebar {
+      position: sticky;
+      top: 0;
+      align-self: flex-start;
+      max-height: 100vh;
+      overflow-y: auto;
+    }
+  }
+
+  // Bordered separator
+  &--bordered {
+    .ug-sidebar-layout__sidebar {
+      border-right: 1px solid $ug-light-gray;
+    }
+
+    &.ug-sidebar-layout--right .ug-sidebar-layout__sidebar {
+      border-right: none;
+      border-left: 1px solid $ug-light-gray;
+    }
+  }
+
+  // Show sidebar on mobile (override default collapse)
+  &__sidebar--visible {
+    @media (max-width: 767.98px) {
+      display: block;
+    }
+  }
+
+  // Optional sidebar navigation
+  &__nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__nav-item {
+    display: block;
+  }
+
+  &__nav-link {
+    display: flex;
+    align-items: center;
+    padding: calc(var(--ug-leading) * 0.5) 0;
+    font-size: 0.875rem;
+    line-height: 1.625rem;
+    color: $ug-dark-gray;
+    text-decoration: none;
+    border-bottom: 1px solid $ug-light-gray;
+    transition: color 0.15s;
+
+    &:hover {
+      color: $ug-black;
+    }
+
+    &--active {
+      font-weight: 700;
+      color: $ug-black;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    flex-direction: column;
+
+    &__main {
+      padding: var(--ug-leading);
+    }
+
+    &--right {
+      flex-direction: column;
+    }
+
+    &--bordered .ug-sidebar-layout__sidebar {
+      border-right: none;
+      border-left: none;
+      border-bottom: 1px solid $ug-light-gray;
+    }
+  }
+}
+
+// ==========================================================================
+// Footer (.ug-footer) — sticky footer at bottom of viewport
+// Ported from src/scss/_footer.scss
+// ==========================================================================
+html, body {
+  min-height: 100vh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+
+  > *:not(.ug-footer) {
+    flex-shrink: 0;
+  }
+
+  > .ug-footer {
+    margin-top: auto;
+  }
+}
+
+.ug-footer {
+  width: 100%;
+  background-color: $ug-black;
+  color: $ug-white;
+  padding: calc(var(--ug-leading) * 3) calc(var(--ug-leading) * 1.5);
+
+  &__inner {
+    max-width: 1320px;
+    margin: 0 auto;
+  }
+
+  &__brand {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.625rem;
+    margin-bottom: 1.625rem;
+    color: $ug-white;
+    text-decoration: none;
+    display: block;
+  }
+
+  &__text {
+    font-size: 0.875rem;
+    line-height: 1.625rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+  }
+
+  &__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ug-leading);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__link {
+    font-size: 0.875rem;
+    line-height: 1.625rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: color 0.15s;
+
+    &:hover {
+      color: $ug-white;
+    }
+  }
+
+  &__divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: calc(var(--ug-leading) - 1px);
+    margin: 0;
+  }
+
+  // Compact: single-line footer
+  &--compact {
+    padding: var(--ug-leading) calc(var(--ug-leading) * 1.5);
+
+    .ug-footer__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--ug-leading);
+    }
+
+    .ug-footer__brand {
+      margin-bottom: 0;
+      font-size: 0.875rem;
+    }
+
+    .ug-footer__nav {
+      margin-bottom: 0;
+    }
+  }
+
+  // Light variant
+  &--light {
+    background-color: $ug-warm-gray;
+    color: $ug-black;
+
+    .ug-footer__brand { color: $ug-black; }
+    .ug-footer__text  { color: $ug-medium-gray; }
+    .ug-footer__link {
+      color: $ug-dark-gray;
+      &:hover { color: $ug-black; }
+    }
+    .ug-footer__divider { border-top-color: $ug-light-gray; }
+  }
+
+  @media (max-width: 767.98px) {
+    padding: calc(var(--ug-leading) * 2) var(--ug-leading);
+
+    &--compact {
+      padding: var(--ug-leading);
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    &__nav {
+      gap: calc(var(--ug-leading) * 0.5);
+    }
+  }
+}
 
 // ---- Responsive adjustments ----
 @media (max-width: 767.98px) {
