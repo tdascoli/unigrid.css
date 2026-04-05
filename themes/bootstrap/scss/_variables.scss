@@ -5,17 +5,17 @@
 // ==========================================================================
 
 // ---- NPS Color Palette ----
-$ug-black:       #1a1a1a;
-$ug-white:       #ffffff;
-$ug-warm-gray:   #f5f2ed;
-$ug-dark-gray:   #333333;
-$ug-medium-gray: #666666;
-$ug-light-gray:  #e8e5e0;
-$ug-red:         #c1272d;
-$ug-brown:       #4a3728;
-$ug-green:       #2d5a27;
-$ug-blue:        #274a5a;
+$ug-black:       #1a1a1a !default;
+$ug-white:       #ffffff !default;
+$ug-warm-gray:   #f5f2ed !default;
+$ug-dark-gray:   #333333 !default;
+$ug-medium-gray: #666666 !default;
+$ug-light-gray:  #e8e5e0 !default;
+$ug-red:         #c1272d !default;
+$ug-brown:       #4a3728 !default;
+$ug-green:       #2d5a27 !default;
+$ug-blue:        #274a5a !default;
 
 // ---- Typography ----
-$ug-font-family: Inter, sans-serif;
-$ug-font-family-variable: InterVariable, sans-serif;
+$ug-font-family:          Inter, sans-serif !default;
+$ug-font-family-variable: InterVariable, sans-serif !default;
