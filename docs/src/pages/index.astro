@@ -28,6 +28,7 @@ const base = import.meta.env.BASE_URL;
         <ul class="ug-navbar__menu">
           <li class="ug-navbar__item"><a class="ug-navbar__link" href={`${base}docs/getting-started`}>Docs</a></li>
           <li class="ug-navbar__item"><a class="ug-navbar__link" href={`${base}docs/components/header`}>Components</a></li>
+          <li class="ug-navbar__item"><a class="ug-navbar__link" href={`${base}configurator/`}>Configurator</a></li>
           <li class="ug-navbar__item"><a class="ug-navbar__link" href="https://github.com/tdascoli/unigrid.css">GitHub</a></li>
         </ul>
       </div>
@@ -159,6 +160,58 @@ const base = import.meta.env.BASE_URL;
     </div>
     <div class="ug-mt--3" style="text-align:center">
       <a class="ug-btn ug-btn--outline" href={`${base}docs/getting-started`}>View all components →</a>
+    </div>
+  </div>
+
+  <!-- Themes -->
+  <div class="ug-section ug-section--compact">
+    <h2 class="ug-section__title">Themes</h2>
+  </div>
+
+  <div class="ug-container ug-container--narrow ug-pt--5 ug-pb--5">
+    <div class="ug-grid">
+      <div class="ug-col--6 ug-col--sm-12">
+        <h3 class="ug-h3">Unigrid for Bootstrap 5</h3>
+        <p class="ug-body">
+          Apply the Unigrid design language — NPS colors, Inter typography,
+          sharp corners, flat navigation, and the signature section bands —
+          on top of Bootstrap 5. Drop-in replacement for
+          <code>bootstrap.css</code>.
+        </p>
+        <ul class="ug-list">
+          <li>Configured via Bootstrap's native Sass variables (<code>@use ... with</code>)</li>
+          <li>Opt-in CSS Grid layout (<code>.grid</code> / <code>.g-col-*</code>)</li>
+          <li>Flat pagination, tabs, forms, navbar matching <code>.ug-*</code> components</li>
+          <li>Includes <code>.ug-header</code>, <code>.ug-section</code>, <code>.ug-sidebar-layout</code>, <code>.ug-footer</code></li>
+        </ul>
+        <div class="ug-mt--3">
+          <a class="ug-btn ug-btn--filled" href={`${base}themes/bootstrap/`}>Live Demo</a>
+          <a class="ug-btn ug-btn--outline" href="https://github.com/tdascoli/unigrid.css/tree/main/themes/bootstrap">Source</a>
+        </div>
+      </div>
+      <div class="ug-col--6 ug-col--sm-12">
+        <div class="ug-card">
+          <div class="ug-card__body">
+            <p class="ug-label-divider">Theme Preview</p>
+            <pre class="docs-install__code" style="border-radius:0;margin:0">&lt;link rel="stylesheet"
+  href="unigrid-bootstrap.css"&gt;
+
+&lt;header class="ug-header"&gt;
+  &lt;div class="ug-header__title"&gt;
+    &lt;h1&gt;Yellowstone&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+
+&lt;div class="grid"&gt;
+  &lt;div class="g-col-8"&gt;
+    &lt;button class="btn btn-primary"&gt;
+      Plan Your Visit
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
