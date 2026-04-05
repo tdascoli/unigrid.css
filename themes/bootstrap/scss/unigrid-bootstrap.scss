@@ -87,11 +87,37 @@
   $border-radius-pill: $ug-border-radius-pill,
 
   // ---- Spacing ----
-  // $spacer = one leading unit. Bootstrap's default $spacers map derives
-  // 0.25, 0.5, 1, 1.5, 3 × $spacer → all snapped to Unigrid rhythm.
+  // $spacer = one leading unit — consumed by Bootstrap internals that do
+  // Sass arithmetic on it ($navbar-padding-y: $spacer * .5, etc.), so it
+  // must stay a real rem dimension.
   $spacer: leading(1),
 
-  $paragraph-margin-bottom: leading(1),
+  // ---- Spacer utilities ----
+  // .p-*/.m-*/.gap-*/.row-gap-*/.col-gap-* must snap to Unigrid's live
+  // rhythm so they adapt at the desktop breakpoint (26px → 31px) in sync
+  // with the .ug-* components. Override the full map with calc(var())
+  // expressions so the values are computed at runtime against --ug-leading
+  // rather than being baked-in rem at compile time.
+  $spacers: (
+    0: 0,
+    1: calc(var(--ug-leading) * 0.25), // 0.25 leading
+    2: calc(var(--ug-leading) * 0.5),  // 0.5  leading
+    3: calc(var(--ug-leading) * 1),    // 1    leading
+    4: calc(var(--ug-leading) * 1.5),  // 1.5  leading
+    5: calc(var(--ug-leading) * 3),    // 3    leading
+  ),
+
+  // Grid gutters (.g-*, .gx-*, .gy-*) share the same rhythm scale.
+  $gutters: (
+    0: 0,
+    1: calc(var(--ug-leading) * 0.25),
+    2: calc(var(--ug-leading) * 0.5),
+    3: calc(var(--ug-leading) * 1),
+    4: calc(var(--ug-leading) * 1.5),
+    5: calc(var(--ug-leading) * 3),
+  ),
+
+  $paragraph-margin-bottom: calc(var(--ug-leading) * 1),
 
   // ---- Buttons ----
   $btn-font-weight:  fw("bold"),
