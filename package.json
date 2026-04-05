@@ -1,6 +1,6 @@
 {
   "name": "unigrid.css",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "A CSS grid framework inspired by Massimo Vignelli's Unigrid system for the National Park Service. Vertical rhythm, square modules, BEM naming.",
   "main": "dist/unigrid.css",
   "style": "dist/unigrid.css",
