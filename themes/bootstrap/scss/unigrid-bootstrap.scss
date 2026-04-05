@@ -127,13 +127,23 @@
   $accordion-button-active-bg:    transparent,
   $accordion-button-active-color: $ug-black,
 
-  // Pagination
+  // Pagination — flat Unigrid style (no buttons, underline for active/hover)
   $pagination-color:               $ug-black,
   $pagination-bg:                  transparent,
+  $pagination-border-width:        0,
   $pagination-border-color:        transparent,
-  $pagination-active-bg:           $ug-black,
-  $pagination-active-color:        $ug-white,
-  $pagination-active-border-color: $ug-black,
+  $pagination-hover-color:         $ug-black,
+  $pagination-hover-bg:            transparent,
+  $pagination-hover-border-color:  transparent,
+  $pagination-focus-color:         $ug-black,
+  $pagination-focus-bg:            transparent,
+  $pagination-focus-box-shadow:    none,
+  $pagination-active-color:        $ug-black,
+  $pagination-active-bg:           transparent,
+  $pagination-active-border-color: transparent,
+  $pagination-disabled-color:      $ug-light-gray,
+  $pagination-disabled-bg:         transparent,
+  $pagination-disabled-border-color: transparent,
 
   // Breadcrumb
   $breadcrumb-divider-color: $ug-medium-gray,

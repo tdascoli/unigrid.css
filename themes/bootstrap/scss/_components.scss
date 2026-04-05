@@ -157,6 +157,37 @@
   }
 }
 
+// ---- Pagination: flat Unigrid style (matches .ug-pagination) ----
+// Borders are removed via theme variables; we add the signature 2px
+// bottom-border underline for hover and the active page, plus bold weight
+// for the current page — mirroring src/scss/_pagination.scss.
+.pagination {
+  gap: 0;
+}
+
+.page-link {
+  min-width: calc(1.625rem * 1.5);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.15s ease-in-out, color 0.15s ease-in-out;
+
+  &:hover {
+    border-bottom-color: $ug-black;
+  }
+}
+
+.page-item.active .page-link,
+.page-item .page-link.active {
+  font-weight: 700;
+  border-bottom-color: $ug-black;
+}
+
+.page-item.disabled .page-link {
+  color: $ug-light-gray;
+}
+
 // ---- Bootstrap Navbar on dark bg: adjust for Unigrid style ----
 .navbar-dark, .navbar[data-bs-theme="dark"] {
   .navbar-brand {
