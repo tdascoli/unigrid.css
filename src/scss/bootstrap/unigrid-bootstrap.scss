@@ -7,8 +7,12 @@
 // This file's job is purely to map those tokens onto Bootstrap's Sass
 // variables so the two systems share identical values.
 //
-// Usage:
+// Usage (compiled CSS):
 //   <link rel="stylesheet" href="unigrid-bootstrap.css">
+//
+// Usage (SCSS integration — requires bootstrap as npm dependency):
+//   @use "unigrid.css/src/scss/bootstrap/unigrid-bootstrap";
+//   (compile with --load-path=node_modules)
 // ==========================================================================
 
 // ---- External fonts (plain CSS @import, must be emitted first) ----
@@ -22,7 +26,7 @@
 // leading($n) -> $n × one-leading-unit in rem  (0.25, 0.5, 1, 1.5, …)
 // fs($k)      -> map.get($ug-font-sizes, $k)    (xs, sm, base, lg, xl, …)
 // fw($k)      -> map.get($ug-font-weights, $k)  (light, regular, bold, …)
-@use "../node_modules/bootstrap/scss/bootstrap" with (
+@use "bootstrap/scss/bootstrap" with (
   // Opt in to Bootstrap's native CSS Grid layout (.grid / g-col-*)
   $enable-cssgrid: true,
   $enable-grid-classes: false,
@@ -279,4 +283,3 @@
 // ---- Unigrid custom components (layered on top of Bootstrap) ----
 @use "components";
 @use "containers";
-@use "labels";
