@@ -179,7 +179,9 @@ const base = import.meta.env.BASE_URL;
           <code>bootstrap.css</code>.
         </p>
         <ul class="ug-list">
+          <li>Usable as compiled CSS <strong>or</strong> as SCSS source via <code>@use "unigrid.css/src/scss/bootstrap/unigrid-bootstrap"</code></li>
           <li>Configured via Bootstrap's native Sass variables (<code>@use ... with</code>)</li>
+          <li>All spacing, margins and padding utilities snap to <code>--ug-leading</code> rhythm</li>
           <li>Opt-in CSS Grid layout (<code>.grid</code> / <code>.g-col-*</code>)</li>
           <li>Flat pagination, tabs, forms, navbar matching <code>.ug-*</code> components</li>
           <li>Includes <code>.ug-header</code>, <code>.ug-section</code>, <code>.ug-sidebar-layout</code>, <code>.ug-footer</code></li>
@@ -192,23 +194,20 @@ const base = import.meta.env.BASE_URL;
       <div class="ug-col--6 ug-col--sm-12">
         <div class="ug-card">
           <div class="ug-card__body">
-            <p class="ug-label-divider">Theme Preview</p>
+            <p class="ug-label-divider">Compiled CSS</p>
             <pre class="docs-install__code" style="border-radius:0;margin:0">&lt;link rel="stylesheet"
-  href="unigrid-bootstrap.css"&gt;
+  href="unigrid-bootstrap.css"&gt;</pre>
+          </div>
+        </div>
 
-&lt;header class="ug-header"&gt;
-  &lt;div class="ug-header__title"&gt;
-    &lt;h1&gt;Yellowstone&lt;/h1&gt;
-  &lt;/div&gt;
-&lt;/header&gt;
-
-&lt;div class="grid"&gt;
-  &lt;div class="g-col-8"&gt;
-    &lt;button class="btn btn-primary"&gt;
-      Plan Your Visit
-    &lt;/button&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</pre>
+        <div class="ug-card ug-mt--3">
+          <div class="ug-card__body">
+            <p class="ug-label-divider">SCSS Integration</p>
+            <pre class="docs-install__code" style="border-radius:0;margin:0">npm install unigrid.css bootstrap</pre>
+            <p class="ug-body--sm ug-mt--3">Then in your SCSS entry point:</p>
+            <pre class="docs-install__code" style="border-radius:0;margin:0">@use "unigrid.css/src/scss/bootstrap/unigrid-bootstrap";</pre>
+            <p class="ug-body--sm ug-mt--3">Compile with <code>--load-path=node_modules</code>:</p>
+            <pre class="docs-install__code" style="border-radius:0;margin:0">sass style.scss out.css --load-path=node_modules</pre>
           </div>
         </div>
       </div>
