@@ -4,8 +4,8 @@
   "private": true,
   "description": "Unigrid-inspired theme for Bootstrap 5",
   "scripts": {
-    "build": "sass scss/unigrid-bootstrap.scss dist/unigrid-bootstrap.css --style=expanded && sass scss/unigrid-bootstrap.scss dist/unigrid-bootstrap.min.css --style=compressed",
-    "watch": "sass scss/unigrid-bootstrap.scss dist/unigrid-bootstrap.css --style=expanded --watch",
+    "build": "sass ../../src/scss/bootstrap/unigrid-bootstrap.scss dist/unigrid-bootstrap.css --style=expanded --load-path=node_modules && sass ../../src/scss/bootstrap/unigrid-bootstrap.scss dist/unigrid-bootstrap.min.css --style=compressed --load-path=node_modules",
+    "watch": "sass ../../src/scss/bootstrap/unigrid-bootstrap.scss dist/unigrid-bootstrap.css --style=expanded --watch --load-path=node_modules",
     "dev": "npx serve ."
   },
   "devDependencies": {
