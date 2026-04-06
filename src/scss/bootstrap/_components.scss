@@ -134,6 +134,82 @@
 
   &--full { grid-column: 1 / -1; }
 
+  // ---- Light variant ----
+  &--light {
+    background-color: $ug-warm-gray;
+    color: $ug-black;
+
+    .ug-header__title h1,
+    .ug-header__title a,
+    .ug-header__name { color: $ug-black; }
+
+    .ug-header__subtitle { opacity: 0.7; }
+
+    .navbar .navbar-nav .nav-link {
+      color: $ug-dark-gray;
+      &:hover  { color: $ug-black; background-color: rgba(0, 0, 0, 0.05); }
+      &.active { color: $ug-black; }
+    }
+
+    .navbar .navbar-toggler {
+      color: $ug-black;
+      border-color: $ug-light-gray;
+    }
+  }
+
+  // ---- Bootstrap theme integration ----
+  // Support data-bs-theme="dark|light" on the header element itself
+  // and navbar-dark / navbar-light classes on the embedded .navbar.
+  &[data-bs-theme="dark"] {
+    background-color: $ug-black;
+    color: $ug-white;
+
+    .ug-header__title h1,
+    .ug-header__title a,
+    .ug-header__name { color: $ug-white; }
+  }
+
+  &[data-bs-theme="light"] {
+    background-color: $ug-warm-gray;
+    color: $ug-black;
+
+    .ug-header__title h1,
+    .ug-header__title a,
+    .ug-header__name { color: $ug-black; }
+
+    .ug-header__subtitle { opacity: 0.7; }
+  }
+
+  // navbar-dark embedded inside ug-header
+  .navbar-dark,
+  .navbar[data-bs-theme="dark"] {
+    .navbar-nav .nav-link {
+      color: rgba(255, 255, 255, 0.7);
+      &:hover  { color: $ug-white; background-color: rgba(255, 255, 255, 0.1); }
+      &.active { color: $ug-white; }
+    }
+
+    .navbar-toggler {
+      color: $ug-white;
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  // navbar-light embedded inside ug-header
+  .navbar-light,
+  .navbar[data-bs-theme="light"] {
+    .navbar-nav .nav-link {
+      color: $ug-dark-gray;
+      &:hover  { color: $ug-black; background-color: rgba(0, 0, 0, 0.05); }
+      &.active { color: $ug-black; }
+    }
+
+    .navbar-toggler {
+      color: $ug-black;
+      border-color: $ug-light-gray;
+    }
+  }
+
   // ---- Responsive ----
   @include ug-breakpoint-down("md") {
     &__title h1,
