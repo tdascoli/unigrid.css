@@ -1,8 +1,16 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
+import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 
 export default defineConfig({
   root: "dev",
+  plugins: [
+    createSvgIconsPlugin({
+      iconDirs: [resolve(__dirname, "src/icons")],
+      symbolId: "ug-icon-[name]",
+      inject: "body-first",
+    }),
+  ],
   css: {
     preprocessorOptions: {
       scss: {

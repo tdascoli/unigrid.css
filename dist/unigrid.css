@@ -1432,7 +1432,7 @@ body > .ug-footer {
 .ug-section__title {
   font-size: 1.6875rem;
   line-height: calc(var(--ug-leading) * 1.5);
-  font-weight: 900;
+  font-weight: 800;
   letter-spacing: -0.01em;
   margin: 0;
 }
@@ -3388,6 +3388,69 @@ body.ug-modal-open {
 }
 .ug-label-divider--light {
   border-bottom-color: #e8e5e0;
+}
+
+.ug-icon {
+  display: inline-block;
+  width: var(--ug-leading);
+  height: var(--ug-leading);
+  fill: currentColor;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+.ug-icon--xs {
+  width: calc(var(--ug-leading) * 0.5);
+  height: calc(var(--ug-leading) * 0.5);
+}
+.ug-icon--sm {
+  width: calc(var(--ug-leading) * 0.75);
+  height: calc(var(--ug-leading) * 0.75);
+}
+.ug-icon--md {
+  width: var(--ug-leading);
+  height: var(--ug-leading);
+}
+.ug-icon--lg {
+  width: calc(var(--ug-leading) * 1.5);
+  height: calc(var(--ug-leading) * 1.5);
+}
+.ug-icon--xl {
+  width: calc(var(--ug-leading) * 2);
+  height: calc(var(--ug-leading) * 2);
+}
+.ug-icon--2xl {
+  width: calc(var(--ug-leading) * 3);
+  height: calc(var(--ug-leading) * 3);
+}
+.ug-icon--current {
+  fill: currentColor;
+}
+.ug-icon--black {
+  fill: #1a1a1a;
+}
+.ug-icon--white {
+  fill: #ffffff;
+}
+.ug-icon--dark-gray {
+  fill: #333333;
+}
+.ug-icon--medium-gray {
+  fill: #666666;
+}
+.ug-icon--light-gray {
+  fill: #e8e5e0;
+}
+.ug-icon--red {
+  fill: #c1272d;
+}
+.ug-icon--brown {
+  fill: #4a3728;
+}
+.ug-icon--green {
+  fill: #2d5a27;
+}
+.ug-icon--blue {
+  fill: #274a5a;
 }
 
 .ug-modules-container {

@@ -1,0 +1,78 @@
+// ==========================================================================
+// Unigrid CSS Framework — Icons (BEM)
+//
+// Inline SVG icon component. Icons are injected as an SVG sprite by
+// src/js/icons.js and referenced via <use href="#ug-icon-NAME">.
+//
+// Block: .ug-icon
+// Modifiers (size): --xs, --sm, --md (default), --lg, --xl, --2xl
+// Modifiers (color): --black, --white, --red, --brown, --green, --blue,
+//                    --dark-gray, --medium-gray, --light-gray, --current
+//
+// Usage:
+//   <svg class="ug-icon ug-icon--lg ug-icon--red">
+//     <use href="#ug-icon-github"></use>
+//   </svg>
+// ==========================================================================
+
+@use "variables" as *;
+@use "mixins" as *;
+
+.ug-icon {
+  // Default: 1 leading tall, inherits text color via currentColor
+  display: inline-block;
+  width: var(--ug-leading);
+  height: var(--ug-leading);
+  fill: currentColor;
+  vertical-align: middle;
+  flex-shrink: 0;
+
+  // ==============================
+  // Size modifiers (rhythm-aligned)
+  // ==============================
+
+  &--xs {
+    width:  calc(var(--ug-leading) * 0.5);
+    height: calc(var(--ug-leading) * 0.5);
+  }
+
+  &--sm {
+    width:  calc(var(--ug-leading) * 0.75);
+    height: calc(var(--ug-leading) * 0.75);
+  }
+
+  &--md {
+    width:  var(--ug-leading);
+    height: var(--ug-leading);
+  }
+
+  &--lg {
+    width:  calc(var(--ug-leading) * 1.5);
+    height: calc(var(--ug-leading) * 1.5);
+  }
+
+  &--xl {
+    width:  calc(var(--ug-leading) * 2);
+    height: calc(var(--ug-leading) * 2);
+  }
+
+  &--2xl {
+    width:  calc(var(--ug-leading) * 3);
+    height: calc(var(--ug-leading) * 3);
+  }
+
+  // ==============================
+  // Color modifiers (NPS palette)
+  // ==============================
+
+  &--current     { fill: currentColor; }
+  &--black       { fill: $ug-black; }
+  &--white       { fill: $ug-white; }
+  &--dark-gray   { fill: $ug-dark-gray; }
+  &--medium-gray { fill: $ug-medium-gray; }
+  &--light-gray  { fill: $ug-light-gray; }
+  &--red         { fill: $ug-red; }
+  &--brown       { fill: $ug-brown; }
+  &--green       { fill: $ug-green; }
+  &--blue        { fill: $ug-blue; }
+}
