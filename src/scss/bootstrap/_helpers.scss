@@ -11,11 +11,11 @@
 // compile-time arithmetic on the overridden variables).
 // ==========================================================================
 
-@forward "../../../src/scss/variables";
-@forward "../../../src/scss/mixins";
+@forward "../variables";
+@forward "../mixins";
 
 @use "sass:map";
-@use "../../../src/scss/variables" as *;
+@use "../variables" as *;
 
 /// Convert leading multiples to a rem dimension.
 /// leading(1)    -> 1.625rem (one leading unit)
