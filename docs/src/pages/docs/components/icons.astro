@@ -1,0 +1,121 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import CodeExample from '../../../components/CodeExample.astro';
+import PropsTable from '../../../components/PropsTable.astro';
+---
+
+<DocsLayout title="Icons" activeNav="Icons">
+
+<h1>Icons</h1>
+<p class="ug-lead">CSS-only SVG icons via <code>mask-image</code>. One class per icon, rhythm-aligned sizes, and NPS color modifiers. No JavaScript required.</p>
+
+<h2>Basic Usage</h2>
+<p class="ug-body">Each icon is a single class. The icon inherits the current text color via <code>currentColor</code>.</p>
+
+<CodeExample code={`<i class="ug-icon-github"></i>
+<i class="ug-icon-npm"></i>
+<i class="ug-icon-bootstrap"></i>`} />
+
+<h2>Sizes</h2>
+<p class="ug-body">All sizes are aligned to the vertical rhythm (<code>--ug-leading</code>). Default size is 1 leading.</p>
+
+<CodeExample code={`<i class="ug-icon-github ug-icon--xs"></i>
+<i class="ug-icon-github ug-icon--sm"></i>
+<i class="ug-icon-github"></i>
+<i class="ug-icon-github ug-icon--lg"></i>
+<i class="ug-icon-github ug-icon--xl"></i>
+<i class="ug-icon-github ug-icon--2xl"></i>`} />
+
+<h2>Colors</h2>
+<p class="ug-body">By default icons use <code>currentColor</code>. Override with NPS color modifiers.</p>
+
+<CodeExample code={`<i class="ug-icon-github ug-icon--lg ug-icon--black"></i>
+<i class="ug-icon-github ug-icon--lg ug-icon--red"></i>
+<i class="ug-icon-github ug-icon--lg ug-icon--brown"></i>
+<i class="ug-icon-github ug-icon--lg ug-icon--green"></i>
+<i class="ug-icon-github ug-icon--lg ug-icon--blue"></i>
+<i class="ug-icon-github ug-icon--lg ug-icon--medium-gray"></i>`} />
+
+<h2>Inline with Text</h2>
+<p class="ug-body">Icons are <code>inline-block</code> and vertically centered, so they sit naturally alongside text.</p>
+
+<CodeExample code={`<p class="ug-body">
+  Visit us on <i class="ug-icon-github"></i> GitHub or
+  install via <i class="ug-icon-npm"></i> npm.
+</p>
+
+<a class="ug-btn" href="#">
+  <i class="ug-icon-github ug-icon--white"></i> GitHub
+</a>`} />
+
+<h2>Extending the Icon Set</h2>
+<p class="ug-body">The <code>$ug-icons</code> SCSS map is <code>!default</code>. Merge your own icons before importing Unigrid:</p>
+
+<CodeExample title="SCSS" code={`@use "sass:map";
+
+// Add custom icon before importing unigrid
+$ug-icons: map.merge($ug-icons, (
+  "mastodon": url("data:image/svg+xml,%3Csvg ...%3E%3C/svg%3E"),
+));
+
+@use "unigrid.css/src/scss/unigrid" as *;
+
+// Now .ug-icon-mastodon is available`} />
+
+<p class="ug-body">For runtime extension without SCSS, use the optional JavaScript registry:</p>
+
+<CodeExample title="JavaScript" code={`import { ugIcons, initIcons } from 'unigrid.css/src/js/icons.js';
+
+// Add icon to the registry
+ugIcons.push({
+  name: 'mastodon',
+  viewBox: '0 0 24 24',
+  svg: '<path d="M..."/>',
+});
+
+// Inject SVG sprite (enables <svg><use href="#ug-icon-mastodon"></svg> usage)
+initIcons();`} />
+
+<h2>Available Icons</h2>
+
+<div class="ug-mb--5" style="display:flex;gap:2rem;align-items:center">
+  <div style="text-align:center">
+    <i class="ug-icon-github ug-icon--xl"></i>
+    <p class="ug-body--sm ug-mt--1">github</p>
+  </div>
+  <div style="text-align:center">
+    <i class="ug-icon-npm ug-icon--xl"></i>
+    <p class="ug-body--sm ug-mt--1">npm</p>
+  </div>
+  <div style="text-align:center">
+    <i class="ug-icon-bootstrap ug-icon--xl"></i>
+    <p class="ug-body--sm ug-mt--1">bootstrap</p>
+  </div>
+</div>
+
+<h2>Class Reference</h2>
+
+<PropsTable items={[
+  { class: '.ug-icon-github', description: 'GitHub logo icon' },
+  { class: '.ug-icon-npm', description: 'npm logo icon' },
+  { class: '.ug-icon-bootstrap', description: 'Bootstrap logo icon' },
+  { class: '.ug-icon', description: 'Base class (set mask-image yourself)' },
+  { class: '.ug-icon--xs', description: 'Size: 0.5 × leading' },
+  { class: '.ug-icon--sm', description: 'Size: 0.75 × leading' },
+  { class: '.ug-icon--md', description: 'Size: 1 × leading (default)' },
+  { class: '.ug-icon--lg', description: 'Size: 1.5 × leading' },
+  { class: '.ug-icon--xl', description: 'Size: 2 × leading' },
+  { class: '.ug-icon--2xl', description: 'Size: 3 × leading' },
+  { class: '.ug-icon--black', description: 'Fill: $ug-black' },
+  { class: '.ug-icon--white', description: 'Fill: $ug-white' },
+  { class: '.ug-icon--red', description: 'Fill: $ug-red' },
+  { class: '.ug-icon--brown', description: 'Fill: $ug-brown' },
+  { class: '.ug-icon--green', description: 'Fill: $ug-green' },
+  { class: '.ug-icon--blue', description: 'Fill: $ug-blue' },
+  { class: '.ug-icon--dark-gray', description: 'Fill: $ug-dark-gray' },
+  { class: '.ug-icon--medium-gray', description: 'Fill: $ug-medium-gray' },
+  { class: '.ug-icon--light-gray', description: 'Fill: $ug-light-gray' },
+  { class: '.ug-icon--current', description: 'Fill: currentColor (default)' },
+]} />
+
+</DocsLayout>
