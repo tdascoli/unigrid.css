@@ -192,31 +192,4 @@
   if (typeof window !== "undefined") {
     window.ugIcons = ugIcons;
   }
-  function initIcons() {
-    if (typeof document === "undefined") return;
-    var existing = document.getElementById("ug-icon-sprite");
-    if (existing) existing.remove();
-    var ns = "http://www.w3.org/2000/svg";
-    var sprite = document.createElementNS(ns, "svg");
-    sprite.setAttribute("id", "ug-icon-sprite");
-    sprite.setAttribute("xmlns", ns);
-    sprite.setAttribute("style", "position:absolute;width:0;height:0;overflow:hidden");
-    sprite.setAttribute("aria-hidden", "true");
-    for (var i = 0; i < ugIcons.length; i++) {
-      var icon = ugIcons[i];
-      var symbol = document.createElementNS(ns, "symbol");
-      symbol.setAttribute("id", "ug-icon-" + icon.name);
-      symbol.setAttribute("viewBox", icon.viewBox || "0 0 24 24");
-      symbol.innerHTML = icon.svg;
-      sprite.appendChild(symbol);
-    }
-    document.body.insertBefore(sprite, document.body.firstChild);
-  }
-  if (typeof document !== "undefined") {
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", initIcons);
-    } else {
-      initIcons();
-    }
-  }
 })();

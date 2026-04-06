@@ -1,32 +1,20 @@
 /**
- * Unigrid.css — Icon Sprite Registry
+ * Unigrid.css — Icon Registry
  *
- * Maintains an extensible array of SVG icons and injects them as an
- * inline <svg> sprite when initIcons() is called.
+ * Extensible array of SVG icon definitions. The CSS classes
+ * (.ug-icon-github etc.) are generated from the $ug-icons SCSS map
+ * via mask-image — no JS required for basic usage.
  *
- * Default icons: github, npm, bootstrap.
+ * This module is useful when you want to:
+ *   - dynamically add icons at runtime
+ *   - inject an SVG sprite for <use href="#ug-icon-NAME"> usage
+ *   - iterate over the available icons programmatically
  *
  * Usage:
- *   // 1. (optional) extend before init
  *   import { ugIcons, initIcons } from 'unigrid.css/src/js/icons.js';
- *   ugIcons.push({ name: 'mastodon', svg: '<svg>...</svg>' });
- *
- *   // 2. inject sprite
- *   initIcons();
- *
- *   // 3. use in HTML
- *   <svg class="ug-icon ug-icon--lg"><use href="#ug-icon-github"></use></svg>
- *
- * If loaded via <script src="dist/icons.js"></script> (non-module),
- * the sprite is injected automatically on DOMContentLoaded, and the
- * global `window.ugIcons` array is available for extension before that.
+ *   ugIcons.push({ name: 'mastodon', viewBox: '0 0 24 24', svg: '<path .../>' });
+ *   initIcons(); // injects SVG sprite into DOM
  */
-
-// ---------------------------------------------------------------------------
-// Icon definitions — each entry: { name: string, svg: string }
-// The `svg` value must be the *inner* content of the <svg> element
-// (i.e. the <path>, <g>, <circle>, … nodes) WITHOUT the outer <svg> tag.
-// ---------------------------------------------------------------------------
 
 var ugIcons = [
   {
@@ -46,19 +34,18 @@ var ugIcons = [
   },
 ];
 
-// Make extensible globally for non-module usage
 if (typeof window !== 'undefined') {
   window.ugIcons = ugIcons;
 }
 
 /**
- * Build and inject the SVG sprite into the document body.
- * Call this after extending `ugIcons` if you need custom icons.
+ * Inject the icons as an SVG sprite into the DOM.
+ * Optional — CSS mask-image classes work without this.
+ * Use this if you prefer <svg><use href="#ug-icon-NAME"></svg>.
  */
 function initIcons() {
   if (typeof document === 'undefined') return;
 
-  // Remove existing sprite if re-initialising
   var existing = document.getElementById('ug-icon-sprite');
   if (existing) existing.remove();
 
@@ -81,14 +68,4 @@ function initIcons() {
   document.body.insertBefore(sprite, document.body.firstChild);
 }
 
-// Auto-init for <script> tag usage (non-module)
-if (typeof document !== 'undefined') {
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initIcons);
-  } else {
-    initIcons();
-  }
-}
-
-// ESM exports for bundler/module usage
 export { ugIcons, initIcons };

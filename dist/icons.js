@@ -39,11 +39,4 @@
     }
     document.body.insertBefore(sprite, document.body.firstChild);
   }
-  if (typeof document !== "undefined") {
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", initIcons);
-    } else {
-      initIcons();
-    }
-  }
 })();
