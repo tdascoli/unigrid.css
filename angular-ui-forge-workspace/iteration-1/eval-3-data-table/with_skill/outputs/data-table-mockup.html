@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Data Table — Component Mockup (unigrid.css)</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   Standalone mockup — embeds all necessary styles.
+   Open this file in a browser to see:
+     1. Default table with data (desktop)
+     2. Loading skeleton state
+     3. Empty / no-results state
+     4. With active filter
+     5. Mobile card view (resize to < 768px or view the forced section)
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Reset & Tokens ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ug-font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --ug-font-size-xs: 0.75rem;
+  --ug-font-size-sm: 0.875rem;
+  --ug-font-size-base: 1rem;
+  --ug-font-size-lg: 1.125rem;
+  --ug-font-size-xl: 1.25rem;
+  --ug-font-size-2xl: 1.5rem;
+  --ug-leading: 1.625rem;
+  --ug-spacing-1: calc(0.25 * var(--ug-leading));
+  --ug-spacing-2: calc(0.5 * var(--ug-leading));
+  --ug-spacing-3: calc(1 * var(--ug-leading));
+  --ug-spacing-4: calc(1.5 * var(--ug-leading));
+  --ug-spacing-5: calc(2 * var(--ug-leading));
+  --ug-spacing-6: calc(3 * var(--ug-leading));
+  --ug-black: #1a1a1a;
+  --ug-white: #ffffff;
+  --ug-warm-gray: #f5f2ed;
+  --ug-dark-gray: #333333;
+  --ug-medium-gray: #666666;
+  --ug-light-gray: #e8e5e0;
+  --ug-red: #c1272d;
+  --ui-surface: var(--ug-white);
+  --ui-surface-raised: var(--ug-warm-gray);
+  --ui-text-primary: var(--ug-black);
+  --ui-text-secondary: var(--ug-dark-gray);
+  --ui-text-muted: var(--ug-medium-gray);
+  --ui-color-primary: var(--ug-red);
+  --ui-color-on-primary: var(--ug-white);
+  --ui-focus-color: #1a73e8;
+  --ui-radius: 0;
+}
+
+body {
+  font-family: var(--ug-font-family);
+  font-size: var(--ug-font-size-base);
+  line-height: var(--ug-leading);
+  color: var(--ui-text-primary);
+  background: var(--ug-warm-gray);
+  padding: var(--ug-spacing-3);
+}
+
+/* ── Page Layout ─────────────────────────────────────────────────── */
+.mockup-page {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.mockup-section {
+  background: var(--ui-surface);
+  border: 1px solid var(--ug-light-gray);
+  margin-bottom: var(--ug-spacing-5);
+  padding: var(--ug-spacing-3);
+}
+
+.mockup-section__title {
+  font-size: var(--ug-font-size-xl);
+  font-weight: 700;
+  margin-bottom: var(--ug-spacing-2);
+  padding-bottom: var(--ug-spacing-2);
+  border-bottom: 2px solid var(--ug-light-gray);
+  color: var(--ui-text-primary);
+}
+
+.mockup-section__subtitle {
+  font-size: var(--ug-font-size-sm);
+  color: var(--ui-text-muted);
+  margin-bottom: var(--ug-spacing-3);
+}
+
+.mockup-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: var(--ug-font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--ug-light-gray);
+  color: var(--ui-text-secondary);
+  margin-left: var(--ug-spacing-1);
+  vertical-align: middle;
+}
+
+.mockup-badge--mobile {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+h1 {
+  font-size: var(--ug-font-size-2xl);
+  font-weight: 700;
+  margin-bottom: var(--ug-spacing-3);
+  text-align: center;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   DATA TABLE COMPONENT STYLES (mirroring the Angular component)
+   ═══════════════════════════════════════════════════════════════════ */
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* Toolbar */
+.dt-toolbar {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: var(--ug-spacing-2); margin-bottom: var(--ug-spacing-3);
+}
+
+.dt-search {
+  position: relative; display: flex; align-items: center;
+  flex: 1 1 200px; max-width: 400px;
+}
+
+.dt-search__icon {
+  position: absolute; left: var(--ug-spacing-2);
+  pointer-events: none; font-size: 0.875rem;
+}
+
+.dt-search__input {
+  width: 100%; padding: var(--ug-spacing-2);
+  padding-left: calc(var(--ug-spacing-2) + 1.5rem);
+  font-family: inherit; font-size: var(--ug-font-size-sm);
+  line-height: var(--ug-leading); color: var(--ui-text-primary);
+  background: var(--ui-surface); border: 1px solid var(--ug-light-gray);
+  border-radius: var(--ui-radius); min-height: 44px;
+}
+.dt-search__input:focus-visible {
+  outline: 3px solid var(--ui-focus-color); outline-offset: 2px;
+}
+.dt-search__input::placeholder { color: var(--ui-text-muted); }
+
+.dt-search__clear {
+  position: absolute; right: var(--ug-spacing-1);
+  width: 32px; height: 32px; border: none; background: transparent;
+  font-size: 1.25rem; color: var(--ui-text-muted); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.dt-selection-count {
+  font-size: var(--ug-font-size-sm); font-weight: 600;
+  color: var(--ui-color-primary); white-space: nowrap;
+}
+
+.dt-caption {
+  margin: 0 0 var(--ug-spacing-2);
+  font-size: var(--ug-font-size-sm);
+  color: var(--ui-text-secondary);
+}
+
+.dt-filter-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 10px; font-size: var(--ug-font-size-xs);
+  background: #fff3e0; color: #e65100; font-weight: 600;
+  border: 1px solid #ffcc80;
+}
+
+/* ── Desktop Table ───────────────────────────────────────────────── */
+.dt-scroll {
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+}
+
+.dt-table {
+  width: 100%; border-collapse: collapse; border-spacing: 0;
+}
+
+.dt-thead { background: var(--ui-surface-raised); }
+
+.dt-th {
+  padding: var(--ug-spacing-2); font-size: var(--ug-font-size-sm);
+  font-weight: 600; text-align: left; white-space: nowrap;
+  border-bottom: 2px solid var(--ug-light-gray);
+  color: var(--ui-text-secondary); line-height: var(--ug-leading);
+  user-select: none;
+}
+.dt-th--checkbox { width: 44px; text-align: center; }
+.dt-th--right { text-align: right; }
+.dt-th--center { text-align: center; }
+
+.dt-sort-btn {
+  display: inline-flex; align-items: center; gap: var(--ug-spacing-1);
+  padding: 0; margin: 0; border: none; background: transparent;
+  font: inherit; font-weight: 600; color: inherit; cursor: pointer;
+}
+.dt-sort-btn:focus-visible {
+  outline: 3px solid var(--ui-focus-color); outline-offset: 2px;
+}
+.dt-sort-icon { font-size: 0.875rem; opacity: 0.5; }
+.dt-sort-icon--active { opacity: 1; }
+
+.dt-tr {
+  border-bottom: 1px solid var(--ug-light-gray);
+}
+.dt-tr:last-child { border-bottom: none; }
+.dt-tr--selected { background-color: rgba(26,115,232,0.06); }
+.dt-tr:hover:not(.dt-tr--skeleton):not(.dt-tr--empty) {
+  background-color: var(--ui-surface-raised);
+}
+
+.dt-td {
+  padding: var(--ug-spacing-2); font-size: var(--ug-font-size-sm);
+  line-height: var(--ug-leading); vertical-align: middle;
+}
+.dt-td--checkbox { width: 44px; text-align: center; }
+.dt-td--empty { text-align: center; padding: var(--ug-spacing-6) var(--ug-spacing-3); }
+.dt-td--right { text-align: right; }
+.dt-td--center { text-align: center; }
+
+.dt-checkbox {
+  width: 18px; height: 18px; cursor: pointer;
+  accent-color: var(--ui-color-primary);
+}
+.dt-checkbox:focus-visible {
+  outline: 3px solid var(--ui-focus-color); outline-offset: 2px;
+}
+
+/* Empty */
+.dt-empty {
+  display: flex; flex-direction: column; align-items: center;
+  gap: var(--ug-spacing-2); padding: var(--ug-spacing-5) var(--ug-spacing-3);
+}
+.dt-empty__icon { font-size: 2rem; opacity: 0.4; }
+.dt-empty__text { font-size: var(--ug-font-size-base); color: var(--ui-text-muted); }
+
+/* Skeleton */
+.dt-skeleton {
+  display: inline-block; width: 80%; height: 1rem;
+  background: linear-gradient(90deg, var(--ug-light-gray) 25%, var(--ug-warm-gray) 50%, var(--ug-light-gray) 75%);
+  background-size: 200% 100%; border-radius: 2px;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+}
+.dt-skeleton--sm { width: 18px; height: 18px; }
+.dt-skeleton--md { width: 60%; }
+.dt-skeleton--lg { width: 90%; }
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dt-skeleton { animation: none; }
+}
+
+/* ── Pagination ──────────────────────────────────────────────────── */
+.dt-pagination {
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: var(--ug-spacing-2);
+  margin-top: var(--ug-spacing-3); padding-top: var(--ug-spacing-3);
+  border-top: 1px solid var(--ug-light-gray);
+  font-size: var(--ug-font-size-sm);
+}
+
+.dt-pagination__size {
+  display: flex; align-items: center; gap: var(--ug-spacing-1);
+}
+.dt-pagination__label { color: var(--ui-text-secondary); white-space: nowrap; }
+.dt-pagination__select {
+  padding: var(--ug-spacing-1) var(--ug-spacing-2);
+  font-family: inherit; font-size: inherit;
+  border: 1px solid var(--ug-light-gray); border-radius: var(--ui-radius);
+  background: var(--ui-surface); color: inherit; min-height: 36px; cursor: pointer;
+}
+.dt-pagination__range { color: var(--ui-text-secondary); white-space: nowrap; }
+.dt-pagination__controls { display: flex; align-items: center; gap: 2px; }
+
+.dt-page-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 36px; min-height: 36px; padding: var(--ug-spacing-1);
+  border: 1px solid var(--ug-light-gray); background: var(--ui-surface);
+  color: var(--ui-text-primary); font-family: inherit;
+  font-size: var(--ug-font-size-sm); cursor: pointer;
+  border-radius: var(--ui-radius); transition: background-color 0.15s ease;
+}
+.dt-page-btn:hover:not(:disabled) { background-color: var(--ui-surface-raised); }
+.dt-page-btn:focus-visible {
+  outline: 3px solid var(--ui-focus-color); outline-offset: 2px; z-index: 1;
+}
+.dt-page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.dt-page-btn--active {
+  background-color: var(--ui-color-primary);
+  color: var(--ui-color-on-primary);
+  border-color: var(--ui-color-primary); font-weight: 600;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   MOBILE CARD VIEW
+   ═══════════════════════════════════════════════════════════════════ */
+.dt-cards {
+  display: flex; flex-direction: column; gap: var(--ug-spacing-3);
+}
+
+.dt-card {
+  background: var(--ui-surface); border: 1px solid var(--ug-light-gray);
+  border-radius: var(--ui-radius); padding: var(--ug-spacing-3);
+}
+.dt-card--selected {
+  border-color: var(--ui-focus-color);
+  background-color: rgba(26,115,232,0.04);
+}
+
+.dt-card__header {
+  display: flex; justify-content: flex-end;
+  margin-bottom: var(--ug-spacing-2); padding-bottom: var(--ug-spacing-2);
+  border-bottom: 1px solid var(--ug-light-gray);
+}
+
+.dt-card__row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: var(--ug-spacing-2); padding: var(--ug-spacing-1) 0;
+}
+.dt-card__row:not(:last-child) { border-bottom: 1px solid rgba(0,0,0,0.04); }
+
+.dt-card__label {
+  font-size: var(--ug-font-size-xs); font-weight: 600;
+  color: var(--ui-text-secondary); text-transform: uppercase;
+  letter-spacing: 0.04em; flex-shrink: 0;
+}
+.dt-card__value {
+  font-size: var(--ug-font-size-sm); color: var(--ui-text-primary);
+  text-align: right; word-break: break-word;
+}
+
+/* ── Responsive: hide table on small, hide cards on large ──────── */
+.dt-scroll--responsive {
+  display: none;
+}
+.dt-cards--responsive {
+  display: flex;
+}
+@media (min-width: 768px) {
+  .dt-scroll--responsive { display: block; }
+  .dt-cards--responsive { display: none; }
+}
+
+/* ── Forced mobile section (always card view regardless of screen) */
+.dt-cards--forced { display: flex; }
+
+/* ── Forced desktop section (always table regardless of screen) ── */
+.dt-scroll--forced { display: block; }
+
+/* ── High Contrast Mode ──────────────────────────────────────────── */
+@media (forced-colors: active) {
+  .dt-th { border-bottom-color: CanvasText; }
+  .dt-tr { border-bottom-color: CanvasText; }
+  .dt-card { border-color: CanvasText; }
+  .dt-page-btn--active { border: 2px solid Highlight; }
+  .dt-skeleton { background: GrayText; animation: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="mockup-page">
+  <h1>Data Table Component Mockup</h1>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       1. DEFAULT STATE — Desktop table with data
+       ═══════════════════════════════════════════════════════════════ -->
+  <section class="mockup-section">
+    <h2 class="mockup-section__title">
+      1. Default — Desktop Table with Data
+      <span class="mockup-badge">Desktop</span>
+    </h2>
+    <p class="mockup-section__subtitle">
+      Full table layout with sortable columns, pagination, and row selection. Resize the browser below 768px to see the responsive card switch.
+    </p>
+
+    <!-- Toolbar -->
+    <div class="dt-toolbar">
+      <div class="dt-search">
+        <span class="dt-search__icon" aria-hidden="true">&#x1F50D;</span>
+        <input class="dt-search__input" type="search" placeholder="Search employees..." aria-label="Filter table rows" />
+      </div>
+      <span class="dt-selection-count">2 rows selected</span>
+    </div>
+
+    <p class="dt-caption">Employee Directory</p>
+
+    <!-- Desktop Table (responsive: hidden on mobile) -->
+    <div class="dt-scroll dt-scroll--responsive" role="region" aria-label="Employee table" tabindex="0">
+      <table class="dt-table" aria-label="Employee Directory">
+        <thead class="dt-thead">
+          <tr>
+            <th class="dt-th dt-th--checkbox"><input type="checkbox" class="dt-checkbox" aria-label="Select all rows" /></th>
+            <th class="dt-th dt-th--center" style="width:60px" aria-sort="none">
+              <button class="dt-sort-btn" aria-label="Sort by ID"><span>ID</span> <span class="dt-sort-icon">&UpDownArrow;</span></button>
+            </th>
+            <th class="dt-th" aria-sort="ascending">
+              <button class="dt-sort-btn" aria-label="Sort by Name"><span>Name</span> <span class="dt-sort-icon dt-sort-icon--active">&uarr;</span></button>
+            </th>
+            <th class="dt-th" aria-sort="none">
+              <button class="dt-sort-btn" aria-label="Sort by Email"><span>Email</span> <span class="dt-sort-icon">&UpDownArrow;</span></button>
+            </th>
+            <th class="dt-th" style="width:120px" aria-sort="none">
+              <button class="dt-sort-btn" aria-label="Sort by Role"><span>Role</span> <span class="dt-sort-icon">&UpDownArrow;</span></button>
+            </th>
+            <th class="dt-th" style="width:140px" aria-sort="none">
+              <button class="dt-sort-btn" aria-label="Sort by Department"><span>Department</span> <span class="dt-sort-icon">&UpDownArrow;</span></button>
+            </th>
+            <th class="dt-th dt-th--center" style="width:100px">Status</th>
+            <th class="dt-th dt-th--right" aria-sort="none">
+              <button class="dt-sort-btn" aria-label="Sort by Salary"><span>Salary</span> <span class="dt-sort-icon">&UpDownArrow;</span></button>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="dt-tr dt-tr--selected">
+            <td class="dt-td dt-td--checkbox"><input type="checkbox" class="dt-checkbox" checked aria-label="Select row 1" /></td>
+            <td class="dt-td dt-td--center">1</td>
+            <td class="dt-td">Alice Martin</td>
+            <td class="dt-td">alice.martin@example.com</td>
+            <td class="dt-td">Engineer</td>
+            <td class="dt-td">Engineering</td>
+            <td class="dt-td dt-td--center">Active</td>
+            <td class="dt-td dt-td--right">$50,000</td>
+          </tr>
+          <tr class="dt-tr">
+            <td class="dt-td dt-td--checkbox"><input type="checkbox" class="dt-checkbox" aria-label="Select row 2" /></td>
+            <td class="dt-td dt-td--center">2</td>
+            <td class="dt-td">Bob Chen</td>
+            <td class="dt-td">bob.chen@corp.io</td>
+            <td class="dt-td">Designer</td>
+            <td class="dt-td">Design</td>
+            <td class="dt-td dt-td--center">Remote</td>
+            <td class="dt-td dt-td--right">$53,200</td>
+          </tr>
+          <tr class="dt-tr">
+            <td class="dt-td dt-td--checkbox"><input type="checkbox" class="dt-checkbox" aria-label="Select row 3" /></td>
+            <td class="dt-td dt-td--center">3</td>
+            <td class="dt-td">Carol Davis</td>
+            <td class="dt-td">carol.davis@work.org</td>
+            <td class="dt-td">Manager</td>
+            <td class="dt-td">Product</td>
+            <td class="dt-td dt-td--center">Active</td>
+            <td class="dt-td dt-td--right">$56,400</td>
+          </tr>
+          <tr class="dt-tr dt-tr--selected">
+            <td class="dt-td dt-td--checkbox"><input type="checkbox" class="dt-checkbox" checked aria-label="Select row 4" /></td>
+            <td class="dt-td dt-td--center">4</td>
+            <td class="dt-td">David Kim</td>
+            <td class="dt-td">david.kim@example.com</td>
+            <td class="dt-td">Analyst</td>
+            <td class="dt-td">Marketing</td>
+            <td class="dt-td dt-td--center">On Leave</td>
+            <td class="dt-td dt-td--right">$59,600</td>
+          </tr>
+          <tr class="dt-tr">
+            <td class="dt-td dt-td--checkbox"><input type="checkbox" class="dt-checkbox" aria-label="Select row 5" /></td>
+            <td class="dt-td dt-td--center">5</td>
+            <td class="dt-td">Eve Wilson</td>
+            <td class="dt-td">eve.wilson@corp.io</td>
+            <td class="dt-td">Lead</td>
+            <td class="dt-td">Sales</td>
+            <td class="dt-td dt-td--center">Active</td>
+            <td class="dt-td dt-td--right">$62,800</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Mobile Cards (responsive: hidden on desktop) -->
+    <div class="dt-cards dt-cards--responsive" role="list" aria-label="Employee cards">
+      <div class="dt-card dt-card--selected" role="listitem">
+        <div class="dt-card__header"><input type="checkbox" class="dt-checkbox" checked aria-label="Select Alice Martin" /></div>
+        <div class="dt-card__row"><span class="dt-card__label">ID</span><span class="dt-card__value">1</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Name</span><span class="dt-card__value">Alice Martin</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Email</span><span class="dt-card__value">alice.martin@example.com</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Role</span><span class="dt-card__value">Engineer</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Department</span><span class="dt-card__value">Engineering</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Status</span><span class="dt-card__value">Active</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Salary</span><span class="dt-card__value">$50,000</span></div>
+      </div>
+      <div class="dt-card" role="listitem">
+        <div class="dt-card__header"><input type="checkbox" class="dt-checkbox" aria-label="Select Bob Chen" /></div>
+        <div class="dt-card__row"><span class="dt-card__label">ID</span><span class="dt-card__value">2</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Name</span><span class="dt-card__value">Bob Chen</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Email</span><span class="dt-card__value">bob.chen@corp.io</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Role</span><span class="dt-card__value">Designer</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Department</span><span class="dt-card__value">Design</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Status</span><span class="dt-card__value">Remote</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Salary</span><span class="dt-card__value">$53,200</span></div>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <nav class="dt-pagination" aria-label="Table pagination">
+      <div class="dt-pagination__size">
+        <label class="dt-pagination__label" for="ps1">Rows per page:</label>
+        <select class="dt-pagination__select" id="ps1">
+          <option selected>10</option><option>25</option><option>50</option><option>100</option>
+        </select>
+      </div>
+      <span class="dt-pagination__range">1&ndash;10 of 47</span>
+      <div class="dt-pagination__controls">
+        <button class="dt-page-btn" disabled aria-label="First page">&laquo;</button>
+        <button class="dt-page-btn" disabled aria-label="Previous page">&lsaquo;</button>
+        <button class="dt-page-btn dt-page-btn--active" aria-label="Page 1" aria-current="page">1</button>
+        <button class="dt-page-btn" aria-label="Page 2">2</button>
+        <button class="dt-page-btn" aria-label="Page 3">3</button>
+        <button class="dt-page-btn" aria-label="Page 4">4</button>
+        <button class="dt-page-btn" aria-label="Page 5">5</button>
+        <button class="dt-page-btn" aria-label="Next page">&rsaquo;</button>
+        <button class="dt-page-btn" aria-label="Last page">&raquo;</button>
+      </div>
+    </nav>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       2. LOADING STATE
+       ═══════════════════════════════════════════════════════════════ -->
+  <section class="mockup-section">
+    <h2 class="mockup-section__title">2. Loading State <span class="mockup-badge">Skeleton</span></h2>
+    <p class="mockup-section__subtitle">Animated skeleton rows while data is being fetched. Respects prefers-reduced-motion.</p>
+
+    <div class="dt-toolbar">
+      <div class="dt-search">
+        <span class="dt-search__icon" aria-hidden="true">&#x1F50D;</span>
+        <input class="dt-search__input" type="search" placeholder="Search..." aria-label="Filter table rows" />
+      </div>
+    </div>
+
+    <div class="dt-scroll dt-scroll--forced">
+      <table class="dt-table">
+        <thead class="dt-thead">
+          <tr>
+            <th class="dt-th dt-th--checkbox"><input type="checkbox" class="dt-checkbox" disabled aria-label="Select all" /></th>
+            <th class="dt-th dt-th--center" style="width:60px">ID</th>
+            <th class="dt-th">Name</th>
+            <th class="dt-th">Email</th>
+            <th class="dt-th" style="width:120px">Role</th>
+            <th class="dt-th" style="width:140px">Department</th>
+            <th class="dt-th dt-th--center" style="width:100px">Status</th>
+            <th class="dt-th dt-th--right">Salary</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="dt-tr dt-tr--skeleton"><td class="dt-td dt-td--checkbox"><span class="dt-skeleton dt-skeleton--sm"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--sm"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--lg"></span></td><td class="dt-td"><span class="dt-skeleton"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--md"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--md"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--sm"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--md"></span></td></tr>
+          <tr class="dt-tr dt-tr--skeleton"><td class="dt-td dt-td--checkbox"><span class="dt-skeleton dt-skeleton--sm"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--sm"></span></td><td class="dt-td"><span class="dt-skeleton"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--lg"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--md"></span></td><td class="dt-td"><span class="dt-skeleton"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--sm"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--md"></span></td></tr>
+          <tr class="dt-tr dt-tr--skeleton"><td class="dt-td dt-td--checkbox"><span class="dt-skeleton dt-skeleton--sm"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--sm"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--md"></span></td><td class="dt-td"><span class="dt-skeleton"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--lg"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--md"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--sm"></span></td><td class="dt-td"><span class="dt-skeleton"></span></td></tr>
+          <tr class="dt-tr dt-tr--skeleton"><td class="dt-td dt-td--checkbox"><span class="dt-skeleton dt-skeleton--sm"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--sm"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--lg"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--md"></span></td><td class="dt-td"><span class="dt-skeleton"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--md"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--sm"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--lg"></span></td></tr>
+          <tr class="dt-tr dt-tr--skeleton"><td class="dt-td dt-td--checkbox"><span class="dt-skeleton dt-skeleton--sm"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--sm"></span></td><td class="dt-td"><span class="dt-skeleton"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--lg"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--md"></span></td><td class="dt-td"><span class="dt-skeleton"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--sm"></span></td><td class="dt-td"><span class="dt-skeleton dt-skeleton--md"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       3. EMPTY STATE
+       ═══════════════════════════════════════════════════════════════ -->
+  <section class="mockup-section">
+    <h2 class="mockup-section__title">3. Empty State <span class="mockup-badge">No Results</span></h2>
+    <p class="mockup-section__subtitle">Shown when no rows match the current filter. Uses positive framing to guide the user.</p>
+
+    <div class="dt-toolbar">
+      <div class="dt-search">
+        <span class="dt-search__icon" aria-hidden="true">&#x1F50D;</span>
+        <input class="dt-search__input" type="search" value="xyznonexistent" aria-label="Filter table rows" />
+        <button class="dt-search__clear" aria-label="Clear search">&times;</button>
+      </div>
+    </div>
+
+    <div class="dt-scroll dt-scroll--forced">
+      <table class="dt-table">
+        <thead class="dt-thead">
+          <tr>
+            <th class="dt-th dt-th--center" style="width:60px">ID</th>
+            <th class="dt-th">Name</th>
+            <th class="dt-th">Email</th>
+            <th class="dt-th" style="width:120px">Role</th>
+            <th class="dt-th dt-th--center" style="width:100px">Status</th>
+            <th class="dt-th dt-th--right">Salary</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="dt-tr dt-tr--empty">
+            <td class="dt-td dt-td--empty" colspan="6">
+              <div class="dt-empty">
+                <span class="dt-empty__icon" aria-hidden="true">&#x1F4CB;</span>
+                <p class="dt-empty__text">No employees match your search. Try a different term.</p>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       4. WITH ACTIVE FILTER
+       ═══════════════════════════════════════════════════════════════ -->
+  <section class="mockup-section">
+    <h2 class="mockup-section__title">4. With Active Filter <span class="mockup-badge">Filtered</span></h2>
+    <p class="mockup-section__subtitle">Search filtering narrows results. Pagination updates to reflect filtered count.</p>
+
+    <div class="dt-toolbar">
+      <div class="dt-search">
+        <span class="dt-search__icon" aria-hidden="true">&#x1F50D;</span>
+        <input class="dt-search__input" type="search" value="engineer" aria-label="Filter table rows" />
+        <button class="dt-search__clear" aria-label="Clear search">&times;</button>
+      </div>
+      <span class="dt-filter-badge">Filtered: 10 of 47</span>
+    </div>
+
+    <div class="dt-scroll dt-scroll--forced">
+      <table class="dt-table">
+        <thead class="dt-thead">
+          <tr>
+            <th class="dt-th dt-th--center" style="width:60px">ID</th>
+            <th class="dt-th">Name</th>
+            <th class="dt-th">Email</th>
+            <th class="dt-th" style="width:120px">Role</th>
+            <th class="dt-th" style="width:140px">Department</th>
+            <th class="dt-th dt-th--right">Salary</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="dt-tr"><td class="dt-td dt-td--center">1</td><td class="dt-td">Alice Martin</td><td class="dt-td">alice.martin@example.com</td><td class="dt-td">Engineer</td><td class="dt-td">Engineering</td><td class="dt-td dt-td--right">$50,000</td></tr>
+          <tr class="dt-tr"><td class="dt-td dt-td--center">6</td><td class="dt-td">Frank Lopez</td><td class="dt-td">frank.lopez@example.com</td><td class="dt-td">Engineer</td><td class="dt-td">Engineering</td><td class="dt-td dt-td--right">$66,000</td></tr>
+          <tr class="dt-tr"><td class="dt-td dt-td--center">11</td><td class="dt-td">Karen Lee</td><td class="dt-td">karen.lee@example.com</td><td class="dt-td">Engineer</td><td class="dt-td">Engineering</td><td class="dt-td dt-td--right">$82,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <nav class="dt-pagination" aria-label="Filtered pagination">
+      <div class="dt-pagination__size">
+        <label class="dt-pagination__label" for="ps4">Rows per page:</label>
+        <select class="dt-pagination__select" id="ps4"><option selected>10</option><option>25</option></select>
+      </div>
+      <span class="dt-pagination__range">1&ndash;3 of 3</span>
+      <div class="dt-pagination__controls">
+        <button class="dt-page-btn" disabled>&laquo;</button>
+        <button class="dt-page-btn" disabled>&lsaquo;</button>
+        <button class="dt-page-btn dt-page-btn--active" aria-current="page">1</button>
+        <button class="dt-page-btn" disabled>&rsaquo;</button>
+        <button class="dt-page-btn" disabled>&raquo;</button>
+      </div>
+    </nav>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       5. MOBILE CARD VIEW (forced — always visible)
+       ═══════════════════════════════════════════════════════════════ -->
+  <section class="mockup-section">
+    <h2 class="mockup-section__title">
+      5. Mobile Card View
+      <span class="mockup-badge mockup-badge--mobile">Mobile</span>
+    </h2>
+    <p class="mockup-section__subtitle">
+      Below 768px the table switches to stacked cards. This section forces the card layout regardless of viewport width so you can preview it on desktop.
+    </p>
+
+    <div class="dt-toolbar">
+      <div class="dt-search">
+        <span class="dt-search__icon" aria-hidden="true">&#x1F50D;</span>
+        <input class="dt-search__input" type="search" placeholder="Search employees..." aria-label="Filter cards" />
+      </div>
+      <span class="dt-selection-count">1 row selected</span>
+    </div>
+
+    <div class="dt-cards dt-cards--forced" role="list" aria-label="Employee cards" style="max-width: 420px;">
+      <!-- Selected card -->
+      <div class="dt-card dt-card--selected" role="listitem">
+        <div class="dt-card__header"><input type="checkbox" class="dt-checkbox" checked aria-label="Select Alice Martin" /></div>
+        <div class="dt-card__row"><span class="dt-card__label">ID</span><span class="dt-card__value">1</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Name</span><span class="dt-card__value">Alice Martin</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Email</span><span class="dt-card__value">alice.martin@example.com</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Role</span><span class="dt-card__value">Engineer</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Department</span><span class="dt-card__value">Engineering</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Status</span><span class="dt-card__value">Active</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Salary</span><span class="dt-card__value">$50,000</span></div>
+      </div>
+
+      <!-- Unselected card -->
+      <div class="dt-card" role="listitem">
+        <div class="dt-card__header"><input type="checkbox" class="dt-checkbox" aria-label="Select Bob Chen" /></div>
+        <div class="dt-card__row"><span class="dt-card__label">ID</span><span class="dt-card__value">2</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Name</span><span class="dt-card__value">Bob Chen</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Email</span><span class="dt-card__value">bob.chen@corp.io</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Role</span><span class="dt-card__value">Designer</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Department</span><span class="dt-card__value">Design</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Status</span><span class="dt-card__value">Remote</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Salary</span><span class="dt-card__value">$53,200</span></div>
+      </div>
+
+      <!-- Third card -->
+      <div class="dt-card" role="listitem">
+        <div class="dt-card__header"><input type="checkbox" class="dt-checkbox" aria-label="Select Carol Davis" /></div>
+        <div class="dt-card__row"><span class="dt-card__label">ID</span><span class="dt-card__value">3</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Name</span><span class="dt-card__value">Carol Davis</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Email</span><span class="dt-card__value">carol.davis@work.org</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Role</span><span class="dt-card__value">Manager</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Department</span><span class="dt-card__value">Product</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Status</span><span class="dt-card__value">Active</span></div>
+        <div class="dt-card__row"><span class="dt-card__label">Salary</span><span class="dt-card__value">$56,400</span></div>
+      </div>
+    </div>
+
+    <nav class="dt-pagination" aria-label="Mobile pagination" style="max-width: 420px;">
+      <div class="dt-pagination__size">
+        <label class="dt-pagination__label" for="ps5">Rows per page:</label>
+        <select class="dt-pagination__select" id="ps5"><option selected>10</option><option>25</option></select>
+      </div>
+      <span class="dt-pagination__range">1&ndash;10 of 47</span>
+      <div class="dt-pagination__controls">
+        <button class="dt-page-btn" disabled>&laquo;</button>
+        <button class="dt-page-btn" disabled>&lsaquo;</button>
+        <button class="dt-page-btn dt-page-btn--active" aria-current="page">1</button>
+        <button class="dt-page-btn">2</button>
+        <button class="dt-page-btn">3</button>
+        <button class="dt-page-btn">&rsaquo;</button>
+        <button class="dt-page-btn">&raquo;</button>
+      </div>
+    </nav>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       6. MOBILE LOADING (cards skeleton)
+       ═══════════════════════════════════════════════════════════════ -->
+  <section class="mockup-section">
+    <h2 class="mockup-section__title">
+      6. Mobile Loading State
+      <span class="mockup-badge mockup-badge--mobile">Mobile</span>
+      <span class="mockup-badge">Skeleton</span>
+    </h2>
+    <p class="mockup-section__subtitle">Card-based skeleton shimmer for mobile loading state.</p>
+
+    <div class="dt-cards dt-cards--forced" role="list" style="max-width: 420px;">
+      <div class="dt-card" role="listitem">
+        <div class="dt-card__row"><span class="dt-card__label"><span class="dt-skeleton dt-skeleton--sm"></span></span><span class="dt-card__value"><span class="dt-skeleton"></span></span></div>
+        <div class="dt-card__row"><span class="dt-card__label"><span class="dt-skeleton dt-skeleton--sm"></span></span><span class="dt-card__value"><span class="dt-skeleton dt-skeleton--lg"></span></span></div>
+        <div class="dt-card__row"><span class="dt-card__label"><span class="dt-skeleton dt-skeleton--sm"></span></span><span class="dt-card__value"><span class="dt-skeleton"></span></span></div>
+        <div class="dt-card__row"><span class="dt-card__label"><span class="dt-skeleton dt-skeleton--sm"></span></span><span class="dt-card__value"><span class="dt-skeleton dt-skeleton--md"></span></span></div>
+      </div>
+      <div class="dt-card" role="listitem">
+        <div class="dt-card__row"><span class="dt-card__label"><span class="dt-skeleton dt-skeleton--sm"></span></span><span class="dt-card__value"><span class="dt-skeleton dt-skeleton--md"></span></span></div>
+        <div class="dt-card__row"><span class="dt-card__label"><span class="dt-skeleton dt-skeleton--sm"></span></span><span class="dt-card__value"><span class="dt-skeleton"></span></span></div>
+        <div class="dt-card__row"><span class="dt-card__label"><span class="dt-skeleton dt-skeleton--sm"></span></span><span class="dt-card__value"><span class="dt-skeleton dt-skeleton--lg"></span></span></div>
+        <div class="dt-card__row"><span class="dt-card__label"><span class="dt-skeleton dt-skeleton--sm"></span></span><span class="dt-card__value"><span class="dt-skeleton dt-skeleton--md"></span></span></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>

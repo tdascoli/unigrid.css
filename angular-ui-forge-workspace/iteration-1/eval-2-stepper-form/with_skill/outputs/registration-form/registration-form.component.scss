@@ -1,0 +1,108 @@
+/**
+ * Registration Form Container Styles
+ *
+ * Full-viewport-width layout. The smart container occupies the full
+ * available width on all screen sizes. Internal padding provides
+ * breathing room while maximizing form field width.
+ *
+ * Mobile-first responsive design with rhythm-aligned spacing.
+ */
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.registration {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh; // Dynamic viewport height for mobile
+  padding: var(--ug-spacing-3, 1.625rem);
+  font-family: var(--ug-font-family, 'Inter', system-ui, sans-serif);
+
+  @media (min-width: 768px) {
+    padding: var(--ug-spacing-4, 2.4rem) var(--ug-spacing-5, 3.25rem);
+  }
+
+  @media (min-width: 1024px) {
+    padding: var(--ug-spacing-5, 3.25rem) var(--ug-spacing-6, 4.875rem);
+  }
+
+  @media (min-width: 1280px) {
+    padding: var(--ug-spacing-5, 3.25rem) var(--ug-spacing-7, 6.5rem);
+  }
+}
+
+// Step content area — full width
+.registration__content {
+  width: 100%;
+  margin-top: var(--ug-spacing-3, 1.625rem);
+
+  @media (min-width: 768px) {
+    margin-top: var(--ug-spacing-4, 2.4rem);
+  }
+}
+
+// Success state
+.registration__success {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  padding: var(--ug-spacing-5, 3.25rem) 0;
+}
+
+.success-card {
+  text-align: center;
+  max-width: 480px;
+}
+
+.success-card__icon {
+  color: var(--ug-green, #2d5a27);
+  margin-bottom: var(--ug-spacing-3, 1.625rem);
+  display: flex;
+  justify-content: center;
+
+  // Gentle entrance animation
+  @media (prefers-reduced-motion: no-preference) {
+    animation: scaleIn 0.4s ease-out;
+  }
+}
+
+.success-card__title {
+  font-family: var(--ug-font-family, 'Inter', system-ui, sans-serif);
+  font-size: var(--ug-font-size-2xl, 1.5rem);
+  font-weight: 700;
+  color: var(--ug-black, #1a1a1a);
+  margin: 0 0 var(--ug-spacing-2, 0.8rem) 0;
+  line-height: calc(2 * var(--ug-leading, 1.625rem));
+}
+
+.success-card__message {
+  font-size: var(--ug-font-size-base, 1rem);
+  color: var(--ug-dark-gray, #333333);
+  line-height: var(--ug-leading, 1.625rem);
+  margin: 0;
+
+  strong {
+    color: var(--ug-black, #1a1a1a);
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+// High contrast mode
+@media (forced-colors: active) {
+  .success-card__icon {
+    color: ButtonText;
+  }
+}

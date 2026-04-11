@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Table Component Mockup</title>
+  <style>
+    /* ================================================================
+       Design Tokens (unigrid.css)
+       ================================================================ */
+    :root {
+      --ug-font-family: 'Inter', system-ui, sans-serif;
+      --ug-font-size-xs: 0.75rem;
+      --ug-font-size-sm: 0.875rem;
+      --ug-font-size-base: 1rem;
+      --ug-font-size-lg: 1.125rem;
+      --ug-font-size-xl: 1.25rem;
+      --ug-font-size-2xl: 1.5rem;
+      --ug-leading: 1.625rem;
+
+      --ug-spacing-0: 0;
+      --ug-spacing-1: calc(0.25 * var(--ug-leading));
+      --ug-spacing-2: calc(0.5 * var(--ug-leading));
+      --ug-spacing-3: calc(1 * var(--ug-leading));
+      --ug-spacing-4: calc(1.5 * var(--ug-leading));
+      --ug-spacing-5: calc(2 * var(--ug-leading));
+      --ug-spacing-6: calc(3 * var(--ug-leading));
+
+      --ug-black: #1a1a1a;
+      --ug-white: #ffffff;
+      --ug-warm-gray: #f5f2ed;
+      --ug-dark-gray: #333333;
+      --ug-medium-gray: #666666;
+      --ug-light-gray: #e8e5e0;
+      --ug-red: #c1272d;
+      --ug-brown: #4a3728;
+      --ug-green: #2d5a27;
+      --ug-blue: #274a5a;
+
+      --ug-gap: var(--ug-spacing-3);
+      --ug-border-radius: 0;
+
+      --ui-surface: var(--ug-white);
+      --ui-surface-raised: var(--ug-warm-gray);
+      --ui-text-primary: var(--ug-black);
+      --ui-text-secondary: var(--ug-dark-gray);
+      --ui-text-muted: var(--ug-medium-gray);
+      --ui-color-primary: var(--ug-red);
+      --ui-color-on-primary: var(--ug-white);
+      --ui-color-info: var(--ug-blue);
+      --ui-color-success: var(--ug-green);
+      --ui-color-danger: var(--ug-red);
+      --ui-focus-color: #1a73e8;
+      --ui-focus-width: 3px;
+      --ui-radius: var(--ug-border-radius);
+      --ui-transition-fast: 0.1s ease;
+      --ui-transition-base: 0.15s ease;
+    }
+
+    @media (min-width: 1024px) {
+      :root {
+        --ug-leading: 1.7rem;
+      }
+    }
+
+    /* ================================================================
+       Reset & Base
+       ================================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--ug-font-family);
+      font-size: var(--ug-font-size-base);
+      line-height: var(--ug-leading);
+      color: var(--ui-text-primary);
+      background-color: var(--ui-surface);
+      padding: var(--ug-spacing-3);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ================================================================
+       Data Table Wrapper
+       ================================================================ */
+    .data-table {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: var(--ug-spacing-3);
+    }
+
+    /* ================================================================
+       Toolbar: filter + search + bulk actions
+       ================================================================ */
+    .data-table__toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--ug-spacing-2);
+      align-items: center;
+    }
+
+    .data-table__search {
+      flex: 1 1 200px;
+      min-width: 0;
+      position: relative;
+    }
+
+    .data-table__search-icon {
+      position: absolute;
+      left: var(--ug-spacing-2);
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--ui-text-muted);
+      pointer-events: none;
+      width: 16px;
+      height: 16px;
+    }
+
+    .data-table__search-input {
+      width: 100%;
+      min-height: 44px;
+      padding: var(--ug-spacing-1) var(--ug-spacing-3);
+      padding-left: calc(var(--ug-spacing-2) + 16px + var(--ug-spacing-1));
+      font-family: var(--ug-font-family);
+      font-size: var(--ug-font-size-base);
+      line-height: var(--ug-leading);
+      border: 2px solid var(--ug-light-gray);
+      border-radius: var(--ui-radius);
+      background: var(--ui-surface);
+      color: var(--ui-text-primary);
+    }
+
+    .data-table__search-input:focus-visible {
+      outline: var(--ui-focus-width) solid var(--ui-focus-color);
+      outline-offset: 2px;
+    }
+
+    .data-table__search-input::placeholder {
+      color: var(--ui-text-muted);
+    }
+
+    .data-table__filter-btn,
+    .data-table__bulk-btn {
+      min-height: 44px;
+      min-width: 44px;
+      padding: var(--ug-spacing-1) var(--ug-spacing-3);
+      font-family: var(--ug-font-family);
+      font-size: var(--ug-font-size-sm);
+      line-height: var(--ug-leading);
+      border: 2px solid var(--ug-light-gray);
+      border-radius: var(--ui-radius);
+      background: var(--ui-surface);
+      color: var(--ui-text-primary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--ug-spacing-1);
+      white-space: nowrap;
+    }
+
+    .data-table__filter-btn:focus-visible,
+    .data-table__bulk-btn:focus-visible {
+      outline: var(--ui-focus-width) solid var(--ui-focus-color);
+      outline-offset: 2px;
+    }
+
+    .data-table__filter-btn:hover,
+    .data-table__bulk-btn:hover {
+      border-color: var(--ug-medium-gray);
+      background: var(--ui-surface-raised);
+    }
+
+    .data-table__filter-btn--active {
+      border-color: var(--ui-color-primary);
+      color: var(--ui-color-primary);
+      background: #fef5f5;
+    }
+
+    .data-table__bulk-btn--danger {
+      color: var(--ui-color-danger);
+      border-color: var(--ui-color-danger);
+    }
+
+    /* Selected count badge */
+    .data-table__selected-count {
+      font-size: var(--ug-font-size-sm);
+      color: var(--ui-text-secondary);
+      display: flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0 var(--ug-spacing-2);
+    }
+
+    /* ================================================================
+       Active Filters Bar
+       ================================================================ */
+    .data-table__active-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--ug-spacing-1);
+      align-items: center;
+    }
+
+    .data-table__filter-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--ug-spacing-1);
+      padding: var(--ug-spacing-1) var(--ug-spacing-2);
+      background: var(--ui-surface-raised);
+      border: 1px solid var(--ug-light-gray);
+      border-radius: var(--ui-radius);
+      font-size: var(--ug-font-size-sm);
+      color: var(--ui-text-secondary);
+      min-height: 44px;
+    }
+
+    .data-table__filter-chip-remove {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--ui-text-muted);
+      min-height: 44px;
+      min-width: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      font-size: 1.2em;
+      line-height: 1;
+    }
+
+    .data-table__filter-chip-remove:focus-visible {
+      outline: var(--ui-focus-width) solid var(--ui-focus-color);
+      outline-offset: 2px;
+    }
+
+    .data-table__filter-chip-remove:hover {
+      color: var(--ui-color-danger);
+    }
+
+    .data-table__clear-filters {
+      background: none;
+      border: none;
+      color: var(--ui-color-primary);
+      cursor: pointer;
+      font-size: var(--ug-font-size-sm);
+      font-family: var(--ug-font-family);
+      min-height: 44px;
+      min-width: 44px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 var(--ug-spacing-1);
+      text-decoration: underline;
+    }
+
+    .data-table__clear-filters:focus-visible {
+      outline: var(--ui-focus-width) solid var(--ui-focus-color);
+      outline-offset: 2px;
+    }
+
+    /* ================================================================
+       Table (Desktop)
+       ================================================================ */
+    .data-table__scroll-container {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .data-table__table {
+      width: 100%;
+      border-collapse: collapse;
+      border-spacing: 0;
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .data-table__table {
+        display: table;
+      }
+      .data-table__cards {
+        display: none !important;
+      }
+    }
+
+    .data-table__table th,
+    .data-table__table td {
+      padding: var(--ug-spacing-2) var(--ug-spacing-2);
+      text-align: left;
+      border-bottom: 1px solid var(--ug-light-gray);
+      vertical-align: middle;
+      font-size: var(--ug-font-size-sm);
+      line-height: var(--ug-leading);
+    }
+
+    .data-table__table th {
+      font-weight: 600;
+      color: var(--ui-text-secondary);
+      background: var(--ui-surface-raised);
+      white-space: nowrap;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    .data-table__table thead {
+      border-bottom: 2px solid var(--ug-dark-gray);
+    }
+
+    .data-table__table tbody tr:hover {
+      background-color: var(--ui-surface-raised);
+    }
+
+    .data-table__table tbody tr.data-table__row--selected {
+      background-color: #eef2ff;
+    }
+
+    /* Sort button in header */
+    .data-table__sort-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 600;
+      color: var(--ui-text-secondary);
+      display: flex;
+      align-items: center;
+      gap: var(--ug-spacing-1);
+      min-height: 44px;
+      min-width: 44px;
+      width: 100%;
+      padding: 0;
+    }
+
+    .data-table__sort-btn:focus-visible {
+      outline: var(--ui-focus-width) solid var(--ui-focus-color);
+      outline-offset: 2px;
+    }
+
+    .data-table__sort-btn:hover {
+      color: var(--ui-text-primary);
+    }
+
+    .data-table__sort-icon {
+      display: inline-flex;
+      flex-direction: column;
+      font-size: 10px;
+      line-height: 1;
+      opacity: 0.4;
+    }
+
+    .data-table__sort-icon--asc .sort-up,
+    .data-table__sort-icon--desc .sort-down {
+      opacity: 1;
+    }
+
+    .data-table__sort-icon--asc,
+    .data-table__sort-icon--desc {
+      opacity: 1;
+    }
+
+    /* Checkbox cells */
+    .data-table__checkbox-cell {
+      width: 44px;
+      text-align: center;
+    }
+
+    .data-table__checkbox-wrapper {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      min-width: 44px;
+      cursor: pointer;
+    }
+
+    .data-table__checkbox-wrapper input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--ui-color-primary);
+      cursor: pointer;
+    }
+
+    .data-table__checkbox-wrapper input[type="checkbox"]:focus-visible {
+      outline: var(--ui-focus-width) solid var(--ui-focus-color);
+      outline-offset: 2px;
+    }
+
+    /* Status badge */
+    .data-table__status {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--ug-spacing-1);
+      padding: var(--ug-spacing-1) var(--ug-spacing-2);
+      font-size: var(--ug-font-size-xs);
+      font-weight: 600;
+      border-radius: var(--ui-radius);
+    }
+
+    .data-table__status--active {
+      /* Contrast: #2d5a27 on #ecf5eb = 7.2:1 */
+      background: #ecf5eb;
+      color: var(--ug-green);
+    }
+
+    .data-table__status--inactive {
+      /* Contrast: #666 on #f0f0f0 = 4.6:1 */
+      background: #f0f0f0;
+      color: var(--ug-medium-gray);
+    }
+
+    .data-table__status--pending {
+      /* Contrast: #7a6200 on #fef3cd = 4.8:1 */
+      background: #fef3cd;
+      color: #7a6200;
+    }
+
+    .data-table__status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .data-table__status--active .data-table__status-dot { background: var(--ug-green); }
+    .data-table__status--inactive .data-table__status-dot { background: var(--ug-medium-gray); }
+    .data-table__status--pending .data-table__status-dot { background: #d4a017; }
+
+    /* Row actions */
+    .data-table__row-actions {
+      display: flex;
+      gap: var(--ug-spacing-1);
+    }
+
+    .data-table__action-btn {
+      min-height: 44px;
+      min-width: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: 1px solid transparent;
+      border-radius: var(--ui-radius);
+      cursor: pointer;
+      color: var(--ui-text-muted);
+      padding: 0;
+    }
+
+    .data-table__action-btn:focus-visible {
+      outline: var(--ui-focus-width) solid var(--ui-focus-color);
+      outline-offset: 2px;
+    }
+
+    .data-table__action-btn:hover {
+      color: var(--ui-text-primary);
+      background: var(--ui-surface-raised);
+      border-color: var(--ug-light-gray);
+    }
+
+    .data-table__action-btn--danger:hover {
+      color: var(--ui-color-danger);
+      background: #fef5f5;
+    }
+
+    /* ================================================================
+       Cards (Mobile)
+       ================================================================ */
+    .data-table__cards {
+      display: flex;
+      flex-direction: column;
+      gap: var(--ug-spacing-2);
+    }
+
+    @media (min-width: 768px) {
+      .data-table__cards {
+        display: none;
+      }
+    }
+
+    .data-table__card {
+      border: 1px solid var(--ug-light-gray);
+      border-radius: var(--ui-radius);
+      padding: var(--ug-spacing-3);
+      background: var(--ui-surface);
+      display: flex;
+      flex-direction: column;
+      gap: var(--ug-spacing-2);
+    }
+
+    .data-table__card--selected {
+      border-color: var(--ui-color-primary);
+      background: #fef5f5;
+    }
+
+    .data-table__card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--ug-spacing-2);
+    }
+
+    .data-table__card-title {
+      font-weight: 600;
+      font-size: var(--ug-font-size-base);
+      flex: 1;
+    }
+
+    .data-table__card-fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--ug-spacing-1) var(--ug-spacing-3);
+    }
+
+    .data-table__card-field {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .data-table__card-label {
+      font-size: var(--ug-font-size-xs);
+      color: var(--ui-text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .data-table__card-value {
+      font-size: var(--ug-font-size-sm);
+      color: var(--ui-text-primary);
+    }
+
+    .data-table__card-actions {
+      display: flex;
+      gap: var(--ug-spacing-1);
+      border-top: 1px solid var(--ug-light-gray);
+      padding-top: var(--ug-spacing-2);
+    }
+
+    /* ================================================================
+       Pagination
+       ================================================================ */
+    .data-table__footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--ug-spacing-2);
+    }
+
+    .data-table__page-info {
+      font-size: var(--ug-font-size-sm);
+      color: var(--ui-text-secondary);
+      display: flex;
+      align-items: center;
+      gap: var(--ug-spacing-2);
+    }
+
+    .data-table__page-size-select {
+      min-height: 44px;
+      padding: var(--ug-spacing-1) var(--ug-spacing-2);
+      font-family: var(--ug-font-family);
+      font-size: var(--ug-font-size-sm);
+      border: 2px solid var(--ug-light-gray);
+      border-radius: var(--ui-radius);
+      background: var(--ui-surface);
+      color: var(--ui-text-primary);
+      cursor: pointer;
+    }
+
+    .data-table__page-size-select:focus-visible {
+      outline: var(--ui-focus-width) solid var(--ui-focus-color);
+      outline-offset: 2px;
+    }
+
+    .data-table__pagination {
+      display: flex;
+      align-items: center;
+      gap: var(--ug-spacing-1);
+    }
+
+    .data-table__page-btn {
+      min-height: 44px;
+      min-width: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--ui-surface);
+      border: 2px solid var(--ug-light-gray);
+      border-radius: var(--ui-radius);
+      cursor: pointer;
+      font-family: var(--ug-font-family);
+      font-size: var(--ug-font-size-sm);
+      color: var(--ui-text-primary);
+      padding: 0;
+    }
+
+    .data-table__page-btn:focus-visible {
+      outline: var(--ui-focus-width) solid var(--ui-focus-color);
+      outline-offset: 2px;
+    }
+
+    .data-table__page-btn:hover:not(:disabled) {
+      border-color: var(--ug-medium-gray);
+      background: var(--ui-surface-raised);
+    }
+
+    .data-table__page-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .data-table__page-btn--active {
+      background: var(--ui-color-primary);
+      border-color: var(--ui-color-primary);
+      color: var(--ui-color-on-primary);
+      /* Contrast: #fff on #c1272d = 5.37:1 */
+    }
+
+    .data-table__page-btn--active:hover {
+      background: var(--ug-brown);
+      border-color: var(--ug-brown);
+    }
+
+    /* ================================================================
+       Empty State
+       ================================================================ */
+    .data-table__empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--ug-spacing-6) var(--ug-spacing-3);
+      text-align: center;
+      gap: var(--ug-spacing-2);
+      color: var(--ui-text-muted);
+    }
+
+    .data-table__empty-icon {
+      font-size: 3rem;
+      opacity: 0.5;
+    }
+
+    .data-table__empty-title {
+      font-size: var(--ug-font-size-lg);
+      font-weight: 600;
+      color: var(--ui-text-secondary);
+    }
+
+    .data-table__empty-text {
+      font-size: var(--ug-font-size-sm);
+      max-width: 400px;
+    }
+
+    /* ================================================================
+       Loading State
+       ================================================================ */
+    .data-table__loading {
+      padding: var(--ug-spacing-5) var(--ug-spacing-3);
+    }
+
+    .data-table__skeleton-row {
+      display: flex;
+      gap: var(--ug-spacing-3);
+      padding: var(--ug-spacing-2) 0;
+      border-bottom: 1px solid var(--ug-light-gray);
+    }
+
+    .data-table__skeleton {
+      height: var(--ug-leading);
+      background: linear-gradient(90deg, var(--ug-light-gray) 25%, var(--ui-surface-raised) 50%, var(--ug-light-gray) 75%);
+      background-size: 200% 100%;
+      border-radius: 2px;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .data-table__skeleton {
+        animation: shimmer 1.5s infinite;
+      }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    .data-table__skeleton--sm { width: 44px; flex-shrink: 0; }
+    .data-table__skeleton--md { width: 120px; }
+    .data-table__skeleton--lg { flex: 1; }
+    .data-table__skeleton--xl { width: 200px; }
+
+    /* ================================================================
+       Forced Colors (High Contrast Mode)
+       ================================================================ */
+    @media (forced-colors: active) {
+      .data-table__table th {
+        border-bottom: 2px solid ButtonText;
+      }
+      .data-table__page-btn--active {
+        border: 2px solid Highlight;
+        background: Highlight;
+        color: HighlightText;
+      }
+      .data-table__status {
+        border: 1px solid ButtonText;
+      }
+      .data-table__card--selected {
+        border: 2px solid Highlight;
+      }
+    }
+
+    /* ================================================================
+       Section Dividers for Mockup
+       ================================================================ */
+    .mockup-section {
+      margin-bottom: var(--ug-spacing-6);
+      padding-bottom: var(--ug-spacing-5);
+      border-bottom: 2px dashed var(--ug-light-gray);
+    }
+
+    .mockup-section__title {
+      font-size: var(--ug-font-size-2xl);
+      font-weight: 700;
+      margin-bottom: var(--ug-spacing-3);
+      color: var(--ui-text-primary);
+      line-height: calc(2 * var(--ug-leading));
+    }
+
+    .mockup-section__subtitle {
+      font-size: var(--ug-font-size-sm);
+      color: var(--ui-text-muted);
+      margin-bottom: var(--ug-spacing-3);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================================================================
+       STATE 1: Default — Full data table with sorting, filtering, selection
+       ================================================================ -->
+  <div class="mockup-section">
+    <h2 class="mockup-section__title">Default State</h2>
+    <p class="mockup-section__subtitle">Table with data, sorting enabled, no active filters, no selection.</p>
+
+    <div class="data-table" role="region" aria-label="User data table">
+
+      <!-- Toolbar -->
+      <div class="data-table__toolbar">
+        <div class="data-table__search">
+          <svg class="data-table__search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input
+            type="search"
+            class="data-table__search-input"
+            placeholder="Search users..."
+            aria-label="Search users"
+          />
+        </div>
+        <button class="data-table__filter-btn" aria-label="Toggle filters" aria-expanded="false">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+          </svg>
+          Filters
+        </button>
+      </div>
+
+      <!-- Desktop Table -->
+      <div class="data-table__scroll-container">
+        <table class="data-table__table" role="grid" aria-label="Users">
+          <thead>
+            <tr>
+              <th class="data-table__checkbox-cell" scope="col">
+                <label class="data-table__checkbox-wrapper">
+                  <input type="checkbox" aria-label="Select all rows" />
+                </label>
+              </th>
+              <th scope="col">
+                <button class="data-table__sort-btn" aria-sort="ascending">
+                  Name
+                  <span class="data-table__sort-icon data-table__sort-icon--asc" aria-hidden="true">
+                    <span class="sort-up">&#9650;</span>
+                    <span class="sort-down">&#9660;</span>
+                  </span>
+                </button>
+              </th>
+              <th scope="col">
+                <button class="data-table__sort-btn">
+                  Email
+                  <span class="data-table__sort-icon" aria-hidden="true">
+                    <span class="sort-up">&#9650;</span>
+                    <span class="sort-down">&#9660;</span>
+                  </span>
+                </button>
+              </th>
+              <th scope="col">
+                <button class="data-table__sort-btn">
+                  Role
+                  <span class="data-table__sort-icon" aria-hidden="true">
+                    <span class="sort-up">&#9650;</span>
+                    <span class="sort-down">&#9660;</span>
+                  </span>
+                </button>
+              </th>
+              <th scope="col">
+                <button class="data-table__sort-btn">
+                  Status
+                  <span class="data-table__sort-icon" aria-hidden="true">
+                    <span class="sort-up">&#9650;</span>
+                    <span class="sort-down">&#9660;</span>
+                  </span>
+                </button>
+              </th>
+              <th scope="col">
+                <button class="data-table__sort-btn">
+                  Last Active
+                  <span class="data-table__sort-icon" aria-hidden="true">
+                    <span class="sort-up">&#9650;</span>
+                    <span class="sort-down">&#9660;</span>
+                  </span>
+                </button>
+              </th>
+              <th scope="col"><span class="sr-only">Actions</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="data-table__checkbox-cell">
+                <label class="data-table__checkbox-wrapper">
+                  <input type="checkbox" aria-label="Select Alice Johnson" />
+                </label>
+              </td>
+              <td><strong>Alice Johnson</strong></td>
+              <td>alice@example.com</td>
+              <td>Admin</td>
+              <td>
+                <span class="data-table__status data-table__status--active">
+                  <span class="data-table__status-dot" aria-hidden="true"></span>
+                  Active
+                </span>
+              </td>
+              <td>2 hours ago</td>
+              <td>
+                <div class="data-table__row-actions">
+                  <button class="data-table__action-btn" aria-label="Edit Alice Johnson" title="Edit">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                  </button>
+                  <button class="data-table__action-btn data-table__action-btn--danger" aria-label="Delete Alice Johnson" title="Delete">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="data-table__checkbox-cell">
+                <label class="data-table__checkbox-wrapper">
+                  <input type="checkbox" aria-label="Select Bob Smith" />
+                </label>
+              </td>
+              <td><strong>Bob Smith</strong></td>
+              <td>bob@example.com</td>
+              <td>Editor</td>
+              <td>
+                <span class="data-table__status data-table__status--active">
+                  <span class="data-table__status-dot" aria-hidden="true"></span>
+                  Active
+                </span>
+              </td>
+              <td>5 hours ago</td>
+              <td>
+                <div class="data-table__row-actions">
+                  <button class="data-table__action-btn" aria-label="Edit Bob Smith" title="Edit">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                  </button>
+                  <button class="data-table__action-btn data-table__action-btn--danger" aria-label="Delete Bob Smith" title="Delete">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="data-table__checkbox-cell">
+                <label class="data-table__checkbox-wrapper">
+                  <input type="checkbox" aria-label="Select Carol Davis" />
+                </label>
+              </td>
+              <td><strong>Carol Davis</strong></td>
+              <td>carol@example.com</td>
+              <td>Viewer</td>
+              <td>
+                <span class="data-table__status data-table__status--inactive">
+                  <span class="data-table__status-dot" aria-hidden="true"></span>
+                  Inactive
+                </span>
+              </td>
+              <td>3 days ago</td>
+              <td>
+                <div class="data-table__row-actions">
+                  <button class="data-table__action-btn" aria-label="Edit Carol Davis" title="Edit">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                  </button>
+                  <button class="data-table__action-btn data-table__action-btn--danger" aria-label="Delete Carol Davis" title="Delete">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="data-table__checkbox-cell">
+                <label class="data-table__checkbox-wrapper">
+                  <input type="checkbox" aria-label="Select Dan Wilson" />
+                </label>
+              </td>
+              <td><strong>Dan Wilson</strong></td>
+              <td>dan@example.com</td>
+              <td>Editor</td>
+              <td>
+                <span class="data-table__status data-table__status--pending">
+                  <span class="data-table__status-dot" aria-hidden="true"></span>
+                  Pending
+                </span>
+              </td>
+              <td>1 week ago</td>
+              <td>
+                <div class="data-table__row-actions">
+                  <button class="data-table__action-btn" aria-label="Edit Dan Wilson" title="Edit">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                  </button>
+                  <button class="data-table__action-btn data-table__action-btn--danger" aria-label="Delete Dan Wilson" title="Delete">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="data-table__checkbox-cell">
+                <label class="data-table__checkbox-wrapper">
+                  <input type="checkbox" aria-label="Select Eve Martinez" />
+                </label>
+              </td>
+              <td><strong>Eve Martinez</strong></td>
+              <td>eve@example.com</td>
+              <td>Admin</td>
+              <td>
+                <span class="data-table__status data-table__status--active">
+                  <span class="data-table__status-dot" aria-hidden="true"></span>
+                  Active
+                </span>
+              </td>
+              <td>Just now</td>
+              <td>
+                <div class="data-table__row-actions">
+                  <button class="data-table__action-btn" aria-label="Edit Eve Martinez" title="Edit">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                  </button>
+                  <button class="data-table__action-btn data-table__action-btn--danger" aria-label="Delete Eve Martinez" title="Delete">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Mobile Cards (visible below 768px) -->
+      <div class="data-table__cards">
+        <div class="data-table__card">
+          <div class="data-table__card-header">
+            <label class="data-table__checkbox-wrapper">
+              <input type="checkbox" aria-label="Select Alice Johnson" />
+            </label>
+            <span class="data-table__card-title">Alice Johnson</span>
+            <span class="data-table__status data-table__status--active">
+              <span class="data-table__status-dot" aria-hidden="true"></span>
+              Active
+            </span>
+          </div>
+          <div class="data-table__card-fields">
+            <div class="data-table__card-field">
+              <span class="data-table__card-label">Email</span>
+              <span class="data-table__card-value">alice@example.com</span>
+            </div>
+            <div class="data-table__card-field">
+              <span class="data-table__card-label">Role</span>
+              <span class="data-table__card-value">Admin</span>
+            </div>
+            <div class="data-table__card-field">
+              <span class="data-table__card-label">Last Active</span>
+              <span class="data-table__card-value">2 hours ago</span>
+            </div>
+          </div>
+          <div class="data-table__card-actions">
+            <button class="data-table__action-btn" aria-label="Edit Alice Johnson" title="Edit">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </button>
+            <button class="data-table__action-btn data-table__action-btn--danger" aria-label="Delete Alice Johnson" title="Delete">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="data-table__card">
+          <div class="data-table__card-header">
+            <label class="data-table__checkbox-wrapper">
+              <input type="checkbox" aria-label="Select Bob Smith" />
+            </label>
+            <span class="data-table__card-title">Bob Smith</span>
+            <span class="data-table__status data-table__status--active">
+              <span class="data-table__status-dot" aria-hidden="true"></span>
+              Active
+            </span>
+          </div>
+          <div class="data-table__card-fields">
+            <div class="data-table__card-field">
+              <span class="data-table__card-label">Email</span>
+              <span class="data-table__card-value">bob@example.com</span>
+            </div>
+            <div class="data-table__card-field">
+              <span class="data-table__card-label">Role</span>
+              <span class="data-table__card-value">Editor</span>
+            </div>
+            <div class="data-table__card-field">
+              <span class="data-table__card-label">Last Active</span>
+              <span class="data-table__card-value">5 hours ago</span>
+            </div>
+          </div>
+          <div class="data-table__card-actions">
+            <button class="data-table__action-btn" aria-label="Edit Bob Smith" title="Edit">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </button>
+            <button class="data-table__action-btn data-table__action-btn--danger" aria-label="Delete Bob Smith" title="Delete">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="data-table__footer">
+        <div class="data-table__page-info">
+          <span>Showing 1-5 of 47 users</span>
+          <label>
+            <span class="sr-only">Rows per page</span>
+            <select class="data-table__page-size-select" aria-label="Rows per page">
+              <option value="5">5 / page</option>
+              <option value="10" selected>10 / page</option>
+              <option value="25">25 / page</option>
+              <option value="50">50 / page</option>
+            </select>
+          </label>
+        </div>
+        <nav class="data-table__pagination" aria-label="Table pagination">
+          <button class="data-table__page-btn" disabled aria-label="Previous page">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="data-table__page-btn data-table__page-btn--active" aria-current="page" aria-label="Page 1">1</button>
+          <button class="data-table__page-btn" aria-label="Page 2">2</button>
+          <button class="data-table__page-btn" aria-label="Page 3">3</button>
+          <button class="data-table__page-btn" aria-label="Page 4">4</button>
+          <button class="data-table__page-btn" aria-label="Page 5">5</button>
+          <button class="data-table__page-btn" aria-label="Next page">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       STATE 2: With Filters and Selection
+       ================================================================ -->
+  <div class="mockup-section">
+    <h2 class="mockup-section__title">With Filters + Selection</h2>
+    <p class="mockup-section__subtitle">Active filters applied, rows selected, bulk actions visible.</p>
+
+    <div class="data-table" role="region" aria-label="Filtered user data table">
+
+      <div class="data-table__toolbar">
+        <div class="data-table__search">
+          <svg class="data-table__search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="search" class="data-table__search-input" value="alice" aria-label="Search users" />
+        </div>
+        <button class="data-table__filter-btn data-table__filter-btn--active" aria-label="Toggle filters" aria-expanded="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+          </svg>
+          Filters (2)
+        </button>
+        <span class="data-table__selected-count">2 selected</span>
+        <button class="data-table__bulk-btn" aria-label="Export selected rows">Export</button>
+        <button class="data-table__bulk-btn data-table__bulk-btn--danger" aria-label="Delete selected rows">Delete</button>
+      </div>
+
+      <div class="data-table__active-filters" role="list" aria-label="Active filters">
+        <div class="data-table__filter-chip" role="listitem">
+          Status: Active
+          <button class="data-table__filter-chip-remove" aria-label="Remove Status: Active filter">&times;</button>
+        </div>
+        <div class="data-table__filter-chip" role="listitem">
+          Role: Admin
+          <button class="data-table__filter-chip-remove" aria-label="Remove Role: Admin filter">&times;</button>
+        </div>
+        <button class="data-table__clear-filters">Clear all</button>
+      </div>
+
+      <div class="data-table__scroll-container">
+        <table class="data-table__table" role="grid" aria-label="Filtered users">
+          <thead>
+            <tr>
+              <th class="data-table__checkbox-cell" scope="col">
+                <label class="data-table__checkbox-wrapper">
+                  <input type="checkbox" checked aria-label="Select all rows" />
+                </label>
+              </th>
+              <th scope="col"><button class="data-table__sort-btn">Name<span class="data-table__sort-icon" aria-hidden="true"><span class="sort-up">&#9650;</span><span class="sort-down">&#9660;</span></span></button></th>
+              <th scope="col"><button class="data-table__sort-btn">Email<span class="data-table__sort-icon" aria-hidden="true"><span class="sort-up">&#9650;</span><span class="sort-down">&#9660;</span></span></button></th>
+              <th scope="col"><button class="data-table__sort-btn">Role<span class="data-table__sort-icon" aria-hidden="true"><span class="sort-up">&#9650;</span><span class="sort-down">&#9660;</span></span></button></th>
+              <th scope="col"><button class="data-table__sort-btn">Status<span class="data-table__sort-icon" aria-hidden="true"><span class="sort-up">&#9650;</span><span class="sort-down">&#9660;</span></span></button></th>
+              <th scope="col"><button class="data-table__sort-btn">Last Active<span class="data-table__sort-icon" aria-hidden="true"><span class="sort-up">&#9650;</span><span class="sort-down">&#9660;</span></span></button></th>
+              <th scope="col"><span class="sr-only">Actions</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="data-table__row--selected">
+              <td class="data-table__checkbox-cell"><label class="data-table__checkbox-wrapper"><input type="checkbox" checked aria-label="Select Alice Johnson" /></label></td>
+              <td><strong>Alice Johnson</strong></td>
+              <td>alice@example.com</td>
+              <td>Admin</td>
+              <td><span class="data-table__status data-table__status--active"><span class="data-table__status-dot" aria-hidden="true"></span>Active</span></td>
+              <td>2 hours ago</td>
+              <td><div class="data-table__row-actions"><button class="data-table__action-btn" aria-label="Edit" title="Edit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button><button class="data-table__action-btn data-table__action-btn--danger" aria-label="Delete" title="Delete"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></button></div></td>
+            </tr>
+            <tr class="data-table__row--selected">
+              <td class="data-table__checkbox-cell"><label class="data-table__checkbox-wrapper"><input type="checkbox" checked aria-label="Select Eve Martinez" /></label></td>
+              <td><strong>Eve Martinez</strong></td>
+              <td>eve@example.com</td>
+              <td>Admin</td>
+              <td><span class="data-table__status data-table__status--active"><span class="data-table__status-dot" aria-hidden="true"></span>Active</span></td>
+              <td>Just now</td>
+              <td><div class="data-table__row-actions"><button class="data-table__action-btn" aria-label="Edit" title="Edit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button><button class="data-table__action-btn data-table__action-btn--danger" aria-label="Delete" title="Delete"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></button></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="data-table__footer">
+        <div class="data-table__page-info"><span>Showing 1-2 of 2 users (filtered)</span></div>
+        <nav class="data-table__pagination" aria-label="Table pagination">
+          <button class="data-table__page-btn" disabled aria-label="Previous page"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button class="data-table__page-btn data-table__page-btn--active" aria-current="page" aria-label="Page 1">1</button>
+          <button class="data-table__page-btn" disabled aria-label="Next page"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       STATE 3: Empty State
+       ================================================================ -->
+  <div class="mockup-section">
+    <h2 class="mockup-section__title">Empty State</h2>
+    <p class="mockup-section__subtitle">No data matches the current query/filters.</p>
+
+    <div class="data-table" role="region" aria-label="Empty data table">
+      <div class="data-table__toolbar">
+        <div class="data-table__search">
+          <svg class="data-table__search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="search" class="data-table__search-input" value="zzzzxxx" aria-label="Search users" />
+        </div>
+      </div>
+      <div class="data-table__empty" role="status">
+        <div class="data-table__empty-icon" aria-hidden="true">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+        <p class="data-table__empty-title">No results found</p>
+        <p class="data-table__empty-text">Try adjusting your search or filter criteria to find what you are looking for.</p>
+        <button class="data-table__filter-btn" style="margin-top: var(--ug-spacing-2);">Clear search</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       STATE 4: Loading State
+       ================================================================ -->
+  <div class="mockup-section">
+    <h2 class="mockup-section__title">Loading State</h2>
+    <p class="mockup-section__subtitle">Skeleton rows while data is fetching.</p>
+
+    <div class="data-table" role="region" aria-label="Loading data table" aria-busy="true">
+      <div class="data-table__toolbar">
+        <div class="data-table__search">
+          <svg class="data-table__search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="search" class="data-table__search-input" placeholder="Search users..." aria-label="Search users" disabled />
+        </div>
+      </div>
+      <div class="data-table__loading" role="status" aria-label="Loading table data">
+        <div class="data-table__skeleton-row">
+          <div class="data-table__skeleton data-table__skeleton--sm"></div>
+          <div class="data-table__skeleton data-table__skeleton--xl"></div>
+          <div class="data-table__skeleton data-table__skeleton--lg"></div>
+          <div class="data-table__skeleton data-table__skeleton--md"></div>
+          <div class="data-table__skeleton data-table__skeleton--md"></div>
+        </div>
+        <div class="data-table__skeleton-row">
+          <div class="data-table__skeleton data-table__skeleton--sm"></div>
+          <div class="data-table__skeleton data-table__skeleton--xl"></div>
+          <div class="data-table__skeleton data-table__skeleton--lg"></div>
+          <div class="data-table__skeleton data-table__skeleton--md"></div>
+          <div class="data-table__skeleton data-table__skeleton--md"></div>
+        </div>
+        <div class="data-table__skeleton-row">
+          <div class="data-table__skeleton data-table__skeleton--sm"></div>
+          <div class="data-table__skeleton data-table__skeleton--xl"></div>
+          <div class="data-table__skeleton data-table__skeleton--lg"></div>
+          <div class="data-table__skeleton data-table__skeleton--md"></div>
+          <div class="data-table__skeleton data-table__skeleton--md"></div>
+        </div>
+        <div class="data-table__skeleton-row">
+          <div class="data-table__skeleton data-table__skeleton--sm"></div>
+          <div class="data-table__skeleton data-table__skeleton--xl"></div>
+          <div class="data-table__skeleton data-table__skeleton--lg"></div>
+          <div class="data-table__skeleton data-table__skeleton--md"></div>
+          <div class="data-table__skeleton data-table__skeleton--md"></div>
+        </div>
+        <div class="data-table__skeleton-row">
+          <div class="data-table__skeleton data-table__skeleton--sm"></div>
+          <div class="data-table__skeleton data-table__skeleton--xl"></div>
+          <div class="data-table__skeleton data-table__skeleton--lg"></div>
+          <div class="data-table__skeleton data-table__skeleton--md"></div>
+          <div class="data-table__skeleton data-table__skeleton--md"></div>
+        </div>
+        <p class="sr-only">Loading table data, please wait.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden text for screen reader only -->
+  <style>
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+
+  <!-- ================================================================
+       Minimal JS for interactive mockup demo
+       ================================================================ -->
+  <script>
+    // Sort button toggle demo
+    document.querySelectorAll('.data-table__sort-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const icon = btn.querySelector('.data-table__sort-icon');
+        if (!icon) return;
+        const isAsc = icon.classList.contains('data-table__sort-icon--asc');
+        const isDesc = icon.classList.contains('data-table__sort-icon--desc');
+        // Cycle: none -> asc -> desc -> none
+        icon.classList.remove('data-table__sort-icon--asc', 'data-table__sort-icon--desc');
+        if (!isAsc && !isDesc) {
+          icon.classList.add('data-table__sort-icon--asc');
+          btn.setAttribute('aria-sort', 'ascending');
+        } else if (isAsc) {
+          icon.classList.add('data-table__sort-icon--desc');
+          btn.setAttribute('aria-sort', 'descending');
+        } else {
+          btn.removeAttribute('aria-sort');
+        }
+      });
+    });
+
+    // Select-all checkbox toggle
+    document.querySelectorAll('thead .data-table__checkbox-wrapper input').forEach(selectAll => {
+      selectAll.addEventListener('change', () => {
+        const table = selectAll.closest('table');
+        if (!table) return;
+        table.querySelectorAll('tbody .data-table__checkbox-wrapper input').forEach(cb => {
+          cb.checked = selectAll.checked;
+          cb.closest('tr')?.classList.toggle('data-table__row--selected', selectAll.checked);
+        });
+      });
+    });
+
+    // Row checkbox toggle
+    document.querySelectorAll('tbody .data-table__checkbox-wrapper input').forEach(cb => {
+      cb.addEventListener('change', () => {
+        cb.closest('tr')?.classList.toggle('data-table__row--selected', cb.checked);
+      });
+    });
+  </script>
+</body>
+</html>

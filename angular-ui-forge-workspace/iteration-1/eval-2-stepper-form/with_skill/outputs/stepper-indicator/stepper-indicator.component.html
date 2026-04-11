@@ -1,0 +1,58 @@
+<!-- Stepper Indicator -->
+<nav
+  class="stepper"
+  [attr.aria-label]="'Registration progress: step ' + (currentStep + 1) + ' of ' + steps.length"
+  role="navigation"
+>
+  <!-- Progress bar (background track + filled track) -->
+  <div class="stepper__track" aria-hidden="true">
+    <div
+      class="stepper__track-fill"
+      [style.width.%]="progressPercent"
+    ></div>
+  </div>
+
+  <!-- Step indicators -->
+  <ol class="stepper__list">
+    <li
+      *ngFor="let step of steps; let i = index"
+      class="stepper__item"
+      [class.stepper__item--active]="getStepStatus(i) === 'active'"
+      [class.stepper__item--completed]="getStepStatus(i) === 'completed'"
+      [class.stepper__item--pending]="getStepStatus(i) === 'pending'"
+    >
+      <button
+        class="stepper__button"
+        type="button"
+        [attr.aria-current]="getStepStatus(i) === 'active' ? 'step' : null"
+        [attr.aria-label]="step.label + (getStepStatus(i) === 'completed' ? ' (completed)' : getStepStatus(i) === 'active' ? ' (current step)' : '')"
+        [disabled]="!isStepClickable(i)"
+        (click)="onStepClick(i)"
+      >
+        <!-- Step circle -->
+        <span class="stepper__circle">
+          <span
+            *ngIf="getStepStatus(i) === 'completed'"
+            class="stepper__check"
+            aria-hidden="true"
+          >
+            <!-- Checkmark SVG -->
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span
+            *ngIf="getStepStatus(i) !== 'completed'"
+            class="stepper__number"
+            aria-hidden="true"
+          >
+            {{ i + 1 }}
+          </span>
+        </span>
+
+        <!-- Step label -->
+        <span class="stepper__label">{{ step.label }}</span>
+      </button>
+    </li>
+  </ol>
+</nav>

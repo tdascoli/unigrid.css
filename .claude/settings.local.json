@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "Bash(wc -l src/scss/*.scss)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(python \"C:\\\\Users\\\\thoma\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\2f5522fa-1fcd-4dbc-abf3-c1885c9b3297\\\\35e4cdd7-a752-4a78-b3c2-5d387665dfae\\\\skills\\\\skill-creator\\\\scripts\\\\package_skill.py\" \"C:\\\\work\\\\workspace\\\\unigrid.css\\\\.claude\\\\worktrees\\\\optimistic-knuth\\\\angular-ui-forge\")",
+      "Read(//c/Users/thoma/AppData/Roaming/Claude/local-agent-mode-sessions/skills-plugin/2f5522fa-1fcd-4dbc-abf3-c1885c9b3297/35e4cdd7-a752-4a78-b3c2-5d387665dfae/skills/skill-creator/**)",
+      "Bash(python -m scripts.package_skill \"C:\\\\work\\\\workspace\\\\unigrid.css\\\\.claude\\\\worktrees\\\\optimistic-knuth\\\\angular-ui-forge\")",
+      "Bash(PYTHONIOENCODING=utf-8 python -m scripts.package_skill \"C:\\\\work\\\\workspace\\\\unigrid.css\\\\.claude\\\\worktrees\\\\optimistic-knuth\\\\angular-ui-forge\")",
+      "Bash(where claude:*)",
+      "Skill(commit-commands:commit)",
+      "Skill(commit-commands:commit:*)"
+    ]
+  }
+}

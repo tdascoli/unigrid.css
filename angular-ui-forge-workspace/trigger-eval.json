@@ -1,0 +1,82 @@
+[
+  {
+    "query": "I need to create a date range picker component for our Angular Nx workspace. It should work with reactive forms, show calendar popovers, and support both single date and range selection. We're using unigrid.css and Bootstrap 5.",
+    "should_trigger": true
+  },
+  {
+    "query": "We've got an Nx monorepo and need to build out a component library in libs/shared/ui with Storybook. Can you scaffold the whole thing — buttons, inputs, selects, cards, modals — with proper a11y and consistent design tokens?",
+    "should_trigger": true
+  },
+  {
+    "query": "I'm working on a complex data entry form for insurance claims in our Angular app. It's got about 40 fields across 6 sections. Users are abandoning it halfway through. How should I restructure this to improve completion rates?",
+    "should_trigger": true
+  },
+  {
+    "query": "Can you help me create a sidebar navigation component for our Angular dashboard? It should collapse on mobile into a hamburger menu and show icons + labels on desktop. We use Tailwind and the app is in an Nx monorepo.",
+    "should_trigger": true
+  },
+  {
+    "query": "I need to add a confirmation dialog component to our Angular UI lib. It should have danger/warning/info variants, keyboard trap the focus inside the modal, and meet WCAG 2.2 AA. We use unigrid.css for styling.",
+    "should_trigger": true
+  },
+  {
+    "query": "We're building a settings page in our Angular feature lib. There's a smart container that fetches user preferences and several dumb components for each settings section (notifications, privacy, appearance). Can you generate the component scaffold with separate html/scss files and stories?",
+    "should_trigger": true
+  },
+  {
+    "query": "I want to create an accessible autocomplete/combobox component for our Nx Angular project. It should handle async data loading, keyboard navigation, and work with both Bootstrap and standalone unigrid.css projects.",
+    "should_trigger": true
+  },
+  {
+    "query": "Our Angular app's forms don't look consistent — some use inline styles, some use random padding values, the focus rings are different everywhere. Can you help me establish a design token system and migrate the existing components to use it?",
+    "should_trigger": true
+  },
+  {
+    "query": "I need to set up Storybook in our Nx Angular monorepo for the libs/ui library. We need proper addon configuration for a11y testing, viewport switching, and controls. Also need a theme that matches our unigrid.css tokens.",
+    "should_trigger": true
+  },
+  {
+    "query": "Create a pricing comparison table component for our Angular app. Three tiers side by side, the middle one highlighted as 'recommended', feature checkmarks, and a CTA button at the bottom of each. Should work on mobile too.",
+    "should_trigger": true
+  },
+  {
+    "query": "How do I set up an Nx workspace from scratch with Angular? I just need the CLI commands to initialize the monorepo and create my first app.",
+    "should_trigger": false
+  },
+  {
+    "query": "Can you help me write a Python script that scrapes product prices from Amazon and stores them in a SQLite database? I want to track price changes over time.",
+    "should_trigger": false
+  },
+  {
+    "query": "I need to configure CI/CD for our Nx monorepo on GitHub Actions. We want to run affected tests on PRs and deploy the app on merges to main.",
+    "should_trigger": false
+  },
+  {
+    "query": "Our Angular app is slow on initial load. Can you help me analyze the bundle size and set up lazy loading for feature modules?",
+    "should_trigger": false
+  },
+  {
+    "query": "I need to write a REST API in NestJS that handles user authentication with JWT tokens, password hashing with bcrypt, and role-based access control.",
+    "should_trigger": false
+  },
+  {
+    "query": "Can you help me migrate our Angular project from NgModules to standalone components? We have about 200 components across 15 modules.",
+    "should_trigger": false
+  },
+  {
+    "query": "I'm building a React component library with Storybook and Tailwind CSS. Need a button, input, card, and modal with proper ARIA. Using a Turborepo monorepo.",
+    "should_trigger": false
+  },
+  {
+    "query": "We need to set up SSR for our Angular app using Angular Universal. The main concern is SEO for our marketing pages.",
+    "should_trigger": false
+  },
+  {
+    "query": "Help me write unit tests for our Angular UserService that calls an HTTP API. I need to mock HttpClient and test error handling scenarios.",
+    "should_trigger": false
+  },
+  {
+    "query": "I want to add a dark mode toggle to our Angular app that persists the user's preference in localStorage and respects prefers-color-scheme. Just the logic, no new components needed.",
+    "should_trigger": false
+  }
+]

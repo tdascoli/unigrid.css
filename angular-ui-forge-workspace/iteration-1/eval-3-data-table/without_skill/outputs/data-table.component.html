@@ -1,0 +1,293 @@
+<!-- ==========================================================================
+     DataTable — Template
+     Desktop: standard table with ug-table classes
+     Mobile:  card-based layout using ug-card classes
+     ========================================================================== -->
+
+<div class="dt" [attr.id]="tableId" role="region" [attr.aria-label]="caption || 'Data table'">
+
+  <!-- ═══ Toolbar: global search + filter toggle + selection info ═══ -->
+  <div class="dt__toolbar" *ngIf="filterable || selectable">
+    <div class="dt__toolbar-left">
+      <!-- Global search -->
+      <div class="ug-form__group dt__search" *ngIf="filterable">
+        <label class="ug-form__label dt__sr-only" [attr.for]="tableId + '-search'">Search table</label>
+        <input
+          class="ug-form__input ug-form__input--sm"
+          type="search"
+          [id]="tableId + '-search'"
+          placeholder="Search..."
+          [ngModel]="globalFilter"
+          (ngModelChange)="onGlobalFilterChange($event)"
+          [attr.aria-controls]="tableId + '-body'"
+        />
+      </div>
+
+      <!-- Column filter toggle -->
+      <button
+        *ngIf="filterable"
+        class="ug-btn ug-btn--ghost ug-btn--sm"
+        type="button"
+        (click)="toggleFilters()"
+        [attr.aria-expanded]="filtersExpanded"
+        [attr.aria-controls]="tableId + '-col-filters'"
+      >
+        <span class="dt__filter-icon" aria-hidden="true">&#9698;</span>
+        Filters
+        <span *ngIf="activeFilterCount > 0" class="dt__badge">{{ activeFilterCount }}</span>
+      </button>
+    </div>
+
+    <div class="dt__toolbar-right">
+      <!-- Selection count -->
+      <span *ngIf="selectable && selectedIndices.size > 0" class="dt__selection-count" role="status">
+        {{ selectedIndices.size }} selected
+      </span>
+    </div>
+  </div>
+
+  <!-- ═══ Column Filters Row (expandable) ═══ -->
+  <div
+    *ngIf="filtersExpanded"
+    class="dt__col-filters"
+    [id]="tableId + '-col-filters'"
+    role="search"
+    aria-label="Column filters"
+  >
+    <div class="dt__col-filter" *ngFor="let col of visibleColumns; trackBy: trackByColumn">
+      <label class="ug-form__label" [attr.for]="tableId + '-filter-' + col.key">{{ col.label }}</label>
+      <input
+        class="ug-form__input ug-form__input--sm"
+        type="search"
+        [id]="tableId + '-filter-' + col.key"
+        [placeholder]="'Filter ' + col.label + '...'"
+        [ngModel]="filterValues[col.key] || ''"
+        (ngModelChange)="onColumnFilterChange(col.key, $event)"
+      />
+    </div>
+    <button class="ug-btn ug-btn--ghost ug-btn--sm" type="button" (click)="clearAllFilters()">
+      Clear all
+    </button>
+  </div>
+
+  <!-- ═══ Loading Overlay ═══ -->
+  <div *ngIf="loading" class="dt__loading" role="status" aria-live="polite">
+    <div class="dt__spinner" aria-hidden="true"></div>
+    <span>{{ loadingMessage }}</span>
+  </div>
+
+  <!-- ═══ Desktop Table View ═══ -->
+  <div class="ug-table-responsive dt__table-wrap" *ngIf="!isMobile && !loading" role="presentation">
+    <table
+      class="ug-table ug-table--hover"
+      [class.ug-table--striped]="striped"
+      [attr.aria-label]="caption"
+      [id]="tableId + '-body'"
+    >
+      <caption *ngIf="caption" class="dt__sr-only">{{ caption }}</caption>
+
+      <!-- Header -->
+      <thead>
+        <tr>
+          <!-- Select-all checkbox -->
+          <th *ngIf="selectable" class="dt__th-check" scope="col">
+            <label class="dt__check-label">
+              <input
+                type="checkbox"
+                [checked]="allSelected"
+                (change)="onSelectAll($any($event.target).checked)"
+                aria-label="Select all rows"
+              />
+            </label>
+          </th>
+
+          <!-- Column headers -->
+          <th
+            *ngFor="let col of visibleColumns; trackBy: trackByColumn"
+            scope="col"
+            [style.width]="col.width || null"
+            [style.text-align]="col.align || 'left'"
+            [class.dt__th-sortable]="col.sortable && sortable"
+            [attr.aria-sort]="sort?.column === col.key ? (sort?.direction === 'asc' ? 'ascending' : 'descending') : null"
+            (click)="onSort(col)"
+            (keydown.enter)="onSort(col)"
+            (keydown.space)="onSort(col); $event.preventDefault()"
+            [attr.tabindex]="col.sortable && sortable ? 0 : null"
+            [attr.role]="col.sortable && sortable ? 'columnheader button' : 'columnheader'"
+            [attr.aria-label]="getSortAriaLabel(col)"
+          >
+            <span class="dt__th-content">
+              {{ col.label }}
+              <span *ngIf="col.sortable && sortable" class="dt__sort-icon" aria-hidden="true">
+                {{ getSortIcon(col) }}
+              </span>
+            </span>
+          </th>
+        </tr>
+      </thead>
+
+      <!-- Body -->
+      <tbody>
+        <tr
+          *ngFor="let row of pageData; let i = index; trackBy: trackByRow"
+          [class.dt__row-selected]="isRowSelected(i)"
+          (click)="onRowClick(row)"
+        >
+          <!-- Row checkbox -->
+          <td *ngIf="selectable" class="dt__td-check">
+            <label class="dt__check-label">
+              <input
+                type="checkbox"
+                [checked]="isRowSelected(i)"
+                (change)="onSelectRow(globalIndexOf(i), $any($event.target).checked, $event)"
+                (click)="$event.stopPropagation()"
+                [attr.aria-label]="'Select row ' + (i + 1)"
+              />
+            </label>
+          </td>
+
+          <!-- Data cells -->
+          <td
+            *ngFor="let col of visibleColumns; trackBy: trackByColumn"
+            [style.text-align]="col.align || 'left'"
+          >
+            {{ getCellValue(row, col) }}
+          </td>
+        </tr>
+
+        <!-- Empty state -->
+        <tr *ngIf="pageData.length === 0 && !loading">
+          <td [attr.colspan]="visibleColumns.length + (selectable ? 1 : 0)" class="dt__empty">
+            {{ emptyMessage }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══ Mobile Card View ═══ -->
+  <div *ngIf="isMobile && !loading" class="dt__cards" [id]="tableId + '-body'">
+    <!-- Select all for cards -->
+    <div *ngIf="selectable" class="dt__cards-select-all">
+      <label class="ug-form__checkbox">
+        <input
+          type="checkbox"
+          [checked]="allSelected"
+          (change)="onSelectAll($any($event.target).checked)"
+        />
+        <span>Select all</span>
+      </label>
+    </div>
+
+    <!-- Cards -->
+    <div
+      *ngFor="let row of pageData; let i = index; trackBy: trackByRow"
+      class="ug-card dt__card"
+      [class.dt__card--selected]="isRowSelected(i)"
+      (click)="onRowClick(row)"
+    >
+      <div class="ug-card__body">
+        <!-- Card header: first two columns as title/subtitle -->
+        <div class="dt__card-header">
+          <div *ngIf="selectable" class="dt__card-check" (click)="$event.stopPropagation()">
+            <input
+              type="checkbox"
+              [checked]="isRowSelected(i)"
+              (change)="onSelectRow(globalIndexOf(i), $any($event.target).checked, $event)"
+              [attr.aria-label]="'Select row ' + (i + 1)"
+            />
+          </div>
+          <div class="dt__card-titles">
+            <div *ngIf="visibleColumns.length > 0" class="ug-card__title">
+              {{ getCellValue(row, visibleColumns[0]) }}
+            </div>
+            <div *ngIf="visibleColumns.length > 1" class="ug-card__subtitle">
+              {{ getCellValue(row, visibleColumns[1]) }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Remaining fields as label:value pairs -->
+        <dl class="dt__card-fields" *ngIf="visibleColumns.length > 2">
+          <ng-container *ngFor="let col of visibleColumns.slice(2); trackBy: trackByColumn">
+            <dt class="dt__card-label">{{ col.label }}</dt>
+            <dd class="dt__card-value">{{ getCellValue(row, col) }}</dd>
+          </ng-container>
+        </dl>
+      </div>
+    </div>
+
+    <!-- Empty state -->
+    <div *ngIf="pageData.length === 0 && !loading" class="dt__empty dt__empty--card">
+      {{ emptyMessage }}
+    </div>
+  </div>
+
+  <!-- ═══ Pagination Footer ═══ -->
+  <div *ngIf="paginated && filteredSortedData.length > 0" class="dt__footer">
+    <div class="dt__footer-info">
+      Showing {{ showingFrom }}&#8211;{{ showingTo }} of {{ filteredSortedData.length }}
+    </div>
+
+    <div class="dt__footer-controls">
+      <!-- Page size select -->
+      <div class="dt__page-size">
+        <label class="ug-form__label" [attr.for]="tableId + '-pagesize'">Rows</label>
+        <select
+          class="ug-form__select dt__page-size-select"
+          [id]="tableId + '-pagesize'"
+          [ngModel]="currentPageSize"
+          (ngModelChange)="onPageSizeChange($event)"
+        >
+          <option *ngFor="let size of pageSizes" [ngValue]="size">{{ size }}</option>
+        </select>
+      </div>
+
+      <!-- Pagination buttons -->
+      <nav class="ug-pagination" [attr.aria-label]="'Table pagination'">
+        <a
+          class="ug-pagination__arrow"
+          [class.ug-pagination__arrow--disabled]="currentPage <= 1"
+          href="javascript:void(0)"
+          (click)="onPageChange(currentPage - 1)"
+          aria-label="Previous page"
+        >
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M8 1L3 6l5 5"/>
+          </svg>
+        </a>
+
+        <ul class="ug-pagination__list">
+          <ng-container *ngFor="let p of paginationPages">
+            <li *ngIf="p === '...'" class="ug-pagination__item">
+              <span class="ug-pagination__ellipsis">&hellip;</span>
+            </li>
+            <li *ngIf="p !== '...'" class="ug-pagination__item" [class.ug-pagination__item--current]="p === currentPage">
+              <a
+                class="ug-pagination__link"
+                href="javascript:void(0)"
+                (click)="onPageChange(+p)"
+                [attr.aria-label]="'Page ' + p"
+                [attr.aria-current]="p === currentPage ? 'page' : null"
+              >
+                {{ p }}
+              </a>
+            </li>
+          </ng-container>
+        </ul>
+
+        <a
+          class="ug-pagination__arrow"
+          [class.ug-pagination__arrow--disabled]="currentPage >= totalPages"
+          href="javascript:void(0)"
+          (click)="onPageChange(currentPage + 1)"
+          aria-label="Next page"
+        >
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M4 1l5 5-5 5"/>
+          </svg>
+        </a>
+      </nav>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,245 @@
+/**
+ * Step Review Styles
+ *
+ * Summary/review layout with definition lists and edit affordances.
+ * Full viewport width with responsive grid for summary items.
+ */
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.step-panel {
+  width: 100%;
+}
+
+.step-panel__header {
+  margin-bottom: var(--ug-spacing-4, 2.4rem);
+}
+
+.step-panel__title {
+  font-family: var(--ug-font-family, 'Inter', system-ui, sans-serif);
+  font-size: var(--ug-font-size-2xl, 1.5rem);
+  font-weight: 700;
+  line-height: calc(2 * var(--ug-leading, 1.625rem));
+  color: var(--ug-black, #1a1a1a);
+  margin: 0 0 var(--ug-spacing-1, 0.4rem) 0;
+}
+
+.step-panel__description {
+  font-size: var(--ug-font-size-sm, 0.875rem);
+  color: var(--ug-medium-gray, #666666);
+  margin: 0;
+  line-height: var(--ug-leading, 1.625rem);
+}
+
+// Review sections
+.review__section {
+  background-color: var(--ug-warm-gray, #f5f2ed);
+  border-radius: 4px;
+  padding: var(--ug-spacing-3, 1.625rem);
+  margin-bottom: var(--ug-spacing-3, 1.625rem);
+}
+
+.review__section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--ug-spacing-2, 0.8rem);
+  padding-bottom: var(--ug-spacing-2, 0.8rem);
+  border-bottom: 1px solid var(--ug-light-gray, #e8e5e0);
+}
+
+.review__section-title {
+  font-family: var(--ug-font-family, 'Inter', system-ui, sans-serif);
+  font-size: var(--ug-font-size-lg, 1.125rem);
+  font-weight: 600;
+  color: var(--ug-black, #1a1a1a);
+  margin: 0;
+  line-height: var(--ug-leading, 1.625rem);
+}
+
+// Edit button
+.review__edit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: var(--ug-font-family, 'Inter', system-ui, sans-serif);
+  font-size: var(--ug-font-size-sm, 0.875rem);
+  font-weight: 500;
+  color: var(--ug-blue, #274a5a);
+  // Contrast: #274a5a on #f5f2ed = ~7.7:1 (passes AA)
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--ug-spacing-1, 0.4rem);
+  border-radius: 4px;
+  min-height: 44px; // WCAG touch target
+  min-width: 44px;
+
+  &:hover {
+    text-decoration: underline;
+    background-color: rgba(39, 74, 90, 0.08);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--ui-focus-color, #1a73e8);
+    outline-offset: 2px;
+  }
+}
+
+// Definition list layout
+.review__list {
+  margin: 0;
+  padding: 0;
+}
+
+.review__item {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  padding: var(--ug-spacing-1, 0.4rem) 0;
+
+  @media (min-width: 480px) {
+    grid-template-columns: 120px 1fr;
+    gap: var(--ug-spacing-2, 0.8rem);
+  }
+
+  & + & {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+}
+
+.review__label {
+  font-size: var(--ug-font-size-sm, 0.875rem);
+  font-weight: 500;
+  color: var(--ug-medium-gray, #666666);
+  line-height: var(--ug-leading, 1.625rem);
+}
+
+.review__value {
+  font-size: var(--ug-font-size-base, 1rem);
+  color: var(--ug-black, #1a1a1a);
+  line-height: var(--ug-leading, 1.625rem);
+  margin: 0;
+  word-break: break-word;
+}
+
+// Trust signal
+.review__trust {
+  display: flex;
+  align-items: center;
+  gap: var(--ug-spacing-1, 0.4rem);
+  font-size: var(--ug-font-size-xs, 0.75rem);
+  color: var(--ug-medium-gray, #666666);
+  padding: var(--ug-spacing-2, 0.8rem) 0;
+}
+
+// Actions
+.step-panel__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--ug-spacing-4, 2.4rem);
+  border-top: 1px solid var(--ug-light-gray, #e8e5e0);
+  margin-top: var(--ug-spacing-3, 1.625rem);
+}
+
+// Buttons
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ug-spacing-1, 0.4rem);
+  font-family: var(--ug-font-family, 'Inter', system-ui, sans-serif);
+  font-size: var(--ug-font-size-base, 1rem);
+  font-weight: 600;
+  line-height: var(--ug-leading, 1.625rem);
+  padding: var(--ug-spacing-2, 0.8rem) var(--ug-spacing-4, 2.4rem);
+  border: 2px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+
+  &:focus-visible {
+    outline: 3px solid var(--ui-focus-color, #1a73e8);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+// Submit button — green for positive action (completion)
+.btn--submit {
+  background-color: var(--ug-green, #2d5a27);
+  color: var(--ug-white, #ffffff);
+  // Contrast: #fff on #2d5a27 = 7.64:1 (passes AA)
+
+  &:hover:not(:disabled) {
+    background-color: #244a1f;
+  }
+
+  &:active:not(:disabled) {
+    background-color: #1c3a18;
+  }
+}
+
+.btn--ghost {
+  background-color: transparent;
+  border-color: var(--ug-light-gray, #e8e5e0);
+  color: var(--ug-dark-gray, #333333);
+
+  &:hover:not(:disabled) {
+    background-color: var(--ug-warm-gray, #f5f2ed);
+    border-color: var(--ug-dark-gray, #333333);
+  }
+}
+
+.btn__icon {
+  flex-shrink: 0;
+}
+
+// Loading spinner
+.btn__loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn__spinner {
+  animation: spin 1s linear infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+// High contrast mode
+@media (forced-colors: active) {
+  .review__section {
+    border: 1px solid ButtonText;
+  }
+
+  .review__edit-btn {
+    border: 1px solid LinkText;
+    color: LinkText;
+  }
+
+  .btn {
+    border: 2px solid ButtonText;
+  }
+}

@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FormInput Component — Visual Mockup</title>
+  <style>
+    /* ════════════════════════════════════════════════════════════════════
+       Design Tokens (unigrid.css equivalents)
+       ════════════════════════════════════════════════════════════════════ */
+    :root {
+      /* Typography */
+      --ug-font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      --ug-font-size-xs: 0.75rem;
+      --ug-font-size-sm: 0.875rem;
+      --ug-font-size-base: 1rem;
+      --ug-font-size-lg: 1.125rem;
+      --ug-font-size-xl: 1.25rem;
+      --ug-font-size-2xl: 1.5rem;
+
+      /* Leading (vertical rhythm heartbeat) */
+      --ug-leading: 1.625rem;
+
+      /* Spacing scale (multiples of leading) */
+      --ug-spacing-1: calc(0.25 * var(--ug-leading));
+      --ug-spacing-2: calc(0.5 * var(--ug-leading));
+      --ug-spacing-3: calc(1 * var(--ug-leading));
+      --ug-spacing-4: calc(1.5 * var(--ug-leading));
+      --ug-spacing-5: calc(2 * var(--ug-leading));
+      --ug-spacing-6: calc(3 * var(--ug-leading));
+
+      /* Colors (NPS-inspired, WCAG AA compliant) */
+      --ug-black: #1a1a1a;
+      --ug-white: #ffffff;
+      --ug-warm-gray: #f5f2ed;
+      --ug-dark-gray: #333333;
+      --ug-medium-gray: #666666;
+      --ug-light-gray: #e8e5e0;
+      --ug-red: #c1272d;
+      --ug-green: #2d5a27;
+      --ug-blue: #274a5a;
+
+      /* Semantic tokens */
+      --ui-surface: var(--ug-white);
+      --ui-text-primary: var(--ug-black);
+      --ui-text-secondary: var(--ug-dark-gray);
+      --ui-text-muted: var(--ug-medium-gray);
+      --ui-color-danger: var(--ug-red);
+      --ui-color-success: var(--ug-green);
+      --ui-focus-color: #1a73e8;
+      --ui-radius: 0;
+    }
+
+    @media (min-width: 1024px) {
+      :root {
+        --ug-leading: 1.7rem;
+      }
+    }
+
+    /* ════════════════════════════════════════════════════════════════════
+       Reset & Base
+       ════════════════════════════════════════════════════════════════════ */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--ug-font-family);
+      font-size: var(--ug-font-size-base);
+      line-height: var(--ug-leading);
+      color: var(--ui-text-primary);
+      background: var(--ug-warm-gray);
+      padding: var(--ug-spacing-5);
+    }
+
+    /* ════════════════════════════════════════════════════════════════════
+       Page Layout
+       ════════════════════════════════════════════════════════════════════ */
+    .page-header {
+      margin-bottom: var(--ug-spacing-6);
+    }
+
+    .page-header h1 {
+      font-size: var(--ug-font-size-2xl);
+      line-height: calc(2 * var(--ug-leading));
+      font-weight: 700;
+      color: var(--ui-text-primary);
+      margin-bottom: var(--ug-spacing-1);
+    }
+
+    .page-header p {
+      font-size: var(--ug-font-size-sm);
+      color: var(--ui-text-muted);
+    }
+
+    .section {
+      margin-bottom: var(--ug-spacing-6);
+    }
+
+    .section h2 {
+      font-size: var(--ug-font-size-xl);
+      line-height: calc(2 * var(--ug-leading));
+      font-weight: 600;
+      color: var(--ui-text-primary);
+      margin-bottom: var(--ug-spacing-3);
+      border-bottom: 2px solid var(--ug-light-gray);
+      padding-bottom: var(--ug-spacing-1);
+    }
+
+    .section-description {
+      font-size: var(--ug-font-size-sm);
+      color: var(--ui-text-muted);
+      margin-bottom: var(--ug-spacing-3);
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--ug-spacing-5);
+    }
+
+    @media (min-width: 768px) {
+      .demo-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .demo-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .demo-grid--wide {
+      grid-template-columns: 1fr;
+      max-width: 480px;
+    }
+
+    .demo-card {
+      background: var(--ui-surface);
+      border: 1px solid var(--ug-light-gray);
+      padding: var(--ug-spacing-3);
+    }
+
+    .demo-card__title {
+      font-size: var(--ug-font-size-sm);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ui-text-muted);
+      margin-bottom: var(--ug-spacing-2);
+    }
+
+    /* ════════════════════════════════════════════════════════════════════
+       Form Input Component Styles (extracted from SCSS)
+       ════════════════════════════════════════════════════════════════════ */
+    .ui-form-input {
+      display: block;
+      margin-bottom: var(--ug-spacing-3);
+      font-family: var(--ug-font-family);
+    }
+
+    .ui-form-input__wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      background-color: var(--ui-surface);
+      border: 2px solid var(--ug-light-gray);
+      border-radius: var(--ui-radius);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    /* Focus */
+    .ui-form-input__wrapper--focused {
+      border-color: var(--ui-focus-color);
+      box-shadow: 0 0 0 1px var(--ui-focus-color);
+    }
+
+    /* Error */
+    .ui-form-input__wrapper--error {
+      border-color: var(--ui-color-danger);
+    }
+    .ui-form-input__wrapper--error.ui-form-input__wrapper--focused {
+      box-shadow: 0 0 0 1px var(--ui-color-danger);
+    }
+
+    /* Success */
+    .ui-form-input__wrapper--success {
+      border-color: var(--ui-color-success);
+    }
+    .ui-form-input__wrapper--success.ui-form-input__wrapper--focused {
+      box-shadow: 0 0 0 1px var(--ui-color-success);
+    }
+
+    /* Disabled */
+    .ui-form-input__wrapper--disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background-color: var(--ug-warm-gray);
+    }
+
+    /* Native input */
+    .ui-form-input__native {
+      flex: 1 1 auto;
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      font-family: inherit;
+      font-size: var(--ug-font-size-base);
+      line-height: var(--ug-leading);
+      color: var(--ui-text-primary);
+      padding: calc(var(--ug-spacing-3) - 2px) var(--ug-spacing-3) calc(var(--ug-spacing-1) - 2px);
+      min-height: 56px;
+    }
+
+    .ui-form-input__native::placeholder {
+      color: var(--ui-text-muted);
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    .ui-form-input__wrapper--focused .ui-form-input__native::placeholder,
+    .ui-form-input__wrapper--has-value .ui-form-input__native::placeholder {
+      opacity: 1;
+    }
+
+    .ui-form-input__native:disabled {
+      cursor: not-allowed;
+      color: var(--ui-text-muted);
+    }
+
+    .ui-form-input__native:focus {
+      outline: none;
+    }
+
+    /* Remove number spinners */
+    .ui-form-input__native[type='number'] {
+      -moz-appearance: textfield;
+    }
+    .ui-form-input__native[type='number']::-webkit-inner-spin-button,
+    .ui-form-input__native[type='number']::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Floating label */
+    .ui-form-input__label {
+      position: absolute;
+      left: var(--ug-spacing-3);
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: var(--ug-font-size-base);
+      line-height: 1;
+      color: var(--ui-text-secondary);
+      pointer-events: none;
+      transition: transform 0.15s ease, font-size 0.15s ease, top 0.15s ease, color 0.15s ease;
+      transform-origin: left top;
+    }
+
+    .ui-form-input__label--floated {
+      top: calc(var(--ug-spacing-1) + 2px);
+      transform: translateY(0);
+      font-size: var(--ug-font-size-xs);
+      color: var(--ui-text-muted);
+    }
+
+    /* Label color states */
+    .ui-form-input__wrapper--focused .ui-form-input__label--floated {
+      color: var(--ui-focus-color);
+    }
+
+    .ui-form-input__wrapper--error .ui-form-input__label--floated {
+      color: var(--ui-color-danger);
+    }
+
+    .ui-form-input__wrapper--success .ui-form-input__label--floated {
+      color: var(--ui-color-success);
+    }
+
+    .ui-form-input__wrapper--error.ui-form-input__wrapper--focused .ui-form-input__label--floated {
+      color: var(--ui-color-danger);
+    }
+
+    .ui-form-input__wrapper--success.ui-form-input__wrapper--focused .ui-form-input__label--floated {
+      color: var(--ui-color-success);
+    }
+
+    /* Optional suffix */
+    .ui-form-input__optional {
+      font-size: var(--ug-font-size-xs);
+      color: var(--ui-text-muted);
+      margin-left: 0.25em;
+    }
+
+    /* Trailing icon */
+    .ui-form-input__icon-trailing {
+      display: flex;
+      align-items: center;
+      padding-right: var(--ug-spacing-2);
+      flex-shrink: 0;
+    }
+
+    .ui-form-input__state-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .ui-form-input__state-icon--error {
+      color: var(--ui-color-danger);
+    }
+
+    .ui-form-input__state-icon--success {
+      color: var(--ui-color-success);
+    }
+
+    /* Feedback message */
+    .ui-form-input__feedback {
+      margin-top: var(--ug-spacing-1);
+      font-size: var(--ug-font-size-sm);
+      line-height: var(--ug-leading);
+      color: var(--ui-text-muted);
+      padding-left: var(--ug-spacing-3);
+    }
+
+    .ui-form-input__feedback--error {
+      color: var(--ui-color-danger);
+    }
+
+    .ui-form-input__feedback--success {
+      color: var(--ui-color-success);
+    }
+
+    /* ════════════════════════════════════════════════════════════════════
+       Size Variants
+       ════════════════════════════════════════════════════════════════════ */
+    .ui-form-input--sm .ui-form-input__native {
+      font-size: var(--ug-font-size-sm);
+      min-height: 44px;
+      padding: calc(var(--ug-spacing-2) - 2px) var(--ug-spacing-2);
+      padding-top: calc(var(--ug-spacing-2) + 4px);
+      padding-bottom: calc(var(--ug-spacing-1) - 4px);
+    }
+
+    .ui-form-input--sm .ui-form-input__label {
+      left: var(--ug-spacing-2);
+      font-size: var(--ug-font-size-sm);
+    }
+
+    .ui-form-input--sm .ui-form-input__label--floated {
+      font-size: 0.6875rem;
+    }
+
+    .ui-form-input--sm .ui-form-input__feedback {
+      font-size: var(--ug-font-size-xs);
+      padding-left: var(--ug-spacing-2);
+    }
+
+    .ui-form-input--lg .ui-form-input__wrapper {
+      min-height: 64px;
+    }
+
+    .ui-form-input--lg .ui-form-input__native {
+      font-size: var(--ug-font-size-lg);
+      min-height: 64px;
+      padding: calc(var(--ug-spacing-4) - 2px) var(--ug-spacing-4);
+      padding-bottom: var(--ug-spacing-1);
+    }
+
+    .ui-form-input--lg .ui-form-input__label {
+      left: var(--ug-spacing-4);
+      font-size: var(--ug-font-size-lg);
+    }
+
+    .ui-form-input--lg .ui-form-input__label--floated {
+      font-size: var(--ug-font-size-sm);
+    }
+
+    .ui-form-input--lg .ui-form-input__feedback {
+      padding-left: var(--ug-spacing-4);
+    }
+
+    /* ════════════════════════════════════════════════════════════════════
+       Interactive behaviors (for mockup demo)
+       ════════════════════════════════════════════════════════════════════ */
+    .ui-form-input__native:focus + .ui-form-input__label {
+      top: calc(var(--ug-spacing-1) + 2px);
+      transform: translateY(0);
+      font-size: var(--ug-font-size-xs);
+      color: var(--ui-focus-color);
+    }
+
+    .ui-form-input__wrapper:focus-within {
+      border-color: var(--ui-focus-color);
+      box-shadow: 0 0 0 1px var(--ui-focus-color);
+    }
+
+    .ui-form-input__wrapper--error:focus-within {
+      border-color: var(--ui-color-danger);
+      box-shadow: 0 0 0 1px var(--ui-color-danger);
+    }
+
+    .ui-form-input__wrapper--error .ui-form-input__native:focus + .ui-form-input__label {
+      color: var(--ui-color-danger);
+    }
+
+    .ui-form-input__wrapper--success:focus-within {
+      border-color: var(--ui-color-success);
+      box-shadow: 0 0 0 1px var(--ui-color-success);
+    }
+
+    .ui-form-input__wrapper--success .ui-form-input__native:focus + .ui-form-input__label {
+      color: var(--ui-color-success);
+    }
+
+    /* ════════════════════════════════════════════════════════════════════
+       High contrast mode
+       ════════════════════════════════════════════════════════════════════ */
+    @media (forced-colors: active) {
+      .ui-form-input__wrapper {
+        border: 2px solid ButtonText;
+      }
+      .ui-form-input__wrapper:focus-within {
+        outline: 2px solid Highlight;
+        outline-offset: 1px;
+      }
+      .ui-form-input__wrapper--error {
+        border-color: LinkText;
+      }
+      .ui-form-input__native {
+        color: CanvasText;
+        background: Canvas;
+      }
+      .ui-form-input__feedback--error {
+        color: LinkText;
+      }
+    }
+
+    /* ════════════════════════════════════════════════════════════════════
+       Reduced motion
+       ════════════════════════════════════════════════════════════════════ */
+    @media (prefers-reduced-motion: reduce) {
+      .ui-form-input__wrapper,
+      .ui-form-input__native::placeholder,
+      .ui-form-input__label {
+        transition: none !important;
+      }
+    }
+
+    /* ════════════════════════════════════════════════════════════════════
+       Form Layout Demo
+       ════════════════════════════════════════════════════════════════════ */
+    .form-demo {
+      display: grid;
+      gap: var(--ug-spacing-3);
+      grid-template-columns: 1fr;
+      max-width: 640px;
+    }
+
+    @media (min-width: 768px) {
+      .form-demo {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .form-demo .form-demo__full {
+        grid-column: 1 / -1;
+      }
+    }
+
+    .form-demo h3 {
+      grid-column: 1 / -1;
+      font-size: var(--ug-font-size-lg);
+      font-weight: 600;
+      margin-bottom: var(--ug-spacing-1);
+      color: var(--ui-text-primary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       Page Header
+       ═══════════════════════════════════════════════════════════════════ -->
+  <header class="page-header">
+    <h1>FormInput Component</h1>
+    <p>
+      Reusable form input with floating label, inline validation, error/success states.
+      Mobile-first, rhythm-aligned to unigrid.css vertical grid. WCAG 2.2 AA compliant.
+    </p>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       Section 1: Validation States
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="section">
+    <h2>Validation States</h2>
+    <p class="section-description">
+      Each state uses color + icon + text to convey meaning (never color alone).
+      Error messages use assertive aria-live; success uses polite.
+    </p>
+
+    <div class="demo-grid">
+
+      <!-- Default -->
+      <div class="demo-card">
+        <div class="demo-card__title">Default (Empty)</div>
+        <div class="ui-form-input">
+          <div class="ui-form-input__wrapper">
+            <input
+              type="text"
+              class="ui-form-input__native"
+              id="demo-default"
+              placeholder="Enter your name"
+            />
+            <label class="ui-form-input__label" for="demo-default">
+              Full Name
+            </label>
+          </div>
+          <div class="ui-form-input__feedback">
+            Enter your first and last name
+          </div>
+        </div>
+      </div>
+
+      <!-- Default with Value -->
+      <div class="demo-card">
+        <div class="demo-card__title">Default (With Value)</div>
+        <div class="ui-form-input">
+          <div class="ui-form-input__wrapper ui-form-input__wrapper--has-value">
+            <input
+              type="text"
+              class="ui-form-input__native"
+              id="demo-value"
+              value="Jane Smith"
+            />
+            <label class="ui-form-input__label ui-form-input__label--floated" for="demo-value">
+              Full Name
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Focused -->
+      <div class="demo-card">
+        <div class="demo-card__title">Focused</div>
+        <div class="ui-form-input">
+          <div class="ui-form-input__wrapper ui-form-input__wrapper--focused">
+            <input
+              type="text"
+              class="ui-form-input__native"
+              id="demo-focused"
+              placeholder="Start typing..."
+            />
+            <label class="ui-form-input__label ui-form-input__label--floated" for="demo-focused">
+              Full Name
+            </label>
+          </div>
+          <div class="ui-form-input__feedback">
+            Enter your first and last name
+          </div>
+        </div>
+      </div>
+
+      <!-- Error -->
+      <div class="demo-card">
+        <div class="demo-card__title">Error</div>
+        <div class="ui-form-input">
+          <div class="ui-form-input__wrapper ui-form-input__wrapper--error ui-form-input__wrapper--has-value">
+            <input
+              type="email"
+              class="ui-form-input__native"
+              id="demo-error"
+              value="invalid-email"
+              aria-invalid="true"
+              aria-describedby="demo-error-desc"
+            />
+            <label class="ui-form-input__label ui-form-input__label--floated" for="demo-error">
+              Email Address
+            </label>
+            <span class="ui-form-input__icon-trailing" aria-hidden="true">
+              <svg class="ui-form-input__state-icon ui-form-input__state-icon--error" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+              </svg>
+            </span>
+          </div>
+          <div class="ui-form-input__feedback ui-form-input__feedback--error" id="demo-error-desc" role="status" aria-live="assertive">
+            Please enter a valid email address
+          </div>
+        </div>
+      </div>
+
+      <!-- Success -->
+      <div class="demo-card">
+        <div class="demo-card__title">Success</div>
+        <div class="ui-form-input">
+          <div class="ui-form-input__wrapper ui-form-input__wrapper--success ui-form-input__wrapper--has-value">
+            <input
+              type="email"
+              class="ui-form-input__native"
+              id="demo-success"
+              value="user@example.com"
+              aria-describedby="demo-success-desc"
+            />
+            <label class="ui-form-input__label ui-form-input__label--floated" for="demo-success">
+              Email Address
+            </label>
+            <span class="ui-form-input__icon-trailing" aria-hidden="true">
+              <svg class="ui-form-input__state-icon ui-form-input__state-icon--success" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+            </span>
+          </div>
+          <div class="ui-form-input__feedback ui-form-input__feedback--success" id="demo-success-desc" role="status" aria-live="polite">
+            Looks good!
+          </div>
+        </div>
+      </div>
+
+      <!-- Disabled -->
+      <div class="demo-card">
+        <div class="demo-card__title">Disabled</div>
+        <div class="ui-form-input">
+          <div class="ui-form-input__wrapper ui-form-input__wrapper--disabled ui-form-input__wrapper--has-value">
+            <input
+              type="text"
+              class="ui-form-input__native"
+              id="demo-disabled"
+              value="Cannot edit"
+              disabled
+            />
+            <label class="ui-form-input__label ui-form-input__label--floated" for="demo-disabled">
+              Locked Field
+            </label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       Section 2: Input Types
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="section">
+    <h2>Input Types</h2>
+    <p class="section-description">
+      Each type sets the correct inputmode for mobile keyboards.
+      Number inputs hide native spinners for a cleaner look.
+    </p>
+
+    <div class="demo-grid">
+
+      <!-- Text -->
+      <div class="demo-card">
+        <div class="demo-card__title">type="text"</div>
+        <div class="ui-form-input">
+          <div class="ui-form-input__wrapper">
+            <input
+              type="text"
+              class="ui-form-input__native"
+              id="demo-text"
+              placeholder="Enter text..."
+              inputmode="text"
+            />
+            <label class="ui-form-input__label" for="demo-text">
+              Username
+            </label>
+          </div>
+          <div class="ui-form-input__feedback">
+            Choose a unique username
+          </div>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="demo-card">
+        <div class="demo-card__title">type="email"</div>
+        <div class="ui-form-input">
+          <div class="ui-form-input__wrapper">
+            <input
+              type="email"
+              class="ui-form-input__native"
+              id="demo-email"
+              placeholder="you@example.com"
+              inputmode="email"
+            />
+            <label class="ui-form-input__label" for="demo-email">
+              Email Address
+            </label>
+          </div>
+          <div class="ui-form-input__feedback">
+            Shows email keyboard on mobile
+          </div>
+        </div>
+      </div>
+
+      <!-- Tel -->
+      <div class="demo-card">
+        <div class="demo-card__title">type="tel"</div>
+        <div class="ui-form-input">
+          <div class="ui-form-input__wrapper">
+            <input
+              type="tel"
+              class="ui-form-input__native"
+              id="demo-tel"
+              placeholder="+41 79 123 45 67"
+              inputmode="tel"
+            />
+            <label class="ui-form-input__label" for="demo-tel">
+              Phone Number <span class="ui-form-input__optional">(optional)</span>
+            </label>
+          </div>
+          <div class="ui-form-input__feedback">
+            Shows numeric keyboard on mobile
+          </div>
+        </div>
+      </div>
+
+      <!-- Number -->
+      <div class="demo-card">
+        <div class="demo-card__title">type="number"</div>
+        <div class="ui-form-input">
+          <div class="ui-form-input__wrapper ui-form-input__wrapper--has-value">
+            <input
+              type="number"
+              class="ui-form-input__native"
+              id="demo-number"
+              value="1"
+              min="0"
+              max="100"
+              step="1"
+              inputmode="decimal"
+            />
+            <label class="ui-form-input__label ui-form-input__label--floated" for="demo-number">
+              Quantity
+            </label>
+          </div>
+          <div class="ui-form-input__feedback">
+            Shows decimal keyboard on mobile
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       Section 3: Size Variants
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="section">
+    <h2>Size Variants</h2>
+    <p class="section-description">
+      All sizes meet the 44px minimum touch target (WCAG 2.5.8).
+      Spacing scales with the leading unit for vertical rhythm alignment.
+    </p>
+
+    <div class="demo-grid">
+
+      <!-- Small -->
+      <div class="demo-card">
+        <div class="demo-card__title">Small (sm)</div>
+        <div class="ui-form-input ui-form-input--sm">
+          <div class="ui-form-input__wrapper">
+            <input
+              type="text"
+              class="ui-form-input__native"
+              id="demo-sm"
+              placeholder="Search..."
+            />
+            <label class="ui-form-input__label" for="demo-sm">
+              Search
+            </label>
+          </div>
+          <div class="ui-form-input__feedback">
+            Min-height: 44px
+          </div>
+        </div>
+      </div>
+
+      <!-- Medium (default) -->
+      <div class="demo-card">
+        <div class="demo-card__title">Medium (md) — Default</div>
+        <div class="ui-form-input">
+          <div class="ui-form-input__wrapper">
+            <input
+              type="text"
+              class="ui-form-input__native"
+              id="demo-md"
+              placeholder="Enter value..."
+            />
+            <label class="ui-form-input__label" for="demo-md">
+              Standard Input
+            </label>
+          </div>
+          <div class="ui-form-input__feedback">
+            Min-height: 56px
+          </div>
+        </div>
+      </div>
+
+      <!-- Large -->
+      <div class="demo-card">
+        <div class="demo-card__title">Large (lg)</div>
+        <div class="ui-form-input ui-form-input--lg">
+          <div class="ui-form-input__wrapper">
+            <input
+              type="text"
+              class="ui-form-input__native"
+              id="demo-lg"
+              placeholder="Enter company name..."
+            />
+            <label class="ui-form-input__label" for="demo-lg">
+              Company Name
+            </label>
+          </div>
+          <div class="ui-form-input__feedback">
+            Min-height: 64px
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       Section 4: Required vs Optional
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="section">
+    <h2>Required vs. Optional</h2>
+    <p class="section-description">
+      Optional fields are labelled "(optional)" instead of marking required fields with asterisks.
+      This frames most fields as expected, reducing the feeling of burden (behavioral economics: friction reduction).
+    </p>
+
+    <div class="demo-grid">
+
+      <!-- Required -->
+      <div class="demo-card">
+        <div class="demo-card__title">Required</div>
+        <div class="ui-form-input">
+          <div class="ui-form-input__wrapper">
+            <input
+              type="text"
+              class="ui-form-input__native"
+              id="demo-required"
+              placeholder="Required field"
+              required
+              aria-required="true"
+            />
+            <label class="ui-form-input__label" for="demo-required">
+              Full Name
+            </label>
+          </div>
+          <div class="ui-form-input__feedback">
+            No asterisk needed -- label implies required
+          </div>
+        </div>
+      </div>
+
+      <!-- Optional -->
+      <div class="demo-card">
+        <div class="demo-card__title">Optional</div>
+        <div class="ui-form-input">
+          <div class="ui-form-input__wrapper">
+            <input
+              type="text"
+              class="ui-form-input__native"
+              id="demo-optional"
+              placeholder="Not required"
+            />
+            <label class="ui-form-input__label" for="demo-optional">
+              Middle Name <span class="ui-form-input__optional">(optional)</span>
+            </label>
+          </div>
+          <div class="ui-form-input__feedback">
+            Explicitly marked as optional
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       Section 5: Realistic Form Layout
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="section">
+    <h2>Realistic Form Layout</h2>
+    <p class="section-description">
+      Multiple inputs in a responsive grid. Related fields chunked into groups (3-5 per group).
+      On mobile: single column. On tablet+: two columns for related field pairs.
+    </p>
+
+    <div class="form-demo">
+      <h3>Contact Information</h3>
+
+      <!-- Full Name (full width) -->
+      <div class="ui-form-input form-demo__full">
+        <div class="ui-form-input__wrapper ui-form-input__wrapper--success ui-form-input__wrapper--has-value">
+          <input
+            type="text"
+            class="ui-form-input__native"
+            id="form-name"
+            value="Jane Smith"
+            aria-describedby="form-name-desc"
+          />
+          <label class="ui-form-input__label ui-form-input__label--floated" for="form-name">
+            Full Name
+          </label>
+          <span class="ui-form-input__icon-trailing" aria-hidden="true">
+            <svg class="ui-form-input__state-icon ui-form-input__state-icon--success" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+          </span>
+        </div>
+        <div class="ui-form-input__feedback ui-form-input__feedback--success" id="form-name-desc" role="status" aria-live="polite">
+          Looks good!
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="ui-form-input">
+        <div class="ui-form-input__wrapper ui-form-input__wrapper--error ui-form-input__wrapper--has-value">
+          <input
+            type="email"
+            class="ui-form-input__native"
+            id="form-email"
+            value="invalid"
+            aria-invalid="true"
+            aria-describedby="form-email-desc"
+          />
+          <label class="ui-form-input__label ui-form-input__label--floated" for="form-email">
+            Email
+          </label>
+          <span class="ui-form-input__icon-trailing" aria-hidden="true">
+            <svg class="ui-form-input__state-icon ui-form-input__state-icon--error" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+            </svg>
+          </span>
+        </div>
+        <div class="ui-form-input__feedback ui-form-input__feedback--error" id="form-email-desc" role="status" aria-live="assertive">
+          Please enter a valid email
+        </div>
+      </div>
+
+      <!-- Phone -->
+      <div class="ui-form-input">
+        <div class="ui-form-input__wrapper">
+          <input
+            type="tel"
+            class="ui-form-input__native"
+            id="form-phone"
+            placeholder="+41 79 123 45 67"
+            inputmode="tel"
+          />
+          <label class="ui-form-input__label" for="form-phone">
+            Phone <span class="ui-form-input__optional">(optional)</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Company (full width) -->
+      <div class="ui-form-input form-demo__full">
+        <div class="ui-form-input__wrapper">
+          <input
+            type="text"
+            class="ui-form-input__native"
+            id="form-company"
+            placeholder="Where do you work?"
+          />
+          <label class="ui-form-input__label" for="form-company">
+            Company <span class="ui-form-input__optional">(optional)</span>
+          </label>
+        </div>
+        <div class="ui-form-input__feedback">
+          Where do you work?
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       Section 6: Accessibility Notes
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="section">
+    <h2>Accessibility Notes</h2>
+    <div class="demo-card" style="max-width: 640px;">
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: var(--ug-spacing-2);">
+          <strong>Label association:</strong> Every input has a <code>&lt;label&gt;</code> with matching <code>for</code>/<code>id</code>.
+        </li>
+        <li style="margin-bottom: var(--ug-spacing-2);">
+          <strong>Error announcements:</strong> <code>role="status"</code> + <code>aria-live="assertive"</code> on error messages.
+        </li>
+        <li style="margin-bottom: var(--ug-spacing-2);">
+          <strong>Invalid state:</strong> <code>aria-invalid="true"</code> set on error inputs.
+        </li>
+        <li style="margin-bottom: var(--ug-spacing-2);">
+          <strong>Description link:</strong> <code>aria-describedby</code> connects to hint/error text.
+        </li>
+        <li style="margin-bottom: var(--ug-spacing-2);">
+          <strong>Required:</strong> <code>aria-required="true"</code> for required fields.
+        </li>
+        <li style="margin-bottom: var(--ug-spacing-2);">
+          <strong>Color independence:</strong> Error/success use icon + text, never color alone.
+        </li>
+        <li style="margin-bottom: var(--ug-spacing-2);">
+          <strong>Focus ring:</strong> 2px border + 1px shadow = 3px visible indicator. Tab through the inputs above to test.
+        </li>
+        <li style="margin-bottom: var(--ug-spacing-2);">
+          <strong>Touch target:</strong> Minimum 44px (sm) / 56px (md) / 64px (lg) height.
+        </li>
+        <li style="margin-bottom: var(--ug-spacing-2);">
+          <strong>Contrast:</strong> All text meets 4.5:1 AA. All UI borders meet 3:1.
+        </li>
+        <li style="margin-bottom: var(--ug-spacing-2);">
+          <strong>Reduced motion:</strong> All transitions disabled under <code>prefers-reduced-motion: reduce</code>.
+        </li>
+        <li>
+          <strong>High contrast:</strong> <code>forced-colors: active</code> uses system color keywords.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!-- Registration Form — Smart Container -->
+<div class="registration" [class.registration--submitted]="submitted">
+
+  <!-- Stepper Indicator (always visible) -->
+  <ui-stepper-indicator
+    [steps]="steps"
+    [currentStep]="currentStep"
+    [completedSteps]="completedSteps"
+    (stepClicked)="onStepClicked($event)"
+  ></ui-stepper-indicator>
+
+  <!-- Step Content Area -->
+  <main class="registration__content" *ngIf="!submitted">
+    <!-- Step 1: Personal Info -->
+    <ui-step-personal-info
+      *ngIf="currentStep === 0"
+      [data]="personalInfoData"
+      (stepCompleted)="onPersonalInfoCompleted($event)"
+    ></ui-step-personal-info>
+
+    <!-- Step 2: Address -->
+    <ui-step-address
+      *ngIf="currentStep === 1"
+      [data]="addressData"
+      (stepCompleted)="onAddressCompleted($event)"
+      (stepBack)="onStepBack()"
+    ></ui-step-address>
+
+    <!-- Step 3: Review & Submit -->
+    <ui-step-review
+      *ngIf="currentStep === 2"
+      [formData]="registrationData"
+      [submitting]="submitting"
+      (submitForm)="onSubmit()"
+      (stepBack)="onStepBack()"
+      (editStep)="onEditStep($event)"
+    ></ui-step-review>
+  </main>
+
+  <!-- Success State -->
+  <div class="registration__success" *ngIf="submitted" role="status">
+    <div class="success-card">
+      <div class="success-card__icon" aria-hidden="true">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="2"/>
+          <path d="M14 24L21 31L34 18" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2 class="success-card__title">Registration Complete!</h2>
+      <p class="success-card__message">
+        Welcome aboard, {{ registrationData?.personalInfo?.firstName }}.
+        We've sent a confirmation email to
+        <strong>{{ registrationData?.personalInfo?.email }}</strong>.
+      </p>
+    </div>
+  </div>
+</div>

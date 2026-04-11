@@ -1,0 +1,109 @@
+<!-- Screen reader live region for step change announcements -->
+<div
+  class="sr-only"
+  role="status"
+  aria-live="polite"
+  aria-atomic="true"
+>{{ srAnnouncement }}</div>
+
+<div class="stepper" role="group" aria-label="Registration progress">
+
+  <!-- Step Header Navigation -->
+  <nav class="stepper__header" aria-label="Registration steps">
+    <ng-container *ngFor="let step of steps; let i = index; let last = last">
+      <button
+        type="button"
+        class="stepper__step"
+        [class.stepper__step--active]="getStepState(i) === 'active'"
+        [class.stepper__step--completed]="getStepState(i) === 'completed'"
+        [attr.aria-current]="getStepState(i) === 'active' ? 'step' : null"
+        [attr.id]="'step-btn-' + i"
+        (click)="onStepClick(i)"
+      >
+        <span class="stepper__indicator" aria-hidden="true">
+          <!-- Show checkmark for completed, number otherwise -->
+          <svg
+            *ngIf="getStepState(i) === 'completed'"
+            class="stepper__checkmark"
+            width="16" height="16" viewBox="0 0 16 16" fill="none"
+          >
+            <path d="M4 8l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span *ngIf="getStepState(i) !== 'completed'" class="stepper__number">{{ i + 1 }}</span>
+        </span>
+        <span class="stepper__label">{{ step.label }}</span>
+      </button>
+
+      <!-- Connector line between steps (not after last) -->
+      <div
+        *ngIf="!last"
+        class="stepper__connector"
+        [class.stepper__connector--completed]="i < currentStepIndex"
+        role="presentation"
+      ></div>
+    </ng-container>
+  </nav>
+
+  <!-- Progress Bar -->
+  <div
+    *ngIf="showProgressBar"
+    class="progress-bar"
+    role="progressbar"
+    [attr.aria-valuenow]="progressPercent"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    aria-label="Registration progress"
+  >
+    <div class="progress-bar__fill" [style.width.%]="progressPercent"></div>
+  </div>
+</div>
+
+<!-- Step Content Area -->
+<div class="stepper__content">
+  <ng-container *ngFor="let step of steps; let i = index">
+    <div
+      class="step-panel"
+      [class.step-panel--active]="i === currentStepIndex"
+      role="tabpanel"
+      [attr.aria-labelledby]="'step-btn-' + i"
+      [attr.id]="'step-panel-' + i"
+    >
+      <ng-container
+        *ngIf="i === currentStepIndex && getStepTemplate(i)"
+        [ngTemplateOutlet]="getStepTemplate(i)!"
+      ></ng-container>
+    </div>
+  </ng-container>
+</div>
+
+<!-- Navigation Buttons -->
+<div class="form-nav">
+  <button
+    *ngIf="!isFirstStep"
+    type="button"
+    class="btn btn--ghost"
+    (click)="onPrevious()"
+  >
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M10 3l-5 5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Back
+  </button>
+
+  <div class="form-nav__spacer"></div>
+
+  <button
+    type="button"
+    class="btn"
+    [class]="nextButtonVariant"
+    (click)="onNext()"
+  >
+    <svg *ngIf="isLastStep" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M4 8l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    {{ nextButtonLabel }}
+    <svg *ngIf="!isLastStep" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+</div>

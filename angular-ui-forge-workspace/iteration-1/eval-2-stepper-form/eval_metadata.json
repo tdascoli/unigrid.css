@@ -1,0 +1,67 @@
+{
+  "eval_id": 2,
+  "eval_name": "stepper-form-tailwind",
+  "prompt": "Create a multi-step registration form for our Angular app. It should have 3 steps: Personal Info (name, email, phone), Address (street, city, postal code, country), and Review & Submit. Use progressive disclosure, smart defaults (detect country from browser locale), and make the form use the full viewport width on all screen sizes. We're using Tailwind in this project.",
+  "assertions": [
+    {
+      "id": "smart-dumb-split",
+      "text": "Has both smart (container) and dumb (presentational) components with clear separation",
+      "type": "structural"
+    },
+    {
+      "id": "separate-files",
+      "text": "All components use separate .html and .scss files, never inline",
+      "type": "structural"
+    },
+    {
+      "id": "progressive-disclosure",
+      "text": "Steps are revealed progressively (not all visible at once), using stepper/wizard pattern",
+      "type": "behavioral-economics"
+    },
+    {
+      "id": "smart-defaults",
+      "text": "Country field pre-selects based on browser locale (Intl API or navigator.language)",
+      "type": "behavioral-economics"
+    },
+    {
+      "id": "field-chunking",
+      "text": "Fields are grouped logically (3-5 per step), not all in one long form",
+      "type": "behavioral-economics"
+    },
+    {
+      "id": "full-viewport",
+      "text": "Form layout uses full available width (grid/flex), not a narrow centered column",
+      "type": "design"
+    },
+    {
+      "id": "tailwind-rhythm",
+      "text": "Uses Tailwind classes with rhythm-aligned spacing or custom spacing scale",
+      "type": "framework"
+    },
+    {
+      "id": "aria-stepper",
+      "text": "Stepper has ARIA attributes (aria-current, role, step labels for screen readers)",
+      "type": "accessibility"
+    },
+    {
+      "id": "keyboard-nav",
+      "text": "Step navigation is keyboard-accessible (focus management between steps)",
+      "type": "accessibility"
+    },
+    {
+      "id": "storybook-stories",
+      "text": "Has Storybook stories for individual steps and/or the full flow",
+      "type": "storybook"
+    },
+    {
+      "id": "review-step",
+      "text": "Review step shows a summary of all entered data before submission",
+      "type": "functional"
+    },
+    {
+      "id": "html-mockup",
+      "text": "Includes a standalone HTML mockup with working step navigation",
+      "type": "deliverable"
+    }
+  ]
+}

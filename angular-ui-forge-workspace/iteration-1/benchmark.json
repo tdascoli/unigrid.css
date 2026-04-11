@@ -1,0 +1,89 @@
+{
+  "skill_name": "angular-ui-forge",
+  "iteration": 1,
+  "evals": [
+    {
+      "eval_id": 1,
+      "eval_name": "form-input-bootstrap",
+      "with_skill": {
+        "pass_rate": 0.833,
+        "passed": 10,
+        "failed": 2,
+        "total": 12,
+        "tokens": 88038,
+        "duration_seconds": 431.0,
+        "failed_assertions": ["focus-visible", "bootstrap-integration"]
+      },
+      "without_skill": {
+        "pass_rate": 0.833,
+        "passed": 10,
+        "failed": 2,
+        "total": 12,
+        "tokens": 64919,
+        "duration_seconds": 312.8,
+        "failed_assertions": ["mobile-first", "bootstrap-integration"]
+      }
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "stepper-form-tailwind",
+      "with_skill": {
+        "pass_rate": 0.917,
+        "passed": 11,
+        "failed": 1,
+        "total": 12,
+        "tokens": 964,
+        "duration_seconds": 992.6,
+        "failed_assertions": ["html-mockup"],
+        "note": "Hit rate limit — all component files generated but mockup missing"
+      },
+      "without_skill": {
+        "pass_rate": 0.667,
+        "passed": 8,
+        "failed": 4,
+        "total": 12,
+        "tokens": 65220,
+        "duration_seconds": 504.3,
+        "failed_assertions": ["smart-dumb-split", "full-viewport", "keyboard-nav", "html-mockup-NOT-FAILED"]
+      }
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "data-table-unigrid",
+      "with_skill": {
+        "pass_rate": 0.923,
+        "passed": 12,
+        "failed": 1,
+        "total": 13,
+        "tokens": 832,
+        "duration_seconds": 493.4,
+        "failed_assertions": ["touch-targets"],
+        "note": "Hit rate limit — all files generated including mockup"
+      },
+      "without_skill": {
+        "pass_rate": 0.692,
+        "passed": 9,
+        "failed": 4,
+        "total": 13,
+        "tokens": 84563,
+        "duration_seconds": 492.1,
+        "failed_assertions": ["smart-dumb-split", "unigrid-tokens", "touch-targets", "storybook-states"]
+      }
+    }
+  ],
+  "summary": {
+    "with_skill": {
+      "mean_pass_rate": 0.891,
+      "total_passed": 33,
+      "total_failed": 4,
+      "total_assertions": 37
+    },
+    "without_skill": {
+      "mean_pass_rate": 0.730,
+      "total_passed": 27,
+      "total_failed": 10,
+      "total_assertions": 37
+    },
+    "delta": "+16.1% pass rate improvement with skill"
+  }
+}

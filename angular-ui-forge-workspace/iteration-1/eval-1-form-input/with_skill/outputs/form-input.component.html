@@ -1,0 +1,125 @@
+<!--
+  FormInputComponent Template
+  ────────────────────────────
+  Structure:
+    .ui-form-input__wrapper          — outer container, receives state border
+      .ui-form-input__icon-leading   — optional leading icon slot (ng-content)
+      input.ui-form-input__native    — the actual <input> element
+      label.ui-form-input__label     — floating label (positioned absolute)
+      .ui-form-input__icon-trailing  — state icon (error/success indicator)
+    .ui-form-input__feedback         — hint / error / success message below
+
+  Accessibility:
+    - <label> is associated via [for] / [id]
+    - aria-invalid reflects error state
+    - aria-describedby links to feedback message
+    - aria-required for required fields
+    - disabled natively disables the input
+    - role and state icons are hidden from screen readers (aria-hidden)
+    - Error/success conveyed via text + icon (not color alone)
+-->
+
+<div
+  class="ui-form-input__wrapper"
+  [class.ui-form-input__wrapper--focused]="isFocused"
+  [class.ui-form-input__wrapper--error]="state === 'error'"
+  [class.ui-form-input__wrapper--success]="state === 'success'"
+  [class.ui-form-input__wrapper--disabled]="disabled"
+  [class.ui-form-input__wrapper--has-value]="hasValue"
+>
+  <!-- Leading icon slot -->
+  <span class="ui-form-input__icon-leading" aria-hidden="true">
+    <ng-content select="[inputIconLeading]"></ng-content>
+  </span>
+
+  <!-- Native input -->
+  <input
+    #inputEl
+    class="ui-form-input__native"
+    [type]="type"
+    [id]="inputId"
+    [name]="name"
+    [value]="value"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
+    [readonly]="readonly"
+    [required]="required"
+    [attr.inputmode]="inputMode"
+    [attr.autocomplete]="autocomplete || null"
+    [attr.maxlength]="maxlength"
+    [attr.min]="min"
+    [attr.max]="max"
+    [attr.step]="step"
+    [attr.pattern]="pattern || null"
+    [attr.aria-invalid]="ariaInvalid"
+    [attr.aria-describedby]="hasFeedback ? descriptionId : null"
+    [attr.aria-required]="required"
+    (input)="onInput($event)"
+    (focus)="onFocus($event)"
+    (blur)="onBlur($event)"
+  />
+
+  <!-- Floating label -->
+  <label
+    class="ui-form-input__label"
+    [for]="inputId"
+    [class.ui-form-input__label--floated]="isLabelFloated"
+  >
+    {{ label }}
+    <span *ngIf="!required" class="ui-form-input__optional">(optional)</span>
+  </label>
+
+  <!-- Trailing state icon -->
+  <span
+    class="ui-form-input__icon-trailing"
+    aria-hidden="true"
+    *ngIf="state === 'error' || state === 'success'"
+  >
+    <!-- Error icon: X mark -->
+    <svg
+      *ngIf="state === 'error'"
+      class="ui-form-input__state-icon ui-form-input__state-icon--error"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      width="20"
+      height="20"
+      focusable="false"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+        clip-rule="evenodd"
+      />
+    </svg>
+
+    <!-- Success icon: Checkmark -->
+    <svg
+      *ngIf="state === 'success'"
+      class="ui-form-input__state-icon ui-form-input__state-icon--success"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      width="20"
+      height="20"
+      focusable="false"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+        clip-rule="evenodd"
+      />
+    </svg>
+  </span>
+</div>
+
+<!-- Feedback message (hint / error / success) -->
+<div
+  *ngIf="hasFeedback"
+  class="ui-form-input__feedback"
+  [class.ui-form-input__feedback--error]="state === 'error'"
+  [class.ui-form-input__feedback--success]="state === 'success'"
+  [id]="descriptionId"
+  role="status"
+  [attr.aria-live]="state === 'error' ? 'assertive' : 'polite'"
+>
+  {{ feedbackMessage }}
+</div>

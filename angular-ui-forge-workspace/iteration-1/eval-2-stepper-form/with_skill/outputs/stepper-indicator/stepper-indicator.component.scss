@@ -1,0 +1,184 @@
+/**
+ * Stepper Indicator Styles
+ *
+ * Tailwind handles most layout via template classes. This SCSS covers:
+ * - Complex structural positioning for the track line
+ * - Animations with reduced-motion respect
+ * - Focus indicators (WCAG 2.4.7)
+ */
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.stepper {
+  position: relative;
+  padding: var(--ug-spacing-3, 1.625rem) 0;
+}
+
+// Progress track behind the step circles
+.stepper__track {
+  position: absolute;
+  top: calc(var(--ug-spacing-3, 1.625rem) + 18px); // Align with center of circles
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--ug-light-gray, #e8e5e0);
+  z-index: 0;
+
+  @media (min-width: 768px) {
+    left: 10%;
+    right: 10%;
+  }
+}
+
+.stepper__track-fill {
+  height: 100%;
+  background-color: var(--ug-green, #2d5a27);
+  transition: width 0.3s ease;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+// Step list
+.stepper__list {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.stepper__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+// Step button (wraps circle + label)
+.stepper__button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ug-spacing-1, 0.4rem);
+  background: none;
+  border: none;
+  cursor: default;
+  padding: var(--ug-spacing-1, 0.4rem);
+  font-family: var(--ug-font-family, 'Inter', system-ui, sans-serif);
+  min-height: 44px; // WCAG touch target
+  min-width: 44px;
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  // Focus indicator (WCAG 2.4.7)
+  &:focus-visible {
+    outline: 3px solid var(--ui-focus-color, #1a73e8);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+// Step circle
+.stepper__circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--ug-light-gray, #e8e5e0);
+  background-color: var(--ug-white, #ffffff);
+  font-size: var(--ug-font-size-sm, 0.875rem);
+  font-weight: 600;
+  color: var(--ug-medium-gray, #666666);
+  transition: all 0.2s ease;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+
+  // Active state
+  .stepper__item--active & {
+    border-color: var(--ug-blue, #274a5a);
+    background-color: var(--ug-blue, #274a5a);
+    color: var(--ug-white, #ffffff);
+    // Contrast: #fff on #274a5a = 8.63:1 (passes AA)
+  }
+
+  // Completed state
+  .stepper__item--completed & {
+    border-color: var(--ug-green, #2d5a27);
+    background-color: var(--ug-green, #2d5a27);
+    color: var(--ug-white, #ffffff);
+    // Contrast: #fff on #2d5a27 = 7.64:1 (passes AA)
+  }
+}
+
+.stepper__number {
+  line-height: 1;
+}
+
+.stepper__check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Step label
+.stepper__label {
+  font-size: var(--ug-font-size-xs, 0.75rem);
+  color: var(--ug-medium-gray, #666666);
+  text-align: center;
+  white-space: nowrap;
+  // Contrast: #666 on #fff = 5.74:1 (passes AA for small text)
+
+  .stepper__item--active & {
+    color: var(--ug-black, #1a1a1a);
+    font-weight: 600;
+  }
+
+  .stepper__item--completed & {
+    color: var(--ug-green, #2d5a27);
+  }
+
+  // Hide label text on very small screens, keep for accessibility
+  @media (max-width: 479px) {
+    font-size: 0.65rem;
+  }
+}
+
+// High contrast mode support
+@media (forced-colors: active) {
+  .stepper__circle {
+    border: 2px solid ButtonText;
+  }
+
+  .stepper__item--active .stepper__circle {
+    background-color: Highlight;
+    color: HighlightText;
+    border-color: Highlight;
+  }
+
+  .stepper__item--completed .stepper__circle {
+    background-color: ButtonText;
+    color: ButtonFace;
+    border-color: ButtonText;
+  }
+
+  .stepper__track {
+    background-color: GrayText;
+  }
+
+  .stepper__track-fill {
+    background-color: Highlight;
+  }
+}

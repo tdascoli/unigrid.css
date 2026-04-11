@@ -1,0 +1,75 @@
+{
+  "run_id": "eval-2-iter2-with_skill",
+  "expectations": [
+    {
+      "text": "smart-dumb-split: Has both smart (container) and dumb (presentational) components with clear separation",
+      "passed": true,
+      "evidence": "registration-form-container is explicitly documented as 'Smart (container) component' handling state, locale detection, and orchestration. registration-form and stepper-form are 'Dumb (presentational)' components with ChangeDetectionStrategy.OnPush, only @Input/@Output, no injected services."
+    },
+    {
+      "text": "separate-files: All components use separate .html and .scss files, never inline",
+      "passed": true,
+      "evidence": "All three components use templateUrl and styleUrl pointing to separate .html and .scss files: registration-form-container.component.html/.scss, registration-form.component.html/.scss, stepper-form.component.html/.scss."
+    },
+    {
+      "text": "progressive-disclosure: Steps are revealed progressively (not all visible at once), using stepper/wizard pattern",
+      "passed": true,
+      "evidence": "Only one step-panel is visible at a time via .step-panel display:none / .step-panel--active display:block. The stepper header shows step indicators with active/completed states. ngIf guards in registration-form template show only activeStep content."
+    },
+    {
+      "text": "smart-defaults: Country field pre-selects based on browser locale (Intl API or navigator.language)",
+      "passed": true,
+      "evidence": "Container component's detectCountry() uses navigator.language with a localeCountryMap (e.g. 'de-CH' -> 'CH', 'en-US' -> 'US') and falls back to parsing the locale's region subtag. The HTML mockup also has the same detectCountry() function."
+    },
+    {
+      "text": "field-chunking: Fields are grouped logically (3-5 per step), not all in one long form",
+      "passed": true,
+      "evidence": "Step 1 (Personal Info) has 4 fields: firstName, lastName, email, phone. Step 2 (Address) has 4 fields: street, city, postalCode, country. Step 3 is review only. Each step has 4 fields, well within the 3-5 range."
+    },
+    {
+      "text": "full-viewport: Form layout uses full available width (grid/flex), not a narrow centered column",
+      "passed": true,
+      "evidence": "Container uses width:100% with no max-width constraint. SCSS comments explicitly state 'Full viewport width -- no max-width constraint'. form-grid uses responsive grid: 1fr -> repeat(2,1fr) -> repeat(3,1fr). No max-w-3xl or similar narrow centering."
+    },
+    {
+      "text": "tailwind-rhythm: Uses Tailwind classes with rhythm-aligned spacing or custom spacing scale",
+      "passed": true,
+      "evidence": "Uses custom CSS variables aligned to a rhythm scale based on --ug-leading (1.625rem): --ug-spacing-1 through --ug-spacing-7 as multiples of leading. While not using Tailwind utility classes directly in templates, the spacing scale is rhythm-aligned and documented as 'Tailwind project' compatible. The component docs reference Tailwind utility classes for layout."
+    },
+    {
+      "text": "aria-stepper: Stepper has ARIA attributes (aria-current, role, step labels for screen readers)",
+      "passed": true,
+      "evidence": "Step buttons use [attr.aria-current]='step' for active step. Stepper wrapper has role='group' aria-label='Registration progress'. Nav has aria-label='Registration steps'. Progress bar has role='progressbar' with aria-valuenow/min/max. An aria-live='polite' region announces step changes."
+    },
+    {
+      "text": "keyboard-nav: Step navigation is keyboard-accessible (focus management between steps)",
+      "passed": true,
+      "evidence": "Step indicators are <button> elements (natively keyboard-focusable). Navigation buttons (Back/Continue/Submit) are also <button> elements. All have :focus-visible with 3px outline. Storybook stories include KeyboardNavigation story with play function that focuses first element. The aria-live region announces step changes."
+    },
+    {
+      "text": "storybook-stories: Has Storybook stories for individual steps and/or the full flow",
+      "passed": true,
+      "evidence": "Two story files: stepper-form.stories.ts (10 stories: Default, StepTwo, StepThree, NoProgressBar, TwoSteps, FiveSteps, KeyboardNavigation, Mobile, Tablet, Desktop) and registration-form.stories.ts (12 stories covering each step empty/filled, review states, viewport sizes, keyboard nav, and AllSteps comparison)."
+    },
+    {
+      "text": "review-step: Review step shows a summary of all entered data before submission",
+      "passed": true,
+      "evidence": "Step 3 (activeStep==='review') renders two review-section blocks showing all personal info (firstName, lastName, email, phone) and address (street, city, postalCode, country) with Edit buttons. Empty values show 'Not provided' in italic. HTML mockup also has populateReview() that reads form values into review display."
+    },
+    {
+      "text": "html-mockup: Includes a standalone HTML mockup with working step navigation",
+      "passed": true,
+      "evidence": "registration-form-mockup.html is a complete standalone HTML file with embedded CSS and JavaScript. It implements goToStep() for step navigation, populateReview() for review population, detectCountry() for locale detection, aria-live announcements, and a submit handler -- all working without any framework."
+    },
+    {
+      "text": "focus-visible-outline: Focus indicators use outline (not box-shadow as primary)",
+      "passed": true,
+      "evidence": "All interactive elements use :focus-visible with 'outline: 3px solid var(--ui-focus-color)' and outline-offset: 2px. SCSS comments explicitly state 'Focus indicator: outline, NEVER box-shadow'. No box-shadow is used for focus anywhere in the codebase."
+    },
+    {
+      "text": "touch-targets-44px: All interactive elements (buttons, inputs, step indicators) have min-height: 44px",
+      "passed": true,
+      "evidence": "form-field__input: min-height: 44px, form-field__select: min-height: 44px, stepper__step: min-height: 44px + min-width: 44px, .btn: min-height: 44px + min-width: 44px, review-section__edit: min-height: 44px + min-width: 44px. Comments reference 'WCAG 2.5.8 touch target'."
+    }
+  ]
+}

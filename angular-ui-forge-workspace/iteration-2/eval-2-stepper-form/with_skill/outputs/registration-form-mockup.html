@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Step Registration Form Mockup</title>
+  <style>
+    /* ============================================================
+       Design Tokens (Unigrid-aligned)
+       ============================================================ */
+    :root {
+      --ug-font-family: 'Inter', system-ui, sans-serif;
+      --ug-leading: 1.625rem;
+      --ug-font-size-xs: 0.75rem;
+      --ug-font-size-sm: 0.875rem;
+      --ug-font-size-base: 1rem;
+      --ug-font-size-lg: 1.125rem;
+      --ug-font-size-xl: 1.25rem;
+      --ug-font-size-2xl: 1.5rem;
+
+      --ug-spacing-1: calc(0.25 * var(--ug-leading));
+      --ug-spacing-2: calc(0.5 * var(--ug-leading));
+      --ug-spacing-3: calc(1 * var(--ug-leading));
+      --ug-spacing-4: calc(1.5 * var(--ug-leading));
+      --ug-spacing-5: calc(2 * var(--ug-leading));
+
+      --ug-black: #1a1a1a;
+      --ug-white: #ffffff;
+      --ug-warm-gray: #f5f2ed;
+      --ug-dark-gray: #333333;
+      --ug-medium-gray: #666666;
+      --ug-light-gray: #e8e5e0;
+      --ug-red: #c1272d;
+      --ug-green: #2d5a27;
+      --ug-blue: #274a5a;
+
+      --ui-color-primary: var(--ug-blue);
+      --ui-color-on-primary: var(--ug-white);
+      --ui-color-success: var(--ug-green);
+      --ui-color-danger: var(--ug-red);
+      --ui-focus-color: #1a73e8;
+      --ui-surface: var(--ug-white);
+      --ui-surface-raised: var(--ug-warm-gray);
+      --ui-text-primary: var(--ug-black);
+      --ui-text-secondary: var(--ug-dark-gray);
+      --ui-text-muted: var(--ug-medium-gray);
+    }
+
+    @media (min-width: 1024px) {
+      :root {
+        --ug-leading: 1.7rem;
+      }
+    }
+
+    /* ============================================================
+       Reset & Base
+       ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--ug-font-family);
+      font-size: var(--ug-font-size-base);
+      line-height: var(--ug-leading);
+      color: var(--ui-text-primary);
+      background: var(--ui-surface);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ============================================================
+       Stepper Header
+       ============================================================ */
+    .stepper {
+      width: 100%;
+      padding: var(--ug-spacing-3) var(--ug-spacing-3) 0;
+    }
+
+    .stepper__header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: var(--ug-spacing-5);
+      width: 100%;
+    }
+
+    .stepper__step {
+      display: flex;
+      align-items: center;
+      gap: var(--ug-spacing-2);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: var(--ug-font-size-sm);
+      color: var(--ui-text-muted);
+      padding: var(--ug-spacing-2);
+      min-height: 44px; /* WCAG 2.5.8 touch target */
+      min-width: 44px;
+      transition: color 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .stepper__step:focus-visible {
+      outline: 3px solid var(--ui-focus-color);
+      outline-offset: 2px;
+    }
+
+    .stepper__step--active {
+      color: var(--ui-color-primary);
+      font-weight: 600;
+    }
+
+    .stepper__step--completed {
+      color: var(--ui-color-success);
+    }
+
+    .stepper__indicator {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: var(--ug-font-size-sm);
+      font-weight: 600;
+      flex-shrink: 0;
+      border: 2px solid var(--ug-light-gray);
+      background: var(--ui-surface);
+      color: var(--ui-text-muted);
+      transition: all 0.15s ease;
+    }
+
+    .stepper__step--active .stepper__indicator {
+      border-color: var(--ui-color-primary);
+      background: var(--ui-color-primary);
+      color: var(--ui-color-on-primary);
+    }
+
+    .stepper__step--completed .stepper__indicator {
+      border-color: var(--ui-color-success);
+      background: var(--ui-color-success);
+      color: var(--ug-white);
+    }
+
+    .stepper__label {
+      display: none;
+    }
+
+    @media (min-width: 480px) {
+      .stepper__label {
+        display: inline;
+      }
+    }
+
+    .stepper__connector {
+      flex: 1;
+      height: 2px;
+      background: var(--ug-light-gray);
+      min-width: 24px;
+      max-width: 120px;
+      transition: background-color 0.15s ease;
+    }
+
+    .stepper__connector--completed {
+      background: var(--ui-color-success);
+    }
+
+    /* Checkmark icon inside completed indicator */
+    .stepper__checkmark {
+      display: none;
+    }
+    .stepper__step--completed .stepper__checkmark {
+      display: inline;
+    }
+    .stepper__step--completed .stepper__number {
+      display: none;
+    }
+
+    /* ============================================================
+       Progress Bar
+       ============================================================ */
+    .progress-bar {
+      width: 100%;
+      height: 4px;
+      background: var(--ug-light-gray);
+      margin-bottom: var(--ug-spacing-4);
+      overflow: hidden;
+    }
+
+    .progress-bar__fill {
+      height: 100%;
+      background: var(--ui-color-primary);
+      transition: width 0.3s ease;
+    }
+
+    /* ============================================================
+       Form Container -- FULL VIEWPORT WIDTH
+       ============================================================ */
+    .form-container {
+      width: 100%;
+      padding: 0 var(--ug-spacing-3);
+    }
+
+    @media (min-width: 768px) {
+      .form-container {
+        padding: 0 var(--ug-spacing-5);
+      }
+    }
+
+    @media (min-width: 1280px) {
+      .form-container {
+        padding: 0 var(--ug-spacing-7);
+      }
+    }
+
+    /* ============================================================
+       Step Panel (form fields grid)
+       ============================================================ */
+    .step-panel {
+      display: none;
+      width: 100%;
+    }
+
+    .step-panel--active {
+      display: block;
+    }
+
+    .step-panel__title {
+      font-size: var(--ug-font-size-2xl);
+      font-weight: 700;
+      line-height: calc(2 * var(--ug-leading));
+      margin-bottom: var(--ug-spacing-1);
+      color: var(--ui-text-primary);
+    }
+
+    .step-panel__description {
+      font-size: var(--ug-font-size-base);
+      color: var(--ui-text-muted);
+      margin-bottom: var(--ug-spacing-4);
+      line-height: var(--ug-leading);
+    }
+
+    /* Form grid -- full width, responsive columns */
+    .form-grid {
+      display: grid;
+      gap: var(--ug-spacing-3);
+      grid-template-columns: 1fr;
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .form-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .form-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .form-grid__full {
+      grid-column: 1 / -1;
+    }
+
+    /* ============================================================
+       Form Field
+       ============================================================ */
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: var(--ug-spacing-1);
+    }
+
+    .form-field__label {
+      font-size: var(--ug-font-size-sm);
+      font-weight: 600;
+      color: var(--ui-text-secondary);
+      line-height: var(--ug-leading);
+    }
+
+    .form-field__label--required::after {
+      content: ' *';
+      color: var(--ui-color-danger);
+    }
+
+    .form-field__input {
+      min-height: 44px; /* WCAG 2.5.8 touch target */
+      padding: var(--ug-spacing-2) var(--ug-spacing-2);
+      font-family: var(--ug-font-family);
+      font-size: var(--ug-font-size-base);
+      line-height: var(--ug-leading);
+      color: var(--ui-text-primary);
+      background: var(--ui-surface);
+      border: 2px solid var(--ug-light-gray);
+      border-radius: 0;
+      width: 100%;
+      transition: border-color 0.15s ease;
+    }
+
+    .form-field__input::placeholder {
+      color: var(--ui-text-muted);
+    }
+
+    .form-field__input:focus-visible {
+      outline: 3px solid var(--ui-focus-color);
+      outline-offset: 2px;
+      border-color: var(--ui-focus-color);
+    }
+
+    .form-field__input--error {
+      border-color: var(--ui-color-danger);
+    }
+
+    .form-field__input--success {
+      border-color: var(--ui-color-success);
+    }
+
+    .form-field__hint {
+      font-size: var(--ug-font-size-xs);
+      color: var(--ui-text-muted);
+      line-height: var(--ug-leading);
+    }
+
+    .form-field__error {
+      font-size: var(--ug-font-size-xs);
+      color: var(--ui-color-danger);
+      line-height: var(--ug-leading);
+    }
+
+    /* Select field */
+    .form-field__select {
+      min-height: 44px;
+      padding: var(--ug-spacing-2);
+      font-family: var(--ug-font-family);
+      font-size: var(--ug-font-size-base);
+      line-height: var(--ug-leading);
+      color: var(--ui-text-primary);
+      background: var(--ui-surface);
+      border: 2px solid var(--ug-light-gray);
+      border-radius: 0;
+      width: 100%;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 36px;
+    }
+
+    .form-field__select:focus-visible {
+      outline: 3px solid var(--ui-focus-color);
+      outline-offset: 2px;
+      border-color: var(--ui-focus-color);
+    }
+
+    /* ============================================================
+       Review Step
+       ============================================================ */
+    .review-section {
+      background: var(--ui-surface-raised);
+      padding: var(--ug-spacing-3);
+      margin-bottom: var(--ug-spacing-3);
+      border-left: 4px solid var(--ui-color-primary);
+    }
+
+    .review-section__title {
+      font-size: var(--ug-font-size-lg);
+      font-weight: 700;
+      margin-bottom: var(--ug-spacing-2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .review-section__edit {
+      font-size: var(--ug-font-size-sm);
+      color: var(--ui-color-primary);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 600;
+      padding: var(--ug-spacing-1) var(--ug-spacing-2);
+      min-height: 44px;
+      min-width: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .review-section__edit:focus-visible {
+      outline: 3px solid var(--ui-focus-color);
+      outline-offset: 2px;
+    }
+
+    .review-section__edit:hover {
+      text-decoration: underline;
+    }
+
+    .review-grid {
+      display: grid;
+      gap: var(--ug-spacing-2) var(--ug-spacing-3);
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 768px) {
+      .review-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .review-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .review-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .review-item__label {
+      font-size: var(--ug-font-size-xs);
+      color: var(--ui-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .review-item__value {
+      font-size: var(--ug-font-size-base);
+      color: var(--ui-text-primary);
+      font-weight: 500;
+    }
+
+    .review-item__value--empty {
+      color: var(--ui-text-muted);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    /* ============================================================
+       Trust Signal
+       ============================================================ */
+    .trust-signal {
+      display: flex;
+      align-items: center;
+      gap: var(--ug-spacing-2);
+      font-size: var(--ug-font-size-sm);
+      color: var(--ui-text-muted);
+      margin-top: var(--ug-spacing-3);
+      padding: var(--ug-spacing-2);
+      background: var(--ui-surface-raised);
+    }
+
+    .trust-signal svg {
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       Navigation Buttons
+       ============================================================ */
+    .form-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--ug-spacing-4) 0;
+      gap: var(--ug-spacing-3);
+      width: 100%;
+    }
+
+    .form-nav__spacer {
+      flex: 1;
+    }
+
+    .btn {
+      min-height: 44px; /* WCAG 2.5.8 */
+      min-width: 44px;
+      padding: var(--ug-spacing-2) var(--ug-spacing-4);
+      font-family: var(--ug-font-family);
+      font-size: var(--ug-font-size-base);
+      font-weight: 600;
+      line-height: var(--ug-leading);
+      border: 2px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--ug-spacing-2);
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn:focus-visible {
+      outline: 3px solid var(--ui-focus-color);
+      outline-offset: 2px;
+    }
+
+    .btn--primary {
+      background: var(--ui-color-primary);
+      color: var(--ui-color-on-primary);
+      border-color: var(--ui-color-primary);
+    }
+
+    .btn--primary:hover {
+      opacity: 0.9;
+    }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--ui-text-secondary);
+      border-color: var(--ug-light-gray);
+    }
+
+    .btn--ghost:hover {
+      background: var(--ui-surface-raised);
+    }
+
+    .btn--success {
+      background: var(--ui-color-success);
+      color: var(--ug-white);
+      border-color: var(--ui-color-success);
+    }
+
+    .btn--success:hover {
+      opacity: 0.9;
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* ============================================================
+       Reduced Motion
+       ============================================================ */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+
+    /* ============================================================
+       High Contrast Mode
+       ============================================================ */
+    @media (forced-colors: active) {
+      .stepper__indicator {
+        border: 2px solid ButtonText;
+      }
+      .stepper__step--active .stepper__indicator {
+        background: Highlight;
+        color: HighlightText;
+        border-color: Highlight;
+      }
+      .stepper__connector--completed {
+        background: Highlight;
+      }
+      .btn {
+        border: 2px solid ButtonText;
+      }
+      .form-field__input,
+      .form-field__select {
+        border: 2px solid ButtonText;
+      }
+      .review-section {
+        border-left-color: Highlight;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Live region for screen reader announcements -->
+  <div id="sr-announcer" role="status" aria-live="polite" aria-atomic="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;"></div>
+
+  <div class="stepper" role="group" aria-label="Registration progress">
+    <!-- Step Header -->
+    <nav class="stepper__header" aria-label="Registration steps">
+      <button
+        class="stepper__step stepper__step--active"
+        id="step-btn-0"
+        type="button"
+        aria-current="step"
+        onclick="goToStep(0)"
+      >
+        <span class="stepper__indicator" aria-hidden="true">
+          <span class="stepper__number">1</span>
+          <svg class="stepper__checkmark" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="stepper__label">Personal Info</span>
+      </button>
+
+      <div class="stepper__connector" id="connector-0" role="presentation"></div>
+
+      <button
+        class="stepper__step"
+        id="step-btn-1"
+        type="button"
+        onclick="goToStep(1)"
+      >
+        <span class="stepper__indicator" aria-hidden="true">
+          <span class="stepper__number">2</span>
+          <svg class="stepper__checkmark" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="stepper__label">Address</span>
+      </button>
+
+      <div class="stepper__connector" id="connector-1" role="presentation"></div>
+
+      <button
+        class="stepper__step"
+        id="step-btn-2"
+        type="button"
+        onclick="goToStep(2)"
+      >
+        <span class="stepper__indicator" aria-hidden="true">
+          <span class="stepper__number">3</span>
+          <svg class="stepper__checkmark" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="stepper__label">Review &amp; Submit</span>
+      </button>
+    </nav>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" aria-label="Registration progress">
+      <div class="progress-bar__fill" id="progress-fill" style="width: 33%"></div>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <form id="registration-form" novalidate>
+
+      <!-- Step 1: Personal Info -->
+      <div class="step-panel step-panel--active" id="step-0" role="tabpanel" aria-labelledby="step-btn-0">
+        <h2 class="step-panel__title">Personal Information</h2>
+        <p class="step-panel__description">Tell us about yourself. Fields marked with * are required.</p>
+
+        <div class="form-grid">
+          <div class="form-field">
+            <label class="form-field__label form-field__label--required" for="firstName">First Name</label>
+            <input class="form-field__input" type="text" id="firstName" name="firstName" placeholder="e.g. Maria" autocomplete="given-name" required aria-required="true" />
+          </div>
+
+          <div class="form-field">
+            <label class="form-field__label form-field__label--required" for="lastName">Last Name</label>
+            <input class="form-field__input" type="text" id="lastName" name="lastName" placeholder="e.g. Muster" autocomplete="family-name" required aria-required="true" />
+          </div>
+
+          <div class="form-field">
+            <label class="form-field__label form-field__label--required" for="email">Email</label>
+            <input class="form-field__input" type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" inputmode="email" required aria-required="true" />
+            <span class="form-field__hint">We will send a confirmation to this address</span>
+          </div>
+
+          <div class="form-field">
+            <label class="form-field__label" for="phone">Phone <span style="font-weight:400;color:var(--ui-text-muted)">(optional)</span></label>
+            <input class="form-field__input" type="tel" id="phone" name="phone" placeholder="+41 79 123 45 67" autocomplete="tel" inputmode="tel" />
+          </div>
+        </div>
+
+        <div class="form-nav">
+          <div class="form-nav__spacer"></div>
+          <button type="button" class="btn btn--primary" onclick="goToStep(1)">
+            Continue
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Address -->
+      <div class="step-panel" id="step-1" role="tabpanel" aria-labelledby="step-btn-1">
+        <h2 class="step-panel__title">Address</h2>
+        <p class="step-panel__description">Where can we reach you? Your country has been pre-filled based on your browser locale.</p>
+
+        <div class="form-grid">
+          <div class="form-field form-grid__full">
+            <label class="form-field__label form-field__label--required" for="street">Street Address</label>
+            <input class="form-field__input" type="text" id="street" name="street" placeholder="e.g. Bahnhofstrasse 42" autocomplete="street-address" required aria-required="true" />
+          </div>
+
+          <div class="form-field">
+            <label class="form-field__label form-field__label--required" for="city">City</label>
+            <input class="form-field__input" type="text" id="city" name="city" placeholder="e.g. Zurich" autocomplete="address-level2" required aria-required="true" />
+          </div>
+
+          <div class="form-field">
+            <label class="form-field__label form-field__label--required" for="postalCode">Postal Code</label>
+            <input class="form-field__input" type="text" id="postalCode" name="postalCode" placeholder="e.g. 8001" autocomplete="postal-code" required aria-required="true" />
+          </div>
+
+          <div class="form-field">
+            <label class="form-field__label form-field__label--required" for="country">Country</label>
+            <select class="form-field__select" id="country" name="country" autocomplete="country" required aria-required="true">
+              <option value="">Select a country</option>
+              <option value="AT">Austria</option>
+              <option value="BE">Belgium</option>
+              <option value="CA">Canada</option>
+              <option value="CH">Switzerland</option>
+              <option value="DE">Germany</option>
+              <option value="FR">France</option>
+              <option value="GB">United Kingdom</option>
+              <option value="IT">Italy</option>
+              <option value="LI">Liechtenstein</option>
+              <option value="NL">Netherlands</option>
+              <option value="US">United States</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-nav">
+          <button type="button" class="btn btn--ghost" onclick="goToStep(0)">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3l-5 5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Back
+          </button>
+          <button type="button" class="btn btn--primary" onclick="goToStep(2)">
+            Review
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3: Review & Submit -->
+      <div class="step-panel" id="step-2" role="tabpanel" aria-labelledby="step-btn-2">
+        <h2 class="step-panel__title">Review &amp; Submit</h2>
+        <p class="step-panel__description">Please review your information before submitting. Click "Edit" to make changes.</p>
+
+        <div class="review-section">
+          <div class="review-section__title">
+            <span>Personal Information</span>
+            <button type="button" class="review-section__edit" onclick="goToStep(0)" aria-label="Edit personal information">Edit</button>
+          </div>
+          <div class="review-grid">
+            <div class="review-item">
+              <span class="review-item__label">First Name</span>
+              <span class="review-item__value" id="review-firstName">--</span>
+            </div>
+            <div class="review-item">
+              <span class="review-item__label">Last Name</span>
+              <span class="review-item__value" id="review-lastName">--</span>
+            </div>
+            <div class="review-item">
+              <span class="review-item__label">Email</span>
+              <span class="review-item__value" id="review-email">--</span>
+            </div>
+            <div class="review-item">
+              <span class="review-item__label">Phone</span>
+              <span class="review-item__value" id="review-phone">--</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-section">
+          <div class="review-section__title">
+            <span>Address</span>
+            <button type="button" class="review-section__edit" onclick="goToStep(1)" aria-label="Edit address">Edit</button>
+          </div>
+          <div class="review-grid">
+            <div class="review-item" style="grid-column: 1 / -1;">
+              <span class="review-item__label">Street</span>
+              <span class="review-item__value" id="review-street">--</span>
+            </div>
+            <div class="review-item">
+              <span class="review-item__label">City</span>
+              <span class="review-item__value" id="review-city">--</span>
+            </div>
+            <div class="review-item">
+              <span class="review-item__label">Postal Code</span>
+              <span class="review-item__value" id="review-postalCode">--</span>
+            </div>
+            <div class="review-item">
+              <span class="review-item__label">Country</span>
+              <span class="review-item__value" id="review-country">--</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="trust-signal">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M10 1L3 5v4c0 4.5 3 8.7 7 10 4-1.3 7-5.5 7-10V5l-7-4z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <path d="M7 10l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Your data is encrypted and handled according to our privacy policy.</span>
+        </div>
+
+        <div class="form-nav">
+          <button type="button" class="btn btn--ghost" onclick="goToStep(1)">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3l-5 5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Back
+          </button>
+          <button type="submit" class="btn btn--success" id="submit-btn">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 8l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Submit Registration
+          </button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <script>
+    // ============================================================
+    // State
+    // ============================================================
+    var currentStep = 0;
+    var totalSteps = 3;
+
+    // ============================================================
+    // Smart Default: detect country from browser locale
+    // ============================================================
+    (function detectCountry() {
+      var locale = navigator.language || '';
+      var countryMap = {
+        'de-CH': 'CH', 'fr-CH': 'CH', 'it-CH': 'CH', 'rm-CH': 'CH',
+        'de-DE': 'DE', 'de-AT': 'AT', 'de-LI': 'LI',
+        'fr-FR': 'FR', 'fr-BE': 'BE',
+        'nl-NL': 'NL', 'nl-BE': 'BE',
+        'it-IT': 'IT',
+        'en-GB': 'GB', 'en-US': 'US', 'en-CA': 'CA'
+      };
+
+      var detected = countryMap[locale];
+      if (!detected) {
+        var parts = locale.split('-');
+        if (parts.length >= 2) {
+          detected = parts[1].toUpperCase();
+        }
+      }
+
+      var countrySelect = document.getElementById('country');
+      if (detected && countrySelect) {
+        var option = countrySelect.querySelector('option[value="' + detected + '"]');
+        if (option) {
+          countrySelect.value = detected;
+        }
+      }
+    })();
+
+    // ============================================================
+    // Navigation
+    // ============================================================
+    function goToStep(index) {
+      if (index < 0 || index >= totalSteps) return;
+
+      // Hide all panels, show target
+      var panels = document.querySelectorAll('.step-panel');
+      for (var i = 0; i < panels.length; i++) {
+        if (i === index) {
+          panels[i].classList.add('step-panel--active');
+        } else {
+          panels[i].classList.remove('step-panel--active');
+        }
+      }
+
+      // Update step buttons
+      var buttons = document.querySelectorAll('.stepper__step');
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove('stepper__step--active', 'stepper__step--completed');
+        buttons[i].removeAttribute('aria-current');
+
+        if (i === index) {
+          buttons[i].classList.add('stepper__step--active');
+          buttons[i].setAttribute('aria-current', 'step');
+        } else if (i < index) {
+          buttons[i].classList.add('stepper__step--completed');
+        }
+      }
+
+      // Update connectors
+      var connectors = document.querySelectorAll('.stepper__connector');
+      for (var i = 0; i < connectors.length; i++) {
+        if (i < index) {
+          connectors[i].classList.add('stepper__connector--completed');
+        } else {
+          connectors[i].classList.remove('stepper__connector--completed');
+        }
+      }
+
+      // Update progress bar
+      var progress = Math.round(((index + 1) / totalSteps) * 100);
+      var progressFill = document.getElementById('progress-fill');
+      progressFill.style.width = progress + '%';
+      progressFill.parentElement.setAttribute('aria-valuenow', progress.toString());
+
+      // Populate review on step 3
+      if (index === 2) {
+        populateReview();
+      }
+
+      currentStep = index;
+
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Announce step change to screen readers
+      announceStep(index);
+    }
+
+    function populateReview() {
+      var fields = ['firstName', 'lastName', 'email', 'phone', 'street', 'city', 'postalCode'];
+      for (var f = 0; f < fields.length; f++) {
+        var field = fields[f];
+        var input = document.getElementById(field);
+        var review = document.getElementById('review-' + field);
+        if (input && review) {
+          var val = input.value.trim();
+          if (val) {
+            review.textContent = val;
+            review.classList.remove('review-item__value--empty');
+          } else {
+            review.textContent = 'Not provided';
+            review.classList.add('review-item__value--empty');
+          }
+        }
+      }
+
+      // Country uses select
+      var countrySelect = document.getElementById('country');
+      var reviewCountry = document.getElementById('review-country');
+      if (countrySelect && reviewCountry) {
+        var selectedOption = countrySelect.options[countrySelect.selectedIndex];
+        if (selectedOption && selectedOption.value) {
+          reviewCountry.textContent = selectedOption.text;
+          reviewCountry.classList.remove('review-item__value--empty');
+        } else {
+          reviewCountry.textContent = 'Not selected';
+          reviewCountry.classList.add('review-item__value--empty');
+        }
+      }
+    }
+
+    // ============================================================
+    // Screen reader announcements
+    // ============================================================
+    function announceStep(index) {
+      var labels = ['Personal Information', 'Address', 'Review and Submit'];
+      var msg = 'Step ' + (index + 1) + ' of ' + totalSteps + ': ' + labels[index];
+      var announcer = document.getElementById('sr-announcer');
+      if (announcer) {
+        announcer.textContent = '';
+        setTimeout(function() { announcer.textContent = msg; }, 100);
+      }
+    }
+
+    // ============================================================
+    // Submit handler
+    // ============================================================
+    document.getElementById('registration-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var btn = document.getElementById('submit-btn');
+      btn.textContent = 'Submitting...';
+      btn.disabled = true;
+
+      setTimeout(function() {
+        btn.textContent = 'Submitted!';
+        btn.disabled = true;
+      }, 1500);
+    });
+  </script>
+
+</body>
+</html>

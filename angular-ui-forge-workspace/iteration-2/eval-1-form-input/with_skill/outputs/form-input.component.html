@@ -1,0 +1,57 @@
+<!-- Bootstrap form-floating pattern with unigrid rhythm overrides -->
+<div class="form-floating">
+  <input
+    class="form-control"
+    [class.is-invalid]="state === 'error'"
+    [class.is-valid]="state === 'success'"
+    [type]="type"
+    [id]="inputId"
+    [placeholder]="placeholder"
+    [value]="value"
+    [disabled]="disabled"
+    [required]="required"
+    [inputMode]="inputMode"
+    [attr.aria-invalid]="state === 'error' ? true : null"
+    [attr.aria-required]="required ? true : null"
+    [attr.aria-disabled]="disabled ? true : null"
+    [attr.aria-describedby]="ariaDescribedBy"
+    (input)="onInput($event)"
+    (blur)="onBlur()"
+  />
+  <label [for]="inputId">
+    {{ label }}
+    <span
+      *ngIf="required"
+      class="required-indicator"
+      aria-hidden="true"
+    >*</span>
+  </label>
+
+  <!-- Error feedback — announced by screen readers via role="alert" -->
+  <div
+    *ngIf="state === 'error' && errorMessage"
+    class="invalid-feedback"
+    [id]="feedbackId"
+    role="alert"
+  >
+    {{ errorMessage }}
+  </div>
+
+  <!-- Success feedback -->
+  <div
+    *ngIf="state === 'success' && successMessage"
+    class="valid-feedback"
+    [id]="feedbackId"
+  >
+    {{ successMessage }}
+  </div>
+
+  <!-- Hint text — shown only in default state -->
+  <div
+    *ngIf="hint && state === 'default'"
+    class="form-text"
+    [id]="hintId"
+  >
+    {{ hint }}
+  </div>
+</div>

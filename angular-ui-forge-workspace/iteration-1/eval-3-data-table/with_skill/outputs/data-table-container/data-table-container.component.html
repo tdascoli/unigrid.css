@@ -1,0 +1,25 @@
+<!-- ═══════════════════════════════════════════════════════════════
+     Data Table Container — Smart Component Template
+     Wires reactive state to the presentational DataTableComponent.
+     ═══════════════════════════════════════════════════════════════ -->
+
+<ui-data-table
+  [columns]="columns"
+  [rows]="(visibleRows$ | async) ?? []"
+  [rowIdKey]="rowIdKey"
+  [sort]="(sortState$ | async)!"
+  [searchTerm]="(searchTerm$ | async) ?? ''"
+  [searchPlaceholder]="searchPlaceholder"
+  [pagination]="(pagination$ | async)!"
+  [pageSizeOptions]="pageSizeOptions"
+  [selectable]="selectable"
+  [selectedIds]="(selection$ | async) ?? []"
+  [allSelected]="(allSelected$ | async) ?? false"
+  [loading]="loading"
+  [emptyMessage]="emptyMessage"
+  [caption]="caption"
+  (sortChanged)="onSortChanged($event)"
+  (filterChanged)="onFilterChanged($event)"
+  (pageChanged)="onPageChanged($event)"
+  (selectionChanged)="onSelectionChanged($event)"
+></ui-data-table>

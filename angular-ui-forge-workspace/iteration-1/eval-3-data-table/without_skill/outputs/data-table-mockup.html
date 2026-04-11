@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DataTable Component -- Visual Mockup</title>
+  <style>
+    /* ================================================================
+       Unigrid.css Design Tokens (subset for standalone mockup)
+       ================================================================ */
+    :root {
+      --ug-leading: 26px;
+      --ug-black: #1a1a1a;
+      --ug-white: #ffffff;
+      --ug-warm-gray: #f5f2ed;
+      --ug-dark-gray: #333333;
+      --ug-medium-gray: #666666;
+      --ug-light-gray: #e8e5e0;
+      --ug-red: #c1272d;
+      --ug-blue: #274a5a;
+      --ug-green: #2d5a27;
+      --ug-font: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    @media (min-width: 768px) {
+      :root { --ug-leading: 31px; }
+    }
+
+    /* ---- Reset ---- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--ug-font);
+      font-size: 1rem;
+      line-height: var(--ug-leading);
+      color: var(--ug-black);
+      background: var(--ug-warm-gray);
+      padding: calc(var(--ug-leading) * 1);
+    }
+
+    /* ================================================================
+       Demo Layout
+       ================================================================ */
+    .demo-section {
+      margin-bottom: calc(var(--ug-leading) * 2);
+      background: var(--ug-white);
+      border: 1px solid var(--ug-light-gray);
+      padding: calc(var(--ug-leading) * 1);
+    }
+
+    .demo-section__title {
+      font-size: 1.375rem;
+      font-weight: 700;
+      line-height: calc(var(--ug-leading) * 1);
+      margin-bottom: calc(var(--ug-leading) * 0.5);
+      padding-bottom: calc(var(--ug-leading) * 0.25);
+      border-bottom: 2px solid var(--ug-black);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .demo-section__desc {
+      font-size: 0.875rem;
+      color: var(--ug-medium-gray);
+      margin-bottom: var(--ug-leading);
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: calc(var(--ug-leading) * 2);
+      margin-bottom: var(--ug-leading);
+      letter-spacing: -0.01em;
+    }
+
+    /* ================================================================
+       Table Styles (ug-table equivalent)
+       ================================================================ */
+    .ug-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-spacing: 0;
+      font-feature-settings: 'liga' 1, 'calt' 1, 'tnum' 1, 'lnum' 1;
+    }
+    .ug-table th {
+      font-size: 0.875rem;
+      font-weight: 700;
+      line-height: var(--ug-leading);
+      text-align: left;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ug-medium-gray);
+      padding: calc(var(--ug-leading) * 0.5);
+      border-bottom: 2px solid var(--ug-black);
+      vertical-align: bottom;
+    }
+    .ug-table td {
+      font-size: 1rem;
+      line-height: var(--ug-leading);
+      text-align: left;
+      padding: calc(var(--ug-leading) * 0.5);
+      border-bottom: 1px solid var(--ug-light-gray);
+      vertical-align: top;
+    }
+    .ug-table--striped tbody tr:nth-child(even) { background-color: var(--ug-warm-gray); }
+    .ug-table--hover tbody tr { transition: background-color 0.1s; }
+    .ug-table--hover tbody tr:hover { background-color: var(--ug-warm-gray); }
+
+    .ug-table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* ================================================================
+       Toolbar
+       ================================================================ */
+    .dt__toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: calc(var(--ug-leading) * 0.5);
+      padding: calc(var(--ug-leading) * 0.5) 0;
+      flex-wrap: wrap;
+    }
+    .dt__toolbar-left, .dt__toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: calc(var(--ug-leading) * 0.5);
+    }
+
+    /* Search input */
+    .dt__search-input {
+      display: block;
+      height: var(--ug-leading);
+      padding: 0 calc(var(--ug-leading) * 0.5);
+      font-size: 0.875rem;
+      font-family: inherit;
+      color: var(--ug-black);
+      background: var(--ug-white);
+      border: 1px solid var(--ug-light-gray);
+      border-radius: 0;
+      min-width: 200px;
+      transition: border-color 0.15s;
+    }
+    .dt__search-input:focus { outline: none; border-color: var(--ug-black); }
+
+    /* Buttons */
+    .ug-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: calc(var(--ug-leading) * 0.5);
+      height: var(--ug-leading);
+      padding: 0 calc(var(--ug-leading) * 0.5);
+      font-size: 0.875rem;
+      font-weight: 700;
+      font-family: inherit;
+      text-decoration: none;
+      cursor: pointer;
+      border: 2px solid var(--ug-black);
+      border-radius: 0;
+      background-color: var(--ug-black);
+      color: var(--ug-white);
+      transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+    .ug-btn:hover { background: var(--ug-dark-gray); border-color: var(--ug-dark-gray); }
+    .ug-btn--ghost {
+      background: transparent; border-color: transparent; color: var(--ug-black);
+    }
+    .ug-btn--ghost:hover { background: var(--ug-warm-gray); border-color: var(--ug-warm-gray); }
+
+    .dt__badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1.25em;
+      height: 1.25em;
+      padding: 0 0.35em;
+      font-size: 0.7rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--ug-white);
+      background-color: var(--ug-black);
+      border-radius: 9999px;
+    }
+
+    .dt__selection-count {
+      font-size: 0.875rem;
+      color: var(--ug-medium-gray);
+      font-weight: 500;
+    }
+
+    /* ================================================================
+       Column Filters
+       ================================================================ */
+    .dt__col-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: calc(var(--ug-leading) * 0.5);
+      align-items: flex-end;
+      padding: calc(var(--ug-leading) * 0.5) 0;
+      border-top: 1px solid var(--ug-light-gray);
+      border-bottom: 1px solid var(--ug-light-gray);
+      margin-bottom: calc(var(--ug-leading) * 0.5);
+    }
+    .dt__col-filter {
+      flex: 1 1 160px;
+      max-width: 240px;
+    }
+    .dt__col-filter label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ug-medium-gray);
+      margin-bottom: 2px;
+    }
+    .dt__col-filter input {
+      display: block;
+      width: 100%;
+      height: var(--ug-leading);
+      padding: 0 calc(var(--ug-leading) * 0.5);
+      font-size: 0.875rem;
+      font-family: inherit;
+      color: var(--ug-black);
+      background: var(--ug-white);
+      border: 1px solid var(--ug-light-gray);
+      border-radius: 0;
+    }
+
+    /* ================================================================
+       Sort Header
+       ================================================================ */
+    .dt__th-sortable {
+      cursor: pointer;
+      user-select: none;
+    }
+    .dt__th-sortable:hover { background-color: var(--ug-warm-gray); }
+    .dt__th-content {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35em;
+    }
+    .dt__sort-icon { font-size: 0.85em; opacity: 0.5; }
+    .dt__th-sortable:hover .dt__sort-icon { opacity: 1; }
+
+    /* Checkbox cells */
+    .dt__th-check, .dt__td-check {
+      width: calc(var(--ug-leading) * 1.5);
+      text-align: center;
+      padding-left: calc(var(--ug-leading) * 0.25);
+      padding-right: calc(var(--ug-leading) * 0.25);
+    }
+    input[type="checkbox"] {
+      width: 1em;
+      height: 1em;
+      accent-color: var(--ug-black);
+      cursor: pointer;
+    }
+
+    /* Selected row */
+    .dt__row-selected { background-color: rgba(39, 74, 90, 0.08) !important; }
+
+    /* Empty state */
+    .dt__empty {
+      text-align: center;
+      color: var(--ug-medium-gray);
+      padding: calc(var(--ug-leading) * 2) var(--ug-leading);
+      font-style: italic;
+    }
+    .dt__empty--card {
+      border: 1px dashed var(--ug-light-gray);
+      padding: calc(var(--ug-leading) * 3);
+    }
+
+    /* ================================================================
+       Loading
+       ================================================================ */
+    .dt__loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--ug-leading);
+      padding: calc(var(--ug-leading) * 3);
+      color: var(--ug-medium-gray);
+    }
+    .dt__spinner {
+      width: 2rem; height: 2rem;
+      border: 3px solid var(--ug-light-gray);
+      border-top-color: var(--ug-black);
+      border-radius: 50%;
+      animation: dt-spin 0.7s linear infinite;
+    }
+    @keyframes dt-spin { to { transform: rotate(360deg); } }
+
+    /* ================================================================
+       Pagination
+       ================================================================ */
+    .dt__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: calc(var(--ug-leading) * 0.5);
+      padding: calc(var(--ug-leading) * 0.5) 0;
+      border-top: 1px solid var(--ug-light-gray);
+    }
+    .dt__footer-info {
+      font-size: 0.875rem;
+      color: var(--ug-medium-gray);
+    }
+    .dt__footer-controls {
+      display: flex;
+      align-items: center;
+      gap: var(--ug-leading);
+    }
+    .dt__page-size {
+      display: flex;
+      align-items: center;
+      gap: calc(var(--ug-leading) * 0.25);
+    }
+    .dt__page-size label {
+      font-size: 0.875rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .dt__page-size select {
+      height: var(--ug-leading);
+      font-size: 0.875rem;
+      font-family: inherit;
+      padding: 0 calc(var(--ug-leading) * 0.75) 0 calc(var(--ug-leading) * 0.25);
+      border: 1px solid var(--ug-light-gray);
+      border-radius: 0;
+      appearance: none;
+      background: var(--ug-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat right 6px center / 10px;
+    }
+
+    .ug-pagination {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+    .ug-pagination__list {
+      display: flex;
+      align-items: center;
+      list-style: none;
+    }
+    .ug-pagination__link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: calc(var(--ug-leading) * 1.2);
+      height: calc(var(--ug-leading) * 1.2);
+      padding: 0 4px;
+      font-size: 0.875rem;
+      color: var(--ug-black);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.15s;
+    }
+    .ug-pagination__link:hover { border-bottom-color: var(--ug-black); }
+    .ug-pagination__item--current .ug-pagination__link {
+      font-weight: 700;
+      border-bottom-color: var(--ug-black);
+    }
+    .ug-pagination__ellipsis {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: calc(var(--ug-leading) * 1);
+      height: calc(var(--ug-leading) * 1.2);
+      color: var(--ug-medium-gray);
+    }
+    .ug-pagination__arrow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: calc(var(--ug-leading) * 1.2);
+      height: calc(var(--ug-leading) * 1.2);
+      color: var(--ug-black);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .ug-pagination__arrow:hover { color: var(--ug-medium-gray); }
+    .ug-pagination__arrow--disabled {
+      color: var(--ug-light-gray);
+      pointer-events: none;
+    }
+    .ug-pagination__arrow svg { width: 0.75em; height: 0.75em; }
+
+    /* ================================================================
+       Card View (Mobile)
+       ================================================================ */
+    .dt__cards {
+      display: flex;
+      flex-direction: column;
+      gap: calc(var(--ug-leading) * 0.5);
+    }
+    .ug-card {
+      display: flex;
+      flex-direction: column;
+      background-color: var(--ug-white);
+      border: 1px solid var(--ug-light-gray);
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .ug-card:hover { border-color: var(--ug-black); }
+    .ug-card--selected {
+      border-color: var(--ug-blue);
+      box-shadow: inset 3px 0 0 var(--ug-blue);
+    }
+    .ug-card__body {
+      padding: var(--ug-leading) calc(var(--ug-leading) * 1.5);
+    }
+    .ug-card__title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      line-height: var(--ug-leading);
+      margin-bottom: 2px;
+    }
+    .ug-card__subtitle {
+      font-size: 0.875rem;
+      color: var(--ug-medium-gray);
+      line-height: var(--ug-leading);
+    }
+
+    .dt__card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: calc(var(--ug-leading) * 0.5);
+    }
+    .dt__card-check { padding-top: 0.15em; flex-shrink: 0; }
+    .dt__card-titles { flex: 1; min-width: 0; }
+
+    .dt__card-fields {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 3px calc(var(--ug-leading) * 0.5);
+      margin-top: calc(var(--ug-leading) * 0.5);
+    }
+    .dt__card-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--ug-medium-gray);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .dt__card-value {
+      font-size: 0.875rem;
+      color: var(--ug-black);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* ================================================================
+       Responsive: force card layout in mobile demo container
+       ================================================================ */
+    .demo-mobile-frame {
+      max-width: 375px;
+      border: 2px solid var(--ug-medium-gray);
+      border-radius: 16px;
+      padding: 12px;
+      background: var(--ug-white);
+      margin: 0 auto;
+    }
+    .demo-mobile-frame__label {
+      text-align: center;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ug-medium-gray);
+      margin-bottom: 8px;
+    }
+    .demo-mobile-frame .dt__search-input { min-width: 0; width: 100%; }
+    .demo-mobile-frame .dt__toolbar {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .demo-mobile-frame .dt__toolbar-left,
+    .demo-mobile-frame .dt__toolbar-right { width: 100%; }
+    .demo-mobile-frame .dt__footer { flex-direction: column; text-align: center; }
+    .demo-mobile-frame .dt__footer-controls { justify-content: center; flex-wrap: wrap; }
+
+    /* ================================================================
+       Status badges (for demo visual interest)
+       ================================================================ */
+    .status-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 1px 8px;
+      border: 1px solid;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .status-badge--active { color: var(--ug-green); border-color: var(--ug-green); }
+    .status-badge--leave { color: var(--ug-blue); border-color: var(--ug-blue); }
+    .status-badge--contractor { color: var(--ug-medium-gray); border-color: var(--ug-medium-gray); }
+
+    /* ================================================================
+       Responsive
+       ================================================================ */
+    @media (max-width: 767px) {
+      body { padding: calc(var(--ug-leading) * 0.5); }
+      .demo-section { padding: calc(var(--ug-leading) * 0.5); }
+      .dt__col-filter { max-width: none; flex: 1 1 100%; }
+      .dt__toolbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .dt__search-input { min-width: 0; width: 100%; }
+      .dt__footer {
+        flex-direction: column;
+        text-align: center;
+      }
+      .dt__footer-controls { justify-content: center; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>DataTable Component -- Visual Mockup</h1>
+
+<!-- ================================================================
+     STATE 1: Full Featured Desktop Table
+     ================================================================ -->
+<section class="demo-section">
+  <h2 class="demo-section__title">1. Desktop Table -- Full Features</h2>
+  <p class="demo-section__desc">Sorting (Name asc), filtering enabled, row selection with 2 rows checked, pagination at 10 rows.</p>
+
+  <!-- Toolbar -->
+  <div class="dt__toolbar">
+    <div class="dt__toolbar-left">
+      <input class="dt__search-input" type="search" placeholder="Search..." />
+      <button class="ug-btn ug-btn--ghost" type="button">
+        &#9698; Filters
+      </button>
+    </div>
+    <div class="dt__toolbar-right">
+      <span class="dt__selection-count">2 selected</span>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="ug-table-responsive">
+    <table class="ug-table ug-table--striped ug-table--hover">
+      <thead>
+        <tr>
+          <th class="dt__th-check"><input type="checkbox" /></th>
+          <th class="dt__th-sortable">
+            <span class="dt__th-content">Name <span class="dt__sort-icon" style="opacity:1">&uarr;</span></span>
+          </th>
+          <th class="dt__th-sortable"><span class="dt__th-content">Department <span class="dt__sort-icon">&UpDownArrow;</span></span></th>
+          <th class="dt__th-sortable"><span class="dt__th-content">Role <span class="dt__sort-icon">&UpDownArrow;</span></span></th>
+          <th>Email</th>
+          <th class="dt__th-sortable" style="text-align:right"><span class="dt__th-content">Salary <span class="dt__sort-icon">&UpDownArrow;</span></span></th>
+          <th class="dt__th-sortable"><span class="dt__th-content">Status <span class="dt__sort-icon">&UpDownArrow;</span></span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="dt__row-selected">
+          <td class="dt__td-check"><input type="checkbox" checked /></td>
+          <td>Alice Smith</td>
+          <td>Engineering</td>
+          <td>Senior Engineer</td>
+          <td>alice.smith@example.com</td>
+          <td style="text-align:right">$87,200</td>
+          <td><span class="status-badge status-badge--active">Active</span></td>
+        </tr>
+        <tr>
+          <td class="dt__td-check"><input type="checkbox" /></td>
+          <td>Bob Johnson</td>
+          <td>Design</td>
+          <td>Manager</td>
+          <td>bob.johnson@example.com</td>
+          <td style="text-align:right">$92,400</td>
+          <td><span class="status-badge status-badge--active">Active</span></td>
+        </tr>
+        <tr class="dt__row-selected">
+          <td class="dt__td-check"><input type="checkbox" checked /></td>
+          <td>Carlos Williams</td>
+          <td>Marketing</td>
+          <td>Analyst</td>
+          <td>carlos.williams@example.com</td>
+          <td style="text-align:right">$64,800</td>
+          <td><span class="status-badge status-badge--leave">On Leave</span></td>
+        </tr>
+        <tr>
+          <td class="dt__td-check"><input type="checkbox" /></td>
+          <td>Diana Brown</td>
+          <td>Sales</td>
+          <td>Coordinator</td>
+          <td>diana.brown@example.com</td>
+          <td style="text-align:right">$58,000</td>
+          <td><span class="status-badge status-badge--active">Active</span></td>
+        </tr>
+        <tr>
+          <td class="dt__td-check"><input type="checkbox" /></td>
+          <td>Eli Jones</td>
+          <td>Operations</td>
+          <td>Lead</td>
+          <td>eli.jones@example.com</td>
+          <td style="text-align:right">$76,500</td>
+          <td><span class="status-badge status-badge--contractor">Contractor</span></td>
+        </tr>
+        <tr>
+          <td class="dt__td-check"><input type="checkbox" /></td>
+          <td>Fiona Garcia</td>
+          <td>Finance</td>
+          <td>Director</td>
+          <td>fiona.garcia@example.com</td>
+          <td style="text-align:right">$105,000</td>
+          <td><span class="status-badge status-badge--active">Active</span></td>
+        </tr>
+        <tr>
+          <td class="dt__td-check"><input type="checkbox" /></td>
+          <td>George Miller</td>
+          <td>HR</td>
+          <td>Specialist</td>
+          <td>george.miller@example.com</td>
+          <td style="text-align:right">$61,200</td>
+          <td><span class="status-badge status-badge--active">Active</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Footer / Pagination -->
+  <div class="dt__footer">
+    <div class="dt__footer-info">Showing 1&ndash;7 of 47</div>
+    <div class="dt__footer-controls">
+      <div class="dt__page-size">
+        <label>Rows</label>
+        <select><option>10</option><option>25</option><option>50</option></select>
+      </div>
+      <nav class="ug-pagination">
+        <a class="ug-pagination__arrow ug-pagination__arrow--disabled" href="#">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 1L3 6l5 5"/></svg>
+        </a>
+        <ul class="ug-pagination__list">
+          <li class="ug-pagination__item ug-pagination__item--current"><a class="ug-pagination__link" href="#">1</a></li>
+          <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">2</a></li>
+          <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">3</a></li>
+          <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">4</a></li>
+          <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">5</a></li>
+        </ul>
+        <a class="ug-pagination__arrow" href="#">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 1l5 5-5 5"/></svg>
+        </a>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     STATE 2: With Column Filters Active
+     ================================================================ -->
+<section class="demo-section">
+  <h2 class="demo-section__title">2. Column Filters Active</h2>
+  <p class="demo-section__desc">Column filter row expanded, "Engineering" typed into Department filter. Filtered results shown.</p>
+
+  <div class="dt__toolbar">
+    <div class="dt__toolbar-left">
+      <input class="dt__search-input" type="search" placeholder="Search..." />
+      <button class="ug-btn ug-btn--ghost" type="button">
+        &#9698; Filters <span class="dt__badge">1</span>
+      </button>
+    </div>
+    <div class="dt__toolbar-right"></div>
+  </div>
+
+  <!-- Column filters -->
+  <div class="dt__col-filters">
+    <div class="dt__col-filter">
+      <label>Name</label>
+      <input type="text" placeholder="Filter Name..." />
+    </div>
+    <div class="dt__col-filter">
+      <label>Department</label>
+      <input type="text" placeholder="Filter Department..." value="Engineering" style="border-color: var(--ug-black);" />
+    </div>
+    <div class="dt__col-filter">
+      <label>Role</label>
+      <input type="text" placeholder="Filter Role..." />
+    </div>
+    <div class="dt__col-filter">
+      <label>Status</label>
+      <input type="text" placeholder="Filter Status..." />
+    </div>
+    <button class="ug-btn ug-btn--ghost" type="button">Clear all</button>
+  </div>
+
+  <div class="ug-table-responsive">
+    <table class="ug-table ug-table--striped ug-table--hover">
+      <thead>
+        <tr>
+          <th class="dt__th-sortable"><span class="dt__th-content">Name <span class="dt__sort-icon">&UpDownArrow;</span></span></th>
+          <th class="dt__th-sortable"><span class="dt__th-content">Department <span class="dt__sort-icon">&UpDownArrow;</span></span></th>
+          <th class="dt__th-sortable"><span class="dt__th-content">Role <span class="dt__sort-icon">&UpDownArrow;</span></span></th>
+          <th>Email</th>
+          <th style="text-align:right">Salary</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Alice Smith</td>
+          <td>Engineering</td>
+          <td>Senior Engineer</td>
+          <td>alice.smith@example.com</td>
+          <td style="text-align:right">$87,200</td>
+          <td><span class="status-badge status-badge--active">Active</span></td>
+        </tr>
+        <tr>
+          <td>Hannah Davis</td>
+          <td>Engineering</td>
+          <td>Lead</td>
+          <td>hannah.davis@example.com</td>
+          <td style="text-align:right">$95,100</td>
+          <td><span class="status-badge status-badge--active">Active</span></td>
+        </tr>
+        <tr>
+          <td>Oscar Rodriguez</td>
+          <td>Engineering</td>
+          <td>Intern</td>
+          <td>oscar.rodriguez@example.com</td>
+          <td style="text-align:right">$42,000</td>
+          <td><span class="status-badge status-badge--contractor">Contractor</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="dt__footer">
+    <div class="dt__footer-info">Showing 1&ndash;3 of 3 (filtered from 47)</div>
+    <div class="dt__footer-controls">
+      <div class="dt__page-size">
+        <label>Rows</label>
+        <select><option>10</option></select>
+      </div>
+      <nav class="ug-pagination">
+        <a class="ug-pagination__arrow ug-pagination__arrow--disabled" href="#">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 1L3 6l5 5"/></svg>
+        </a>
+        <ul class="ug-pagination__list">
+          <li class="ug-pagination__item ug-pagination__item--current"><a class="ug-pagination__link" href="#">1</a></li>
+        </ul>
+        <a class="ug-pagination__arrow ug-pagination__arrow--disabled" href="#">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 1l5 5-5 5"/></svg>
+        </a>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     STATE 3: Empty State
+     ================================================================ -->
+<section class="demo-section">
+  <h2 class="demo-section__title">3. Empty State</h2>
+  <p class="demo-section__desc">No data matches filters or the dataset is empty.</p>
+
+  <div class="dt__toolbar">
+    <div class="dt__toolbar-left">
+      <input class="dt__search-input" type="search" placeholder="Search..." value="xyznonexistent" />
+      <button class="ug-btn ug-btn--ghost" type="button">&#9698; Filters</button>
+    </div>
+    <div class="dt__toolbar-right"></div>
+  </div>
+
+  <div class="ug-table-responsive">
+    <table class="ug-table">
+      <thead>
+        <tr>
+          <th>Name</th><th>Department</th><th>Role</th><th>Email</th><th style="text-align:right">Salary</th><th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="6" class="dt__empty">No employees found matching your criteria.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================================================================
+     STATE 4: Loading State
+     ================================================================ -->
+<section class="demo-section">
+  <h2 class="demo-section__title">4. Loading State</h2>
+  <p class="demo-section__desc">Spinner shown while data is being fetched.</p>
+
+  <div class="dt__toolbar">
+    <div class="dt__toolbar-left">
+      <input class="dt__search-input" type="search" placeholder="Search..." disabled />
+    </div>
+    <div class="dt__toolbar-right"></div>
+  </div>
+
+  <div class="dt__loading">
+    <div class="dt__spinner"></div>
+    <span>Loading...</span>
+  </div>
+</section>
+
+<!-- ================================================================
+     STATE 5: Mobile Card View
+     ================================================================ -->
+<section class="demo-section">
+  <h2 class="demo-section__title">5. Mobile Card View</h2>
+  <p class="demo-section__desc">On screens &lt; 768px, the table transforms into a card-based layout. Below is a simulated mobile frame (375px).</p>
+
+  <div class="demo-mobile-frame">
+    <div class="demo-mobile-frame__label">375px -- Mobile</div>
+
+    <!-- Toolbar -->
+    <div class="dt__toolbar">
+      <div class="dt__toolbar-left" style="flex-direction:column; align-items:stretch;">
+        <input class="dt__search-input" type="search" placeholder="Search..." style="min-width:0; width:100%;" />
+        <button class="ug-btn ug-btn--ghost" type="button" style="justify-content:flex-start;">&#9698; Filters</button>
+      </div>
+      <div class="dt__toolbar-right" style="width:100%;">
+        <span class="dt__selection-count">1 selected</span>
+      </div>
+    </div>
+
+    <!-- Select all -->
+    <div style="padding: 4px 0; font-size: 0.875rem;">
+      <label style="cursor:pointer; display:flex; align-items:center; gap:8px;">
+        <input type="checkbox" /> Select all
+      </label>
+    </div>
+
+    <!-- Cards -->
+    <div class="dt__cards">
+      <div class="ug-card ug-card--selected">
+        <div class="ug-card__body">
+          <div class="dt__card-header">
+            <div class="dt__card-check"><input type="checkbox" checked /></div>
+            <div class="dt__card-titles">
+              <div class="ug-card__title">Alice Smith</div>
+              <div class="ug-card__subtitle">Engineering</div>
+            </div>
+          </div>
+          <dl class="dt__card-fields">
+            <dt class="dt__card-label">Role</dt>
+            <dd class="dt__card-value">Senior Engineer</dd>
+            <dt class="dt__card-label">Email</dt>
+            <dd class="dt__card-value">alice.smith@example.com</dd>
+            <dt class="dt__card-label">Salary</dt>
+            <dd class="dt__card-value">$87,200</dd>
+            <dt class="dt__card-label">Status</dt>
+            <dd class="dt__card-value">Active</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="ug-card">
+        <div class="ug-card__body">
+          <div class="dt__card-header">
+            <div class="dt__card-check"><input type="checkbox" /></div>
+            <div class="dt__card-titles">
+              <div class="ug-card__title">Bob Johnson</div>
+              <div class="ug-card__subtitle">Design</div>
+            </div>
+          </div>
+          <dl class="dt__card-fields">
+            <dt class="dt__card-label">Role</dt>
+            <dd class="dt__card-value">Manager</dd>
+            <dt class="dt__card-label">Email</dt>
+            <dd class="dt__card-value">bob.johnson@example.com</dd>
+            <dt class="dt__card-label">Salary</dt>
+            <dd class="dt__card-value">$92,400</dd>
+            <dt class="dt__card-label">Status</dt>
+            <dd class="dt__card-value">Active</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="ug-card">
+        <div class="ug-card__body">
+          <div class="dt__card-header">
+            <div class="dt__card-check"><input type="checkbox" /></div>
+            <div class="dt__card-titles">
+              <div class="ug-card__title">Carlos Williams</div>
+              <div class="ug-card__subtitle">Marketing</div>
+            </div>
+          </div>
+          <dl class="dt__card-fields">
+            <dt class="dt__card-label">Role</dt>
+            <dd class="dt__card-value">Analyst</dd>
+            <dt class="dt__card-label">Email</dt>
+            <dd class="dt__card-value">carlos.williams@example.com</dd>
+            <dt class="dt__card-label">Salary</dt>
+            <dd class="dt__card-value">$64,800</dd>
+            <dt class="dt__card-label">Status</dt>
+            <dd class="dt__card-value">On Leave</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="dt__footer">
+      <div class="dt__footer-info">1&ndash;3 of 47</div>
+      <div class="dt__footer-controls">
+        <nav class="ug-pagination">
+          <a class="ug-pagination__arrow ug-pagination__arrow--disabled" href="#">
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 1L3 6l5 5"/></svg>
+          </a>
+          <ul class="ug-pagination__list">
+            <li class="ug-pagination__item ug-pagination__item--current"><a class="ug-pagination__link" href="#">1</a></li>
+            <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">2</a></li>
+            <li class="ug-pagination__item"><span class="ug-pagination__ellipsis">&hellip;</span></li>
+            <li class="ug-pagination__item"><a class="ug-pagination__link" href="#">5</a></li>
+          </ul>
+          <a class="ug-pagination__arrow" href="#">
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 1l5 5-5 5"/></svg>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     STATE 6: Mobile Empty Card View
+     ================================================================ -->
+<section class="demo-section">
+  <h2 class="demo-section__title">6. Mobile Card View -- Empty</h2>
+  <p class="demo-section__desc">Empty state in card layout on mobile.</p>
+
+  <div class="demo-mobile-frame">
+    <div class="demo-mobile-frame__label">375px -- Mobile</div>
+
+    <div class="dt__toolbar">
+      <div class="dt__toolbar-left" style="flex-direction:column; align-items:stretch;">
+        <input class="dt__search-input" type="search" placeholder="Search..." value="zzz" style="min-width:0; width:100%;" />
+      </div>
+    </div>
+
+    <div class="dt__empty dt__empty--card">
+      No employees found matching your criteria.
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

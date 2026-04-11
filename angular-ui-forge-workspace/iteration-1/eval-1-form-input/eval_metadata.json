@@ -1,0 +1,67 @@
+{
+  "eval_id": 1,
+  "eval_name": "form-input-bootstrap",
+  "prompt": "I'm setting up a new Angular UI library in our Nx monorepo. We use Bootstrap 5 and unigrid.css. I need a reusable form input component that supports text, email, tel, and number types with inline validation, error/success states, and a floating label. Make it accessible and mobile-first. Also set up the Storybook story for it.",
+  "assertions": [
+    {
+      "id": "separate-files",
+      "text": "Component uses separate .html and .scss files (templateUrl/styleUrl), never inline template/styles",
+      "type": "structural"
+    },
+    {
+      "id": "onpush",
+      "text": "Component uses ChangeDetectionStrategy.OnPush",
+      "type": "structural"
+    },
+    {
+      "id": "no-services",
+      "text": "Dumb component has zero injected services (no constructor DI or inject())",
+      "type": "structural"
+    },
+    {
+      "id": "rhythm-spacing",
+      "text": "SCSS uses unigrid spacing tokens (--ug-spacing-*) or leading-based calc() for margins/padding",
+      "type": "design"
+    },
+    {
+      "id": "touch-target",
+      "text": "Input has minimum 44px touch target (min-height: 44px or equivalent)",
+      "type": "accessibility"
+    },
+    {
+      "id": "focus-visible",
+      "text": "Includes :focus-visible styles with visible outline (not just color change)",
+      "type": "accessibility"
+    },
+    {
+      "id": "aria-invalid",
+      "text": "Uses aria-invalid and aria-describedby for error states",
+      "type": "accessibility"
+    },
+    {
+      "id": "reduced-motion",
+      "text": "Animations/transitions wrapped in prefers-reduced-motion media query",
+      "type": "accessibility"
+    },
+    {
+      "id": "mobile-first",
+      "text": "SCSS uses min-width media queries (mobile-first), not max-width",
+      "type": "responsive"
+    },
+    {
+      "id": "storybook-variants",
+      "text": "Storybook stories include at least: Default, Error, Success, Disabled variants",
+      "type": "storybook"
+    },
+    {
+      "id": "bootstrap-integration",
+      "text": "Uses Bootstrap classes (form-floating, form-control) or unigrid-bootstrap bridge",
+      "type": "framework"
+    },
+    {
+      "id": "html-mockup",
+      "text": "Includes a standalone HTML mockup file demonstrating all states visually",
+      "type": "deliverable"
+    }
+  ]
+}
