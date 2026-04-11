@@ -1,0 +1,42 @@
+<!-- DataTableContainerComponent — Smart container template -->
+<ui-data-table
+  [columns]="columns"
+  [data]="data"
+  [rowIdKey]="rowIdKey"
+  [sort]="sort"
+  [filters]="filters"
+  [pagination]="pagination"
+  [selectedIds]="selectedIds"
+  [loading]="loading"
+  [searchQuery]="searchQuery"
+  [tableLabel]="tableLabel"
+  [selectable]="true"
+  [showSearch]="true"
+  [showFilterButton]="true"
+  (sortChange)="onSortChange($event)"
+  (pageChange)="onPageChange($event)"
+  (selectionChange)="onSelectionChange($event)"
+  (rowAction)="onRowAction($event)"
+  (searchChange)="onSearchChange($event)"
+  (filterToggle)="onFilterToggle()"
+  (filterRemove)="onFilterRemove($event)"
+  (filtersClear)="onFiltersClear()"
+>
+  <!-- Bulk action buttons projected into the toolbar -->
+  <ng-container bulkActions>
+    <button
+      class="data-table__bulk-btn"
+      (click)="onBulkExport()"
+      aria-label="Export selected rows"
+    >
+      Export
+    </button>
+    <button
+      class="data-table__bulk-btn data-table__bulk-btn--danger"
+      (click)="onBulkDelete()"
+      aria-label="Delete selected rows"
+    >
+      Delete
+    </button>
+  </ng-container>
+</ui-data-table>

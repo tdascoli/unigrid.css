@@ -1,0 +1,81 @@
+<div class="ui-form-input__wrapper">
+  <input
+    class="ui-form-input__native"
+    [id]="inputId"
+    [type]="type"
+    [value]="value"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
+    [required]="required"
+    [autocomplete]="autocomplete"
+    [attr.aria-invalid]="state === 'error' ? true : null"
+    [attr.aria-describedby]="ariaDescribedBy"
+    [attr.aria-required]="required ? true : null"
+    [attr.min]="type === 'number' ? min : null"
+    [attr.max]="type === 'number' ? max : null"
+    [attr.step]="type === 'number' ? step : null"
+    [attr.pattern]="pattern ?? null"
+    [attr.maxlength]="maxlength ?? null"
+    [attr.inputmode]="resolvedInputMode ?? null"
+    (input)="onInput($event)"
+    (focus)="onFocus($event)"
+    (blur)="onBlur($event)"
+  />
+
+  <label
+    class="ui-form-input__label"
+    [for]="inputId"
+  >
+    {{ label }}
+    <span
+      class="ui-form-input__required"
+      *ngIf="required"
+      aria-hidden="true"
+    >*</span>
+  </label>
+
+  <span
+    class="ui-form-input__state-icon"
+    *ngIf="state === 'error' || state === 'success'"
+    aria-hidden="true"
+  >
+    <svg
+      *ngIf="state === 'error'"
+      class="ui-form-input__icon ui-form-input__icon--error"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      width="16"
+      height="16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+        clip-rule="evenodd"
+      />
+    </svg>
+    <svg
+      *ngIf="state === 'success'"
+      class="ui-form-input__icon ui-form-input__icon--success"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      width="16"
+      height="16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+        clip-rule="evenodd"
+      />
+    </svg>
+  </span>
+</div>
+
+<div
+  class="ui-form-input__description"
+  [id]="descriptionId"
+  *ngIf="hasDescription"
+  [attr.role]="state === 'error' ? 'alert' : null"
+  [attr.aria-live]="state === 'error' ? 'assertive' : 'polite'"
+>
+  {{ descriptionText }}
+</div>

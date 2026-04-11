@@ -1,0 +1,65 @@
+{
+  "run_id": "eval-2-with_skill",
+  "expectations": [
+    {
+      "text": "smart-dumb-split: Has both smart (container) and dumb (presentational) components with clear separation",
+      "passed": true,
+      "evidence": "RegistrationFormComponent is explicitly labeled as 'Smart/Container Component' managing state, navigation, and submission. StepperIndicatorComponent, StepPersonalInfoComponent, StepAddressComponent, and StepReviewComponent are all labeled 'Dumb Component' with ChangeDetectionStrategy.OnPush, using @Input/@Output only, no injected services."
+    },
+    {
+      "text": "separate-files: All components use separate .html and .scss files, never inline",
+      "passed": true,
+      "evidence": "All 5 components use templateUrl and styleUrl pointing to separate .component.html and .component.scss files. No inline template or styles found in any component."
+    },
+    {
+      "text": "progressive-disclosure: Steps are revealed progressively (not all visible at once), using stepper/wizard pattern",
+      "passed": true,
+      "evidence": "registration-form.component.html uses *ngIf='currentStep === 0/1/2' to show only one step at a time. Steps advance via onPersonalInfoCompleted/onAddressCompleted handlers that increment currentStep."
+    },
+    {
+      "text": "smart-defaults: Country field pre-selects based on browser locale (Intl API or navigator.language)",
+      "passed": true,
+      "evidence": "registration-form.model.ts exports detectCountryFromLocale() which uses navigator.language with LOCALE_COUNTRY_MAP lookup. StepAddressComponent.ngOnInit() calls detectCountryFromLocale() and patches the country form control with the detected value."
+    },
+    {
+      "text": "field-chunking: Fields are grouped logically (3-5 per step), not all in one long form",
+      "passed": true,
+      "evidence": "Step 1 (Personal Info): 4 fields (firstName, lastName, email, phone). Step 2 (Address): 4 fields (street, city, postalCode, country). Step 3: Review only. All within the 3-5 optimal range."
+    },
+    {
+      "text": "full-viewport: Form layout uses full available width (grid/flex), not a narrow centered column",
+      "passed": true,
+      "evidence": "All :host blocks set display:block; width:100%. .registration uses width:100% with padding but no max-width constraint. .form-grid uses CSS grid that expands to full width. SCSS comments explicitly state 'Full-viewport-width layout'."
+    },
+    {
+      "text": "tailwind-rhythm: Uses Tailwind classes with rhythm-aligned spacing or custom spacing scale",
+      "passed": true,
+      "evidence": "Uses custom CSS custom properties based on a rhythm scale: --ug-spacing-1 (0.4rem), --ug-spacing-2 (0.8rem), --ug-spacing-3 (1.625rem), --ug-spacing-4 (2.4rem), --ug-spacing-5 (3.25rem), etc. with --ug-leading (1.625rem) as the baseline. While not using Tailwind utility classes directly in templates, it uses a Tailwind-compatible custom spacing scale consistently throughout SCSS."
+    },
+    {
+      "text": "aria-stepper: Stepper has ARIA attributes (aria-current, role, step labels for screen readers)",
+      "passed": true,
+      "evidence": "stepper-indicator.component.html: nav has role='navigation' and aria-label announcing step progress. Each step button has [attr.aria-current]=\"'step'\" when active, and aria-label including '(completed)' or '(current step)' status text."
+    },
+    {
+      "text": "keyboard-nav: Step navigation is keyboard-accessible (focus management between steps)",
+      "passed": true,
+      "evidence": "Stepper uses <button> elements for each step (natively keyboard-focusable). Completed steps are enabled buttons allowing Enter/Space navigation. All buttons have :focus-visible styles with 3px outline. Min touch targets of 44px. Storybook stories include KeyboardNavigation variants testing focus."
+    },
+    {
+      "text": "storybook-stories: Has Storybook stories for individual steps and/or the full flow",
+      "passed": true,
+      "evidence": "All 5 components have .stories.ts files: stepper-indicator.stories.ts (8 stories), step-personal-info.stories.ts (7 stories), step-address.stories.ts (6 stories), step-review.stories.ts (7 stories), registration-form.stories.ts (4 stories). Includes variants for default, prefilled, errors, keyboard nav, mobile, tablet, desktop."
+    },
+    {
+      "text": "review-step: Review step shows a summary of all entered data before submission",
+      "passed": true,
+      "evidence": "step-review.component.html displays all collected data in semantic dl/dt/dd structure: name, email, phone from personalInfo and street, city, postalCode, country from address. Includes edit buttons for each section and a submit button."
+    },
+    {
+      "text": "html-mockup: Includes a standalone HTML mockup with working step navigation",
+      "passed": false,
+      "evidence": "No standalone HTML mockup file found in the outputs directory. Only Angular component .html templates exist, no independent HTML file with working step navigation."
+    }
+  ]
+}

@@ -1,0 +1,406 @@
+// ==========================================================================
+// DataTable — Component Styles
+//
+// Extends unigrid.css BEM classes (ug-table, ug-card, ug-btn, ug-form,
+// ug-pagination). All custom additions prefixed with `dt__` to avoid
+// collision. Uses var(--ug-leading) for vertical rhythm alignment.
+// ==========================================================================
+
+// ---- Host: stretch to fill viewport ----
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0; // allow flex shrink inside parent
+}
+
+.dt {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// Toolbar
+// ══════════════════════════════════════════════════════════════════════════
+
+.dt__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(var(--ug-leading) * 0.5);
+  padding: calc(var(--ug-leading) * 0.5) 0;
+  flex-wrap: wrap;
+}
+
+.dt__toolbar-left,
+.dt__toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--ug-leading) * 0.5);
+}
+
+.dt__search {
+  margin-bottom: 0;
+
+  .ug-form__input {
+    min-width: 200px;
+  }
+}
+
+.dt__filter-icon {
+  display: inline-block;
+  transform: rotate(0deg);
+  transition: transform 0.2s;
+  font-size: 0.75em;
+}
+
+.dt__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.25em;
+  height: 1.25em;
+  padding: 0 0.35em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #ffffff;
+  background-color: #1a1a1a;
+  border-radius: 9999px;
+}
+
+.dt__selection-count {
+  font-size: 0.875rem;
+  color: #666666;
+  font-weight: 500;
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// Column Filters
+// ══════════════════════════════════════════════════════════════════════════
+
+.dt__col-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--ug-leading) * 0.5);
+  align-items: flex-end;
+  padding: calc(var(--ug-leading) * 0.5) 0;
+  border-top: 1px solid #e8e5e0;
+  border-bottom: 1px solid #e8e5e0;
+  margin-bottom: calc(var(--ug-leading) * 0.5);
+}
+
+.dt__col-filter {
+  flex: 1 1 160px;
+  max-width: 240px;
+
+  .ug-form__label {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// Table Wrapper — fill remaining space
+// ══════════════════════════════════════════════════════════════════════════
+
+.dt__table-wrap {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  margin-bottom: 0;
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// Table Enhancements
+// ══════════════════════════════════════════════════════════════════════════
+
+.dt__th-sortable {
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    background-color: #f5f2ed;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #1a1a1a;
+    outline-offset: -2px;
+  }
+}
+
+.dt__th-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+}
+
+.dt__sort-icon {
+  font-size: 0.85em;
+  opacity: 0.5;
+  transition: opacity 0.15s;
+
+  .dt__th-sortable:hover & {
+    opacity: 1;
+  }
+}
+
+// Checkbox columns
+.dt__th-check,
+.dt__td-check {
+  width: calc(var(--ug-leading) * 1.5);
+  text-align: center;
+  padding-left: calc(var(--ug-leading) * 0.25);
+  padding-right: calc(var(--ug-leading) * 0.25);
+}
+
+.dt__check-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  input[type="checkbox"] {
+    width: 1em;
+    height: 1em;
+    margin: 0;
+    accent-color: #1a1a1a;
+    cursor: pointer;
+  }
+}
+
+// Selected row
+.dt__row-selected {
+  background-color: rgba(39, 74, 90, 0.08) !important;
+}
+
+// Empty cell
+.dt__empty {
+  text-align: center;
+  color: #666666;
+  padding: calc(var(--ug-leading) * 2) var(--ug-leading);
+  font-style: italic;
+}
+
+.dt__empty--card {
+  border: 1px dashed #e8e5e0;
+  padding: calc(var(--ug-leading) * 3);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// Loading State
+// ══════════════════════════════════════════════════════════════════════════
+
+.dt__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ug-leading);
+  padding: calc(var(--ug-leading) * 3);
+  color: #666666;
+  flex: 1;
+}
+
+.dt__spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid #e8e5e0;
+  border-top-color: #1a1a1a;
+  border-radius: 50%;
+  animation: dt-spin 0.7s linear infinite;
+}
+
+@keyframes dt-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// Card View (Mobile)
+// ══════════════════════════════════════════════════════════════════════════
+
+.dt__cards {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--ug-leading) * 0.5);
+  flex: 1 1 auto;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.dt__cards-select-all {
+  padding: calc(var(--ug-leading) * 0.25) 0;
+}
+
+.dt__card {
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+
+  &:hover {
+    border-color: #1a1a1a;
+  }
+
+  &--selected {
+    border-color: #274a5a;
+    box-shadow: inset 3px 0 0 #274a5a;
+  }
+}
+
+.dt__card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(var(--ug-leading) * 0.5);
+}
+
+.dt__card-check {
+  padding-top: 0.15em;
+  flex-shrink: 0;
+
+  input[type="checkbox"] {
+    width: 1em;
+    height: 1em;
+    accent-color: #1a1a1a;
+    cursor: pointer;
+  }
+}
+
+.dt__card-titles {
+  flex: 1;
+  min-width: 0;
+}
+
+.dt__card-fields {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: calc(var(--ug-leading) * 0.15) calc(var(--ug-leading) * 0.5);
+  margin: calc(var(--ug-leading) * 0.5) 0 0;
+  padding: 0;
+}
+
+.dt__card-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #666666;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.dt__card-value {
+  font-size: 0.875rem;
+  color: #1a1a1a;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// Footer / Pagination
+// ══════════════════════════════════════════════════════════════════════════
+
+.dt__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: calc(var(--ug-leading) * 0.5);
+  padding: calc(var(--ug-leading) * 0.5) 0;
+  border-top: 1px solid #e8e5e0;
+  margin-top: auto;
+}
+
+.dt__footer-info {
+  font-size: 0.875rem;
+  color: #666666;
+}
+
+.dt__footer-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--ug-leading);
+}
+
+.dt__page-size {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--ug-leading) * 0.25);
+
+  .ug-form__label {
+    margin: 0;
+    white-space: nowrap;
+    font-size: 0.875rem;
+  }
+}
+
+.dt__page-size-select {
+  width: auto;
+  min-width: 4rem;
+  height: calc(var(--ug-leading) * 1);
+  font-size: 0.875rem;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+// Pagination overrides within the footer
+.dt__footer .ug-pagination {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// Accessibility — Screen Reader Only
+// ══════════════════════════════════════════════════════════════════════════
+
+.dt__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// Responsive: small screens
+// ══════════════════════════════════════════════════════════════════════════
+
+@media (max-width: 767px) {
+  .dt__toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dt__toolbar-left,
+  .dt__toolbar-right {
+    width: 100%;
+  }
+
+  .dt__search .ug-form__input {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .dt__col-filter {
+    max-width: none;
+    flex: 1 1 100%;
+  }
+
+  .dt__footer {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .dt__footer-controls {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}

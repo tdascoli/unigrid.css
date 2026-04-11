@@ -1,0 +1,75 @@
+{
+  "run_id": "eval-3-iter2-with_skill",
+  "expectations": [
+    {
+      "text": "smart-dumb-split: Has both smart (container) and dumb (presentational) components with clear separation",
+      "passed": true,
+      "evidence": "DataTableContainerComponent (smart) in data-table-container/ manages state, data fetching, and RxJS streams. DataTableComponent (dumb) in data-table/ is purely presentational with @Input/@Output, no injected services, and ChangeDetectionStrategy.OnPush."
+    },
+    {
+      "text": "separate-files: All components use separate .html and .scss files, never inline",
+      "passed": true,
+      "evidence": "Both components use templateUrl and styleUrl pointing to separate .html and .scss files. data-table.component.ts uses templateUrl: './data-table.component.html' and styleUrl: './data-table.component.scss'. Same pattern for container component."
+    },
+    {
+      "text": "onpush: Dumb components use ChangeDetectionStrategy.OnPush",
+      "passed": true,
+      "evidence": "DataTableComponent has changeDetection: ChangeDetectionStrategy.OnPush in its @Component decorator (data-table.component.ts line 51)."
+    },
+    {
+      "text": "mobile-card-layout: Mobile view uses card-based layout instead of table",
+      "passed": true,
+      "evidence": "HTML has a .data-table__cards section with .data-table__card elements. SCSS shows .data-table__cards is visible by default and hidden at min-width: 768px (display: none). Cards show labeled fields in a grid layout."
+    },
+    {
+      "text": "desktop-table-layout: Desktop view (md+ breakpoint) uses proper table layout",
+      "passed": true,
+      "evidence": "SCSS: .data-table__table has display: none by default and display: table at @media (min-width: 768px). Uses proper <table>, <thead>, <tbody>, <th>, <td> elements with role='grid'."
+    },
+    {
+      "text": "full-viewport: Table uses full available viewport width, not a narrow centered container",
+      "passed": true,
+      "evidence": "Both :host blocks set width: 100%. The table itself has width: 100%. Container SCSS uses padding but no max-width constraint. The scroll container allows horizontal overflow."
+    },
+    {
+      "text": "rhythm-rows: Row heights use leading-based spacing (multiples of --ug-leading or --ug-spacing-*)",
+      "passed": true,
+      "evidence": "Table cells use padding: var(--ug-spacing-2) and line-height: var(--ug-leading). Skeleton rows use height: var(--ug-leading). All spacing throughout uses --ug-spacing-* tokens which are defined as multiples of --ug-leading."
+    },
+    {
+      "text": "unigrid-tokens: SCSS uses unigrid.css tokens (--ug-spacing-*, --ug-leading) — NOT raw calc(var(--ug-leading) * N)",
+      "passed": true,
+      "evidence": "SCSS exclusively uses --ug-spacing-* and --ug-leading tokens. No instances of raw calc(var(--ug-leading) * N) found in the component SCSS files. The only calc usage is for search input padding-left which combines tokens with a fixed icon width."
+    },
+    {
+      "text": "aria-sort: Sortable columns have aria-sort attribute",
+      "passed": true,
+      "evidence": "In data-table.component.html line 178: [attr.aria-sort]=\"col.sortable !== false ? getAriaSortValue(col.key) : null\" on <th> elements. getAriaSortValue returns 'ascending', 'descending', or null."
+    },
+    {
+      "text": "keyboard-accessible: Sort buttons, pagination, and row selection are keyboard accessible",
+      "passed": true,
+      "evidence": "Sort headers use <button> elements. Pagination uses <button> elements with aria-label. Checkboxes use native <input type='checkbox'> wrapped in <label>. All interactive elements extend %focus-ring with :focus-visible outline. Page size uses native <select>."
+    },
+    {
+      "text": "touch-targets: ALL interactive elements (sort buttons, pagination buttons, checkboxes) have min-height: 44px AND min-width: 44px",
+      "passed": true,
+      "evidence": "SCSS confirms: .data-table__sort-btn min-height: 44px, min-width: 44px. .data-table__page-btn min-height: 44px, min-width: 44px. .data-table__checkbox-wrapper min-height: 44px, min-width: 44px. .data-table__action-btn min-height: 44px, min-width: 44px. .data-table__filter-btn min-height: 44px, min-width: 44px. .data-table__filter-chip-remove min-height: 44px, min-width: 44px."
+    },
+    {
+      "text": "storybook-states: Stories include: Default, Empty, Loading, WithFilters states",
+      "passed": true,
+      "evidence": "data-table.stories.ts exports: Default (line 134), Empty (line 155), Loading (line 169), WithFilters (line 182). Also includes MobileView, KeyboardNavigation, ManyPages, and NonSelectable stories."
+    },
+    {
+      "text": "html-mockup: Includes a standalone HTML mockup showing responsive table behavior",
+      "passed": true,
+      "evidence": "data-table-mockup.html is a standalone HTML file with inline CSS and JavaScript. It includes design tokens, responsive breakpoints at 768px switching between table and card layouts, filter chips, pagination, and interactive sort functionality."
+    },
+    {
+      "text": "focus-visible-outline: Focus indicators use outline (not box-shadow as primary)",
+      "passed": true,
+      "evidence": "SCSS %focus-ring placeholder uses outline: var(--ui-focus-width, 3px) solid var(--ui-focus-color, #1a73e8) with outline-offset: 2px on :focus-visible. Extended by all interactive elements. No box-shadow used for focus indicators. Mockup also uses outline for :focus-visible."
+    }
+  ]
+}

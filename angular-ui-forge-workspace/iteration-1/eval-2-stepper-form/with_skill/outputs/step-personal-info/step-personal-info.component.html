@@ -1,0 +1,161 @@
+<!-- Step 1: Personal Information -->
+<div class="step-panel" role="group" aria-labelledby="step-personal-title">
+  <div class="step-panel__header">
+    <h2 id="step-personal-title" class="step-panel__title">Personal Information</h2>
+    <p class="step-panel__description">
+      Tell us about yourself. Fields marked with * are required.
+    </p>
+  </div>
+
+  <form
+    class="step-panel__form"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    novalidate
+  >
+    <!-- Name row: 2 columns on tablet+, full width on mobile -->
+    <div class="form-grid">
+      <!-- First Name -->
+      <div class="form-field">
+        <label
+          class="form-field__label"
+          for="firstName"
+        >
+          First name <span class="form-field__required" aria-hidden="true">*</span>
+        </label>
+        <input
+          id="firstName"
+          class="form-field__input"
+          [class.form-field__input--error]="shouldShowError('firstName')"
+          [class.form-field__input--valid]="fieldTouched['firstName'] && !shouldShowError('firstName') && form.get('firstName')?.value"
+          type="text"
+          formControlName="firstName"
+          autocomplete="given-name"
+          placeholder="e.g. Anna"
+          [attr.aria-invalid]="shouldShowError('firstName')"
+          [attr.aria-describedby]="shouldShowError('firstName') ? 'firstName-error' : null"
+          (blur)="onFieldBlur('firstName')"
+        />
+        <p
+          *ngIf="shouldShowError('firstName')"
+          id="firstName-error"
+          class="form-field__error"
+          role="alert"
+        >
+          {{ getErrorMessage('firstName') }}
+        </p>
+      </div>
+
+      <!-- Last Name -->
+      <div class="form-field">
+        <label
+          class="form-field__label"
+          for="lastName"
+        >
+          Last name <span class="form-field__required" aria-hidden="true">*</span>
+        </label>
+        <input
+          id="lastName"
+          class="form-field__input"
+          [class.form-field__input--error]="shouldShowError('lastName')"
+          [class.form-field__input--valid]="fieldTouched['lastName'] && !shouldShowError('lastName') && form.get('lastName')?.value"
+          type="text"
+          formControlName="lastName"
+          autocomplete="family-name"
+          placeholder="e.g. Muster"
+          [attr.aria-invalid]="shouldShowError('lastName')"
+          [attr.aria-describedby]="shouldShowError('lastName') ? 'lastName-error' : null"
+          (blur)="onFieldBlur('lastName')"
+        />
+        <p
+          *ngIf="shouldShowError('lastName')"
+          id="lastName-error"
+          class="form-field__error"
+          role="alert"
+        >
+          {{ getErrorMessage('lastName') }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Email — full width -->
+    <div class="form-field form-field--full">
+      <label
+        class="form-field__label"
+        for="email"
+      >
+        Email <span class="form-field__required" aria-hidden="true">*</span>
+      </label>
+      <input
+        id="email"
+        class="form-field__input"
+        [class.form-field__input--error]="shouldShowError('email')"
+        [class.form-field__input--valid]="fieldTouched['email'] && !shouldShowError('email') && form.get('email')?.value"
+        type="email"
+        inputmode="email"
+        formControlName="email"
+        autocomplete="email"
+        placeholder="anna.muster@example.com"
+        [attr.aria-invalid]="shouldShowError('email')"
+        [attr.aria-describedby]="shouldShowError('email') ? 'email-error' : 'email-help'"
+        (blur)="onFieldBlur('email')"
+      />
+      <p id="email-help" class="form-field__help" *ngIf="!shouldShowError('email')">
+        We'll send your confirmation to this address
+      </p>
+      <p
+        *ngIf="shouldShowError('email')"
+        id="email-error"
+        class="form-field__error"
+        role="alert"
+      >
+        {{ getErrorMessage('email') }}
+      </p>
+    </div>
+
+    <!-- Phone — full width, optional -->
+    <div class="form-field form-field--full">
+      <label
+        class="form-field__label"
+        for="phone"
+      >
+        Phone <span class="form-field__optional">(optional)</span>
+      </label>
+      <input
+        id="phone"
+        class="form-field__input"
+        [class.form-field__input--error]="shouldShowError('phone')"
+        type="tel"
+        inputmode="tel"
+        formControlName="phone"
+        autocomplete="tel"
+        placeholder="+41 79 123 45 67"
+        [attr.aria-invalid]="shouldShowError('phone')"
+        [attr.aria-describedby]="shouldShowError('phone') ? 'phone-error' : null"
+        (blur)="onFieldBlur('phone')"
+      />
+      <p
+        *ngIf="shouldShowError('phone')"
+        id="phone-error"
+        class="form-field__error"
+        role="alert"
+      >
+        {{ getErrorMessage('phone') }}
+      </p>
+    </div>
+
+    <!-- Actions -->
+    <div class="step-panel__actions">
+      <div></div><!-- spacer for flex alignment -->
+      <button
+        type="submit"
+        class="btn btn--primary"
+      >
+        Continue to Address
+        <svg class="btn__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Input Component — Visual States Mockup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ---- Unigrid Design Tokens ---- */
+    :root {
+      --ug-font-family: 'Inter', system-ui, sans-serif;
+      --ug-font-size-xs: 0.75rem;
+      --ug-font-size-sm: 0.875rem;
+      --ug-font-size-base: 1rem;
+      --ug-font-size-lg: 1.25rem;
+      --ug-font-size-xl: 1.5rem;
+      --ug-font-size-2xl: 2rem;
+      --ug-leading: 1.625rem;
+      --ug-spacing-1: calc(0.25 * var(--ug-leading));
+      --ug-spacing-2: calc(0.5 * var(--ug-leading));
+      --ug-spacing-3: calc(1 * var(--ug-leading));
+      --ug-spacing-4: calc(1.5 * var(--ug-leading));
+      --ug-spacing-5: calc(2 * var(--ug-leading));
+      --ug-black: #1a1a1a;
+      --ug-white: #ffffff;
+      --ug-warm-gray: #f5f2ed;
+      --ug-dark-gray: #333333;
+      --ug-medium-gray: #666666;
+      --ug-light-gray: #e8e5e0;
+      --ug-red: #c1272d;
+      --ug-green: #2d5a27;
+      --ug-blue: #274a5a;
+      --ug-border-radius: 0;
+    }
+
+    @media (min-width: 1024px) {
+      :root {
+        --ug-leading: 1.7rem;
+      }
+    }
+
+    /* ---- Reset ---- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--ug-font-family);
+      font-size: var(--ug-font-size-base);
+      line-height: var(--ug-leading);
+      color: var(--ug-black);
+      background-color: var(--ug-white);
+      padding: var(--ug-spacing-5);
+    }
+
+    h1 {
+      font-size: var(--ug-font-size-2xl);
+      font-weight: 700;
+      margin-bottom: var(--ug-spacing-3);
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: var(--ug-font-size-lg);
+      font-weight: 600;
+      margin-top: var(--ug-spacing-5);
+      margin-bottom: var(--ug-spacing-2);
+      padding-bottom: var(--ug-spacing-1);
+      border-bottom: 2px solid var(--ug-black);
+    }
+
+    .section-description {
+      font-size: var(--ug-font-size-sm);
+      color: var(--ug-medium-gray);
+      margin-bottom: var(--ug-spacing-3);
+    }
+
+    /* ---- Layout ---- */
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--ug-spacing-3);
+      max-width: 480px;
+    }
+
+    .demo-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--ug-spacing-3);
+    }
+
+    @media (max-width: 600px) {
+      .demo-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ============================================================
+       Form Input Component Styles (mirrors Angular component)
+       ============================================================ */
+
+    .ui-form-input {
+      display: block;
+      margin-bottom: var(--ug-spacing-2);
+      font-family: var(--ug-font-family);
+    }
+
+    .ui-form-input__wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .ui-form-input__native {
+      display: block;
+      width: 100%;
+      height: calc(var(--ug-leading) * 2);
+      padding: calc(var(--ug-leading) * 0.75) var(--ug-spacing-2) 0;
+      font-family: inherit;
+      font-size: var(--ug-font-size-base);
+      line-height: var(--ug-leading);
+      color: var(--ug-black);
+      background-color: var(--ug-white);
+      border: 1px solid var(--ug-light-gray);
+      border-radius: var(--ug-border-radius);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .ui-form-input__native::placeholder {
+      color: transparent;
+    }
+
+    .ui-form-input__native:focus {
+      outline: none;
+      border-color: var(--ug-black);
+      box-shadow: 0 0 0 1px var(--ug-black);
+    }
+
+    .ui-form-input__native:focus-visible {
+      outline: 3px solid #1a73e8;
+      outline-offset: 2px;
+      box-shadow: none;
+    }
+
+    .ui-form-input__native:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background-color: var(--ug-warm-gray);
+    }
+
+    .ui-form-input__native[type='number'] {
+      -moz-appearance: textfield;
+    }
+    .ui-form-input__native[type='number']::-webkit-inner-spin-button,
+    .ui-form-input__native[type='number']::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* ---- Floating Label ---- */
+    .ui-form-input__label {
+      position: absolute;
+      top: 50%;
+      left: calc(var(--ug-spacing-2) + 1px);
+      transform: translateY(-50%);
+      font-size: var(--ug-font-size-base);
+      color: var(--ug-medium-gray);
+      pointer-events: none;
+      transform-origin: left center;
+      transition: transform 0.15s ease, font-size 0.15s ease, color 0.15s ease;
+    }
+
+    .ui-form-input__native:focus + .ui-form-input__label,
+    .ui-form-input__native:not(:placeholder-shown) + .ui-form-input__label {
+      transform: translateY(-130%) scale(0.75);
+      color: var(--ug-dark-gray);
+    }
+
+    .ui-form-input__required {
+      color: var(--ug-red);
+      margin-left: 0.125em;
+    }
+
+    /* ---- State Icon ---- */
+    .ui-form-input__state-icon {
+      position: absolute;
+      right: var(--ug-spacing-2);
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+    }
+
+    .ui-form-input__icon {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    .ui-form-input__icon--error { color: var(--ug-red); }
+    .ui-form-input__icon--success { color: var(--ug-green); }
+
+    /* ---- Description ---- */
+    .ui-form-input__description {
+      margin-top: var(--ug-spacing-1);
+      font-size: var(--ug-font-size-xs);
+      line-height: var(--ug-leading);
+    }
+
+    /* ---- Error State ---- */
+    .ui-form-input--error .ui-form-input__native {
+      border-color: var(--ug-red);
+      padding-right: calc(var(--ug-spacing-2) + 1.5rem);
+    }
+    .ui-form-input--error .ui-form-input__native:focus {
+      box-shadow: 0 0 0 1px var(--ug-red);
+    }
+    .ui-form-input--error .ui-form-input__label {
+      color: var(--ug-red);
+    }
+    .ui-form-input--error .ui-form-input__native:focus + .ui-form-input__label,
+    .ui-form-input--error .ui-form-input__native:not(:placeholder-shown) + .ui-form-input__label {
+      color: var(--ug-red);
+    }
+    .ui-form-input--error .ui-form-input__description {
+      color: var(--ug-red);
+    }
+
+    /* ---- Success State ---- */
+    .ui-form-input--success .ui-form-input__native {
+      border-color: var(--ug-green);
+      padding-right: calc(var(--ug-spacing-2) + 1.5rem);
+    }
+    .ui-form-input--success .ui-form-input__native:focus {
+      box-shadow: 0 0 0 1px var(--ug-green);
+    }
+    .ui-form-input--success .ui-form-input__label {
+      color: var(--ug-green);
+    }
+    .ui-form-input--success .ui-form-input__native:focus + .ui-form-input__label,
+    .ui-form-input--success .ui-form-input__native:not(:placeholder-shown) + .ui-form-input__label {
+      color: var(--ug-green);
+    }
+    .ui-form-input--success .ui-form-input__description {
+      color: var(--ug-green);
+    }
+
+    /* ---- Disabled ---- */
+    .ui-form-input--disabled {
+      pointer-events: none;
+    }
+    .ui-form-input--disabled .ui-form-input__label {
+      opacity: 0.5;
+    }
+
+    /* ---- Focus simulation class ---- */
+    .ui-form-input--focus-demo .ui-form-input__native {
+      border-color: var(--ug-black);
+      box-shadow: 0 0 0 1px var(--ug-black);
+    }
+
+    /* ---- Mobile touch target ---- */
+    @media (max-width: 479px) {
+      .ui-form-input__native {
+        min-height: 48px;
+        font-size: 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ui-form-input__native,
+      .ui-form-input__label {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Form Input Component</h1>
+  <p class="section-description">
+    Reusable floating-label form input built with unigrid.css design tokens.
+    Supports text, email, tel, and number types with inline validation.
+  </p>
+
+  <!-- ============================================================ -->
+  <h2>Default State</h2>
+  <p class="section-description">Empty input with floating label resting in the center.</p>
+  <div class="demo-grid">
+    <div class="ui-form-input">
+      <div class="ui-form-input__wrapper">
+        <input class="ui-form-input__native" id="default-1" type="text" placeholder=" ">
+        <label class="ui-form-input__label" for="default-1">Full Name</label>
+      </div>
+      <div class="ui-form-input__description" id="default-1-desc">Enter your full legal name</div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>Focus State</h2>
+  <p class="section-description">Click or tab into the input. The label floats up and the border darkens.</p>
+  <div class="demo-grid">
+    <div class="ui-form-input ui-form-input--focus-demo">
+      <div class="ui-form-input__wrapper">
+        <input class="ui-form-input__native" id="focus-1" type="text" placeholder=" " value="">
+        <label class="ui-form-input__label" for="focus-1" style="transform: translateY(-130%) scale(0.75); color: var(--ug-dark-gray);">Email Address</label>
+      </div>
+      <div class="ui-form-input__description" id="focus-1-desc">We will never share your email</div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>Error State</h2>
+  <p class="section-description">Displays red border, error icon, and error message. Uses role="alert" for screen readers.</p>
+  <div class="demo-grid">
+    <div class="ui-form-input ui-form-input--error">
+      <div class="ui-form-input__wrapper">
+        <input class="ui-form-input__native" id="error-1" type="email" placeholder=" " value="invalid-email" aria-invalid="true" aria-describedby="error-1-desc">
+        <label class="ui-form-input__label" for="error-1">Email Address</label>
+        <span class="ui-form-input__state-icon" aria-hidden="true">
+          <svg class="ui-form-input__icon ui-form-input__icon--error" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+          </svg>
+        </span>
+      </div>
+      <div class="ui-form-input__description" id="error-1-desc" role="alert" aria-live="assertive">Please enter a valid email address</div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>Success State</h2>
+  <p class="section-description">Displays green border, check icon, and success message.</p>
+  <div class="demo-grid">
+    <div class="ui-form-input ui-form-input--success">
+      <div class="ui-form-input__wrapper">
+        <input class="ui-form-input__native" id="success-1" type="email" placeholder=" " value="user@example.com" aria-describedby="success-1-desc">
+        <label class="ui-form-input__label" for="success-1">Email Address</label>
+        <span class="ui-form-input__state-icon" aria-hidden="true">
+          <svg class="ui-form-input__icon ui-form-input__icon--success" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+        </span>
+      </div>
+      <div class="ui-form-input__description" id="success-1-desc" aria-live="polite">Email address is available</div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>Disabled State</h2>
+  <p class="section-description">Input is non-interactive with reduced opacity and warm-gray background.</p>
+  <div class="demo-grid">
+    <div class="ui-form-input ui-form-input--disabled">
+      <div class="ui-form-input__wrapper">
+        <input class="ui-form-input__native" id="disabled-1" type="text" placeholder=" " value="Cannot edit this" disabled>
+        <label class="ui-form-input__label" for="disabled-1">Disabled Field</label>
+      </div>
+    </div>
+
+    <div class="ui-form-input ui-form-input--disabled">
+      <div class="ui-form-input__wrapper">
+        <input class="ui-form-input__native" id="disabled-2" type="text" placeholder=" " disabled>
+        <label class="ui-form-input__label" for="disabled-2">Disabled Empty</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>Required Field</h2>
+  <p class="section-description">Shows a red asterisk next to the label and sets aria-required.</p>
+  <div class="demo-grid">
+    <div class="ui-form-input">
+      <div class="ui-form-input__wrapper">
+        <input class="ui-form-input__native" id="required-1" type="text" placeholder=" " required aria-required="true" aria-describedby="required-1-desc">
+        <label class="ui-form-input__label" for="required-1">Username <span class="ui-form-input__required" aria-hidden="true">*</span></label>
+      </div>
+      <div class="ui-form-input__description" id="required-1-desc">This field is required</div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>All Input Types</h2>
+  <p class="section-description">Each supported type with appropriate inputmode for mobile keyboards.</p>
+  <div class="demo-grid">
+    <div class="ui-form-input">
+      <div class="ui-form-input__wrapper">
+        <input class="ui-form-input__native" id="type-text" type="text" placeholder=" ">
+        <label class="ui-form-input__label" for="type-text">Text Input</label>
+      </div>
+    </div>
+
+    <div class="ui-form-input">
+      <div class="ui-form-input__wrapper">
+        <input class="ui-form-input__native" id="type-email" type="email" placeholder=" " inputmode="email">
+        <label class="ui-form-input__label" for="type-email">Email Input</label>
+      </div>
+    </div>
+
+    <div class="ui-form-input">
+      <div class="ui-form-input__wrapper">
+        <input class="ui-form-input__native" id="type-tel" type="tel" placeholder=" " inputmode="tel">
+        <label class="ui-form-input__label" for="type-tel">Telephone Input</label>
+      </div>
+    </div>
+
+    <div class="ui-form-input">
+      <div class="ui-form-input__wrapper">
+        <input class="ui-form-input__native" id="type-number" type="number" placeholder=" " inputmode="decimal" min="0" max="100" step="1">
+        <label class="ui-form-input__label" for="type-number">Number Input</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>Side-by-Side Comparison</h2>
+  <p class="section-description">All states visible at once for quick design review.</p>
+  <div class="demo-row">
+    <div>
+      <div class="ui-form-input">
+        <div class="ui-form-input__wrapper">
+          <input class="ui-form-input__native" id="cmp-default" type="text" placeholder=" ">
+          <label class="ui-form-input__label" for="cmp-default">Default</label>
+        </div>
+        <div class="ui-form-input__description">Help text</div>
+      </div>
+
+      <div class="ui-form-input ui-form-input--error">
+        <div class="ui-form-input__wrapper">
+          <input class="ui-form-input__native" id="cmp-error" type="text" placeholder=" " value="Bad value" aria-invalid="true" aria-describedby="cmp-error-desc">
+          <label class="ui-form-input__label" for="cmp-error">Error</label>
+          <span class="ui-form-input__state-icon" aria-hidden="true">
+            <svg class="ui-form-input__icon ui-form-input__icon--error" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+            </svg>
+          </span>
+        </div>
+        <div class="ui-form-input__description" id="cmp-error-desc" role="alert">Invalid input</div>
+      </div>
+
+      <div class="ui-form-input ui-form-input--success">
+        <div class="ui-form-input__wrapper">
+          <input class="ui-form-input__native" id="cmp-success" type="text" placeholder=" " value="Good value" aria-describedby="cmp-success-desc">
+          <label class="ui-form-input__label" for="cmp-success">Success</label>
+          <span class="ui-form-input__state-icon" aria-hidden="true">
+            <svg class="ui-form-input__icon ui-form-input__icon--success" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+          </span>
+        </div>
+        <div class="ui-form-input__description" id="cmp-success-desc">Valid</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="ui-form-input">
+        <div class="ui-form-input__wrapper">
+          <input class="ui-form-input__native" id="cmp-required" type="text" placeholder=" " required aria-required="true">
+          <label class="ui-form-input__label" for="cmp-required">Required <span class="ui-form-input__required" aria-hidden="true">*</span></label>
+        </div>
+      </div>
+
+      <div class="ui-form-input ui-form-input--disabled">
+        <div class="ui-form-input__wrapper">
+          <input class="ui-form-input__native" id="cmp-disabled" type="text" placeholder=" " value="Locked" disabled>
+          <label class="ui-form-input__label" for="cmp-disabled">Disabled</label>
+        </div>
+      </div>
+
+      <div class="ui-form-input ui-form-input--focus-demo">
+        <div class="ui-form-input__wrapper">
+          <input class="ui-form-input__native" id="cmp-focus" type="text" placeholder=" ">
+          <label class="ui-form-input__label" for="cmp-focus" style="transform: translateY(-130%) scale(0.75); color: var(--ug-dark-gray);">Focused</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

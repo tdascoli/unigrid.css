@@ -1,0 +1,70 @@
+{
+  "run_id": "eval-3-with_skill",
+  "expectations": [
+    {
+      "text": "smart-dumb-split: Has both smart (container) and dumb (presentational) components with clear separation",
+      "passed": true,
+      "evidence": "data-table-container/ is the smart component (owns sorting, filtering, pagination state via BehaviorSubjects, computes visibleRows$). data-table/ is the dumb component (all @Input/@Output, zero owned state, documented as 'fully controlled via inputs'). Container passes data down and listens to events."
+    },
+    {
+      "text": "separate-files: All components use separate .html and .scss files, never inline",
+      "passed": true,
+      "evidence": "Both components use templateUrl and styleUrl pointing to separate files: data-table-container.component.html/.scss and data-table.component.html/.scss. No inline template or styles found."
+    },
+    {
+      "text": "onpush: Dumb components use ChangeDetectionStrategy.OnPush",
+      "passed": true,
+      "evidence": "data-table.component.ts has changeDetection: ChangeDetectionStrategy.OnPush. The container also uses OnPush."
+    },
+    {
+      "text": "mobile-card-layout: Mobile view uses card-based layout instead of table",
+      "passed": true,
+      "evidence": "SCSS shows .ui-data-table__cards displayed by default (flex column) and hidden at min-width:768px. .ui-data-table__scroll (table) is display:none by default, shown at 768px+. HTML template has a full card view section with role='list'/role='listitem', card-label/card-value pairs."
+    },
+    {
+      "text": "desktop-table-layout: Desktop view (md+ breakpoint) uses proper table layout",
+      "passed": true,
+      "evidence": "SCSS: .ui-data-table__scroll shows at @media (min-width: 768px) with display:block. HTML uses proper <table>/<thead>/<tbody>/<tr>/<th>/<td> semantics. Table has width:100% and proper border-collapse."
+    },
+    {
+      "text": "full-viewport: Table uses full available viewport width, not a narrow centered container",
+      "passed": true,
+      "evidence": ":host has display:block; width:100%. .ui-data-table__wrapper has width:100%. .ui-data-table__table has width:100%. Container :host also has width:100%. No max-width constraint on the table itself."
+    },
+    {
+      "text": "rhythm-rows: Row heights use leading-based spacing (multiples of --ug-leading)",
+      "passed": true,
+      "evidence": "All cell padding uses --ug-spacing-2 (0.8125rem = 0.5 * --ug-leading). Line-height set to var(--ug-leading, 1.625rem) on cells and headers. The spacing scale is derived from --ug-leading multiples (spacing-1=0.25x, spacing-2=0.5x, spacing-3=1x, etc.)."
+    },
+    {
+      "text": "unigrid-tokens: SCSS uses unigrid.css tokens (--ug-spacing-*, --ug-leading, ug-grid classes)",
+      "passed": true,
+      "evidence": "SCSS extensively uses --ug-spacing-1 through --ug-spacing-6, --ug-leading, --ug-font-size-sm/base/xs, --ug-font-family, --ug-black, --ug-white, --ug-warm-gray, --ug-light-gray, --ug-dark-gray, --ug-medium-gray, --ug-red throughout. No ug-grid classes found but token usage is thorough."
+    },
+    {
+      "text": "aria-sort: Sortable columns have aria-sort attribute",
+      "passed": true,
+      "evidence": "HTML template: [attr.aria-sort]='col.sortable !== false ? getAriaSortValue(col) : null' on <th> elements. getAriaSortValue() returns 'none', 'ascending', or 'descending'. Mockup HTML also shows aria-sort='none' and aria-sort='ascending' on column headers."
+    },
+    {
+      "text": "keyboard-accessible: Sort buttons, pagination, and row selection are keyboard accessible",
+      "passed": true,
+      "evidence": "Sort uses <button> elements with aria-label='Sort by X'. Pagination uses <button> elements with aria-labels (First/Previous/Next/Last page, Page N). Checkboxes are native <input type='checkbox'> with aria-labels. All interactive elements have :focus-visible outlines (3px solid). Search input is a native <input>."
+    },
+    {
+      "text": "touch-targets: Interactive elements (sort buttons, pagination, checkboxes) meet 44px minimum",
+      "passed": false,
+      "evidence": "Search input has min-height:44px. Pagination buttons have min-width:36px and min-height:36px -- below the 44px minimum. Page size select has min-height:36px. Checkboxes are 18px with a pseudo-element extending the target, but the ::before approach on a checkbox input is unreliable across browsers. Sort buttons have no explicit min-height/min-width set."
+    },
+    {
+      "text": "storybook-states: Stories include: Default, Empty, Loading, WithFilters states",
+      "passed": true,
+      "evidence": "data-table.stories.ts exports: Default (line 110), Empty (line 171), Loading (line 182), WithFilter (line 161 -- searchTerm='engineer' with filtered rows). All four required states are present plus many more variants."
+    },
+    {
+      "text": "html-mockup: Includes a standalone HTML mockup showing responsive table behavior",
+      "passed": true,
+      "evidence": "data-table-mockup.html is a complete standalone HTML file with embedded CSS. Shows 5 sections: Default desktop table, Loading skeleton, Empty state, With active filter, and Mobile card view. Uses responsive CSS with @media (min-width: 768px) to switch between table and card layouts."
+    }
+  ]
+}

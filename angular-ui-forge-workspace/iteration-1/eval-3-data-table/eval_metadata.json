@@ -1,0 +1,72 @@
+{
+  "eval_id": 3,
+  "eval_name": "data-table-unigrid",
+  "prompt": "I need a data table component for our dashboard. It should handle sorting, filtering, pagination, and row selection. The table should use as much viewport as possible and work well on mobile (card-based layout on small screens, table on desktop). We use unigrid.css directly, no Bootstrap or Tailwind.",
+  "assertions": [
+    {
+      "id": "smart-dumb-split",
+      "text": "Has both smart (container) and dumb (presentational) components with clear separation",
+      "type": "structural"
+    },
+    {
+      "id": "separate-files",
+      "text": "All components use separate .html and .scss files, never inline",
+      "type": "structural"
+    },
+    {
+      "id": "onpush",
+      "text": "Dumb components use ChangeDetectionStrategy.OnPush",
+      "type": "structural"
+    },
+    {
+      "id": "mobile-card-layout",
+      "text": "Mobile view uses card-based layout instead of table",
+      "type": "responsive"
+    },
+    {
+      "id": "desktop-table-layout",
+      "text": "Desktop view (md+ breakpoint) uses proper table layout",
+      "type": "responsive"
+    },
+    {
+      "id": "full-viewport",
+      "text": "Table uses full available viewport width, not a narrow centered container",
+      "type": "design"
+    },
+    {
+      "id": "rhythm-rows",
+      "text": "Row heights use leading-based spacing (multiples of --ug-leading)",
+      "type": "design"
+    },
+    {
+      "id": "unigrid-tokens",
+      "text": "SCSS uses unigrid.css tokens (--ug-spacing-*, --ug-leading, ug-grid classes)",
+      "type": "framework"
+    },
+    {
+      "id": "aria-sort",
+      "text": "Sortable columns have aria-sort attribute",
+      "type": "accessibility"
+    },
+    {
+      "id": "keyboard-accessible",
+      "text": "Sort buttons, pagination, and row selection are keyboard accessible",
+      "type": "accessibility"
+    },
+    {
+      "id": "touch-targets",
+      "text": "Interactive elements (sort buttons, pagination, checkboxes) meet 44px minimum",
+      "type": "accessibility"
+    },
+    {
+      "id": "storybook-states",
+      "text": "Stories include: Default, Empty, Loading, WithFilters states",
+      "type": "storybook"
+    },
+    {
+      "id": "html-mockup",
+      "text": "Includes a standalone HTML mockup showing responsive table behavior",
+      "type": "deliverable"
+    }
+  ]
+}

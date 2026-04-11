@@ -1,0 +1,429 @@
+<!-- ================================================================
+     Toolbar: Search + Filter toggle + Bulk actions
+     ================================================================ -->
+<div class="data-table__toolbar">
+  <!-- Search -->
+  <div class="data-table__search" *ngIf="showSearch">
+    <svg
+      class="data-table__search-icon"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      aria-hidden="true"
+    >
+      <circle cx="11" cy="11" r="8" />
+      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+    </svg>
+    <input
+      type="search"
+      class="data-table__search-input"
+      [placeholder]="searchPlaceholder"
+      [value]="searchQuery"
+      [disabled]="loading"
+      (input)="onSearchInput($event)"
+      attr.aria-label="{{ searchPlaceholder }}"
+    />
+  </div>
+
+  <!-- Filter toggle -->
+  <button
+    *ngIf="showFilterButton"
+    class="data-table__filter-btn"
+    [class.data-table__filter-btn--active]="filters.length > 0"
+    (click)="onFilterToggle()"
+    [attr.aria-expanded]="filters.length > 0"
+    aria-label="Toggle filters"
+  >
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      aria-hidden="true"
+    >
+      <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+    </svg>
+    Filters
+    <span *ngIf="filters.length > 0">({{ filters.length }})</span>
+  </button>
+
+  <!-- Bulk actions (shown when rows are selected) -->
+  <ng-container *ngIf="selectable && selectedCount > 0">
+    <span class="data-table__selected-count">
+      {{ selectedCount }} selected
+    </span>
+    <ng-content select="[bulkActions]"></ng-content>
+  </ng-container>
+</div>
+
+<!-- ================================================================
+     Active Filter Chips
+     ================================================================ -->
+<div
+  class="data-table__active-filters"
+  *ngIf="filters.length > 0"
+  role="list"
+  aria-label="Active filters"
+>
+  <div
+    class="data-table__filter-chip"
+    *ngFor="let filter of filters; trackBy: trackByFilter"
+    role="listitem"
+  >
+    {{ filter.label }}
+    <button
+      class="data-table__filter-chip-remove"
+      (click)="onFilterRemoveClick(filter)"
+      [attr.aria-label]="'Remove ' + filter.label + ' filter'"
+    >
+      &times;
+    </button>
+  </div>
+  <button
+    class="data-table__clear-filters"
+    (click)="onClearFilters()"
+  >
+    Clear all
+  </button>
+</div>
+
+<!-- ================================================================
+     Loading State
+     ================================================================ -->
+<div
+  class="data-table__loading"
+  *ngIf="loading"
+  role="status"
+  aria-label="Loading table data"
+>
+  <div
+    class="data-table__skeleton-row"
+    *ngFor="let i of skeletonRowArray"
+  >
+    <div class="data-table__skeleton data-table__skeleton--sm"></div>
+    <div class="data-table__skeleton data-table__skeleton--xl"></div>
+    <div class="data-table__skeleton data-table__skeleton--lg"></div>
+    <div class="data-table__skeleton data-table__skeleton--md"></div>
+    <div class="data-table__skeleton data-table__skeleton--md"></div>
+  </div>
+  <span class="sr-only">Loading table data, please wait.</span>
+</div>
+
+<!-- ================================================================
+     Empty State
+     ================================================================ -->
+<div
+  class="data-table__empty"
+  *ngIf="!loading && data.length === 0"
+  role="status"
+>
+  <div class="data-table__empty-icon" aria-hidden="true">
+    <svg
+      width="64"
+      height="64"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+    >
+      <circle cx="11" cy="11" r="8" />
+      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+      <line x1="8" y1="11" x2="14" y2="11" />
+    </svg>
+  </div>
+  <p class="data-table__empty-title">{{ emptyTitle }}</p>
+  <p class="data-table__empty-text">{{ emptyText }}</p>
+  <ng-content select="[emptyAction]"></ng-content>
+</div>
+
+<!-- ================================================================
+     Desktop Table
+     ================================================================ -->
+<div
+  class="data-table__scroll-container"
+  *ngIf="!loading && data.length > 0"
+>
+  <table
+    class="data-table__table"
+    [attr.aria-label]="tableLabel"
+    [attr.aria-busy]="loading"
+    role="grid"
+  >
+    <thead>
+      <tr>
+        <!-- Select-all checkbox -->
+        <th
+          *ngIf="selectable"
+          class="data-table__checkbox-cell"
+          scope="col"
+        >
+          <label class="data-table__checkbox-wrapper">
+            <input
+              type="checkbox"
+              [checked]="allSelected"
+              [indeterminate]="someSelected"
+              (change)="onSelectAll($any($event.target).checked)"
+              aria-label="Select all rows"
+            />
+          </label>
+        </th>
+
+        <!-- Column headers -->
+        <th
+          *ngFor="let col of columns; trackBy: trackByColumn"
+          scope="col"
+          [attr.aria-sort]="col.sortable !== false ? getAriaSortValue(col.key) : null"
+          [style.width]="col.width || null"
+        >
+          <!-- Sortable header -->
+          <button
+            *ngIf="col.sortable !== false && col.type !== 'actions'"
+            class="data-table__sort-btn"
+            (click)="onSortClick(col)"
+          >
+            {{ col.label }}
+            <span
+              class="data-table__sort-icon"
+              [class.data-table__sort-icon--asc]="getSortDirection(col.key) === 'asc'"
+              [class.data-table__sort-icon--desc]="getSortDirection(col.key) === 'desc'"
+              aria-hidden="true"
+            >
+              <span class="sort-up">&#9650;</span>
+              <span class="sort-down">&#9660;</span>
+            </span>
+          </button>
+
+          <!-- Non-sortable header -->
+          <span
+            *ngIf="col.sortable === false || col.type === 'actions'"
+            [class.sr-only]="col.type === 'actions'"
+          >
+            {{ col.label }}
+          </span>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr
+        *ngFor="let row of data; trackBy: trackByRow"
+        [class.data-table__row--selected]="selectable && isRowSelected(row)"
+      >
+        <!-- Row checkbox -->
+        <td *ngIf="selectable" class="data-table__checkbox-cell">
+          <label class="data-table__checkbox-wrapper">
+            <input
+              type="checkbox"
+              [checked]="isRowSelected(row)"
+              (change)="onRowSelect(row, $any($event.target).checked)"
+              [attr.aria-label]="'Select row ' + getRowId(row)"
+            />
+          </label>
+        </td>
+
+        <!-- Data cells -->
+        <td *ngFor="let col of columns; trackBy: trackByColumn">
+          <!-- Status cell -->
+          <ng-container *ngIf="col.type === 'status'">
+            <span
+              class="data-table__status"
+              [class.data-table__status--active]="getCellValue(row, col) === 'active' || getCellValue(row, col) === 'Active'"
+              [class.data-table__status--inactive]="getCellValue(row, col) === 'inactive' || getCellValue(row, col) === 'Inactive'"
+              [class.data-table__status--pending]="getCellValue(row, col) === 'pending' || getCellValue(row, col) === 'Pending'"
+            >
+              <span class="data-table__status-dot" aria-hidden="true"></span>
+              {{ getCellValue(row, col) }}
+            </span>
+          </ng-container>
+
+          <!-- Actions cell -->
+          <ng-container *ngIf="col.type === 'actions'">
+            <div class="data-table__row-actions">
+              <button
+                class="data-table__action-btn"
+                (click)="onRowActionClick('edit', row)"
+                [attr.aria-label]="'Edit row ' + getRowId(row)"
+                title="Edit"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
+                  <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                </svg>
+              </button>
+              <button
+                class="data-table__action-btn data-table__action-btn--danger"
+                (click)="onRowActionClick('delete', row)"
+                [attr.aria-label]="'Delete row ' + getRowId(row)"
+                title="Delete"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <polyline points="3 6 5 6 21 6" />
+                  <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2" />
+                </svg>
+              </button>
+            </div>
+          </ng-container>
+
+          <!-- Default text cell -->
+          <ng-container *ngIf="col.type !== 'status' && col.type !== 'actions'">
+            {{ getCellValue(row, col) }}
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ================================================================
+     Mobile Cards
+     ================================================================ -->
+<div
+  class="data-table__cards"
+  *ngIf="!loading && data.length > 0"
+>
+  <div
+    class="data-table__card"
+    *ngFor="let row of data; trackBy: trackByRow"
+    [class.data-table__card--selected]="selectable && isRowSelected(row)"
+  >
+    <div class="data-table__card-header">
+      <label
+        *ngIf="selectable"
+        class="data-table__checkbox-wrapper"
+      >
+        <input
+          type="checkbox"
+          [checked]="isRowSelected(row)"
+          (change)="onRowSelect(row, $any($event.target).checked)"
+          [attr.aria-label]="'Select row ' + getRowId(row)"
+        />
+      </label>
+
+      <!-- First text column as card title -->
+      <span class="data-table__card-title">
+        {{ getCellValue(row, columns[0]) }}
+      </span>
+
+      <!-- Status badge if present -->
+      <ng-container *ngFor="let col of columns; trackBy: trackByColumn">
+        <span
+          *ngIf="col.type === 'status'"
+          class="data-table__status"
+          [class.data-table__status--active]="getCellValue(row, col) === 'active' || getCellValue(row, col) === 'Active'"
+          [class.data-table__status--inactive]="getCellValue(row, col) === 'inactive' || getCellValue(row, col) === 'Inactive'"
+          [class.data-table__status--pending]="getCellValue(row, col) === 'pending' || getCellValue(row, col) === 'Pending'"
+        >
+          <span class="data-table__status-dot" aria-hidden="true"></span>
+          {{ getCellValue(row, col) }}
+        </span>
+      </ng-container>
+    </div>
+
+    <div class="data-table__card-fields">
+      <ng-container *ngFor="let col of mobileColumns; trackBy: trackByColumn">
+        <!-- Skip first column (used as title) and status (shown in header) -->
+        <div
+          class="data-table__card-field"
+          *ngIf="col !== columns[0] && col.type !== 'status'"
+        >
+          <span class="data-table__card-label">{{ col.label }}</span>
+          <span class="data-table__card-value">{{ getCellValue(row, col) }}</span>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="data-table__card-actions" *ngIf="actionsColumn">
+      <button
+        class="data-table__action-btn"
+        (click)="onRowActionClick('edit', row)"
+        [attr.aria-label]="'Edit row ' + getRowId(row)"
+        title="Edit"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
+          <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+        </svg>
+      </button>
+      <button
+        class="data-table__action-btn data-table__action-btn--danger"
+        (click)="onRowActionClick('delete', row)"
+        [attr.aria-label]="'Delete row ' + getRowId(row)"
+        title="Delete"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <polyline points="3 6 5 6 21 6" />
+          <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     Pagination Footer
+     ================================================================ -->
+<div
+  class="data-table__footer"
+  *ngIf="!loading && data.length > 0"
+>
+  <div class="data-table__page-info">
+    <span>{{ rangeText }}</span>
+    <label>
+      <span class="sr-only">Rows per page</span>
+      <select
+        class="data-table__page-size-select"
+        [value]="pagination.pageSize"
+        (change)="onPageSizeChange($event)"
+        aria-label="Rows per page"
+      >
+        <option
+          *ngFor="let size of pageSizes"
+          [value]="size"
+        >
+          {{ size }} / page
+        </option>
+      </select>
+    </label>
+  </div>
+
+  <nav class="data-table__pagination" aria-label="Table pagination">
+    <button
+      class="data-table__page-btn"
+      [disabled]="pagination.currentPage <= 1"
+      (click)="onPageClick(pagination.currentPage - 1)"
+      aria-label="Previous page"
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6" />
+      </svg>
+    </button>
+
+    <button
+      *ngFor="let page of pageNumbers; trackBy: trackByPage"
+      class="data-table__page-btn"
+      [class.data-table__page-btn--active]="page === pagination.currentPage"
+      [attr.aria-current]="page === pagination.currentPage ? 'page' : null"
+      [attr.aria-label]="'Page ' + page"
+      (click)="onPageClick(page)"
+    >
+      {{ page }}
+    </button>
+
+    <button
+      class="data-table__page-btn"
+      [disabled]="pagination.currentPage >= totalPages"
+      (click)="onPageClick(pagination.currentPage + 1)"
+      aria-label="Next page"
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <polyline points="9 18 15 12 9 6" />
+      </svg>
+    </button>
+  </nav>
+</div>
+
+<!-- Screen-reader-only utility -->
+<span class="sr-only" *ngIf="false"></span>

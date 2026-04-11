@@ -1,0 +1,65 @@
+{
+  "run_id": "eval-1-with_skill",
+  "expectations": [
+    {
+      "text": "separate-files: Component uses separate .html and .scss files (templateUrl/styleUrl), never inline template/styles",
+      "passed": true,
+      "evidence": "Component uses templateUrl: './form-input.component.html' and styleUrl: './form-input.component.scss' in the @Component decorator (lines 36-37 of .ts file)."
+    },
+    {
+      "text": "onpush: Component uses ChangeDetectionStrategy.OnPush",
+      "passed": true,
+      "evidence": "changeDetection: ChangeDetectionStrategy.OnPush is set in the @Component decorator (line 38 of .ts file)."
+    },
+    {
+      "text": "no-services: Dumb component has zero injected services (no constructor DI or inject())",
+      "passed": true,
+      "evidence": "No constructor is defined and no inject() calls appear anywhere in the component. Only @Input/@Output decorators and @ViewChild are used."
+    },
+    {
+      "text": "rhythm-spacing: SCSS uses unigrid spacing tokens (--ug-spacing-*) or leading-based calc() for margins/padding",
+      "passed": true,
+      "evidence": "SCSS extensively uses --ug-spacing-1 through --ug-spacing-4 for margins, padding, and positioning. Leading-based calc() expressions like calc(var(--ug-spacing-2, 0.8125rem) - 2px) are used throughout."
+    },
+    {
+      "text": "touch-target: Input has minimum 44px touch target (min-height: 44px or equivalent)",
+      "passed": true,
+      "evidence": "The .ui-form-input__native has min-height: 56px (line 103 of .scss). The small variant still meets 44px minimum (min-height: 44px on line 290)."
+    },
+    {
+      "text": "focus-visible: Includes :focus-visible styles with visible outline (not just color change)",
+      "passed": false,
+      "evidence": "The SCSS uses &:focus-visible ~ .ui-form-input__label which only changes the label color to --ui-focus-color. There is no visible outline or box-shadow on focus-visible for the input/wrapper itself. The wrapper focus style uses --focused class (JS-driven) with box-shadow but not :focus-visible. No outline property is set on :focus-visible."
+    },
+    {
+      "text": "aria-invalid: Uses aria-invalid and aria-describedby for error states",
+      "passed": true,
+      "evidence": "Template uses [attr.aria-invalid]='ariaInvalid' (which returns true when state === 'error') and [attr.aria-describedby]='hasFeedback ? descriptionId : null' linking to the feedback div with matching [id]='descriptionId'."
+    },
+    {
+      "text": "reduced-motion: Animations/transitions wrapped in prefers-reduced-motion media query",
+      "passed": true,
+      "evidence": "Three @media (prefers-reduced-motion: reduce) blocks set transition: none on .ui-form-input__wrapper (line 77), .ui-form-input__native::placeholder (line 145), and .ui-form-input__label (line 210)."
+    },
+    {
+      "text": "mobile-first: SCSS uses min-width media queries (mobile-first), not max-width",
+      "passed": true,
+      "evidence": "The only responsive breakpoint query is @media (min-width: 1024px) on line 342. No max-width queries are used."
+    },
+    {
+      "text": "storybook-variants: Storybook stories include at least: Default, Error, Success, Disabled variants",
+      "passed": true,
+      "evidence": "Stories file exports Default (line 108), ErrorState (line 160), SuccessState (line 171), and Disabled (line 183) story variants."
+    },
+    {
+      "text": "bootstrap-integration: Uses Bootstrap classes (form-floating, form-control) or unigrid-bootstrap bridge",
+      "passed": false,
+      "evidence": "No Bootstrap CSS classes (form-floating, form-control, etc.) are used in the HTML template or SCSS. The only reference to Bootstrap is a comment in SCSS: 'Uses Bootstrap 5 form-control conventions alongside unigrid design tokens' but no actual Bootstrap classes or bridge utilities are applied."
+    },
+    {
+      "text": "html-mockup: Includes a standalone HTML mockup file demonstrating all states visually",
+      "passed": true,
+      "evidence": "form-input-mockup.html exists as a standalone file with design tokens, all visual states (default, focused, error, success, disabled), and responsive sections."
+    }
+  ]
+}

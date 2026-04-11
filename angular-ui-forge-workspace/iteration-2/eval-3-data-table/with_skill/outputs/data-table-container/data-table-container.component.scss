@@ -1,0 +1,14 @@
+// DataTableContainerComponent — Smart container styles
+//
+// Minimal styles: the container uses full viewport width
+// and delegates all visual styling to the dumb DataTableComponent.
+
+:host {
+  display: block;
+  width: 100%;
+  padding: var(--ug-spacing-3);
+
+  @media (min-width: 1024px) {
+    padding: var(--ug-spacing-3) var(--ug-spacing-4);
+  }
+}

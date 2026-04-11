@@ -1,0 +1,241 @@
+/**
+ * Step Personal Info Styles
+ *
+ * Shared form field styles used across all step components.
+ * Mobile-first, full-viewport-width layout.
+ * Tailwind handles utility classes in templates; this SCSS covers
+ * structural form layout, validation states, and focus indicators.
+ */
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+// Step panel container
+.step-panel {
+  width: 100%;
+}
+
+.step-panel__header {
+  margin-bottom: var(--ug-spacing-4, 2.4rem);
+}
+
+.step-panel__title {
+  font-family: var(--ug-font-family, 'Inter', system-ui, sans-serif);
+  font-size: var(--ug-font-size-2xl, 1.5rem);
+  font-weight: 700;
+  line-height: calc(2 * var(--ug-leading, 1.625rem));
+  color: var(--ug-black, #1a1a1a);
+  margin: 0 0 var(--ug-spacing-1, 0.4rem) 0;
+}
+
+.step-panel__description {
+  font-size: var(--ug-font-size-sm, 0.875rem);
+  color: var(--ug-medium-gray, #666666);
+  // Contrast: #666 on #fff = 5.74:1 (passes AA)
+  margin: 0;
+  line-height: var(--ug-leading, 1.625rem);
+}
+
+// Form grid — multi-column on tablet+
+.form-grid {
+  display: grid;
+  gap: var(--ug-spacing-3, 1.625rem);
+  grid-template-columns: 1fr;
+  margin-bottom: var(--ug-spacing-3, 1.625rem);
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// Form field
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ug-spacing-1, 0.4rem);
+  margin-bottom: var(--ug-spacing-3, 1.625rem);
+
+  &--full {
+    grid-column: 1 / -1;
+  }
+}
+
+.form-field__label {
+  font-family: var(--ug-font-family, 'Inter', system-ui, sans-serif);
+  font-size: var(--ug-font-size-sm, 0.875rem);
+  font-weight: 600;
+  color: var(--ug-dark-gray, #333333);
+  // Contrast: #333 on #fff = 12.63:1 (passes AA)
+  line-height: var(--ug-leading, 1.625rem);
+}
+
+.form-field__required {
+  color: var(--ug-red, #c1272d);
+  // Contrast: #c1272d on #fff = 5.37:1 (passes AA)
+}
+
+.form-field__optional {
+  color: var(--ug-medium-gray, #666666);
+  font-weight: 400;
+  font-size: var(--ug-font-size-xs, 0.75rem);
+}
+
+.form-field__input {
+  font-family: var(--ug-font-family, 'Inter', system-ui, sans-serif);
+  font-size: var(--ug-font-size-base, 1rem);
+  line-height: var(--ug-leading, 1.625rem);
+  padding: calc(0.5 * var(--ug-leading, 1.625rem) - 1px) var(--ug-spacing-2, 0.8rem);
+  border: 1px solid var(--ug-light-gray, #e8e5e0);
+  border-radius: 4px;
+  background-color: var(--ug-white, #ffffff);
+  color: var(--ug-black, #1a1a1a);
+  width: 100%;
+  min-height: 44px; // WCAG touch target
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &::placeholder {
+    color: var(--ug-medium-gray, #999999);
+    opacity: 0.7;
+  }
+
+  // Focus indicator (WCAG 2.4.7)
+  &:focus-visible {
+    outline: none;
+    border-color: var(--ui-focus-color, #1a73e8);
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+  }
+
+  // Error state
+  &--error {
+    border-color: var(--ug-red, #c1272d);
+
+    &:focus-visible {
+      border-color: var(--ug-red, #c1272d);
+      box-shadow: 0 0 0 3px rgba(193, 39, 45, 0.2);
+    }
+  }
+
+  // Valid state (subtle green border on completed fields)
+  &--valid {
+    border-color: var(--ug-green, #2d5a27);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.form-field__error {
+  font-size: var(--ug-font-size-xs, 0.75rem);
+  color: var(--ug-red, #c1272d);
+  // Contrast: #c1272d on #fff = 5.37:1 (passes AA)
+  margin: 0;
+  line-height: var(--ug-leading, 1.625rem);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Ccircle cx='7' cy='7' r='6' fill='none' stroke='%23c1272d' stroke-width='1.5'/%3E%3Cpath d='M7 4v3.5M7 9.5v.01' stroke='%23c1272d' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    flex-shrink: 0;
+  }
+}
+
+.form-field__help {
+  font-size: var(--ug-font-size-xs, 0.75rem);
+  color: var(--ug-medium-gray, #666666);
+  margin: 0;
+  line-height: var(--ug-leading, 1.625rem);
+}
+
+// Actions bar
+.step-panel__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--ug-spacing-4, 2.4rem);
+  border-top: 1px solid var(--ug-light-gray, #e8e5e0);
+  margin-top: var(--ug-spacing-3, 1.625rem);
+}
+
+// Button styles
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ug-spacing-1, 0.4rem);
+  font-family: var(--ug-font-family, 'Inter', system-ui, sans-serif);
+  font-size: var(--ug-font-size-base, 1rem);
+  font-weight: 600;
+  line-height: var(--ug-leading, 1.625rem);
+  padding: var(--ug-spacing-2, 0.8rem) var(--ug-spacing-4, 2.4rem);
+  border: 2px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  min-height: 44px; // WCAG touch target
+  min-width: 44px;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+
+  &:focus-visible {
+    outline: 3px solid var(--ui-focus-color, #1a73e8);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.btn--primary {
+  background-color: var(--ug-blue, #274a5a);
+  color: var(--ug-white, #ffffff);
+  // Contrast: #fff on #274a5a = 8.63:1 (passes AA)
+
+  &:hover:not(:disabled) {
+    background-color: #1e3a47;
+  }
+
+  &:active:not(:disabled) {
+    background-color: #152d38;
+  }
+}
+
+.btn--ghost {
+  background-color: transparent;
+  border-color: var(--ug-light-gray, #e8e5e0);
+  color: var(--ug-dark-gray, #333333);
+
+  &:hover:not(:disabled) {
+    background-color: var(--ug-warm-gray, #f5f2ed);
+    border-color: var(--ug-dark-gray, #333333);
+  }
+}
+
+.btn__icon {
+  flex-shrink: 0;
+}
+
+// High contrast mode
+@media (forced-colors: active) {
+  .form-field__input {
+    border: 1px solid ButtonText;
+  }
+
+  .form-field__input--error {
+    border-color: LinkText;
+  }
+
+  .btn {
+    border: 2px solid ButtonText;
+  }
+}

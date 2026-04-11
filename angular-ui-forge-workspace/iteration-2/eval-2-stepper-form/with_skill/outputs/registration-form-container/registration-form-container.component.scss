@@ -1,0 +1,37 @@
+// ============================================================
+// Registration Form Container — Smart Component SCSS
+// Minimal styles: layout container + success message
+// ============================================================
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.registration-container {
+  width: 100%;
+  // Full viewport width — no max-width constraint
+  padding: 0 var(--ug-spacing-3, 1.625rem);
+
+  @media (min-width: 768px) {
+    padding: 0 var(--ug-spacing-5, 3.25rem);
+  }
+
+  @media (min-width: 1280px) {
+    padding: 0 var(--ug-spacing-7, 6.5rem);
+  }
+}
+
+.success-message {
+  display: flex;
+  align-items: center;
+  gap: var(--ug-spacing-2, 0.8125rem);
+  padding: var(--ug-spacing-3, 1.625rem);
+  margin-top: var(--ug-spacing-3, 1.625rem);
+  background: #e8f5e9;
+  // Contrast: #2d5a27 on #e8f5e9 = 6.2:1 (passes AA)
+  color: var(--ui-color-success, #2d5a27);
+  font-weight: 600;
+  font-size: var(--ug-font-size-base, 1rem);
+  line-height: var(--ug-leading, 1.625rem);
+}

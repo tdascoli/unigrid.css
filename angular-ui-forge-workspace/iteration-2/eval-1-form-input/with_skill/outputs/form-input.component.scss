@@ -1,0 +1,132 @@
+// =============================================================================
+// Form Input Component — Bootstrap 5 + Unigrid Rhythm Overrides
+// =============================================================================
+// This file layers vertical-rhythm-aligned overrides ON TOP of Bootstrap's
+// form-floating / form-control classes. Templates use Bootstrap class names.
+// Focus indicators use outline (not box-shadow) for forced-colors / WHCM support.
+// All interactive elements meet 44x44px minimum touch target (WCAG 2.5.8).
+// =============================================================================
+
+:host {
+  display: block;
+  margin-bottom: var(--ug-spacing-3); // 1 leading unit between fields
+}
+
+// --- Floating label wrapper ---------------------------------------------------
+.form-floating {
+  // --- The input itself -------------------------------------------------------
+  .form-control {
+    // Touch target: WCAG 2.5.8 — minimum 44x44px
+    min-height: 44px;
+    min-width: 44px;
+
+    // Rhythm-aligned typography
+    line-height: var(--ug-leading);
+    font-family: var(--ug-font-family);
+    font-size: var(--ug-font-size-base, 1rem);
+
+    // Sharp borders (unigrid aesthetic)
+    border-radius: var(--ui-radius, 0);
+
+    // Transition for border color
+    transition: border-color 0.15s ease;
+
+    // --- Focus: outline-based (WCAG 2.4.7 / forced-colors safe) ---------------
+    &:focus,
+    &:focus-visible {
+      outline: 3px solid var(--ui-focus-color, #1a73e8);
+      outline-offset: 2px;
+      box-shadow: none; // Override Bootstrap's default box-shadow focus
+      border-color: var(--ui-focus-color, #1a73e8);
+    }
+
+    // --- Error state -----------------------------------------------------------
+    &.is-invalid {
+      border-color: var(--ui-color-danger, #c1272d);
+
+      &:focus,
+      &:focus-visible {
+        outline-color: var(--ui-color-danger, #c1272d);
+        border-color: var(--ui-color-danger, #c1272d);
+        box-shadow: none;
+      }
+    }
+
+    // --- Success state ---------------------------------------------------------
+    &.is-valid {
+      border-color: var(--ui-color-success, #2d5a27);
+
+      &:focus,
+      &:focus-visible {
+        outline-color: var(--ui-color-success, #2d5a27);
+        border-color: var(--ui-color-success, #2d5a27);
+        box-shadow: none;
+      }
+    }
+
+    // --- Disabled state --------------------------------------------------------
+    &:disabled,
+    &[aria-disabled='true'] {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  // --- Floating label ----------------------------------------------------------
+  label {
+    font-family: var(--ug-font-family);
+  }
+}
+
+// --- Feedback messages ---------------------------------------------------------
+.invalid-feedback {
+  font-size: var(--ug-font-size-sm, 0.875rem);
+  // Contrast: #c1272d on #fff = 5.37:1 (passes AA)
+  color: var(--ui-color-danger, #c1272d);
+}
+
+.valid-feedback {
+  font-size: var(--ug-font-size-sm, 0.875rem);
+  // Contrast: #2d5a27 on #fff = 7.64:1 (passes AA)
+  color: var(--ui-color-success, #2d5a27);
+}
+
+// --- Hint text -----------------------------------------------------------------
+.form-text {
+  font-size: var(--ug-font-size-sm, 0.875rem);
+  // Contrast: #666 on #fff = 5.74:1 (passes AA)
+  color: var(--ui-text-muted, #666666);
+  margin-top: var(--ug-spacing-1);
+}
+
+// --- Required indicator --------------------------------------------------------
+.required-indicator {
+  color: var(--ui-color-danger, #c1272d);
+  margin-left: 0.25em;
+}
+
+// --- Reduced motion (WCAG 2.3.3) -----------------------------------------------
+@media (prefers-reduced-motion: reduce) {
+  .form-floating .form-control {
+    transition: none;
+  }
+}
+
+// --- High contrast mode (forced-colors) ----------------------------------------
+@media (forced-colors: active) {
+  .form-floating .form-control {
+    border: 2px solid ButtonText;
+
+    &:focus-visible {
+      outline: 3px solid Highlight;
+    }
+
+    &.is-invalid {
+      border-color: LinkText;
+    }
+
+    &.is-valid {
+      border-color: ButtonText;
+    }
+  }
+}

@@ -1,0 +1,279 @@
+<!-- ═══════════════════════════════════════════════════════════════
+     Data Table — Presentational Component Template
+     Mobile: card-based layout.  Desktop: full table.
+     ═══════════════════════════════════════════════════════════════ -->
+
+<div class="ui-data-table__wrapper">
+
+  <!-- ── Toolbar: Search + Selection Info ────────────────────── -->
+  <div class="ui-data-table__toolbar">
+    <div class="ui-data-table__search">
+      <label class="ui-data-table__search-label" for="dt-search">
+        <span class="ui-data-table__search-icon" aria-hidden="true">&#x1F50D;</span>
+        <span class="sr-only">Search</span>
+      </label>
+      <input
+        id="dt-search"
+        class="ui-data-table__search-input"
+        type="search"
+        [attr.placeholder]="searchPlaceholder"
+        [ngModel]="searchTerm"
+        (ngModelChange)="onSearchInput($event)"
+        aria-label="Filter table rows"
+      />
+      <button
+        *ngIf="searchTerm"
+        class="ui-data-table__search-clear"
+        type="button"
+        (click)="clearSearch()"
+        aria-label="Clear search"
+      >
+        &times;
+      </button>
+    </div>
+
+    <div class="ui-data-table__toolbar-info" *ngIf="selectable && selectedIds.length > 0">
+      <span class="ui-data-table__selection-count">
+        {{ selectedIds.length }} row{{ selectedIds.length === 1 ? '' : 's' }} selected
+      </span>
+    </div>
+  </div>
+
+  <!-- ── Caption (optional) ──────────────────────────────────── -->
+  <p class="ui-data-table__caption" *ngIf="caption">{{ caption }}</p>
+
+  <!-- ═══════════════ DESKTOP TABLE VIEW ═══════════════════════ -->
+  <div class="ui-data-table__scroll" role="region" aria-label="Data table" tabindex="0">
+    <table class="ui-data-table__table" [attr.aria-label]="caption || 'Data table'">
+      <thead class="ui-data-table__thead">
+        <tr>
+          <!-- Select-all checkbox -->
+          <th *ngIf="selectable" class="ui-data-table__th ui-data-table__th--checkbox">
+            <input
+              type="checkbox"
+              class="ui-data-table__checkbox"
+              [checked]="allSelected"
+              (change)="onToggleAll($any($event.target).checked)"
+              aria-label="Select all rows"
+            />
+          </th>
+
+          <!-- Column headers -->
+          <th
+            *ngFor="let col of columns; trackBy: trackByCol"
+            class="ui-data-table__th"
+            [class.ui-data-table__th--sortable]="col.sortable !== false"
+            [style.width]="col.width || null"
+            [attr.aria-sort]="col.sortable !== false ? getAriaSortValue(col) : null"
+          >
+            <button
+              *ngIf="col.sortable !== false"
+              class="ui-data-table__sort-btn"
+              type="button"
+              (click)="onSort(col)"
+              [attr.aria-label]="'Sort by ' + col.label"
+            >
+              <span class="ui-data-table__th-label">{{ col.label }}</span>
+              <span class="ui-data-table__sort-icon" aria-hidden="true">{{ getSortIcon(col) }}</span>
+            </button>
+            <span *ngIf="col.sortable === false" class="ui-data-table__th-label">
+              {{ col.label }}
+            </span>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody class="ui-data-table__tbody">
+        <!-- Loading skeleton -->
+        <ng-container *ngIf="loading">
+          <tr *ngFor="let s of skeletonRows" class="ui-data-table__tr ui-data-table__tr--skeleton">
+            <td *ngIf="selectable" class="ui-data-table__td">
+              <span class="ui-data-table__skeleton-box ui-data-table__skeleton-box--sm"></span>
+            </td>
+            <td *ngFor="let col of columns; trackBy: trackByCol" class="ui-data-table__td">
+              <span class="ui-data-table__skeleton-box"></span>
+            </td>
+          </tr>
+        </ng-container>
+
+        <!-- Empty state -->
+        <tr *ngIf="!loading && rows.length === 0" class="ui-data-table__tr ui-data-table__tr--empty">
+          <td
+            [attr.colspan]="columns.length + (selectable ? 1 : 0)"
+            class="ui-data-table__td ui-data-table__td--empty"
+          >
+            <div class="ui-data-table__empty">
+              <span class="ui-data-table__empty-icon" aria-hidden="true">&#x1F4CB;</span>
+              <p class="ui-data-table__empty-text">{{ emptyMessage }}</p>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Data rows -->
+        <ng-container *ngIf="!loading">
+          <tr
+            *ngFor="let row of rows; trackBy: trackByRow"
+            class="ui-data-table__tr"
+            [class.ui-data-table__tr--selected]="isSelected(row)"
+          >
+            <td *ngIf="selectable" class="ui-data-table__td ui-data-table__td--checkbox">
+              <input
+                type="checkbox"
+                class="ui-data-table__checkbox"
+                [checked]="isSelected(row)"
+                (change)="onToggleRow(row[rowIdKey], $any($event.target).checked)"
+                [attr.aria-label]="'Select row ' + row[rowIdKey]"
+              />
+            </td>
+            <td
+              *ngFor="let col of columns; trackBy: trackByCol"
+              class="ui-data-table__td"
+              [class]="getAlignClass(col)"
+              [attr.data-label]="col.label"
+            >
+              {{ getCellValue(row, col) }}
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══════════════ MOBILE CARD VIEW ═════════════════════════ -->
+  <div class="ui-data-table__cards" role="list" aria-label="Data cards">
+    <!-- Loading cards -->
+    <ng-container *ngIf="loading">
+      <div
+        *ngFor="let s of skeletonRows"
+        class="ui-data-table__card ui-data-table__card--skeleton"
+        role="listitem"
+      >
+        <div class="ui-data-table__card-row" *ngFor="let col of mobileColumns; trackBy: trackByCol">
+          <span class="ui-data-table__card-label">
+            <span class="ui-data-table__skeleton-box ui-data-table__skeleton-box--sm"></span>
+          </span>
+          <span class="ui-data-table__card-value">
+            <span class="ui-data-table__skeleton-box"></span>
+          </span>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- Empty state -->
+    <div
+      *ngIf="!loading && rows.length === 0"
+      class="ui-data-table__card ui-data-table__card--empty"
+      role="listitem"
+    >
+      <div class="ui-data-table__empty">
+        <span class="ui-data-table__empty-icon" aria-hidden="true">&#x1F4CB;</span>
+        <p class="ui-data-table__empty-text">{{ emptyMessage }}</p>
+      </div>
+    </div>
+
+    <!-- Data cards -->
+    <ng-container *ngIf="!loading">
+      <div
+        *ngFor="let row of rows; trackBy: trackByRow"
+        class="ui-data-table__card"
+        [class.ui-data-table__card--selected]="isSelected(row)"
+        role="listitem"
+      >
+        <!-- Card selection -->
+        <div class="ui-data-table__card-header" *ngIf="selectable">
+          <input
+            type="checkbox"
+            class="ui-data-table__checkbox"
+            [checked]="isSelected(row)"
+            (change)="onToggleRow(row[rowIdKey], $any($event.target).checked)"
+            [attr.aria-label]="'Select row ' + row[rowIdKey]"
+          />
+        </div>
+
+        <!-- Card fields -->
+        <div
+          *ngFor="let col of mobileColumns; trackBy: trackByCol"
+          class="ui-data-table__card-row"
+        >
+          <span class="ui-data-table__card-label">{{ col.label }}</span>
+          <span class="ui-data-table__card-value" [class]="getAlignClass(col)">
+            {{ getCellValue(row, col) }}
+          </span>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <!-- ── Pagination ──────────────────────────────────────────── -->
+  <nav
+    class="ui-data-table__pagination"
+    aria-label="Table pagination"
+    *ngIf="pagination.totalItems > 0"
+  >
+    <div class="ui-data-table__pagination-size">
+      <label for="dt-page-size" class="ui-data-table__pagination-label">Rows per page:</label>
+      <select
+        id="dt-page-size"
+        class="ui-data-table__pagination-select"
+        [ngModel]="pagination.pageSize"
+        (ngModelChange)="onPageSizeChange($event)"
+      >
+        <option *ngFor="let size of pageSizeOptions" [ngValue]="size">{{ size }}</option>
+      </select>
+    </div>
+
+    <span class="ui-data-table__pagination-range">{{ rangeLabel }}</span>
+
+    <div class="ui-data-table__pagination-controls">
+      <button
+        class="ui-data-table__page-btn"
+        type="button"
+        [disabled]="pagination.pageIndex === 0"
+        (click)="goToPage(0)"
+        aria-label="First page"
+      >
+        &laquo;
+      </button>
+      <button
+        class="ui-data-table__page-btn"
+        type="button"
+        [disabled]="pagination.pageIndex === 0"
+        (click)="goToPage(pagination.pageIndex - 1)"
+        aria-label="Previous page"
+      >
+        &lsaquo;
+      </button>
+
+      <button
+        *ngFor="let p of visiblePages"
+        class="ui-data-table__page-btn"
+        [class.ui-data-table__page-btn--active]="p === pagination.pageIndex"
+        type="button"
+        (click)="goToPage(p)"
+        [attr.aria-label]="'Page ' + (p + 1)"
+        [attr.aria-current]="p === pagination.pageIndex ? 'page' : null"
+      >
+        {{ p + 1 }}
+      </button>
+
+      <button
+        class="ui-data-table__page-btn"
+        type="button"
+        [disabled]="pagination.pageIndex >= totalPages - 1"
+        (click)="goToPage(pagination.pageIndex + 1)"
+        aria-label="Next page"
+      >
+        &rsaquo;
+      </button>
+      <button
+        class="ui-data-table__page-btn"
+        type="button"
+        [disabled]="pagination.pageIndex >= totalPages - 1"
+        (click)="goToPage(totalPages - 1)"
+        aria-label="Last page"
+      >
+        &raquo;
+      </button>
+    </div>
+  </nav>
+</div>

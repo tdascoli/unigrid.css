@@ -1,0 +1,29 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "eval1-with-skill",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["http-server", "C:/work/workspace/unigrid.css/.claude/worktrees/optimistic-knuth/angular-ui-forge-workspace/iteration-1/eval-1-form-input/with_skill/outputs", "-p", "8091", "-c-1"],
+      "port": 8091
+    },
+    {
+      "name": "eval1-without-skill",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["http-server", "C:/work/workspace/unigrid.css/.claude/worktrees/optimistic-knuth/angular-ui-forge-workspace/iteration-1/eval-1-form-input/without_skill/outputs", "-p", "8092", "-c-1"],
+      "port": 8092
+    },
+    {
+      "name": "eval3-with-skill",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["http-server", "C:/work/workspace/unigrid.css/.claude/worktrees/optimistic-knuth/angular-ui-forge-workspace/iteration-1/eval-3-data-table/with_skill/outputs", "-p", "8093", "-c-1"],
+      "port": 8093
+    },
+    {
+      "name": "eval3-without-skill",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["http-server", "C:/work/workspace/unigrid.css/.claude/worktrees/optimistic-knuth/angular-ui-forge-workspace/iteration-1/eval-3-data-table/without_skill/outputs", "-p", "8094", "-c-1"],
+      "port": 8094
+    }
+  ]
+}

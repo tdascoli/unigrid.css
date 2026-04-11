@@ -1,0 +1,70 @@
+{
+  "run_id": "eval-3-without_skill",
+  "expectations": [
+    {
+      "text": "smart-dumb-split: Has both smart (container) and dumb (presentational) components with clear separation",
+      "passed": false,
+      "evidence": "Only one component exists (DataTableComponent). The component comment says 'Presentational / Smart-ish' but there is no separate container/smart component. All logic (sorting, filtering, pagination, selection) lives in a single component."
+    },
+    {
+      "text": "separate-files: All components use separate .html and .scss files, never inline",
+      "passed": true,
+      "evidence": "Component uses templateUrl: './data-table.component.html' and styleUrl: './data-table.component.scss' — both are separate files."
+    },
+    {
+      "text": "onpush: Dumb components use ChangeDetectionStrategy.OnPush",
+      "passed": true,
+      "evidence": "DataTableComponent uses changeDetection: ChangeDetectionStrategy.OnPush (line 55 of component.ts). Although there is no separate dumb component, the single component does use OnPush."
+    },
+    {
+      "text": "mobile-card-layout: Mobile view uses card-based layout instead of table",
+      "passed": true,
+      "evidence": "Template has a dedicated mobile card view section using ug-card classes (lines 168-224 of HTML), shown when isMobile is true (viewport < 768px). Cards show title/subtitle from first two columns and label-value pairs for remaining columns."
+    },
+    {
+      "text": "desktop-table-layout: Desktop view (md+ breakpoint) uses proper table layout",
+      "passed": true,
+      "evidence": "Template has a desktop table view using <table> with ug-table classes (lines 80-166 of HTML), shown when !isMobile. Uses thead/tbody, th with scope='col', proper table semantics."
+    },
+    {
+      "text": "full-viewport: Table uses full available viewport width, not a narrow centered container",
+      "passed": true,
+      "evidence": ":host has width: 100% and display: flex. The .dt container uses flex: 1 1 auto. The ug-table-responsive wrapper has width: 100% (in mockup). No max-width constraint or centering applied."
+    },
+    {
+      "text": "rhythm-rows: Row heights use leading-based spacing (multiples of --ug-leading)",
+      "passed": true,
+      "evidence": "SCSS uses calc(var(--ug-leading) * N) throughout for padding and spacing: toolbar padding is calc(var(--ug-leading) * 0.5), checkbox columns use calc(var(--ug-leading) * 1.5) width, page-size select height is calc(var(--ug-leading) * 1), empty state padding is calc(var(--ug-leading) * 2). The mockup table cell padding also uses calc(var(--ug-leading) * 0.5)."
+    },
+    {
+      "text": "unigrid-tokens: SCSS uses unigrid.css tokens (--ug-spacing-*, --ug-leading, ug-grid classes)",
+      "passed": false,
+      "evidence": "SCSS uses var(--ug-leading) extensively and ug-table/ug-card/ug-btn/ug-form/ug-pagination BEM classes. However, it does NOT use --ug-spacing-* tokens — all spacing is done via calc(var(--ug-leading) * N) instead. No ug-grid classes are used either. Partial compliance only."
+    },
+    {
+      "text": "aria-sort: Sortable columns have aria-sort attribute",
+      "passed": true,
+      "evidence": "Template line 111: [attr.aria-sort]=\"sort?.column === col.key ? (sort?.direction === 'asc' ? 'ascending' : 'descending') : null\" — aria-sort is set to 'ascending' or 'descending' on the actively sorted column."
+    },
+    {
+      "text": "keyboard-accessible: Sort buttons, pagination, and row selection are keyboard accessible",
+      "passed": true,
+      "evidence": "Sort headers have tabindex=0 and respond to (keydown.enter) and (keydown.space) events. Pagination uses <a> links which are natively focusable. Checkboxes are native <input type='checkbox'> elements. Select-all also uses native checkbox."
+    },
+    {
+      "text": "touch-targets: Interactive elements (sort buttons, pagination, checkboxes) meet 44px minimum",
+      "passed": false,
+      "evidence": "Checkboxes are only 1em (16px) with no expanded touch target wrapper. Pagination links have min-width/height of calc(var(--ug-leading) * 1.2) which is ~31-37px depending on breakpoint, below the 44px minimum. No explicit 44px min-height/min-width is set on any interactive element."
+    },
+    {
+      "text": "storybook-states: Stories include: Default, Empty, Loading, WithFilters states",
+      "passed": false,
+      "evidence": "Stories include Default, Empty, Loading, ReadOnly, Minimal, LargeDataset, FewColumns, and CustomFormatting. There is no explicit 'WithFilters' story showing pre-applied filter state. The Default story has filterable=true but no filters are pre-set."
+    },
+    {
+      "text": "html-mockup: Includes a standalone HTML mockup showing responsive table behavior",
+      "passed": true,
+      "evidence": "data-table-mockup.html is a full standalone HTML file with inline CSS and multiple demo sections including: desktop table, column filters active, empty state, loading state, and a mobile card view (simulated 375px mobile frame). Shows responsive behavior across breakpoints."
+    }
+  ]
+}

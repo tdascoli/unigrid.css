@@ -1,0 +1,54 @@
+<!-- Smart container: passes data down, handles events up -->
+<div class="registration-container">
+  <ui-stepper-form
+    [steps]="steps"
+    [currentStepIndex]="currentStepIndex"
+    [showProgressBar]="true"
+    (stepChange)="onStepChange($event)"
+    (nextStep)="onNextStep()"
+    (previousStep)="onPreviousStep()"
+    (formSubmit)="onFormSubmit()"
+  >
+    <!-- Step 1: Personal Info -->
+    <ng-template uiStepPanel>
+      <ui-registration-form
+        [activeStep]="'personal'"
+        [personalInfo]="personalInfo"
+        [countries]="countries"
+        (personalInfoChange)="onPersonalInfoChange($event)"
+        (editStep)="onEditStep($event)"
+      ></ui-registration-form>
+    </ng-template>
+
+    <!-- Step 2: Address -->
+    <ng-template uiStepPanel>
+      <ui-registration-form
+        [activeStep]="'address'"
+        [addressInfo]="addressInfo"
+        [countries]="countries"
+        (addressInfoChange)="onAddressInfoChange($event)"
+        (editStep)="onEditStep($event)"
+      ></ui-registration-form>
+    </ng-template>
+
+    <!-- Step 3: Review -->
+    <ng-template uiStepPanel>
+      <ui-registration-form
+        [activeStep]="'review'"
+        [personalInfo]="personalInfo"
+        [addressInfo]="addressInfo"
+        [countries]="countries"
+        (editStep)="onEditStep($event)"
+      ></ui-registration-form>
+    </ng-template>
+  </ui-stepper-form>
+
+  <!-- Success message after submission -->
+  <div *ngIf="submitted" class="success-message" role="alert">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+      <path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span>Registration submitted successfully!</span>
+  </div>
+</div>

@@ -1,0 +1,221 @@
+// ==========================================================================
+// Form Input Component — Floating Label with Validation States
+//
+// Uses unigrid.css design tokens for vertical rhythm, spacing, and color.
+// Mobile-first responsive approach.
+// ==========================================================================
+
+:host {
+  display: block;
+  margin-bottom: var(--ug-spacing-2, 0.8125rem);
+  font-family: var(--ug-font-family, 'Inter', system-ui, sans-serif);
+}
+
+// ---- Wrapper (positions label + input + icon) ----
+.ui-form-input__wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+// ---- Native Input ----
+.ui-form-input__native {
+  display: block;
+  width: 100%;
+  height: calc(var(--ug-leading, 1.625rem) * 2);
+  padding: calc(var(--ug-leading, 1.625rem) * 0.75) calc(var(--ug-spacing-2, 0.8125rem)) 0;
+  font-family: inherit;
+  font-size: var(--ug-font-size-base, 1rem);
+  line-height: var(--ug-leading, 1.625rem);
+  color: var(--ug-black, #1a1a1a);
+  background-color: var(--ug-white, #ffffff);
+  border: 1px solid var(--ug-light-gray, #e8e5e0);
+  border-radius: var(--ug-border-radius, 0);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  -webkit-appearance: none;
+  appearance: none;
+
+  // Remove default browser styling for number inputs
+  &[type='number'] {
+    -moz-appearance: textfield;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  // ---- Focus State ----
+  &:focus {
+    outline: none;
+    border-color: var(--ug-black, #1a1a1a);
+    box-shadow: 0 0 0 1px var(--ug-black, #1a1a1a);
+  }
+
+  // Keyboard-only focus ring (WCAG 2.2 compliant)
+  &:focus-visible {
+    outline: 3px solid var(--ui-focus-color, #1a73e8);
+    outline-offset: 2px;
+    box-shadow: none;
+  }
+
+  // ---- Disabled State ----
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: var(--ug-warm-gray, #f5f2ed);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+// ---- Floating Label ----
+.ui-form-input__label {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--ug-spacing-2, 0.8125rem) + 1px);
+  transform: translateY(-50%);
+  font-size: var(--ug-font-size-base, 1rem);
+  color: var(--ug-medium-gray, #666666);
+  pointer-events: none;
+  transform-origin: left center;
+  transition: transform 0.15s ease, font-size 0.15s ease, color 0.15s ease;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+// Float label up on focus or when the input has a value
+.ui-form-input__native:focus + .ui-form-input__label,
+.ui-form-input__native:not(:placeholder-shown) + .ui-form-input__label {
+  transform: translateY(-130%) scale(0.75);
+  color: var(--ug-dark-gray, #333333);
+}
+
+// ---- Required Indicator ----
+.ui-form-input__required {
+  color: var(--ug-red, #c1272d);
+  margin-left: 0.125em;
+}
+
+// ---- State Icon ----
+.ui-form-input__state-icon {
+  position: absolute;
+  right: calc(var(--ug-spacing-2, 0.8125rem));
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+}
+
+.ui-form-input__icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.ui-form-input__icon--error {
+  color: var(--ug-red, #c1272d);
+}
+
+.ui-form-input__icon--success {
+  color: var(--ug-green, #2d5a27);
+}
+
+// Add right padding to input when icon is present
+:host-context(.ui-form-input--error),
+:host-context(.ui-form-input--success) {
+  .ui-form-input__native {
+    padding-right: calc(var(--ug-spacing-2, 0.8125rem) + 1.5rem);
+  }
+}
+
+// ---- Description / Error / Success Text ----
+.ui-form-input__description {
+  margin-top: calc(var(--ug-spacing-1, 0.40625rem));
+  font-size: var(--ug-font-size-xs, 0.75rem);
+  line-height: var(--ug-leading, 1.625rem);
+}
+
+// ---- Validation State Modifiers ----
+
+// Error
+:host-context(.ui-form-input--error) {
+  .ui-form-input__native {
+    border-color: var(--ug-red, #c1272d);
+
+    &:focus {
+      box-shadow: 0 0 0 1px var(--ug-red, #c1272d);
+    }
+  }
+
+  .ui-form-input__label {
+    color: var(--ug-red, #c1272d);
+  }
+
+  .ui-form-input__native:focus + .ui-form-input__label,
+  .ui-form-input__native:not(:placeholder-shown) + .ui-form-input__label {
+    color: var(--ug-red, #c1272d);
+  }
+
+  .ui-form-input__description {
+    color: var(--ug-red, #c1272d);
+  }
+}
+
+// Success
+:host-context(.ui-form-input--success) {
+  .ui-form-input__native {
+    border-color: var(--ug-green, #2d5a27);
+
+    &:focus {
+      box-shadow: 0 0 0 1px var(--ug-green, #2d5a27);
+    }
+  }
+
+  .ui-form-input__label {
+    color: var(--ug-green, #2d5a27);
+  }
+
+  .ui-form-input__native:focus + .ui-form-input__label,
+  .ui-form-input__native:not(:placeholder-shown) + .ui-form-input__label {
+    color: var(--ug-green, #2d5a27);
+  }
+
+  .ui-form-input__description {
+    color: var(--ug-green, #2d5a27);
+  }
+}
+
+// ---- Disabled Host ----
+:host-context(.ui-form-input--disabled) {
+  pointer-events: none;
+
+  .ui-form-input__label {
+    color: var(--ug-medium-gray, #666666);
+    opacity: 0.5;
+  }
+}
+
+// ---- Responsive — Mobile-first touch targets ----
+// Ensure minimum 44px touch target on mobile
+@media (max-width: 479px) {
+  .ui-form-input__native {
+    min-height: 48px;
+    font-size: 16px; // Prevents iOS zoom on focus
+  }
+}
+
+// Desktop refinement
+@media (min-width: 1024px) {
+  .ui-form-input__native {
+    height: calc(var(--ug-leading, 1.7rem) * 2);
+  }
+}

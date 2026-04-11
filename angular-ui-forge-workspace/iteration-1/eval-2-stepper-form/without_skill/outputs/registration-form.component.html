@@ -1,0 +1,485 @@
+<!-- Success State -->
+<div
+  *ngIf="submitted()"
+  class="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-emerald-50 via-white to-teal-50 px-4"
+>
+  <div class="text-center max-w-md mx-auto">
+    <div
+      class="w-20 h-20 rounded-full bg-emerald-100 flex items-center justify-center mx-auto mb-6 animate-bounce"
+    >
+      <svg class="w-10 h-10 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+      </svg>
+    </div>
+    <h2 class="text-3xl font-bold text-gray-900 mb-2">Registration Complete!</h2>
+    <p class="text-gray-500 mb-8">Your account has been created successfully.</p>
+    <button
+      type="button"
+      (click)="resetForm()"
+      class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 text-white font-semibold hover:bg-emerald-700 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+    >
+      Register Another
+    </button>
+  </div>
+</div>
+
+<!-- Registration Form -->
+<div
+  *ngIf="!submitted()"
+  class="min-h-screen w-full bg-gradient-to-br from-slate-50 via-white to-indigo-50"
+>
+  <!-- Progress Bar (top of viewport) -->
+  <div class="sticky top-0 z-20 w-full h-1 bg-gray-200">
+    <div
+      class="h-full bg-indigo-600 transition-all duration-500 ease-out"
+      [style.width.%]="progressPercent()"
+    ></div>
+  </div>
+
+  <div class="w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <!-- Header -->
+    <div class="text-center mb-8 sm:mb-10">
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">
+        Create Your Account
+      </h1>
+      <p class="mt-2 text-gray-500 text-base sm:text-lg">
+        Complete the steps below to get started
+      </p>
+    </div>
+
+    <!-- Step Indicators -->
+    <nav class="mb-8 sm:mb-12" aria-label="Registration steps">
+      <ol class="flex items-center w-full">
+        <li
+          *ngFor="let step of steps; let i = index; let last = last"
+          class="flex items-center"
+          [class.flex-1]="!last"
+          [class]="last ? '' : 'flex-1'"
+        >
+          <!-- Step Circle + Label -->
+          <button
+            type="button"
+            class="flex items-center gap-2 sm:gap-3 group"
+            [disabled]="i > currentStep()"
+            (click)="goToStep(i)"
+            [attr.aria-current]="i === currentStep() ? 'step' : null"
+          >
+            <!-- Circle -->
+            <span
+              class="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 text-sm font-semibold transition-all duration-300 shrink-0"
+              [ngClass]="{
+                'border-indigo-600 bg-indigo-600 text-white shadow-lg shadow-indigo-200': i === currentStep(),
+                'border-emerald-500 bg-emerald-500 text-white': i < currentStep(),
+                'border-gray-300 bg-white text-gray-400': i > currentStep()
+              }"
+            >
+              <svg
+                *ngIf="i < currentStep()"
+                class="w-5 h-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              <span *ngIf="i >= currentStep()">{{ i + 1 }}</span>
+            </span>
+
+            <!-- Label (hidden on small screens) -->
+            <div class="hidden sm:block text-left">
+              <p
+                class="text-sm font-semibold transition-colors"
+                [ngClass]="{
+                  'text-indigo-700': i === currentStep(),
+                  'text-emerald-600': i < currentStep(),
+                  'text-gray-400': i > currentStep()
+                }"
+              >
+                {{ step.label }}
+              </p>
+              <p class="text-xs text-gray-400">{{ step.description }}</p>
+            </div>
+          </button>
+
+          <!-- Connector Line -->
+          <div
+            *ngIf="!last"
+            class="flex-1 h-0.5 mx-3 sm:mx-4 transition-colors duration-500"
+            [ngClass]="{
+              'bg-emerald-400': i < currentStep(),
+              'bg-gray-200': i >= currentStep()
+            }"
+          ></div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Form Card -->
+    <div class="bg-white rounded-2xl shadow-xl shadow-gray-200/50 border border-gray-100 overflow-hidden">
+      <!-- Step Title Bar -->
+      <div class="px-6 sm:px-8 py-5 bg-gradient-to-r from-indigo-50 to-white border-b border-gray-100">
+        <h2 class="text-xl font-bold text-gray-900">
+          {{ steps[currentStep()].label }}
+        </h2>
+        <p class="text-sm text-gray-500 mt-0.5">
+          Step {{ currentStep() + 1 }} of {{ steps.length }}
+        </p>
+      </div>
+
+      <div class="px-6 sm:px-8 py-6 sm:py-8">
+        <!-- Step 1: Personal Info -->
+        <form
+          *ngIf="currentStep() === 0"
+          [formGroup]="personalInfoForm"
+          class="space-y-5"
+        >
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <!-- First Name -->
+            <div>
+              <label for="firstName" class="block text-sm font-medium text-gray-700 mb-1.5">
+                First Name <span class="text-red-500">*</span>
+              </label>
+              <input
+                id="firstName"
+                formControlName="firstName"
+                type="text"
+                placeholder="John"
+                autocomplete="given-name"
+                class="w-full px-4 py-3 rounded-xl border text-gray-900 placeholder-gray-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                [ngClass]="{
+                  'border-red-300 bg-red-50': personalInfoForm.get('firstName')?.invalid && personalInfoForm.get('firstName')?.touched,
+                  'border-gray-200 bg-gray-50 hover:border-gray-300': !(personalInfoForm.get('firstName')?.invalid && personalInfoForm.get('firstName')?.touched)
+                }"
+              />
+              <p
+                *ngIf="getFieldError(personalInfoForm, 'firstName') as error"
+                class="mt-1.5 text-sm text-red-600"
+              >
+                {{ error }}
+              </p>
+            </div>
+
+            <!-- Last Name -->
+            <div>
+              <label for="lastName" class="block text-sm font-medium text-gray-700 mb-1.5">
+                Last Name <span class="text-red-500">*</span>
+              </label>
+              <input
+                id="lastName"
+                formControlName="lastName"
+                type="text"
+                placeholder="Doe"
+                autocomplete="family-name"
+                class="w-full px-4 py-3 rounded-xl border text-gray-900 placeholder-gray-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                [ngClass]="{
+                  'border-red-300 bg-red-50': personalInfoForm.get('lastName')?.invalid && personalInfoForm.get('lastName')?.touched,
+                  'border-gray-200 bg-gray-50 hover:border-gray-300': !(personalInfoForm.get('lastName')?.invalid && personalInfoForm.get('lastName')?.touched)
+                }"
+              />
+              <p
+                *ngIf="getFieldError(personalInfoForm, 'lastName') as error"
+                class="mt-1.5 text-sm text-red-600"
+              >
+                {{ error }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-1.5">
+              Email Address <span class="text-red-500">*</span>
+            </label>
+            <input
+              id="email"
+              formControlName="email"
+              type="email"
+              placeholder="john.doe@example.com"
+              autocomplete="email"
+              class="w-full px-4 py-3 rounded-xl border text-gray-900 placeholder-gray-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              [ngClass]="{
+                'border-red-300 bg-red-50': personalInfoForm.get('email')?.invalid && personalInfoForm.get('email')?.touched,
+                'border-gray-200 bg-gray-50 hover:border-gray-300': !(personalInfoForm.get('email')?.invalid && personalInfoForm.get('email')?.touched)
+              }"
+            />
+            <p
+              *ngIf="getFieldError(personalInfoForm, 'email') as error"
+              class="mt-1.5 text-sm text-red-600"
+            >
+              {{ error }}
+            </p>
+          </div>
+
+          <!-- Phone -->
+          <div>
+            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1.5">
+              Phone Number <span class="text-red-500">*</span>
+            </label>
+            <input
+              id="phone"
+              formControlName="phone"
+              type="tel"
+              placeholder="+1 (555) 123-4567"
+              autocomplete="tel"
+              class="w-full px-4 py-3 rounded-xl border text-gray-900 placeholder-gray-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              [ngClass]="{
+                'border-red-300 bg-red-50': personalInfoForm.get('phone')?.invalid && personalInfoForm.get('phone')?.touched,
+                'border-gray-200 bg-gray-50 hover:border-gray-300': !(personalInfoForm.get('phone')?.invalid && personalInfoForm.get('phone')?.touched)
+              }"
+            />
+            <p
+              *ngIf="getFieldError(personalInfoForm, 'phone') as error"
+              class="mt-1.5 text-sm text-red-600"
+            >
+              {{ error }}
+            </p>
+          </div>
+        </form>
+
+        <!-- Step 2: Address -->
+        <form
+          *ngIf="currentStep() === 1"
+          [formGroup]="addressForm"
+          class="space-y-5"
+        >
+          <!-- Street -->
+          <div>
+            <label for="street" class="block text-sm font-medium text-gray-700 mb-1.5">
+              Street Address <span class="text-red-500">*</span>
+            </label>
+            <input
+              id="street"
+              formControlName="street"
+              type="text"
+              placeholder="123 Main Street"
+              autocomplete="street-address"
+              class="w-full px-4 py-3 rounded-xl border text-gray-900 placeholder-gray-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              [ngClass]="{
+                'border-red-300 bg-red-50': addressForm.get('street')?.invalid && addressForm.get('street')?.touched,
+                'border-gray-200 bg-gray-50 hover:border-gray-300': !(addressForm.get('street')?.invalid && addressForm.get('street')?.touched)
+              }"
+            />
+            <p
+              *ngIf="getFieldError(addressForm, 'street') as error"
+              class="mt-1.5 text-sm text-red-600"
+            >
+              {{ error }}
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <!-- City -->
+            <div>
+              <label for="city" class="block text-sm font-medium text-gray-700 mb-1.5">
+                City <span class="text-red-500">*</span>
+              </label>
+              <input
+                id="city"
+                formControlName="city"
+                type="text"
+                placeholder="New York"
+                autocomplete="address-level2"
+                class="w-full px-4 py-3 rounded-xl border text-gray-900 placeholder-gray-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                [ngClass]="{
+                  'border-red-300 bg-red-50': addressForm.get('city')?.invalid && addressForm.get('city')?.touched,
+                  'border-gray-200 bg-gray-50 hover:border-gray-300': !(addressForm.get('city')?.invalid && addressForm.get('city')?.touched)
+                }"
+              />
+              <p
+                *ngIf="getFieldError(addressForm, 'city') as error"
+                class="mt-1.5 text-sm text-red-600"
+              >
+                {{ error }}
+              </p>
+            </div>
+
+            <!-- Postal Code -->
+            <div>
+              <label for="postalCode" class="block text-sm font-medium text-gray-700 mb-1.5">
+                Postal Code <span class="text-red-500">*</span>
+              </label>
+              <input
+                id="postalCode"
+                formControlName="postalCode"
+                type="text"
+                placeholder="10001"
+                autocomplete="postal-code"
+                class="w-full px-4 py-3 rounded-xl border text-gray-900 placeholder-gray-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                [ngClass]="{
+                  'border-red-300 bg-red-50': addressForm.get('postalCode')?.invalid && addressForm.get('postalCode')?.touched,
+                  'border-gray-200 bg-gray-50 hover:border-gray-300': !(addressForm.get('postalCode')?.invalid && addressForm.get('postalCode')?.touched)
+                }"
+              />
+              <p
+                *ngIf="getFieldError(addressForm, 'postalCode') as error"
+                class="mt-1.5 text-sm text-red-600"
+              >
+                {{ error }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Country -->
+          <div>
+            <label for="country" class="block text-sm font-medium text-gray-700 mb-1.5">
+              Country <span class="text-red-500">*</span>
+            </label>
+            <select
+              id="country"
+              formControlName="country"
+              autocomplete="country-name"
+              class="w-full px-4 py-3 rounded-xl border text-gray-900 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 hover:border-gray-300 appearance-none cursor-pointer"
+            >
+              <option value="" disabled>Select a country</option>
+              <option *ngFor="let c of countries" [value]="c">{{ c }}</option>
+            </select>
+            <p class="mt-1.5 text-xs text-gray-400">
+              Auto-detected from your browser locale
+            </p>
+          </div>
+        </form>
+
+        <!-- Step 3: Review -->
+        <div *ngIf="currentStep() === 2" class="space-y-6">
+          <!-- Personal Info Review -->
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider">
+                Personal Information
+              </h3>
+              <button
+                type="button"
+                (click)="goToStep(0)"
+                class="text-sm text-indigo-600 hover:text-indigo-800 font-medium transition-colors"
+              >
+                Edit
+              </button>
+            </div>
+            <div class="bg-gray-50 rounded-xl p-4 sm:p-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <p class="text-xs text-gray-400 mb-0.5">First Name</p>
+                <p class="text-sm font-medium text-gray-900">
+                  {{ personalInfoForm.get('firstName')?.value }}
+                </p>
+              </div>
+              <div>
+                <p class="text-xs text-gray-400 mb-0.5">Last Name</p>
+                <p class="text-sm font-medium text-gray-900">
+                  {{ personalInfoForm.get('lastName')?.value }}
+                </p>
+              </div>
+              <div>
+                <p class="text-xs text-gray-400 mb-0.5">Email</p>
+                <p class="text-sm font-medium text-gray-900">
+                  {{ personalInfoForm.get('email')?.value }}
+                </p>
+              </div>
+              <div>
+                <p class="text-xs text-gray-400 mb-0.5">Phone</p>
+                <p class="text-sm font-medium text-gray-900">
+                  {{ personalInfoForm.get('phone')?.value }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Address Review -->
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider">
+                Address
+              </h3>
+              <button
+                type="button"
+                (click)="goToStep(1)"
+                class="text-sm text-indigo-600 hover:text-indigo-800 font-medium transition-colors"
+              >
+                Edit
+              </button>
+            </div>
+            <div class="bg-gray-50 rounded-xl p-4 sm:p-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="sm:col-span-2">
+                <p class="text-xs text-gray-400 mb-0.5">Street</p>
+                <p class="text-sm font-medium text-gray-900">
+                  {{ addressForm.get('street')?.value }}
+                </p>
+              </div>
+              <div>
+                <p class="text-xs text-gray-400 mb-0.5">City</p>
+                <p class="text-sm font-medium text-gray-900">
+                  {{ addressForm.get('city')?.value }}
+                </p>
+              </div>
+              <div>
+                <p class="text-xs text-gray-400 mb-0.5">Postal Code</p>
+                <p class="text-sm font-medium text-gray-900">
+                  {{ addressForm.get('postalCode')?.value }}
+                </p>
+              </div>
+              <div class="sm:col-span-2">
+                <p class="text-xs text-gray-400 mb-0.5">Country</p>
+                <p class="text-sm font-medium text-gray-900">
+                  {{ addressForm.get('country')?.value }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Footer -->
+      <div class="px-6 sm:px-8 py-5 bg-gray-50 border-t border-gray-100 flex items-center justify-between">
+        <button
+          *ngIf="!isFirstStep()"
+          type="button"
+          (click)="prevStep()"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-gray-300 bg-white text-gray-700 font-medium text-sm hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        >
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+          Back
+        </button>
+        <div *ngIf="isFirstStep()"></div>
+
+        <button
+          *ngIf="!isLastStep()"
+          type="button"
+          (click)="nextStep()"
+          class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-indigo-600 text-white font-medium text-sm hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          [disabled]="!canProceed()"
+        >
+          Continue
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        <button
+          *ngIf="isLastStep()"
+          type="button"
+          (click)="onSubmit()"
+          class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-emerald-600 text-white font-medium text-sm hover:bg-emerald-700 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          [disabled]="submitting()"
+        >
+          <svg
+            *ngIf="submitting()"
+            class="animate-spin w-4 h-4"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path
+              class="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            ></path>
+          </svg>
+          {{ submitting() ? 'Submitting...' : 'Submit Registration' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

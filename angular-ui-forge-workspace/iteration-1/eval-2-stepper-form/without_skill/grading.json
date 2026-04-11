@@ -1,0 +1,65 @@
+{
+  "run_id": "eval-2-without_skill",
+  "expectations": [
+    {
+      "text": "smart-dumb-split: Has both smart (container) and dumb (presentational) components with clear separation",
+      "passed": false,
+      "evidence": "Only a single RegistrationFormComponent exists. There are no separate dumb/presentational child components — all form steps, stepper UI, validation, and state logic live in one component."
+    },
+    {
+      "text": "separate-files: All components use separate .html and .scss files, never inline",
+      "passed": true,
+      "evidence": "Component uses templateUrl: './registration-form.component.html' and styleUrls: ['./registration-form.component.scss'] — separate files, no inline templates or styles."
+    },
+    {
+      "text": "progressive-disclosure: Steps are revealed progressively (not all visible at once), using stepper/wizard pattern",
+      "passed": true,
+      "evidence": "Only the current step is rendered via *ngIf=\"currentStep() === 0/1/2\". Steps are shown one at a time with Next/Back navigation — classic wizard pattern."
+    },
+    {
+      "text": "smart-defaults: Country field pre-selects based on browser locale (Intl API or navigator.language)",
+      "passed": true,
+      "evidence": "detectCountryFromLocale() uses navigator.language to extract region code, maps it to country name, and sets it as default value for the country form control."
+    },
+    {
+      "text": "field-chunking: Fields are grouped logically (3-5 per step), not all in one long form",
+      "passed": true,
+      "evidence": "Step 1 has 4 fields (firstName, lastName, email, phone). Step 2 has 4 fields (street, city, postalCode, country). Step 3 is review. Logical grouping of 4 fields per step."
+    },
+    {
+      "text": "full-viewport: Form layout uses full available width (grid/flex), not a narrow centered column",
+      "passed": false,
+      "evidence": "The layout uses max-w-3xl (768px) mx-auto, which creates a narrow centered column. The form card itself is constrained, not full-viewport width."
+    },
+    {
+      "text": "tailwind-rhythm: Uses Tailwind classes with rhythm-aligned spacing or custom spacing scale",
+      "passed": true,
+      "evidence": "Extensive use of Tailwind spacing classes throughout: space-y-5, gap-5, px-6, py-3, mb-8, etc. Consistent rhythm using Tailwind's default 4px scale."
+    },
+    {
+      "text": "aria-stepper: Stepper has ARIA attributes (aria-current, role, step labels for screen readers)",
+      "passed": true,
+      "evidence": "Stepper nav has aria-label=\"Registration steps\", step buttons use [attr.aria-current]=\"i === currentStep() ? 'step' : null\", and steps are in an <ol> with semantic markup."
+    },
+    {
+      "text": "keyboard-nav: Step navigation is keyboard-accessible (focus management between steps)",
+      "passed": false,
+      "evidence": "While buttons have focus-visible styles in SCSS (outline on focus-visible) and buttons are natively focusable, there is no explicit focus management — no code moves focus to the new step content or first input when navigating between steps."
+    },
+    {
+      "text": "storybook-stories: Has Storybook stories for individual steps and/or the full flow",
+      "passed": true,
+      "evidence": "registration-form.component.stories.ts has 4 stories: Default, Mobile, Tablet, and WithPrefilledData. However, stories are only for the full form (no individual step stories)."
+    },
+    {
+      "text": "review-step: Review step shows a summary of all entered data before submission",
+      "passed": true,
+      "evidence": "Step 3 (currentStep() === 2) displays all personal info and address fields in a review layout with Edit buttons to go back to each section."
+    },
+    {
+      "text": "html-mockup: Includes a standalone HTML mockup with working step navigation",
+      "passed": true,
+      "evidence": "registration-form-mockup.html is a complete standalone HTML file with CSS, JS, working step navigation (nextStep, prevStep, goToStep), validation, review population, and submit flow."
+    }
+  ]
+}

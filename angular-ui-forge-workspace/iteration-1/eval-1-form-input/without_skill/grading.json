@@ -1,0 +1,65 @@
+{
+  "run_id": "eval-1-without_skill",
+  "expectations": [
+    {
+      "text": "separate-files: Component uses separate .html and .scss files (templateUrl/styleUrl), never inline template/styles",
+      "passed": true,
+      "evidence": "Component uses templateUrl: './form-input.component.html' and styleUrl: './form-input.component.scss' in the @Component decorator (lines 31-32 of .ts file)."
+    },
+    {
+      "text": "onpush: Component uses ChangeDetectionStrategy.OnPush",
+      "passed": true,
+      "evidence": "changeDetection: ChangeDetectionStrategy.OnPush is set on line 33 of form-input.component.ts."
+    },
+    {
+      "text": "no-services: Dumb component has zero injected services (no constructor DI or inject())",
+      "passed": true,
+      "evidence": "No constructor is defined and no inject() calls are present. The component only uses @Input/@Output decorators and implements ControlValueAccessor with local state."
+    },
+    {
+      "text": "rhythm-spacing: SCSS uses unigrid spacing tokens (--ug-spacing-*) or leading-based calc() for margins/padding",
+      "passed": true,
+      "evidence": "SCSS uses var(--ug-spacing-2) for margin-bottom, var(--ug-spacing-1) for description margin-top, and calc(var(--ug-leading) * 2) / calc(var(--ug-leading) * 0.75) for height/padding throughout."
+    },
+    {
+      "text": "touch-target: Input has minimum 44px touch target (min-height: 44px or equivalent)",
+      "passed": true,
+      "evidence": "SCSS line 211: min-height: 48px is set inside @media (max-width: 479px), exceeding the 44px requirement. Additionally the default height is calc(var(--ug-leading) * 2) which equals ~52px (1.625rem * 2 = 3.25rem)."
+    },
+    {
+      "text": "focus-visible: Includes :focus-visible styles with visible outline (not just color change)",
+      "passed": true,
+      "evidence": "SCSS lines 62-65: &:focus-visible { outline: 3px solid var(--ui-focus-color, #1a73e8); outline-offset: 2px; } provides a visible 3px outline."
+    },
+    {
+      "text": "aria-invalid: Uses aria-invalid and aria-describedby for error states",
+      "passed": true,
+      "evidence": "HTML line 11: [attr.aria-invalid]=\"state === 'error' ? true : null\" and line 12: [attr.aria-describedby]=\"ariaDescribedBy\" which resolves to the descriptionId when a description is present."
+    },
+    {
+      "text": "reduced-motion: Animations/transitions wrapped in prefers-reduced-motion media query",
+      "passed": true,
+      "evidence": "SCSS lines 74-76: @media (prefers-reduced-motion: reduce) { transition: none; } on the input, and lines 91-93: same media query on the label element."
+    },
+    {
+      "text": "mobile-first: SCSS uses min-width media queries (mobile-first), not max-width",
+      "passed": false,
+      "evidence": "SCSS line 209 uses @media (max-width: 479px) for mobile touch targets, which is desktop-first (max-width). While line 217 uses @media (min-width: 1024px) for desktop, the primary responsive pattern uses max-width."
+    },
+    {
+      "text": "storybook-variants: Storybook stories include at least: Default, Error, Success, Disabled variants",
+      "passed": true,
+      "evidence": "Stories file includes: Default (line 81), ErrorState (line 121), SuccessState (line 138), and Disabled (line 165) story exports."
+    },
+    {
+      "text": "bootstrap-integration: Uses Bootstrap classes (form-floating, form-control) or unigrid-bootstrap bridge",
+      "passed": false,
+      "evidence": "No Bootstrap classes (form-floating, form-control, form-group) are used anywhere. The component uses entirely custom BEM-style classes (ui-form-input__*) with no Bootstrap integration or bridge."
+    },
+    {
+      "text": "html-mockup: Includes a standalone HTML mockup file demonstrating all states visually",
+      "passed": true,
+      "evidence": "form-input-mockup.html is a complete standalone HTML file with inline styles and demonstrations of Default, Focus, Error, Success, Disabled, Required states plus all input types and a side-by-side comparison."
+    }
+  ]
+}

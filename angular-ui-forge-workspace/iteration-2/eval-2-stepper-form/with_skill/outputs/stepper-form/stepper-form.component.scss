@@ -1,0 +1,265 @@
+// ============================================================
+// Stepper Form — Dumb Component SCSS
+// Tailwind project: minimal SCSS, most styling via template utilities
+// But stepper chrome has enough complexity to warrant SCSS
+// ============================================================
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+// Screen reader only utility
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// ============================================================
+// Stepper Header
+// ============================================================
+.stepper {
+  width: 100%;
+  padding: var(--ug-spacing-3, 1.625rem) var(--ug-spacing-3, 1.625rem) 0;
+}
+
+.stepper__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: var(--ug-spacing-5, 3.25rem);
+  width: 100%;
+}
+
+.stepper__step {
+  display: flex;
+  align-items: center;
+  gap: var(--ug-spacing-2, 0.8125rem);
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: var(--ug-font-family, 'Inter', system-ui, sans-serif);
+  font-size: var(--ug-font-size-sm, 0.875rem);
+  color: var(--ui-text-muted, #666666);
+  padding: var(--ug-spacing-2, 0.8125rem);
+  min-height: 44px; // WCAG 2.5.8 touch target
+  min-width: 44px;
+  white-space: nowrap;
+
+  // Focus indicator: outline, never box-shadow
+  &:focus-visible {
+    outline: 3px solid var(--ui-focus-color, #1a73e8);
+    outline-offset: 2px;
+  }
+
+  &--active {
+    color: var(--ui-color-primary, #274a5a);
+    font-weight: 600;
+  }
+
+  &--completed {
+    color: var(--ui-color-success, #2d5a27);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.stepper__indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: var(--ug-font-size-sm, 0.875rem);
+  font-weight: 600;
+  flex-shrink: 0;
+  border: 2px solid var(--ug-light-gray, #e8e5e0);
+  background: var(--ui-surface, #ffffff);
+  color: var(--ui-text-muted, #666666);
+
+  .stepper__step--active & {
+    border-color: var(--ui-color-primary, #274a5a);
+    background: var(--ui-color-primary, #274a5a);
+    color: var(--ui-color-on-primary, #ffffff);
+  }
+
+  .stepper__step--completed & {
+    border-color: var(--ui-color-success, #2d5a27);
+    background: var(--ui-color-success, #2d5a27);
+    color: #ffffff;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.stepper__label {
+  display: none;
+
+  @media (min-width: 480px) {
+    display: inline;
+  }
+}
+
+.stepper__connector {
+  flex: 1;
+  height: 2px;
+  background: var(--ug-light-gray, #e8e5e0);
+  min-width: 24px;
+  max-width: 120px;
+
+  &--completed {
+    background: var(--ui-color-success, #2d5a27);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+// ============================================================
+// Progress Bar
+// ============================================================
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: var(--ug-light-gray, #e8e5e0);
+  margin-bottom: var(--ug-spacing-4, 2.4375rem);
+  overflow: hidden;
+}
+
+.progress-bar__fill {
+  height: 100%;
+  background: var(--ui-color-primary, #274a5a);
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: width 0.3s ease;
+  }
+}
+
+// ============================================================
+// Step Content
+// ============================================================
+.stepper__content {
+  width: 100%;
+}
+
+.step-panel {
+  display: none;
+  width: 100%;
+
+  &--active {
+    display: block;
+  }
+}
+
+// ============================================================
+// Navigation Buttons
+// ============================================================
+.form-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ug-spacing-4, 2.4375rem) 0;
+  gap: var(--ug-spacing-3, 1.625rem);
+  width: 100%;
+}
+
+.form-nav__spacer {
+  flex: 1;
+}
+
+.btn {
+  min-height: 44px; // WCAG 2.5.8
+  min-width: 44px;
+  padding: var(--ug-spacing-2, 0.8125rem) var(--ug-spacing-4, 2.4375rem);
+  font-family: var(--ug-font-family, 'Inter', system-ui, sans-serif);
+  font-size: var(--ug-font-size-base, 1rem);
+  font-weight: 600;
+  line-height: var(--ug-leading, 1.625rem);
+  border: 2px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ug-spacing-2, 0.8125rem);
+
+  // Focus indicator: outline, never box-shadow
+  &:focus-visible {
+    outline: 3px solid var(--ui-focus-color, #1a73e8);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.btn--primary {
+  background: var(--ui-color-primary, #274a5a);
+  color: var(--ui-color-on-primary, #ffffff);
+  border-color: var(--ui-color-primary, #274a5a);
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--ui-text-secondary, #333333);
+  border-color: var(--ug-light-gray, #e8e5e0);
+
+  &:hover {
+    background: var(--ui-surface-raised, #f5f2ed);
+  }
+}
+
+.btn--success {
+  // Contrast: #2d5a27 on #fff = 7.64:1 (passes AA)
+  background: var(--ui-color-success, #2d5a27);
+  color: #ffffff;
+  border-color: var(--ui-color-success, #2d5a27);
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+// ============================================================
+// High Contrast Mode
+// ============================================================
+@media (forced-colors: active) {
+  .stepper__indicator {
+    border: 2px solid ButtonText;
+  }
+
+  .stepper__step--active .stepper__indicator {
+    background: Highlight;
+    color: HighlightText;
+    border-color: Highlight;
+  }
+
+  .stepper__connector--completed {
+    background: Highlight;
+  }
+
+  .btn {
+    border: 2px solid ButtonText;
+  }
+}

@@ -1,0 +1,14 @@
+// ═══════════════════════════════════════════════════════════════════
+// Data Table Container — Smart Component Styles
+//
+// The container is intentionally minimal. It provides full-viewport
+// layout context so the inner data table stretches to use available
+// space. All visual styling lives in the dumb component.
+// ═══════════════════════════════════════════════════════════════════
+
+:host {
+  display: block;
+  width: 100%;
+  // Use full available height when placed in a dashboard layout
+  min-height: 0;
+}

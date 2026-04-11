@@ -1,0 +1,65 @@
+{
+  "run_id": "eval-1-iter2-with_skill",
+  "expectations": [
+    {
+      "text": "separate-files: Component uses separate .html and .scss files (templateUrl/styleUrl), never inline template/styles",
+      "passed": true,
+      "evidence": "Component uses templateUrl: './form-input.component.html' and styleUrl: './form-input.component.scss' in the @Component decorator (lines 20-21 of .ts file)."
+    },
+    {
+      "text": "onpush: Component uses ChangeDetectionStrategy.OnPush",
+      "passed": true,
+      "evidence": "changeDetection: ChangeDetectionStrategy.OnPush is set in the @Component decorator (line 22 of .ts file)."
+    },
+    {
+      "text": "no-services: Dumb component has zero injected services (no constructor DI or inject())",
+      "passed": true,
+      "evidence": "No constructor defined and no inject() calls anywhere in the component. Only @Input/@Output decorators and local logic."
+    },
+    {
+      "text": "rhythm-spacing: SCSS uses unigrid spacing tokens (--ug-spacing-*) or leading-based calc() for margins/padding",
+      "passed": true,
+      "evidence": "SCSS uses --ug-spacing-3 for host margin-bottom (line 12), --ug-spacing-1 for form-text margin-top (line 99), and --ug-leading for line-height (line 24)."
+    },
+    {
+      "text": "touch-target: Input has minimum 44px touch target (min-height: 44px or equivalent)",
+      "passed": true,
+      "evidence": "SCSS sets min-height: 44px and min-width: 44px on .form-control (lines 20-21 of .scss file)."
+    },
+    {
+      "text": "focus-visible: Includes :focus-visible styles with visible OUTLINE (not just box-shadow or color change)",
+      "passed": true,
+      "evidence": "SCSS has &:focus-visible with outline: 3px solid var(--ui-focus-color, #1a73e8) and outline-offset: 2px (lines 36-41). box-shadow is explicitly set to none."
+    },
+    {
+      "text": "aria-invalid: Uses aria-invalid and aria-describedby for error states",
+      "passed": true,
+      "evidence": "HTML template uses [attr.aria-invalid]=\"state === 'error' ? true : null\" (line 14) and [attr.aria-describedby]=\"ariaDescribedBy\" (line 17). The ariaDescribedBy getter links to feedbackId when in error state."
+    },
+    {
+      "text": "reduced-motion: Animations/transitions wrapped in prefers-reduced-motion media query",
+      "passed": true,
+      "evidence": "SCSS includes @media (prefers-reduced-motion: reduce) { .form-floating .form-control { transition: none; } } at lines 109-113."
+    },
+    {
+      "text": "mobile-first: SCSS uses min-width media queries (mobile-first), not max-width",
+      "passed": true,
+      "evidence": "The component SCSS itself has no media queries for breakpoints (only prefers-reduced-motion and forced-colors). The mockup HTML uses min-width media queries (min-width: 768px, min-width: 1024px). No max-width queries found anywhere. The component is inherently mobile-first as it uses display: block with no breakpoint-specific overrides."
+    },
+    {
+      "text": "storybook-variants: Storybook stories include at least: Default, Error, Success, Disabled variants",
+      "passed": true,
+      "evidence": "Stories file exports: Default (line 65), ErrorState (line 106), SuccessState (line 116), and Disabled (line 129) story variants."
+    },
+    {
+      "text": "bootstrap-integration: Uses Bootstrap classes (form-floating, form-control, is-invalid, is-valid) in the HTML template",
+      "passed": true,
+      "evidence": "HTML template uses form-floating (line 2), form-control (line 3), is-invalid via [class.is-invalid] (line 5), is-valid via [class.is-valid] (line 6), invalid-feedback (line 33), valid-feedback (line 44), and form-text (line 52)."
+    },
+    {
+      "text": "html-mockup: Includes a standalone HTML mockup file demonstrating all states visually",
+      "passed": true,
+      "evidence": "form-input-mockup.html exists as a standalone HTML file with Bootstrap CDN, demonstrates all states: input types (text/email/tel/number), validation states (default/error/success), disabled, required, focus, help text, and responsive layout."
+    }
+  ]
+}

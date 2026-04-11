@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Input Component — All States Mockup</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* ================================================================
+       Unigrid Design Tokens
+       ================================================================ */
+    :root {
+      --ug-font-family: 'Inter', system-ui, sans-serif;
+      --ug-leading: 1.625rem;
+      --ug-spacing-1: calc(0.25 * var(--ug-leading));
+      --ug-spacing-2: calc(0.5 * var(--ug-leading));
+      --ug-spacing-3: calc(1 * var(--ug-leading));
+      --ug-spacing-4: calc(1.5 * var(--ug-leading));
+      --ug-spacing-5: calc(2 * var(--ug-leading));
+
+      --ug-font-size-sm: 0.875rem;
+      --ug-font-size-base: 1rem;
+
+      --ui-focus-color: #1a73e8;
+      --ui-color-success: #2d5a27;
+      --ui-color-danger: #c1272d;
+      --ui-text-muted: #666666;
+    }
+
+    @media (min-width: 1024px) {
+      :root {
+        --ug-leading: 1.7rem;
+      }
+    }
+
+    /* ================================================================
+       Rhythm Overrides on Bootstrap Classes
+       ================================================================ */
+    body {
+      font-family: var(--ug-font-family);
+      padding: var(--ug-spacing-5);
+      background: #f8f9fa;
+    }
+
+    h1 {
+      margin-bottom: var(--ug-spacing-5);
+      font-size: 2rem;
+      line-height: calc(2 * var(--ug-leading));
+    }
+
+    h2 {
+      margin-top: var(--ug-spacing-5);
+      margin-bottom: var(--ug-spacing-3);
+      font-size: 1.25rem;
+      line-height: var(--ug-leading);
+      color: #333;
+      border-bottom: 2px solid #e8e5e0;
+      padding-bottom: var(--ug-spacing-1);
+    }
+
+    .demo-section {
+      background: #fff;
+      padding: var(--ug-spacing-4);
+      margin-bottom: var(--ug-spacing-4);
+      border: 1px solid #e8e5e0;
+    }
+
+    .demo-row {
+      display: grid;
+      gap: var(--ug-spacing-3);
+      grid-template-columns: 1fr;
+      margin-bottom: var(--ug-spacing-3);
+    }
+
+    @media (min-width: 768px) {
+      .demo-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .demo-row {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* --- Form Input Component Rhythm Overrides --- */
+    .form-floating {
+      margin-bottom: var(--ug-spacing-3);
+    }
+
+    .form-floating .form-control {
+      min-height: 44px;
+      min-width: 44px;
+      line-height: var(--ug-leading);
+      font-family: var(--ug-font-family);
+      font-size: var(--ug-font-size-base);
+      border-radius: 0;
+    }
+
+    /* Focus: outline, NOT box-shadow (WCAG forced-colors compliance) */
+    .form-floating .form-control:focus,
+    .form-floating .form-control:focus-visible {
+      outline: 3px solid var(--ui-focus-color, #1a73e8);
+      outline-offset: 2px;
+      box-shadow: none;
+      border-color: var(--ui-focus-color, #1a73e8);
+    }
+
+    .form-floating .form-control.is-invalid:focus,
+    .form-floating .form-control.is-invalid:focus-visible {
+      outline-color: var(--ui-color-danger);
+      border-color: var(--ui-color-danger);
+      box-shadow: none;
+    }
+
+    .form-floating .form-control.is-valid:focus,
+    .form-floating .form-control.is-valid:focus-visible {
+      outline-color: var(--ui-color-success);
+      border-color: var(--ui-color-success);
+      box-shadow: none;
+    }
+
+    .form-floating label {
+      font-family: var(--ug-font-family);
+    }
+
+    .invalid-feedback {
+      font-size: var(--ug-font-size-sm);
+      color: var(--ui-color-danger);
+    }
+
+    .valid-feedback {
+      font-size: var(--ug-font-size-sm);
+      color: var(--ui-color-success);
+    }
+
+    .form-text {
+      font-size: var(--ug-font-size-sm);
+      color: var(--ui-text-muted);
+      margin-top: var(--ug-spacing-1);
+    }
+
+    /* Disabled state */
+    .form-floating .form-control:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Required indicator */
+    .required-indicator {
+      color: var(--ui-color-danger);
+      margin-left: 0.25em;
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* High contrast mode support */
+    @media (forced-colors: active) {
+      .form-floating .form-control {
+        border: 2px solid ButtonText;
+      }
+      .form-floating .form-control:focus-visible {
+        outline: 3px solid Highlight;
+      }
+      .form-floating .form-control.is-invalid {
+        border-color: LinkText;
+      }
+    }
+
+    /* State label badges */
+    .state-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 2px 8px;
+      border-radius: 2px;
+      margin-bottom: var(--ug-spacing-1);
+    }
+    .state-label--default { background: #e8e5e0; color: #333; }
+    .state-label--error { background: #f8d7da; color: var(--ui-color-danger); }
+    .state-label--success { background: #d4edda; color: var(--ui-color-success); }
+    .state-label--disabled { background: #e2e3e5; color: #666; }
+    .state-label--focus { background: #cce5ff; color: var(--ui-focus-color); }
+  </style>
+</head>
+<body>
+
+  <h1>Form Input Component &mdash; Visual States</h1>
+  <p>Standalone HTML mockup demonstrating all visual states. Uses Bootstrap 5 classes with unigrid.css rhythm overrides. All interactive elements meet 44&times;44px minimum touch targets (WCAG 2.5.8). Focus indicators use <code>outline</code> for Windows High Contrast Mode compatibility.</p>
+
+  <!-- ============================================================
+       SECTION 1: Input Types
+       ============================================================ -->
+  <h2>1. Input Types</h2>
+  <div class="demo-section">
+    <div class="demo-row">
+
+      <!-- Text -->
+      <div>
+        <span class="state-label state-label--default">Text</span>
+        <div class="form-floating">
+          <input type="text" class="form-control" id="demo-text" placeholder="Full Name" value="Jane Doe">
+          <label for="demo-text">Full Name</label>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div>
+        <span class="state-label state-label--default">Email</span>
+        <div class="form-floating">
+          <input type="email" class="form-control" id="demo-email" placeholder="Email Address" inputmode="email">
+          <label for="demo-email">Email Address</label>
+        </div>
+      </div>
+
+      <!-- Tel -->
+      <div>
+        <span class="state-label state-label--default">Telephone</span>
+        <div class="form-floating">
+          <input type="tel" class="form-control" id="demo-tel" placeholder="Phone Number" inputmode="tel">
+          <label for="demo-tel">Phone Number</label>
+        </div>
+      </div>
+
+      <!-- Number -->
+      <div>
+        <span class="state-label state-label--default">Number</span>
+        <div class="form-floating">
+          <input type="number" class="form-control" id="demo-number" placeholder="Quantity" inputmode="decimal" value="1">
+          <label for="demo-number">Quantity</label>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 2: Validation States
+       ============================================================ -->
+  <h2>2. Validation States</h2>
+  <div class="demo-section">
+    <div class="demo-row">
+
+      <!-- Default (no validation) -->
+      <div>
+        <span class="state-label state-label--default">Default</span>
+        <div class="form-floating">
+          <input type="text" class="form-control" id="demo-default" placeholder="Username">
+          <label for="demo-default">Username</label>
+          <div class="form-text" id="demo-default-help">Choose a unique username.</div>
+        </div>
+      </div>
+
+      <!-- Error state -->
+      <div>
+        <span class="state-label state-label--error">Error</span>
+        <div class="form-floating">
+          <input type="email" class="form-control is-invalid" id="demo-error" placeholder="Email" value="not-an-email" aria-invalid="true" aria-describedby="demo-error-feedback">
+          <label for="demo-error">Email Address</label>
+          <div class="invalid-feedback" id="demo-error-feedback" role="alert">
+            Please enter a valid email address.
+          </div>
+        </div>
+      </div>
+
+      <!-- Success state -->
+      <div>
+        <span class="state-label state-label--success">Success</span>
+        <div class="form-floating">
+          <input type="email" class="form-control is-valid" id="demo-success" placeholder="Email" value="jane@example.com" aria-describedby="demo-success-feedback">
+          <label for="demo-success">Email Address</label>
+          <div class="valid-feedback" id="demo-success-feedback">
+            Looks good!
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 3: Disabled & Required States
+       ============================================================ -->
+  <h2>3. Disabled &amp; Required</h2>
+  <div class="demo-section">
+    <div class="demo-row">
+
+      <!-- Disabled -->
+      <div>
+        <span class="state-label state-label--disabled">Disabled</span>
+        <div class="form-floating">
+          <input type="text" class="form-control" id="demo-disabled" placeholder="Read Only" value="Cannot edit" disabled aria-disabled="true">
+          <label for="demo-disabled">Locked Field</label>
+        </div>
+      </div>
+
+      <!-- Required -->
+      <div>
+        <span class="state-label state-label--error">Required</span>
+        <div class="form-floating">
+          <input type="text" class="form-control" id="demo-required" placeholder="Required Field" required aria-required="true">
+          <label for="demo-required">Required Field <span class="required-indicator" aria-hidden="true">*</span></label>
+        </div>
+      </div>
+
+      <!-- Required + Error -->
+      <div>
+        <span class="state-label state-label--error">Required + Error</span>
+        <div class="form-floating">
+          <input type="text" class="form-control is-invalid" id="demo-req-error" placeholder="Name" required aria-required="true" aria-invalid="true" aria-describedby="demo-req-error-fb">
+          <label for="demo-req-error">Your Name <span class="required-indicator" aria-hidden="true">*</span></label>
+          <div class="invalid-feedback" id="demo-req-error-fb" role="alert">
+            This field is required.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 4: With Help Text
+       ============================================================ -->
+  <h2>4. Help Text</h2>
+  <div class="demo-section">
+    <div class="demo-row">
+
+      <div>
+        <span class="state-label state-label--default">With Hint</span>
+        <div class="form-floating">
+          <input type="tel" class="form-control" id="demo-hint" placeholder="Phone" inputmode="tel" aria-describedby="demo-hint-help">
+          <label for="demo-hint">Phone Number</label>
+          <div class="form-text" id="demo-hint-help">Format: +41 79 123 45 67</div>
+        </div>
+      </div>
+
+      <div>
+        <span class="state-label state-label--error">Hint + Error</span>
+        <div class="form-floating">
+          <input type="number" class="form-control is-invalid" id="demo-hint-err" placeholder="Age" value="-3" inputmode="decimal" aria-invalid="true" aria-describedby="demo-hint-err-fb">
+          <label for="demo-hint-err">Age</label>
+          <div class="invalid-feedback" id="demo-hint-err-fb" role="alert">
+            Age must be a positive number.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 5: Focus Demo (click to see outline)
+       ============================================================ -->
+  <h2>5. Focus Indicator (click the input)</h2>
+  <div class="demo-section">
+    <div class="demo-row">
+      <div>
+        <span class="state-label state-label--focus">Focus Me</span>
+        <div class="form-floating">
+          <input type="text" class="form-control" id="demo-focus" placeholder="Click or tab here">
+          <label for="demo-focus">Focus Demo</label>
+        </div>
+        <p class="form-text">Focus ring uses <code>outline: 3px solid</code> &mdash; visible in Windows High Contrast Mode.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 6: Responsive Form Layout
+       ============================================================ -->
+  <h2>6. Responsive Form Layout (Mobile-First Grid)</h2>
+  <div class="demo-section">
+    <form novalidate>
+      <div class="demo-row">
+        <div>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="form-first" placeholder="First Name" required aria-required="true">
+            <label for="form-first">First Name <span class="required-indicator" aria-hidden="true">*</span></label>
+          </div>
+        </div>
+        <div>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="form-last" placeholder="Last Name" required aria-required="true">
+            <label for="form-last">Last Name <span class="required-indicator" aria-hidden="true">*</span></label>
+          </div>
+        </div>
+        <div>
+          <div class="form-floating">
+            <input type="email" class="form-control" id="form-email" placeholder="Email" inputmode="email" required aria-required="true">
+            <label for="form-email">Email <span class="required-indicator" aria-hidden="true">*</span></label>
+          </div>
+        </div>
+        <div>
+          <div class="form-floating">
+            <input type="tel" class="form-control" id="form-phone" placeholder="Phone" inputmode="tel">
+            <label for="form-phone">Phone <span style="color: var(--ui-text-muted);">(optional)</span></label>
+          </div>
+        </div>
+        <div>
+          <div class="form-floating">
+            <input type="number" class="form-control" id="form-age" placeholder="Age" inputmode="decimal" min="0" max="150">
+            <label for="form-age">Age <span style="color: var(--ui-text-muted);">(optional)</span></label>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- ============================================================
+       SECTION 7: Accessibility Checklist
+       ============================================================ -->
+  <h2>7. Accessibility Checklist</h2>
+  <div class="demo-section">
+    <ul style="line-height: var(--ug-leading); font-size: var(--ug-font-size-base);">
+      <li><strong>Labels:</strong> Every input has a visible <code>&lt;label&gt;</code> via Bootstrap's <code>form-floating</code> pattern.</li>
+      <li><strong>Error announcements:</strong> <code>role="alert"</code> on <code>.invalid-feedback</code> for live region announcements.</li>
+      <li><strong>ARIA:</strong> <code>aria-invalid</code>, <code>aria-describedby</code>, <code>aria-required</code>, and <code>aria-disabled</code> are set appropriately.</li>
+      <li><strong>Focus:</strong> <code>outline: 3px solid</code> with <code>outline-offset: 2px</code> &mdash; visible in forced-colors (High Contrast) mode.</li>
+      <li><strong>Touch targets:</strong> All inputs have <code>min-height: 44px</code> and <code>min-width: 44px</code> (WCAG 2.5.8).</li>
+      <li><strong>Color independence:</strong> Error/success states use icons and text, not color alone.</li>
+      <li><strong>Reduced motion:</strong> Transitions respect <code>prefers-reduced-motion: reduce</code>.</li>
+      <li><strong>Mobile keyboards:</strong> <code>inputmode</code> attributes trigger appropriate soft keyboards.</li>
+    </ul>
+  </div>
+
+</body>
+</html>
