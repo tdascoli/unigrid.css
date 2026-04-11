@@ -1,0 +1,23 @@
+{
+  "skill_name": "angular-ui-forge",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm setting up a new Angular UI library in our Nx monorepo. We use Bootstrap 5 and unigrid.css. I need a reusable form input component that supports text, email, tel, and number types with inline validation, error/success states, and a floating label. Make it accessible and mobile-first. Also set up the Storybook story for it.",
+      "expected_output": "Should generate: (1) A dumb InputComponent with separate .ts, .html, .scss files (never inline). (2) Uses ChangeDetectionStrategy.OnPush, standalone. (3) SCSS uses unigrid spacing tokens and rhythm-aligned dimensions. (4) Min touch target 44px. (5) Focus-visible outline. (6) ARIA attributes for validation states. (7) Bootstrap form-floating class integration. (8) Storybook story with Default, Error, Success, Disabled, AllTypes variants. (9) Mobile-first responsive styles.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Create a multi-step registration form for our Angular app. It should have 3 steps: Personal Info (name, email, phone), Address (street, city, postal code, country), and Review & Submit. Use progressive disclosure, smart defaults (detect country from browser locale), and make the form use the full viewport width on all screen sizes. We're using Tailwind in this project.",
+      "expected_output": "Should generate: (1) A smart StepperContainerComponent that manages form state and step navigation. (2) Dumb components for each step (PersonalInfoStep, AddressStep, ReviewStep) with separate files. (3) A reusable StepperComponent (dumb) for the step indicator. (4) Tailwind utility classes with rhythm-* spacing. (5) Full-width grid layout using Tailwind grid. (6) Progressive disclosure (steps hidden until reached). (7) Country pre-selected from Intl.DateTimeFormat locale. (8) Chunked fields (3-5 per group). (9) Storybook stories for each step and the full flow. (10) Accessibility: keyboard navigation between steps, aria-current for active step.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I need a data table component for our dashboard. It should handle sorting, filtering, pagination, and row selection. The table should use as much viewport as possible and work well on mobile (card-based layout on small screens, table on desktop). We use unigrid.css directly, no Bootstrap or Tailwind.",
+      "expected_output": "Should generate: (1) Dumb DataTableComponent with separate files. (2) Mobile-first: card layout on mobile, table on md+. (3) Full viewport width usage with ug-grid. (4) Vertical rhythm: row heights are multiples of leading. (5) Accessible: aria-sort on sortable columns, role=grid or role=table, keyboard navigation. (6) Pagination component (dumb). (7) Filter input (dumb). (8) Smart container that wires data fetching to table inputs. (9) Storybook stories: Default, WithFilters, WithSelection, Empty, Loading, MobileView. (10) Touch targets for sort buttons and pagination meet 44px minimum.",
+      "files": []
+    }
+  ]
+}
